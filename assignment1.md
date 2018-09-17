@@ -2,7 +2,7 @@
 ## Webshop content
 - Name: Fallschirmshop
 - Address: Flugweg 69, 3000 Bern
-- Logo: [logo](parachuteshoplogo.png)
+- Logo: [parachuteshoplogo.png](parachuteshoplogo.png)
 - Categories
     - Main
     - Reserve
@@ -23,7 +23,8 @@
     - Register
     - Profile
     - Shopping cart
-    - Checkout / Buy  
+    - Checkout / Buy
+- Search
 
 ## Page structure
 - Main content

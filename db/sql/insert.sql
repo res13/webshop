@@ -1,13 +1,33 @@
--- USE SCHEMA PUBLIC:
-
-INSERT INTO CATEGORY (NAME) VALUES ('Main');
-INSERT INTO CATEGORY (NAME) VALUES ('Reserve');
-INSERT INTO CATEGORY (NAME) VALUES ('BASE');
-
-INSERT INTO MANUFACTURER (NAME) VALUES ('Performance Design');
-INSERT INTO MANUFACTURER (NAME) VALUES ('NZ Aerosport');
-INSERT INTO MANUFACTURER (NAME) VALUES ('Squirrel');
-
-INSERT INTO PRODUCT (ID, NAME, PRICE) VALUES (1, 'Katana', 2350.00);
-
-INSERT INTO PARACHUTE (PRODUCT_ID, CELL, MANUFACTURER_ID) values (1, 9, 1);
+INSERT INTO webshop.address (id, street, homenumber, city_id, country_id) VALUES (1, 'Bernstrasse', '1', 1, 1);
+INSERT INTO webshop.address (id, street, homenumber, city_id, country_id) VALUES (2, 'Hauptstrasse', '12a', 1, 1);
+INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (1, 1, null);
+INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (2, 2, 1);
+INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (3, 3, 1);
+INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (4, 4, 1);
+INSERT INTO webshop.city (id, zip, city) VALUES (1, 3000, 'Bern');
+INSERT INTO webshop.country (id, name) VALUES (1, 'Switzerland');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (1, 'Fallschirm', 'Parachute');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (2, 'Haupt', 'Main');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (3, 'Reserve', 'Reserve');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (4, 'BASE', 'BASE');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (5, 'Grösse', 'Size');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (6, '270', '270');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (7, '250', '250');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (8, '230', '230');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (9, '210', '210');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (10, '190', '190');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (11, '170', '170');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (12, '150', '150');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (13, '130', '130');
+INSERT INTO webshop.manufacturer (id, name, image) VALUES (1, 'Performance Design', '/images/manufacturer/performance.jpg');
+INSERT INTO webshop.manufacturer (id, name, image) VALUES (2, 'NZ Aerosport', '/images/manufacturers/nz.jpg');
+INSERT INTO webshop.manufacturer (id, name, image) VALUES (3, 'Squirrel', '/images/manufacturers/squirrel.jpg');
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (1, 6, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (2, 7, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (3, 8, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (4, 9, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (5, 10, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (6, 11, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (7, 12, 1);
+INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (8, 13, 1);
+INSERT INTO webshop.options (id, name_i18n_id) VALUES (1, 5);

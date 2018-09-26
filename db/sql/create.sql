@@ -1,17 +1,17 @@
+drop table if exists product_option_value;
+drop table if exists option_value;
+drop table if exists options;
+drop table if exists basket;
+drop table if exists product_order;
+drop table if exists product;
 drop table if exists manufacturer;
 drop table if exists category;
-drop table if exists product;
-drop table if exists product_option_value;
-drop table if exists options;
-drop table if exists option_value;
+drop table if exists orders;
 drop table if exists customer;
 drop table if exists address;
 drop table if exists city;
 drop table if exists country;
 drop table if exists i18n;
-drop table if exists basket;
-drop table if exists orders;
-drop table if exists product_order;
 
 create table manufacturer
 (
@@ -98,8 +98,8 @@ create table country
 create table i18n
 (
     id integer auto_increment primary key not null,
-    text_de varchar(255) not null,
-    text_en varchar(255) not null
+    text_de text not null,
+    text_en text not null
 );
 
 create table basket

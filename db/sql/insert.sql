@@ -11,11 +11,13 @@ INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (2, 'Haupt', 'Main');
 INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (3, 'Reserve', 'Reserve');
 INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (4, 'BASE', 'BASE');
 INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (5, 'Grösse', 'Size');
+INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (14, 'Produkte', 'Products');
 INSERT INTO webshop.country (id, name) VALUES (1, 'Switzerland');
 INSERT INTO webshop.city (id, zip, city) VALUES (1, 3000, 'Bern');
 INSERT INTO webshop.address (id, street, homenumber, city_id, country_id) VALUES (1, 'Bernstrasse', '1', 1, 1);
 INSERT INTO webshop.address (id, street, homenumber, city_id, country_id) VALUES (2, 'Hauptstrasse', '12a', 1, 1);
-INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (1, 1, null);
+INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (5, 1, null);
+INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (1, 1, 5);
 INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (2, 2, 1);
 INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (3, 3, 1);
 INSERT INTO webshop.category (id, name_i18n_id, category_id) VALUES (4, 4, 1);
@@ -31,4 +33,5 @@ INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (5, 10, 1
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (6, 11, 1);
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (7, 12, 1);
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (8, 13, 1);
-
+INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','+41797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1);
+INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id) VALUES (1,'Nik','Arm','nik','nik@nik.ch','1994-05-25','+41791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2);

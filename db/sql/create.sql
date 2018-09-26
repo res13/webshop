@@ -69,7 +69,6 @@ create table customer
     birthdate date not null,
     phone varchar(50) not null,
     passwordhash varchar(255) not null,
-    salt char(10) not null,
     address_id integer not null
 );
 

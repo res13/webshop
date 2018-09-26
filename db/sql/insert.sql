@@ -45,8 +45,10 @@ INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (5, 10, 1
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (6, 11, 1);
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (7, 12, 1);
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (8, 13, 1);
-INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','+41797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1);
-INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id) VALUES (2,'Nik','Arm','nik','nik@nik.ch','1994-05-25','+41791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2);
+INSERT INTO webshop.role (id, name) VALUES (1, 'client');
+INSERT INTO webshop.role (id, name) VALUES (2, 'admin');
+INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','+41797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1, 2);
+INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id) VALUES (2,'Nik','Arm','nik','nik@nik.ch','1994-05-25','+41791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2, 2);
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '1', 'Katana', '2350', '14', '/images/p/katana.jpg', '2', '1');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '2', 'Pulse', '2320', '15', '/images/p/pulse.jpg', '2', '1');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '3', 'Sabre2', '2330', '16', '/images/p/sabre2.jpg', '2', '1');

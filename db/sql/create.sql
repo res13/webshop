@@ -8,6 +8,7 @@ drop table if exists manufacturer;
 drop table if exists category;
 drop table if exists orders;
 drop table if exists customer;
+drop table if exists role;
 drop table if exists address;
 drop table if exists city;
 drop table if exists country;
@@ -59,6 +60,12 @@ create table option_value
     options_id integer not null
 );
 
+create table role
+(
+    id integer auto_increment primary key not null,
+    name varchar(10) not null
+);
+
 create table customer
 (
     id integer auto_increment primary key not null,
@@ -69,7 +76,8 @@ create table customer
     birthdate date not null,
     phone varchar(50) not null,
     passwordhash varchar(255) not null,
-    address_id integer not null
+    address_id integer not null,
+    role_id integer not null
 );
 
 create table address
@@ -145,6 +153,7 @@ alter table product_option_value add constraint product_option_value_foreign_key
 alter table address add constraint address_foreign_key_country_id foreign key (country_id) references country(id);
 alter table address add constraint address_foreign_key_city_id foreign key (city_id) references city(id);
 alter table customer add constraint customer_foreign_key_address_id foreign key (address_id) references address(id);
+alter table customer add constraint customer_foreign_key_role_id foreign key (role_id) references role(id);
 alter table product add constraint product_foreign_key_description_i18n_id foreign key (description_i18n_id) references i18n(id);
 alter table options add constraint options_foreign_key_name_i18n_id foreign key (name_i18n_id) references i18n(id);
 alter table option_value add constraint option_value_foreign_key_name_i18n_id foreign key (name_i18n_id) references i18n(id);

@@ -39,9 +39,11 @@ select c.id,
        a.country_id,
        ci.city,
        ci.zip,
-       co.name Country
+       co.name Country,
+       r.name Role
 from webshop.customer c
        join webshop.address a on a.id = c.address_id
        join webshop.city ci on ci.id = a.city_id
        join webshop.country co on co.id = a.country_id
+       join webshop.role r on r.id = c.role_id
 where c.username = 'res13';

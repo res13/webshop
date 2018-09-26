@@ -47,16 +47,24 @@ INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (7, 12, 1
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (8, 13, 1);
 INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','+41797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1);
 INSERT INTO webshop.customer(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id) VALUES (2,'Nik','Arm','nik','nik@nik.ch','1994-05-25','+41791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2);
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '1', 'Katana', '2350', '14', '/images/p/katana.jpg', '2', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '2', 'Pulse', '2320', '15', '/images/p/pulse.jpg', '2', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '3', 'Sabre2', '2330', '16', '/images/p/sabre2.jpg', '2', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '4', 'Velocity', '3025', '17', '/images/p/velocity.jpg', '2', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '5', 'Optimum', '1730', '18', '/images/p/optimum.jpg', '3', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '6', 'PD Reserve', '1403', '19', '/images/p/pdreserve.jpg', '3', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '7', 'Proxy', '2090', '20', '/images/p/proxy.jpg', '4', '1');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '8', 'Safire 3', '2350', '21', '/images/p/safire.jpg', '2', '2');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '9', 'Crossfire 3', '2540', '22', '/images/p/crossfire.jpg', '2', '2');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '10', 'Hayduke', '2390', '23', '/images/p/hayduke.jpg', '4', '3');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '11', 'Outlaw', '2350', '24', '/images/p/katana.jpg', '4', '3');
-INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '12', 'Epiciene Pro', '2190', '25', '/images/p/katana.jpg', '2', '3');
--- TODO fill product_option_value
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '1', 'Katana', '2350', '14', '/images/p/katana.jpg', '2', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '2', 'Pulse', '2320', '15', '/images/p/pulse.jpg', '2', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '3', 'Sabre2', '2330', '16', '/images/p/sabre2.jpg', '2', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '4', 'Velocity', '3025', '17', '/images/p/velocity.jpg', '2', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '5', 'Optimum', '1730', '18', '/images/p/optimum.jpg', '3', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '6', 'PD Reserve', '1403', '19', '/images/p/pdreserve.jpg', '3', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '7', 'Proxy', '2090', '20', '/images/p/proxy.jpg', '4', '1');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '8', 'Safire 3', '2350', '21', '/images/p/safire.jpg', '2', '2');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '9', 'Crossfire 3', '2540', '22', '/images/p/crossfire.jpg', '2', '2');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '10', 'Hayduke', '2390', '23', '/images/p/hayduke.jpg', '4', '3');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '11', 'Outlaw', '2350', '24', '/images/p/katana.jpg', '4', '3');
+INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '12', 'Epiciene Pro', '2190', '25', '/images/p/katana.jpg', '2', '3');
+-- The following inserts puts all sizes to the product one
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 1);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 2);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 3);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 4);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 5);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 6);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 7);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 8);

@@ -59,4 +59,4 @@ INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `descripti
 INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '10', 'Hayduke', '2390', '23', '/images/p/hayduke.jpg', '4', '3');
 INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '11', 'Outlaw', '2350', '24', '/images/p/katana.jpg', '4', '3');
 INSERT INTO webshop.product (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES (NULL, '12', 'Epiciene Pro', '2190', '25', '/images/p/katana.jpg', '2', '3');
-
+-- TODO fill product_option_value

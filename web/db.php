@@ -34,7 +34,8 @@ function authenticate($usernameOrEmail, $password) {
            ci.city,
            ci.zip,
            co.name country,
-           r.name  role
+           r.name  role,
+           c.lang
     from webshop.person c
            join webshop.address a on a.id = c.address_id
            join webshop.city ci on ci.id = a.city_id
@@ -50,7 +51,7 @@ function authenticate($usernameOrEmail, $password) {
     if (isset($row)) {
         $passwordHash = $row['passwordhash'];
         if (password_verify($password, $passwordHash)) {
-            return new Person($row['id'], $row['firstname'], $row['lastname'], $row['username'], $row['email'], $row['birthdate'], $row['phone'], $row['street'], $row['homenumber'], $row['city'], $row['zip'], $row['country'], $row['role']);
+            return new Person($row['id'], $row['firstname'], $row['lastname'], $row['username'], $row['email'], $row['birthdate'], $row['phone'], $row['street'], $row['homenumber'], $row['city'], $row['zip'], $row['country'], $row['role'], $row['lang']);
         }
     }
     return null;

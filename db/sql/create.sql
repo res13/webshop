@@ -76,7 +76,8 @@ create table person
     phone varchar(50) not null,
     passwordhash varchar(255) not null,
     address_id integer not null,
-    role_id integer not null
+    role_id integer not null,
+    lang varchar(2) not null
 );
 
 create table address

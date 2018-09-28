@@ -36,7 +36,8 @@ select c.id,
        ci.city,
        ci.zip,
        co.name country,
-       r.name  role
+       r.name  role,
+       c.lang
 from webshop.person c
        join webshop.address a on a.id = c.address_id
        join webshop.city ci on ci.id = a.city_id

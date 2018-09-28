@@ -38,7 +38,6 @@ INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (37, '280', '280');
 INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (38, '240', '240');
 INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (39, '220', '220');
 INSERT INTO webshop.i18n (id, text_de, text_en) VALUES (40, '200', '200');
-
 INSERT INTO webshop.country (id, name) VALUES (1, 'Switzerland');
 INSERT INTO webshop.city (id, zip, city) VALUES (1, 3000, 'Bern');
 INSERT INTO webshop.address (id, street, homenumber, city_id, country_id) VALUES (1, 'Bernstrasse', '1', 1, 1);
@@ -75,11 +74,10 @@ INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (20, 37, 
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (21, 38, 1);
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (22, 39, 1);
 INSERT INTO webshop.option_value (id, name_i18n_id, options_id) VALUES (23, 40, 1);
-
 INSERT INTO webshop.role (id, name) VALUES (1, 'client');
 INSERT INTO webshop.role (id, name) VALUES (2, 'admin');
-INSERT INTO webshop.person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','+41797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1, 2);
-INSERT INTO webshop.person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id) VALUES (2,'Nik','Arm','nik','nik@nik.ch','1994-05-25','+41791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2, 2);
+INSERT INTO webshop.person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','+41797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1, 2, 'de');
+INSERT INTO webshop.person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (2,'Nik','Arm','nik','nik@nik.ch','1994-05-25','+41791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2, 2, 'de');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '1', 'Katana', '2350', '14', '/images/p/katana.jpg', '2', '1');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '2', 'Pulse', '2320', '15', '/images/p/pulse.jpg', '2', '1');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '3', 'Sabre2', '2330', '16', '/images/p/sabre2.jpg', '2', '1');
@@ -92,7 +90,6 @@ INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_i
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '10', 'Hayduke', '2390', '23', '/images/p/hayduke.jpg', '4', '3');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '11', 'Outlaw', '2350', '24', '/images/p/katana.jpg', '4', '3');
 INSERT INTO webshop.product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '12', 'Epiciene Pro', '2190', '25', '/images/p/katana.jpg', '2', '3');
--- The following inserts puts all sizes to the product one
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 5);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 6);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (1, 7);

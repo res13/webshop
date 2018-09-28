@@ -15,8 +15,9 @@ class Person
     private $zip;
     private $country;
     private $role;
+    private $lang;
 
-    public function __construct($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role)
+    public function __construct($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -31,6 +32,7 @@ class Person
         $this->zip = $zip;
         $this->country = $country;
         $this->role = $role;
+        $this->lang = $lang;
     }
 
     /**
@@ -241,6 +243,22 @@ class Person
         $this->role = $role;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param mixed $lang
+     */
+    public function setLang($lang): void
+    {
+        $this->lang = $lang;
+    }
+
     public function __toString()
     {
         return "id = ".$this->getId()
@@ -255,7 +273,8 @@ class Person
             ."<br />city = ".$this->getCity()
             ."<br />zip = ".$this->getZip()
             ."<br />country = ".$this->getCountry()
-            ."<br />role = ".$this->getRole();
+            ."<br />role = ".$this->getRole()
+            ."<br />lang = ".$this->getLang();
     }
 
 }

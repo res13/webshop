@@ -41,7 +41,7 @@ select c.id,
        ci.zip,
        co.name Country,
        r.name Role
-from webshop.customer c
+from webshop.person c
        join webshop.address a on a.id = c.address_id
        join webshop.city ci on ci.id = a.city_id
        join webshop.country co on co.id = a.country_id

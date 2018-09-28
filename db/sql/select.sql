@@ -14,8 +14,7 @@ from webshop.product p
 where p.id = 1;
 
 -- Get all options comma separated for product 1 and language german
-select i.text_de 'Option',
-       GROUP_CONCAT((select text_de from webshop.i18n where id = ov.name_i18n_id)) Optionvalue
+select i.text_de 'Option', GROUP_CONCAT((select text_de from webshop.i18n where id = ov.name_i18n_id)) Optionvalue
 from webshop.product p
        join webshop.product_option_value pov on p.id = pov.product_id
        join webshop.option_value ov on pov.optionvalue_id = ov.id
@@ -40,10 +39,16 @@ select c.id,
        ci.city,
        ci.zip,
        co.name Country,
-       r.name Role
+       r.name  Role
 from webshop.person c
        join webshop.address a on a.id = c.address_id
        join webshop.city ci on ci.id = a.city_id
        join webshop.country co on co.id = a.country_id
        join webshop.role r on r.id = c.role_id
 where c.username = 'res13';
+
+-- Get current basket of user
+select *
+from webshop.orders o
+       join webshop.person p on p.id = o.person_id
+where o.state = 0;

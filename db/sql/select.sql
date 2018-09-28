@@ -31,15 +31,12 @@ select c.id,
        c.email,
        c.birthdate,
        c.phone,
-       c.passwordhash,
        a.street,
        a.homenumber,
-       a.city_id,
-       a.country_id,
        ci.city,
        ci.zip,
-       co.name Country,
-       r.name  Role
+       co.name country,
+       r.name  role
 from webshop.person c
        join webshop.address a on a.id = c.address_id
        join webshop.city ci on ci.id = a.city_id

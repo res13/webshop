@@ -9,6 +9,7 @@ class Person
     private $email;
     private $birthdate;
     private $phone;
+    private $passwordhash;
     private $street;
     private $homenumber;
     private $city;
@@ -17,7 +18,11 @@ class Person
     private $role;
     private $lang;
 
-    public function __construct($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang)
+    public function __construct()
+    {
+    }
+
+    public function createFromDb($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -32,6 +37,24 @@ class Person
         $this->zip = $zip;
         $this->country = $country;
         $this->role = $role;
+        $this->lang = $lang;
+    }
+
+    public function createFromRegister($firstname, $lastname, $username, $email, $birthdate, $phone, $passwordhash, $street, $homenumber, $city, $zip, $country, $lang)
+    {
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->username = $username;
+        $this->email = $email;
+        $this->birthdate = $birthdate;
+        $this->phone = $phone;
+        $this->passwordhash = $passwordhash;
+        $this->street = $street;
+        $this->homenumber = $homenumber;
+        $this->city = $city;
+        $this->zip = $zip;
+        $this->country = $country;
+        $this->role = 1;
         $this->lang = $lang;
     }
 
@@ -145,6 +168,22 @@ class Person
     public function setPhone($phone): void
     {
         $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPasswordhash()
+    {
+        return $this->passwordhash;
+    }
+
+    /**
+     * @param mixed $passwordhash
+     */
+    public function setPasswordhash($passwordhash): void
+    {
+        $this->passwordhash = $passwordhash;
     }
 
     /**

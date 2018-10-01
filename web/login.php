@@ -1,6 +1,7 @@
 <?php
 include('Person.php');
 session_start();
+require_once('alert.php');
 require_once('db.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
@@ -12,7 +13,6 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     }
 }
 require_once('loginState.php');
-require_once('alert.php');
 require_once('language.php');
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ else {
     ?>
     <form method="post">
         Username or Email:<br />
-        <input type="text" name="usernameOrEmail"><br />
+        <input type="text" name="usernameOrEmail" maxlength="20"><br />
         Password:<br />
         <input type="password" name="password"><br />
         <input type="submit" value="Login">

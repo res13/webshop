@@ -1,6 +1,7 @@
 <?php
-include('db.php');
+include_once('db.php');
 include('alert.php');
+include('language.php');
 session_start();
 ?>
 <!DOCTYPE html>

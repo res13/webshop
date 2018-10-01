@@ -56,4 +56,28 @@ function authenticate($usernameOrEmail, $password) {
     }
     return null;
 }
+
+function getLanguageOfPerson($personId) {
+    global $conn;
+    $query = 'select p.lang from webshop.person p where p.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $personId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    if (isset($row)) {
+        return $row['lang'];
+    }
+    return null;
+}
+
+function setLanguageOfPerson($personId, $lang) {
+    global $conn;
+    $query = 'update webshop.person p set p.lang = ? where p.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('si', $lang, $personId);
+    $stmt->execute();
+    $stmt->close();
+}
 ?>

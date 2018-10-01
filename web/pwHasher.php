@@ -7,7 +7,7 @@ if (isset($_POST['pw'])) {
     ?>
     <html>
     <body>
-    <form action="pwHasher.php" method="post">
+    <form method="post">
         Password to hash:<br />
         <input type="password" name="pw"><br />
         <input type="submit" value="Submit">

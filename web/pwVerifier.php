@@ -7,7 +7,7 @@ if (isset($_POST['pw']) && isset($_POST['hash'])) {
     ?>
     <html>
     <body>
-    <form action="pwVerifier.php" method="post">
+    <form method="post">
         Password to verify:<br />
         <input type="password" name="pw"><br />
         Hash to verify:<br />

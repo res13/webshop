@@ -1,13 +1,7 @@
 <?php
-include_once('db.php');
-include('alert.php');
-include('language.php');
+include('Person.php');
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<body>
-<?php
+require_once('db.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
     if ($person != null) {
@@ -17,21 +11,25 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
         alert('Wrong username or password!');
     }
 }
+require_once('loginState.php');
+require_once('alert.php');
+require_once('language.php');
+?>
+<!DOCTYPE html>
+<html>
+<body>
+<?php
 if (isset($_SESSION['person'])) {
-    $person = $_SESSION['person'];
-    $username = $person->getUsername();
-    echo "<p>Logged in!<br /></p>";
-    echo $person;
-    echo "<br /><br /><a href=\"logout.php\">Logout</a>";
+    echo 'Successfully logged in!';
 }
 else {
     ?>
-    <form action="login.php" method="post">
+    <form method="post">
         Username or Email:<br />
         <input type="text" name="usernameOrEmail"><br />
         Password:<br />
         <input type="password" name="password"><br />
-        <input type="submit" value="Submit">
+        <input type="submit" value="Login">
     </form>
     <?php
 }

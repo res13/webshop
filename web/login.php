@@ -6,7 +6,7 @@ require_once('db.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
     if ($person->getResetPassword() > 0) {
-        redirect('/resetPassword.php');
+        redirect('resetPassword.php');
     }
     else {
         if ($person != null) {
@@ -56,7 +56,7 @@ else {
         <input type="text" name="usernameOrEmail" maxlength="50"><br />
         Password:<br />
         <input type="password" name="password"><br />
-        <a href="forgotPassword.php">Forgot password</a>
+        <a href="forgotPassword.php">Forgot password</a><br />
         <input type="submit" value="Login">
     </form>
     <?php

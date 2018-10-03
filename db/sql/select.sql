@@ -50,3 +50,5 @@ select *
 from webshop.orders o
        join webshop.person p on p.id = o.person_id
 where o.state = 0;
+
+update webshop.person p set p.passwordhash = '$2y$10$dfW9o4WTBQn8Wf.kF.6xbeKl9F/IpkIjwnnMcI3JUELYBaUdcJvSe' and p.resetPassword = 1 where p.email = 'andreas.erb@gmx.ch';

@@ -190,10 +190,25 @@ function resetPassword($usernameOrEmail, $password, $resetPassword) {
     else {
         $where = 'p.email';
     }
-    $query = 'update webshop.person p set p.passwordHash = ? and p.resetPassword = ? where '.$where. ' = ?';
+    $selectQuery = 'select p.id from webshop.person p where '.$where. ' = ?';
+    $stmt = $conn->prepare($selectQuery);
+    $stmt->bind_param('s', $usernameOrEmail);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    if (!isset($row)) {
+        return false;
+    }
+    $query = 'update webshop.person p set p.passwordhash = ?, p.resetPassword = ? where '.$where. ' = ?';
+    alert('query = '. $query);
+    alert('usernameOrEmail = '. $usernameOrEmail);
+    alert('password = '. $password);
+    alert('resetPassword = '. $resetPassword);
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('sis', $password, $resetPassword, $usernameOrEmails);
+    $stmt->bind_param('sis', $password, $resetPassword, $usernameOrEmail);
     $stmt->execute();
     $stmt->close();
+    return true;
 }
 ?>

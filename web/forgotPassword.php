@@ -8,12 +8,18 @@ if (!isset($_SESSION['person']) && isset($_POST['email'])) {
         $email = $_POST['email'];
         $randomPassword = randomPassword(8);
         $hashedPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
-        resetPassword($email, $hashedPassword, 1);
-        $subject = 'Password reset';
-        $message = 'Hello, the new password is $randomPassword, please use this to log in again (you will have to reset it afterwards).';
-        $headers = 'From: donotreply@parachutewebshop.ch' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-        mail($email, $subject, $message, $headers);
+        if (resetPassword($email, $hashedPassword, 1)) {
+            $subject = 'Password reset';
+            $message = "Hello, the new password is $randomPassword, please use this to log in again (you will have to reset it afterwards).";
+            $headers = 'From: parachute.webshop@gmail.com' . "\r\n" .
+                'Reply-To: parachute.webshop@gmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+            mail($email, $subject, $message, $headers);
+            $mailSent = true;
+        }
+        else {
+            alert('Wrong username/email!');
+        }
     }
 }
 
@@ -54,8 +60,8 @@ function randomPassword($length) {
 </head>
 <body>
 <?php
-if (isset($email)) {
-    echo 'An email with a temporary password was sent to $email';
+if (isset($mailSent) && $mailSent == true) {
+    echo "<p>An email with a temporary password was sent to $email</p><br /><a href=\"login.php\">Login</a>";
 }
 else {
     ?>

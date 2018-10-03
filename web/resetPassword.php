@@ -3,17 +3,21 @@ include('Person.php');
 session_start();
 require_once('util.php');
 require_once('db.php');
-if (isset($_POST['usernameOrEmail']) && isset($_SESSION['oldPassword']) && isset($_POST['newPassword'])) {
+if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
     $oldPerson = authenticate($_POST['usernameOrEmail'], $_POST['oldPassword']);
-    if ($person != null) {
+    if ($oldPerson != null) {
         $hashedPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
-        resetPassword($_POST['usernameOrEmail'], $hashedPassword, 0);
-        $person = authenticate($_POST['usernameOrEmail'], $_POST['newPassword']);
-        if ($person != null) {
-            $_SESSION['person'] = $person;
+        if (resetPassword($_POST['usernameOrEmail'], $hashedPassword, 0)) {
+            $person = authenticate($_POST['usernameOrEmail'], $_POST['newPassword']);
+            if ($person != null) {
+                $_SESSION['person'] = $person;
+            }
+            else {
+                alert('Could not reset password!');
+            }
         }
         else {
-            alert('Could not reset password!');
+            alert('Wrong username/email or password!');
         }
     }
     else {

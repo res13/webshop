@@ -201,10 +201,6 @@ function resetPassword($usernameOrEmail, $password, $resetPassword) {
         return false;
     }
     $query = 'update webshop.person p set p.passwordhash = ?, p.resetPassword = ? where '.$where. ' = ?';
-    alert('query = '. $query);
-    alert('usernameOrEmail = '. $usernameOrEmail);
-    alert('password = '. $password);
-    alert('resetPassword = '. $resetPassword);
     $stmt = $conn->prepare($query);
     $stmt->bind_param('sis', $password, $resetPassword, $usernameOrEmail);
     $stmt->execute();

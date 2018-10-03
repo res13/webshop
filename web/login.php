@@ -5,16 +5,14 @@ require_once('util.php');
 require_once('db.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
-    if ($person->getResetPassword() > 0) {
-        redirect('resetPassword.php');
+    if ($person != null) {
+        if ($person->getResetPassword() > 0) {
+            redirect('resetPassword.php');
+        }
+        $_SESSION['person'] = $person;
     }
     else {
-        if ($person != null) {
-            $_SESSION['person'] = $person;
-        }
-        else {
-            alert('Wrong username/email or password!');
-        }
+        alert('Wrong username/email or password!');
     }
 }
 require_once('loginState.php');

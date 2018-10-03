@@ -53,7 +53,7 @@ require_once('language.php');
 </head>
 <body>
 <?php
-if (isset($_SESSION['person'])) {
+if (isset($_SESSION['person']) && $_SESSION['person']->getResetPassword() == 0) {
     echo 'Resetted password!';
 }
 else {

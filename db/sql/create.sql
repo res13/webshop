@@ -77,7 +77,8 @@ create table person
     passwordhash varchar(255) not null,
     address_id integer not null,
     role_id integer not null,
-    lang varchar(2) not null
+    lang varchar(2) not null,
+    resetPassword tinyint(1) default 0
 );
 
 create table address

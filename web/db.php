@@ -29,7 +29,8 @@ function authenticate($usernameOrEmail, $password) {
            ci.zip,
            co.name country,
            r.name  role,
-           c.lang
+           c.lang,
+           c.resetPassword
     from webshop.person c
            join webshop.address a on a.id = c.address_id
            join webshop.city ci on ci.id = a.city_id
@@ -46,7 +47,7 @@ function authenticate($usernameOrEmail, $password) {
         $passwordHash = $row['passwordhash'];
         if (password_verify($password, $passwordHash)) {
             $person =  new Person();
-            $person->createFromDb($row['id'], $row['firstname'], $row['lastname'], $row['username'], $row['email'], $row['birthdate'], $row['phone'], $row['street'], $row['homenumber'], $row['city'], $row['zip'], $row['country'], $row['role'], $row['lang']);
+            $person->createFromDb($row['id'], $row['firstname'], $row['lastname'], $row['username'], $row['email'], $row['birthdate'], $row['phone'], $row['street'], $row['homenumber'], $row['city'], $row['zip'], $row['country'], $row['role'], $row['lang'], $row['resetPassword']);
             return $person;
         }
     }
@@ -121,7 +122,7 @@ function createPerson($person) {
     global $conn;
     $cityId = getOrCreateCity($person->getCity(), $person->getZip());
     $addressId = getOrCreateAddress($person->getStreet(), $person->getHomenumber(), $cityId, $person->getCountry());
-    $query = 'INSERT INTO webshop.person(firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    $query = 'INSERT INTO webshop.person(firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     $stmt = $conn->prepare($query);
     $firstname = $person->getFirstname();
     $lastname = $person->getLastname();
@@ -179,5 +180,20 @@ function getOrCreateAddress($street, $homenumber, $cityId, $countryId) {
         $stmt->close();
         return $conn->insert_id;
     }
+}
+
+function resetPassword($usernameOrEmail, $password, $resetPassword) {
+    global $conn;
+    if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL) == false) {
+        $where = 'p.username';
+    }
+    else {
+        $where = 'p.email';
+    }
+    $query = 'update webshop.person p set p.passwordHash = ? and p.resetPassword = ? where '.$where. ' = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('sis', $password, $resetPassword, $usernameOrEmails);
+    $stmt->execute();
+    $stmt->close();
 }
 ?>

@@ -17,12 +17,13 @@ class Person
     private $country;
     private $role;
     private $lang;
+    private $resetPassword;
 
     public function __construct()
     {
     }
 
-    public function createFromDb($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang)
+    public function createFromDb($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang, $resetPassword)
     {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -38,6 +39,7 @@ class Person
         $this->country = $country;
         $this->role = $role;
         $this->lang = $lang;
+        $this->resetPassword = $resetPassword;
     }
 
     public function createFromRegister($firstname, $lastname, $username, $email, $birthdate, $phone, $passwordhash, $street, $homenumber, $city, $zip, $country, $lang)
@@ -296,6 +298,22 @@ class Person
     public function setLang($lang): void
     {
         $this->lang = $lang;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResetPassword()
+    {
+        return $this->resetPassword;
+    }
+
+    /**
+     * @param mixed $resetPassword
+     */
+    public function setResetPassword($resetPassword): void
+    {
+        $this->resetPassword = $resetPassword;
     }
 
     public function __toString()

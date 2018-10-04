@@ -1,7 +1,14 @@
 <?php
 
-class Person
+class Person extends DBObject
 {
+
+    $data = array(
+    'firstname' => '',
+    'midname' => '',
+    'lastname' => '',
+);
+
     private $id;
     private $firstname;
     private $lastname;
@@ -23,8 +30,29 @@ class Person
     {
     }
 
-    public function createFromDb($id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang, $resetPassword)
+    // http://php.net/manual/en/language.oop5.overloading.php#object.set
+    // http://php.net/manual/en/language.oop5.magic.php
+
+    public function __get($name)
     {
+        return $this->data[$name];
+    }
+
+
+    $person->firstname("Abc");
+
+    public function createFromDb($dbdata)
+        // $id, $firstname, $lastname, $username, $email, $birthdate, $phone, $street, $homenumber, $city, $zip, $country, $role, $lang
+    {
+        for(array_keys($this->data) as $key)
+        {
+            if(array_key_exists($key, $dbdata))
+            {
+                $this->data[$key] = $dbdata[$key];
+            }
+        }
+
+
         $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -298,22 +326,6 @@ class Person
     public function setLang($lang): void
     {
         $this->lang = $lang;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getResetPassword()
-    {
-        return $this->resetPassword;
-    }
-
-    /**
-     * @param mixed $resetPassword
-     */
-    public function setResetPassword($resetPassword): void
-    {
-        $this->resetPassword = $resetPassword;
     }
 
     public function __toString()

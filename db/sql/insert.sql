@@ -125,8 +125,26 @@ INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (4,
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (4, 17);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (4, 18);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (4, 19);
---missing pd optimum
---missing pd reserve
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 1);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 2);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 3);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 4);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 5);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 6);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 7);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 8);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 9);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (5, 10);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 1);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 2);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 3);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 4);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 5);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 6);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 7);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 8);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 9);
+INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (6, 10);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (7, 1);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (7, 20);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (7, 21);

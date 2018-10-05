@@ -12,5 +12,5 @@
     error_logfile=error.log
     debug_logfile=debug.log
     auth_username=parachute.webshop@gmail.com
-    auth_password=parachute.webshop123
+    auth_password=<password>
     force_sender=parachute.webshop@gmail.com

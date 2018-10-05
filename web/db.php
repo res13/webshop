@@ -10,32 +10,32 @@ if ($conn->connect_error) {
 function authenticate($usernameOrEmail, $password) {
     global $conn;
     if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL) == false) {
-        $where = 'c.username';
+        $where = 'p.username';
     }
     else {
-        $where = 'c.email';
+        $where = 'p.email';
     }
-    $query = 'select c.id,
-           c.firstname,
-           c.lastname,
-           c.username,
-           c.email,
-           c.birthdate,
-           c.phone,
-           c.passwordhash,
+    $query = 'select p.id,
+           p.firstname,
+           p.lastname,
+           p.username,
+           p.email,
+           p.birthdate,
+           p.phone,
+           p.passwordhash,
            a.street,
            a.homenumber,
            ci.city,
            ci.zip,
            co.name country,
            r.name  role,
-           c.lang,
-           c.resetPassword
-    from webshop.person c
-           join webshop.address a on a.id = c.address_id
+           p.lang,
+           p.resetpassword
+    from webshop.person p
+           join webshop.address a on a.id = p.address_id
            join webshop.city ci on ci.id = a.city_id
            join webshop.country co on co.id = a.country_id
-           join webshop.role r on r.id = c.role_id
+           join webshop.role r on r.id = p.role_id
     where '.$where.' = ?';
     $stmt = $conn->prepare($query);
     $stmt->bind_param('s', $usernameOrEmail);
@@ -47,7 +47,7 @@ function authenticate($usernameOrEmail, $password) {
         $passwordHash = $row['passwordhash'];
         if (password_verify($password, $passwordHash)) {
             $person =  new Person();
-            $person->createFromDb($row['id'], $row['firstname'], $row['lastname'], $row['username'], $row['email'], $row['birthdate'], $row['phone'], $row['street'], $row['homenumber'], $row['city'], $row['zip'], $row['country'], $row['role'], $row['lang'], $row['resetPassword']);
+            $person->setAll($row);
             return $person;
         }
     }
@@ -120,19 +120,19 @@ function checkIfEmailExists($email) {
 
 function createPerson($person) {
     global $conn;
-    $cityId = getOrCreateCity($person->getCity(), $person->getZip());
-    $addressId = getOrCreateAddress($person->getStreet(), $person->getHomenumber(), $cityId, $person->getCountry());
+    $cityId = getOrCreateCity($person->city, $person->zip);
+    $addressId = getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
     $query = 'INSERT INTO webshop.person(firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     $stmt = $conn->prepare($query);
-    $firstname = $person->getFirstname();
-    $lastname = $person->getLastname();
-    $username = $person->getUsername();
-    $email = $person->getEmail();
-    $birthdate = $person->getBirthdate();
-    $phone = $person->getPhone();
-    $passwordhash = $person->getPasswordhash();
-    $role = $person->getRole();
-    $lang = $person->getlang();
+    $firstname = $person->firstname;
+    $lastname = $person->lastname;
+    $username = $person->username;
+    $email = $person->email;
+    $birthdate = $person->birthdate;
+    $phone = $person->phone;
+    $passwordhash = $person->passwordhash;
+    $role = $person->role;
+    $lang = $person->lang;
     $stmt->bind_param('sssssssiis', $firstname, $lastname, $username, $email, $birthdate, $phone, $passwordhash, $addressId, $role, $lang);
     $stmt->execute();
     $stmt->close();

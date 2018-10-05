@@ -4,14 +4,14 @@ $defaultLang = 'de';
 if (isset($_POST['lang']) && in_array($_POST['lang'], $availableLangs)) {
     $_SESSION['lang'] = $_POST['lang'];
     if (isset($_SESSION['person'])) {
-        $_SESSION['person']->setLang($_POST['lang']);
-        setLanguageOfPerson($_SESSION['person']->getId(), $_POST['lang']);
+        $_SESSION['person']->lang = $_POST['lang'];
+        setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
     }
 }
 else{
     if (isset($_SESSION['person'])) {
-        $lang = getLanguageOfPerson($_SESSION['person']->getId());
-        $_SESSION['person']->setLang($lang);
+        $lang = getLanguageOfPerson($_SESSION['person']->id);
+        $_SESSION['person']->lang = $lang;
         $_SESSION['lang'] = $lang;
     }
     else {

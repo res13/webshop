@@ -1,8 +1,9 @@
 <?php
 include('to/Person.php');
 session_start();
-require_once('util.php');
-require_once('db.php');
+require_once('util/i18n.php');
+require_once('util/util.php');
+require_once('util/db.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
     $oldPerson = authenticate($_POST['usernameOrEmail'], $_POST['oldPassword']);
     if ($oldPerson != null) {
@@ -13,40 +14,40 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
                 $_SESSION['person'] = $person;
             }
             else {
-                alert('Could not reset password!');
+                alert(getTextForLanguage("RESET_PASSWORD_FAILED"));
             }
         }
         else {
-            alert('Wrong username/email or password!');
+            alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
         }
     }
     else {
-        alert('Wrong username/email or password!');
+        alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
     }
 }
-require_once('loginState.php');
 require_once('language.php');
+require_once('loginState.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php echo getHTMLHead("Reset password"); ?>
+    <?php echo getHTMLHead(getTextForLanguage("PASSWORD_RESET")); ?>
 </head>
 <body>
 <?php
 if (isset($_SESSION['person']) && $_SESSION['person']->resetpassword == 0) {
-    echo 'Resetted password!';
+    echo getTextForLanguage("RESET_PASSWORD");
 }
 else {
 ?>
 <form method="post">
-    Username or Email:<br />
+    <?php echo getTextForLanguage("USERNAME")?> <?php echo getTextForLanguage("OR")?> <?php echo getTextForLanguage("EMAIL")?><br />
     <input type="text" name="usernameOrEmail" maxlength="50"><br />
-    Old password:<br/>
+    <?php echo getTextForLanguage("OLD_PASSWORD")?><br/>
     <input type="password" name="oldPassword" maxlength="255"><br/>
-    new password:<br/>
+    <?php echo getTextForLanguage("NEW_PASSWORD")?><br/>
     <input type="password" name="newPassword" maxlength="255"><br/>
-    <input type="submit" value="Submit">
+    <input type="submit" value="<?php echo getTextForLanguage("PASSWORD_RESET")?>">
 </form>
     <?php
 }

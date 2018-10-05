@@ -2,23 +2,26 @@
 require('head.php');
 if (!isset($_SESSION['person']) && isset($_POST['email'])) {
     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == false) {
-        alert('email address is not valid!');
+        alert(getTextForLanguage("EMAIL_NOT_VALID"));
     }
     else {
         $email = $_POST['email'];
         $randomPassword = randomPassword(8);
         $hashedPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
         if (resetPassword($email, $hashedPassword, 1)) {
-            $subject = 'Password reset';
-            $message = "Hello, the new password is $randomPassword, please use this to log in again (you will have to reset it afterwards).";
-            $headers = 'From: parachute.webshop@gmail.com' . "\r\n" .
+            $subject = getTextForLanguage("PASSWORD_RESET");
+            $message = "<html><body><p>". getTextForLanguage('NEW_PASSWORD_EMAIL1') . "<b>". $randomPassword . "</b>" . getTextForLanguage('NEW_PASSWORD_EMAIL2'). "</p></body></html>" ;
+            $headers =
+                'MIME-Version: 1.0' . "\r\n" .
+                'Content-Type: text/html; charset=utf-8' . "\r\n" .
+                'From: parachute.webshop@gmail.com' . "\r\n" .
                 'Reply-To: parachute.webshop@gmail.com' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
             mail($email, $subject, $message, $headers);
             $mailSent = true;
         }
         else {
-            alert('Wrong username/email!');
+            alert(getTextForLanguage("WRONG_USERNAME_EMAIL"));
         }
     }
 }
@@ -42,14 +45,15 @@ function randomPassword($length) {
 <body>
 <?php
 if (isset($mailSent) && $mailSent == true) {
-    echo "<p>An email with a temporary password was sent to $email</p>";
+
+    echo "<p>" . getTextForLanguage("EMAIL_SENT"). " " . $email . "</p>";
 }
 else {
     ?>
     <form method="post">
-        Email:<br />
+        <?php echo getTextForLanguage("EMAIL")?><br />
         <input type="text" name="email" maxlength="100"><br />
-        <input type="submit" value="Submit">
+        <input type="submit" value="<?php echo getTextForLanguage("REQUEST_NEW_PASSWORD")?>">
     </form>
     <?php
 }

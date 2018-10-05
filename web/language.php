@@ -1,7 +1,5 @@
 <?php
-$availableLangs = ['de', 'en'];
-$defaultLang = 'de';
-if (isset($_POST['lang']) && in_array($_POST['lang'], $availableLangs)) {
+if (isset($_POST['lang']) && in_array($_POST['lang'], getAvailableLanguages())) {
     $_SESSION['lang'] = $_POST['lang'];
     if (isset($_SESSION['person'])) {
         $_SESSION['person']->lang = $_POST['lang'];
@@ -15,14 +13,14 @@ else{
         $_SESSION['lang'] = $lang;
     }
     else {
-        $_SESSION['lang'] = $defaultLang;
+        $_SESSION['lang'] = getDefaultLanguage();
     }
 }
 ?>
 <form method="post">
     <select name="lang" onchange="this.form.submit()">
         <?php
-        foreach ($availableLangs as $lang) {
+        foreach (getAvailableLanguages() as $lang) {
             if ($lang === $_SESSION['lang']) {
                 ?><option value="<?php echo $lang ?>" selected><?php echo $lang ?></option><?php
             }

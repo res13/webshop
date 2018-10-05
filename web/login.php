@@ -1,8 +1,9 @@
 <?php
 include('to/Person.php');
 session_start();
-require_once('util.php');
-require_once('db.php');
+require_once('util/i18n.php');
+require_once('util/util.php');
+require_once('util/db.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
     if ($person != null) {
@@ -12,31 +13,31 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
         $_SESSION['person'] = $person;
     }
     else {
-        alert('Wrong username/email or password!');
+        alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
     }
 }
-require_once('loginState.php');
 require_once('language.php');
+require_once('loginState.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php echo getHTMLHead("Login"); ?>
+    <?php echo getHTMLHead(getTextForLanguage("LOGIN")); ?>
 </head>
 <body>
 <?php
 if (isset($_SESSION['person'])) {
-    echo 'Successfully logged in!';
+    echo getTextForLanguage("SUCCESSFUL_LOGIN");
 }
 else {
     ?>
     <form method="post">
-        Username or Email:<br />
+        <?php echo getTextForLanguage("USERNAME")?> <?php echo getTextForLanguage("OR")?> <?php echo getTextForLanguage("EMAIL")?><br />
         <input type="text" name="usernameOrEmail" maxlength="50"><br />
-        Password:<br />
+        <?php echo getTextForLanguage("PASSWORD")?><br />
         <input type="password" name="password"><br />
-        <a href="forgotPassword.php">Forgot password</a><br />
-        <input type="submit" value="Login">
+        <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD")?></a><br />
+        <input type="submit" value="<?php echo getTextForLanguage("LOGIN")?>">
     </form>
     <?php
 }

@@ -1,17 +1,18 @@
 <?php
 include('to/Person.php');
 session_start();
-require_once('util.php');
-require_once('db.php');
+require_once('util/i18n.php');
+require_once('util/util.php');
+require_once('util/db.php');
 if (isset($_POST['email']) && isset($_POST['username'])) {
     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == false) {
-        alert('email address is not valid!');
+        alert(getTextForLanguage("EMAIL_NOT_VALID"));
     }
     else if (checkIfEmailExists($_POST['email'])) {
-        alert('email address already exists!');
+        alert(getTextForLanguage("EMAIL_ADDRESS_ALREADY_EXISTS"));
     }
     else if (checkIfUsernameExists($_POST['username'])) {
-        alert('username already exists!');
+        alert(getTextForLanguage("USERNAME_ADDRESS_ALREADY_EXISTS"));
     }
     else {
         $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -20,39 +21,39 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
         createPerson($person);
     }
 }
-require_once('loginState.php');
 require_once('language.php');
+require_once('loginState.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php echo getHTMLHead("Register"); ?>
+    <?php echo getHTMLHead(getTextForLanguage("REGISTER")); ?>
 </head>
 <body>
 <form method="post">
-    First name:<br/>
+    <?php echo getTextForLanguage("FIRSTNAME")?><br/>
     <input type="text" name="firstname" maxlength="50"><br/>
-    Last name:<br/>
+    <?php echo getTextForLanguage("LASTNAME")?><br/>
     <input type="text" name="lastname" maxlength="50"><br/>
-    username:<br/>
+    <?php echo getTextForLanguage("USERNAME")?><br/>
     <input type="text" name="username" maxlength="20"><br/>
-    email:<br/>
+    <?php echo getTextForLanguage("EMAIL")?><br/>
     <input type="text" name="email" maxlength="255"><br/>
-    password:<br/>
+    <?php echo getTextForLanguage("PASSWORD")?><br/>
     <input type="password" name="password"><br/>
-    birthdate:<br/>
+    <?php echo getTextForLanguage("BIRTHDATE")?><br/>
     <input type="date" name="birthdate"><br/>
-    phone:<br/>
+    <?php echo getTextForLanguage("PHONE")?><br/>
     <input type="text" name="phone" maxlength="50"><br/>
-    street:<br/>
+    <?php echo getTextForLanguage("STREET")?><br/>
     <input type="text" name="street" maxlength="100"><br/>
-    homenumber:<br/>
+    <?php echo getTextForLanguage("HOMENUMBER")?><br/>
     <input type="text" name="homenumber" maxlength="20"><br/>
-    city:<br/>
+    <?php echo getTextForLanguage("CITY")?><br/>
     <input type="text" name="city" maxlength="100"><br/>
-    zip:<br/>
+    <?php echo getTextForLanguage("ZIP")?><br/>
     <input type="number" name="zip"><br/>
-    country:<br/>
+    <?php echo getTextForLanguage("COUNTRY")?><br/>
     <select name="country">
         <?php
         $countries = getAllCountries();
@@ -62,10 +63,10 @@ require_once('language.php');
         }
         ?>
     </select><br/>
-    preferred language:<br/>
+    <?php echo getTextForLanguage("LANGUAGE")?>:<br/>
     <select name="lang">
         <?php
-        foreach ($availableLangs as $lang) {
+        foreach (getAvailableLanguages() as $lang) {
             if ($lang === $_SESSION['lang']) {
                 ?>
                 <option value="<?php echo $lang ?>" selected><?php echo $lang ?></option><?php
@@ -76,7 +77,7 @@ require_once('language.php');
         }
         ?>
     </select><br/>
-    <input type="submit" value="Register">
+    <input type="submit" value="<?php echo getTextForLanguage("REGISTER")?>">
 </form>
 </body>
 </html>

@@ -4,9 +4,9 @@ require('head.php');
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<?php echo getHTMLHead("Home"); ?>
+<?php echo getHTMLHead(getTextForLanguage("HOME")); ?>
 </head>
 <body>
-<p>Home</p>
+<p><?php echo getTextForLanguage("HOME"); ?></p>
 </body>
 </html>

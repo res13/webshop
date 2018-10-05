@@ -8,7 +8,7 @@ function redirect($path) {
 }
 
 function getHTMLHead($title) {
-    return "<title>$title - Parachute webshop</title>
+    echo "<title>$title - Parachute webshop</title>
     <meta charset=\"utf-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
     <meta name=\"msapplication-TileColor\" content=\"#ffffff\">

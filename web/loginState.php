@@ -8,7 +8,7 @@ if (isset($_SESSION['person'])) {
         echo getTextForLanguage("HELLO")." "."<a href=\"user.php\">".$username."</a>, <a href=\"logout.php\">".getTextForLanguage("LOGOUT")."</a></br></br>";
 }
 else {
-    echo "<a href=\"login.php\">".getTextForLanguage("LOGIN")."</a> or <a href=\"register.php\">".getTextForLanguage("REGISTER")."</a></br></br>";
+    echo "<a href=\"login.php\">".getTextForLanguage("LOGIN")."</a> ". getTextForLanguage("OR") ." <a href=\"register.php\">".getTextForLanguage("REGISTER")."</a></br></br>";
 }
 ?>
 </div>

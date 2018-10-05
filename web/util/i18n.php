@@ -1,4 +1,21 @@
 <?php
+if (isset($_POST['lang']) && in_array($_POST['lang'], getAvailableLanguages())) {
+    $_SESSION['lang'] = $_POST['lang'];
+    if (isset($_SESSION['person'])) {
+        $_SESSION['person']->lang = $_POST['lang'];
+        setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
+    }
+}
+else{
+    if (isset($_SESSION['person'])) {
+        $lang = getLanguageOfPerson($_SESSION['person']->id);
+        $_SESSION['person']->lang = $lang;
+        $_SESSION['lang'] = $lang;
+    }
+    else {
+        $_SESSION['lang'] = getDefaultLanguage();
+    }
+}
 
 $texts = array
 (

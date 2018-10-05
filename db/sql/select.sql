@@ -51,4 +51,17 @@ from webshop.orders o
        join webshop.person p on p.id = o.person_id
 where o.state = 0;
 
-update webshop.person p set p.passwordhash = '$2y$10$dfW9o4WTBQn8Wf.kF.6xbeKl9F/IpkIjwnnMcI3JUELYBaUdcJvSe' and p.resetPassword = 1 where p.email = 'andreas.erb@gmx.ch';
+-- Get all sub-categories
+select c.id, c.name_i18n_id, c.category_id
+from (select c.id, c.name_i18n_id, c.category_id
+      from webshop.category c
+      order by c.category_id, c.id) categories_sorted,
+     (select @pv := '5') initialisation,
+     where find_in_set(category_id, @pv)
+    and length(@pv := concat(@pv, ',', id));
+
+-- Get my sub-categories
+select c.id, i.text_de as text, c.category_id as categoryid
+from webshop.category c
+            join webshop.i18n i on i.id = c.name_i18n_id
+where c.category_id = (select id from webshop.category c where c.category_id is null);

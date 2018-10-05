@@ -17,7 +17,7 @@
     top: 100px;
     left: 35%;
     display: block;
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-color: #333;
     font-family: Arial;
 }

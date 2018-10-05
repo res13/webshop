@@ -1,12 +1,11 @@
 <?php
-include('TransferObject.php');
 
 class Category extends TransferObject
 {
     private $data = array(
         'id' => '',
-        'name_i18n_id' => '',
-        'category_id' => '',
+        'text' => '',
+        'categoryid' => '',
     );
 
     public function setAll($dataArray)

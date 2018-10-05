@@ -43,6 +43,8 @@ function randomPassword($length) {
     <?php echo getHTMLHead("Forgot password"); ?>
 </head>
 <body>
+<?php require('body.php'); ?>
+<div class="main">
 <?php
 if (isset($mailSent) && $mailSent == true) {
 
@@ -58,5 +60,6 @@ else {
     <?php
 }
 ?>
+</div>
 </body>
 </html>

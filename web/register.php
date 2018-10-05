@@ -21,8 +21,6 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
         createPerson($person);
     }
 }
-require_once('language.php');
-require_once('loginState.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -30,6 +28,8 @@ require_once('loginState.php');
     <?php echo getHTMLHead(getTextForLanguage("REGISTER")); ?>
 </head>
 <body>
+<?php require('body.php'); ?>
+<div class="main">
 <form method="post">
     <?php echo getTextForLanguage("FIRSTNAME")?><br/>
     <input type="text" name="firstname" maxlength="50"><br/>
@@ -79,5 +79,6 @@ require_once('loginState.php');
     </select><br/>
     <input type="submit" value="<?php echo getTextForLanguage("REGISTER")?>">
 </form>
+</div>
 </body>
 </html>

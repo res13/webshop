@@ -16,8 +16,6 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
         alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
     }
 }
-require_once('language.php');
-require_once('loginState.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -25,6 +23,8 @@ require_once('loginState.php');
     <?php echo getHTMLHead(getTextForLanguage("LOGIN")); ?>
 </head>
 <body>
+<?php require('body.php'); ?>
+<div class="main">
 <?php
 if (isset($_SESSION['person'])) {
     echo getTextForLanguage("SUCCESSFUL_LOGIN");
@@ -42,5 +42,6 @@ else {
     <?php
 }
 ?>
+</div>
 </body>
 </html>

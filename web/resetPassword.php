@@ -25,8 +25,6 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
         alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
     }
 }
-require_once('language.php');
-require_once('loginState.php');
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -34,12 +32,15 @@ require_once('loginState.php');
     <?php echo getHTMLHead(getTextForLanguage("PASSWORD_RESET")); ?>
 </head>
 <body>
+<?php require('body.php'); ?>
+<div class="main">
 <?php
 if (isset($_SESSION['person']) && $_SESSION['person']->resetpassword == 0) {
     echo getTextForLanguage("RESET_PASSWORD");
 }
 else {
 ?>
+
 <form method="post">
     <?php echo getTextForLanguage("USERNAME")?> <?php echo getTextForLanguage("OR")?> <?php echo getTextForLanguage("EMAIL")?><br />
     <input type="text" name="usernameOrEmail" maxlength="50"><br />
@@ -52,5 +53,6 @@ else {
     <?php
 }
 ?>
+</div>
 </body>
 </html>

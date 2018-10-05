@@ -1,4 +1,7 @@
 <?php
+?>
+<div class="loginState">
+<?php
 if (isset($_SESSION['person'])) {
     $person = $_SESSION['person'];
     $username = $person->username;
@@ -7,3 +10,5 @@ if (isset($_SESSION['person'])) {
 else {
     echo "<a href=\"login.php\">".getTextForLanguage("LOGIN")."</a> or <a href=\"register.php\">".getTextForLanguage("REGISTER")."</a></br></br>";
 }
+?>
+</div>

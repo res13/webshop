@@ -7,6 +7,9 @@ require('head.php');
 <?php echo getHTMLHead(getTextForLanguage("HOME")); ?>
 </head>
 <body>
+<?php require('body.php'); ?>
+<div class="main">
 <p><?php echo getTextForLanguage("HOME"); ?></p>
+</div>
 </body>
 </html>

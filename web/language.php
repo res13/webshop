@@ -17,6 +17,7 @@ else{
     }
 }
 ?>
+<div class="language">
 <form method="post">
     <select name="lang" onchange="this.form.submit()">
         <?php
@@ -31,3 +32,4 @@ else{
         ?>
     </select>
 </form>
+</div>

@@ -7,7 +7,7 @@ $texts = array
         'en' => 'Login'),
     'OR' => array(
         'de' => 'oder',
-        'en' => 'Login'),
+        'en' => 'or'),
     'REGISTER' => array(
         'de' => 'Registrieren',
         'en' => 'Register'),
@@ -110,6 +110,12 @@ $texts = array
     'REQUEST_NEW_PASSWORD' => array(
         'de' => 'Neues passwort anfordern',
         'en' => 'Request new password'),
+    'PRODUCTS' => array(
+        'de' => 'Produkte',
+        'en' => 'Products'),
+    'ABOUT_US' => array(
+        'de' => 'Über uns',
+        'en' => 'About us'),
 );
 
 function getAvailableLanguages()

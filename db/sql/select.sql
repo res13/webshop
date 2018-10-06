@@ -51,17 +51,28 @@ from webshop.orders o
        join webshop.person p on p.id = o.person_id
 where o.state = 0;
 
--- Get all sub-categories
-select c.id, c.name_i18n_id, c.category_id
-from (select c.id, c.name_i18n_id, c.category_id
-      from webshop.category c
-      order by c.category_id, c.id) categories_sorted,
-     (select @pv := '5') initialisation,
-     where find_in_set(category_id, @pv)
-    and length(@pv := concat(@pv, ',', id));
+-- Get all sub-categories (only works, when parent id < child id :(
+select  id
+    name_i18n_id,
+        category_id
+from    (select * from webshop.category c
+         order by c.category_id, id) category,
+        (select @pv := '5') initialisation
+where   find_in_set(category_id, @pv) > 0
+               and     @pv := concat(@pv, ',', id)
+
+SELECT *
+FROM webshop.category c
+WHERE c.category_id = 1
+UNION
+SELECT *
+FROM webshop.category c2
+WHERE c2.category_id IN
+      (SELECT c3.id FROM webshop.category c3 WHERE c3.category_id = 1);
 
 -- Get my sub-categories
 select c.id, i.text_de as text, c.category_id as categoryid
 from webshop.category c
             join webshop.i18n i on i.id = c.name_i18n_id
 where c.category_id in (select id from webshop.category c where c.category_id = 5);
+

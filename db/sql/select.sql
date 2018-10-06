@@ -64,4 +64,4 @@ from (select c.id, c.name_i18n_id, c.category_id
 select c.id, i.text_de as text, c.category_id as categoryid
 from webshop.category c
             join webshop.i18n i on i.id = c.name_i18n_id
-where c.category_id = (select id from webshop.category c where c.category_id is null);
+where c.category_id in (select id from webshop.category c where c.category_id = 5);

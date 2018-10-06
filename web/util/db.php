@@ -226,7 +226,7 @@ function getSubCategories($categoryId)
   i.text_' . $_SESSION['lang'] . ' as text, c.category_id as categoryid
 from webshop.category c
             join webshop.i18n i on i.id = c.name_i18n_id
-where c.category_id = (select id from webshop.category c where c.category_id ' . $where . ')';
+where c.category_id in (select id from webshop.category c where c.category_id ' . $where . ')';
     $stmt = $conn->prepare($query);
     if ($categoryId != null) {
         $stmt->bind_param('i', $categoryId);

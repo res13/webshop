@@ -1,28 +1,36 @@
 <?php
+
+function getProductHierarchy($category, &$result)
+{
+    if ($category == null) {
+        $result .= "<li><a href=\"product.php\">". getTextForLanguage("PRODUCTS"). "</a>";
+        $subcategories = getSubCategories(null);
+    }
+    else {
+        $result .= "<li><a href=\"product.php?category=$category->id\">$category->text</a>";
+        $subcategories = getSubCategories($category->categoryid);
+    }
+    if (empty($subcategories)) {
+        return;
+    }
+    $result .= "<ul>";
+    foreach ($subcategories as $subcategory) {
+        getProductHierarchy($subcategory, $result);
+    }
+    $result .= "</ul></li>";
+}
+
 ?>
 <div class="navigation">
-    <a href="index.php"><?php echo getTextForLanguage("HOME") ?></a>
-    <div class="dropdown">
-        <button class="dropbtn"><?php echo getTextForLanguage("PRODUCTS") ?>
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <?php
-            $subcategories = getSubCategories(null);
-            foreach ($subcategories as $subcategory) {
-                echo "<a href=\"#\">$subcategory->text</a>";
-                // TODO: make this recursive and handle it in css as well
-//                if ($subcategory->categoryid != null) {
-//                    $subcategories2 = getSubCategories($subcategory->categoryid);
-//                    echo "<div class=\"dropdown-content2\">";
-//                    foreach ($subcategories2 as $subcategory2) {
-//                        echo "<a href=\"#\">$subcategory2->text</a>";
-//                    }
-//                    echo "</div>";
-//                }
-            }
-            ?>
-        </div>
-    </div>
-    <a href="aboutUs.php"><?php echo getTextForLanguage("ABOUT_US") ?></a>
+<ul class="main-navigation">
+    <li><a href="index.php"><?php echo getTextForLanguage("HOME") ?></a></li>
+<!--    <li><a href="product.php">--><?php //echo getTextForLanguage("PRODUCTS") ?><!--</a>-->
+<!--    <ul>-->
+        <?php
+        getProductHierarchy(null, $productHierarchy);
+        echo $productHierarchy;
+        ?>
+<!--    </ul></li>-->
+    <li><a href="aboutUs.php"><?php echo getTextForLanguage("ABOUT_US") ?></a></li>
+</ul>
 </div>

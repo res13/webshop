@@ -36,6 +36,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
 <body>
 <?php require('body.php'); ?>
 <div class="main">
+<h1><?php echo getHTMLHead(getTextForLanguage("PASSWORD_RESET")); ?></h1>
 <?php
 if (isset($_SESSION['person']) && $_SESSION['person']->resetpassword == 0) {
     echo getTextForLanguage("RESET_PASSWORD");

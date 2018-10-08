@@ -1,5 +1,4 @@
 <?php
-include('TransferObject.php');
 
 class I18n extends TransferObject
 {

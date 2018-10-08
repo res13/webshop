@@ -32,6 +32,7 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
 <body>
 <?php require('body.php'); ?>
 <div class="main">
+<h1><?php echo getTextForLanguage("REGISTER"); ?></h1>
 <form method="post">
     <?php echo getTextForLanguage("FIRSTNAME")?><br/>
     <input type="text" name="firstname" maxlength="50"><br/>

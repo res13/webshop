@@ -27,6 +27,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
 <body>
 <?php require('body.php'); ?>
 <div class="main">
+<h1><?php echo getTextForLanguage("LOGIN"); ?></h1>
 <?php
 if (isset($_SESSION['person'])) {
     echo getTextForLanguage("SUCCESSFUL_LOGIN");

@@ -1,5 +1,4 @@
 <?php
-include('TransferObject.php');
 
 class Product_Option_Value extends TransferObject
 {

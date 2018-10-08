@@ -45,9 +45,9 @@ function randomPassword($length) {
 <body>
 <?php require('body.php'); ?>
 <div class="main">
+<h1><?php echo getHTMLHead("Forgot password"); ?></h1>
 <?php
 if (isset($mailSent) && $mailSent == true) {
-
     echo "<p>" . getTextForLanguage("EMAIL_SENT"). " " . $email . "</p>";
 }
 else {

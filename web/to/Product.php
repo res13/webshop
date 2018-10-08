@@ -1,17 +1,16 @@
 <?php
-include('TransferObject.php');
 
 class Product extends TransferObject
 {
     private $data = array(
         'id' => '',
         'productnumber' => '',
-        'pname' => '',
+        'name' => '',
         'price' => '',
-        'description_i18n_id' => '',
+        'description' => '',
         'image' => '',
-        'category_id' => '',
-        'manufacturer_id' => '',
+        'category' => '',
+        'manufacturer' => '',
     );
 
     public function setAll($dataArray)

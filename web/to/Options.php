@@ -1,5 +1,4 @@
 <?php
-include('TransferObject.php');
 
 class Options extends TransferObject
 {

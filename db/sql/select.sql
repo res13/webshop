@@ -51,28 +51,46 @@ from webshop.orders o
        join webshop.person p on p.id = o.person_id
 where o.state = 0;
 
--- Get all sub-categories (only works, when parent id < child id :(
-select  id
-    name_i18n_id,
-        category_id
-from    (select * from webshop.category c
-         order by c.category_id, id) category,
-        (select @pv := '5') initialisation
-where   find_in_set(category_id, @pv) > 0
-               and     @pv := concat(@pv, ',', id)
-
-SELECT *
-FROM webshop.category c
-WHERE c.category_id = 1
-UNION
-SELECT *
-FROM webshop.category c2
-WHERE c2.category_id IN
-      (SELECT c3.id FROM webshop.category c3 WHERE c3.category_id = 1);
+-- Get all sub-categories
+select id, name_i18n_id, category_id
+from (select * from webshop.category c order by c.category_id, id) category,
+     (select @pv := '1') initialisation
+where find_in_set(category_id, @pv) > 0
+        and @pv := concat(@pv, ',', id)
+union
+select c.id, c.name_i18n_id, c.category_id
+from webshop.category c
+where id = 1;
 
 -- Get my sub-categories
 select c.id, i.text_de as text, c.category_id as categoryid
 from webshop.category c
-            join webshop.i18n i on i.id = c.name_i18n_id
+       join webshop.i18n i on i.id = c.name_i18n_id
 where c.category_id in (select id from webshop.category c where c.category_id = 5);
 
+-- Get all products in this category and its subcategories
+select p.id,
+       p.productnumber,
+       p.pname                                                      name,
+       p.price,
+       i.text_de                                                    description,
+       p.image,
+       (select text_de from webshop.i18n where id = c.name_i18n_id) category,
+       m.name                                                       manufacturer
+from webshop.product p
+       join webshop.i18n i on p.description_i18n_id = i.id
+       join webshop.category c on p.category_id = c.id
+       join webshop.manufacturer m on p.manufacturer_id = m.id
+where c.id in (select id
+               from (select * from webshop.category c order by c.category_id, id) category,
+                    (select @pv := '1') initialisation
+               where find_in_set(category_id, @pv) > 0
+                       and @pv := concat(@pv, ',', id)
+               union
+               select c.id from webshop.category c where id = 1);
+
+-- Get category
+select c.id, i.text_de name, c.category_id categoryid
+from webshop.category c
+join webshop.i18n i on c.name_i18n_id = i.id
+where c.id = 1;

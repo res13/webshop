@@ -6,7 +6,7 @@ if (isset($_POST['lang']) && in_array($_POST['lang'], getAvailableLanguages())) 
         setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
     }
 }
-else{
+else if (!isset($_SESSION['lang'])) {
     if (isset($_SESSION['person'])) {
         $lang = getLanguageOfPerson($_SESSION['person']->id);
         $_SESSION['person']->lang = $lang;
@@ -130,9 +130,21 @@ $texts = array
     'PRODUCTS' => array(
         'de' => 'Produkte',
         'en' => 'Products'),
+    'PRODUCT' => array(
+        'de' => 'Produkt',
+        'en' => 'Product'),
     'ABOUT_US' => array(
         'de' => 'Über uns',
         'en' => 'About us'),
+    'USER' => array(
+        'de' => 'Benutzer',
+        'en' => 'User'),
+    'ALL_PRODUCTS' => array(
+        'de' => 'Alle Produkte',
+        'en' => 'All products'),
+    'NOT_FOUND' => array(
+        'de' => 'Nicht gefunden',
+        'en' => 'Not found'),
 );
 
 function getAvailableLanguages()

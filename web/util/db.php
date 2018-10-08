@@ -242,3 +242,96 @@ where c.category_id in (select id from webshop.category c where c.category_id ' 
     }
     return $categories;
 }
+
+function getAllProductsInCategory($categoryId, $lang)
+{
+    global $conn;
+    $mainQuery = 'select p.id,
+       p.productnumber,
+       p.pname                                                      name,
+       p.price,
+       i.text_' . $lang . '                                                    description,
+       p.image,
+       (select text_' . $lang . ' from webshop.i18n where id = c.name_i18n_id) category,
+       m.name                                                       manufacturer
+from webshop.product p
+       join webshop.i18n i on p.description_i18n_id = i.id
+       join webshop.category c on p.category_id = c.id
+       join webshop.manufacturer m on p.manufacturer_id = m.id
+where c.id in ';
+    if ($categoryId == null) {
+        $query = $mainQuery . '(select c.id from webshop.category c)';
+        $stmt = $conn->prepare($query);
+    } else {
+        $query = $mainQuery . '(select id
+               from (select * from webshop.category c order by c.category_id, id) category,
+                    (select @pv := ?) initialisation
+               where find_in_set(category_id, @pv) > 0
+                       and @pv := concat(@pv, \',\', id)
+               union
+               select c.id from webshop.category c where id = ?)';
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('si', $categoryId, $categoryId);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $products = array();
+    while ($row = $result->fetch_assoc()) {
+        $product = new Product();
+        $product->setAll($row);
+        array_push($products, $product);
+    }
+    return $products;
+}
+
+function getProduct($productId, $lang)
+{
+    global $conn;
+    $query = 'select p.id,
+       p.productnumber,
+       p.pname                                                      name,
+       p.price,
+       i.text_' . $lang . '                                                    description,
+       p.image,
+       (select text_' . $lang . ' from webshop.i18n where id = c.name_i18n_id) category,
+       m.name                                                       manufacturer
+from webshop.product p
+       join webshop.i18n i on p.description_i18n_id = i.id
+       join webshop.category c on p.category_id = c.id
+       join webshop.manufacturer m on p.manufacturer_id = m.id
+where p.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (isset($row)) {
+        $product = new Product();
+        $product->setAll($row);
+        return $product;
+    }
+    return null;
+}
+
+function getCategory($categoryId, $lang)
+{
+    global $conn;
+    $query = 'select c.id, i.text_de text, c.category_id categoryid
+from webshop.category c
+join webshop.i18n i on c.name_i18n_id = i.id
+where c.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $categoryId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (isset($row)) {
+        $category = new Category();
+        $category->setAll($row);
+        return $category;
+    }
+    return null;
+}

@@ -1,6 +1,5 @@
 <?php
 ?>
-<div class="language">
 <form method="post">
     <select name="lang" onchange="this.form.submit()">
         <?php
@@ -15,4 +14,3 @@
         ?>
     </select>
 </form>
-</div>

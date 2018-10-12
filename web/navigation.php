@@ -3,10 +3,9 @@
 function getProductHierarchy($category, &$result)
 {
     if ($category == null) {
-        $result .= "<li><a href=\"products.php\">". getTextForLanguage("PRODUCTS"). "</a>";
+        $result .= "<li><a href=\"products.php\">" . getTextForLanguage("PRODUCTS") . "</a>";
         $subcategories = getSubCategories(null);
-    }
-    else {
+    } else {
         $result .= "<li><a href=\"products.php?category=$category->id\">$category->text</a>";
         $subcategories = getSubCategories($category->categoryid);
     }
@@ -21,13 +20,12 @@ function getProductHierarchy($category, &$result)
 }
 
 ?>
-<div class="navigation">
-<ul class="main-navigation">
+<ul>
     <li><a href="index.php"><?php echo getTextForLanguage("HOME") ?></a></li>
-        <?php
-        getProductHierarchy(null, $productHierarchy);
-        echo $productHierarchy;
-        ?>
+    <?php
+    getProductHierarchy(null, $productHierarchy);
+    echo $productHierarchy;
+    ?>
     <li><a href="aboutUs.php"><?php echo getTextForLanguage("ABOUT_US") ?></a></li>
 </ul>
-</div>
+

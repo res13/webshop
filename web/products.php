@@ -13,12 +13,12 @@ $products = getAllProductsInCategory($categoryid, $_SESSION['lang']);
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php echo getHTMLHead(getTextForLanguage("PRODUCTS") . " (" . $categoryName . ")"); ?>
+    <?php echo getHTMLHead($categoryName); ?>
 </head>
 <body>
 <?php require('body.php'); ?>
 <div class="main">
-    <h1><?php echo getTextForLanguage("PRODUCTS") . " (" . $categoryName . ")"; ?></h1>
+    <h1><?php echo $categoryName; ?></h1>
     <?php
     foreach ($products as $product) {
         echo "<a href=\"product.php?id=$product->id\">link</a><br/>";

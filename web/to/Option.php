@@ -1,11 +1,11 @@
 <?php
 
-class Option_Value extends TransferObject
+class Option extends TransferObject
 {
     private $data = array(
-        'id' => '',
-        'name_i18n_id' => '',
-        'options_id' => '',
+        'optionId' => '',
+        'optionName' => '',
+        'optionValues' => '',
     );
 
     public function setAll($dataArray)

@@ -163,9 +163,9 @@ function getTextForLanguage($id)
     if (array_key_exists($id, $texts)) {
         $values = $texts[$id];
         if (isset($_SESSION['lang']) && array_key_exists($_SESSION['lang'], $values)) {
-            return $values[$_SESSION['lang']];
+            return htmlentities($values[$_SESSION['lang']]);
         } else {
-            return $values[getDefaultLanguage()];
+            return htmlentities($values[getDefaultLanguage()]);
         }
     }
 }

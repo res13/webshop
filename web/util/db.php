@@ -3,6 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $conn = new mysqli($servername, $username, $password);
+mysqli_set_charset($conn, 'utf8');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -318,7 +319,7 @@ where p.id = ?';
 function getCategory($categoryId, $lang)
 {
     global $conn;
-    $query = 'select c.id, i.text_de text, c.category_id categoryid
+    $query = 'select c.id, i.text_' . $lang . ' text, c.category_id categoryid
 from webshop.category c
 join webshop.i18n i on c.name_i18n_id = i.id
 where c.id = ?';
@@ -334,4 +335,57 @@ where c.id = ?';
         return $category;
     }
     return null;
+}
+
+function getProductOptions($productId, $lang)
+{
+    global $conn;
+    $query = 'select o.id optionId, i.text_' . $lang . ' optionName
+from webshop.product p
+       join webshop.product_option_value pov on p.id = pov.product_id
+       join webshop.option_value ov on pov.optionvalue_id = ov.id
+       join webshop.options o on ov.options_id = o.id
+       join webshop.i18n i on o.name_i18n_id = i.id
+where p.id = ?
+group by optionId';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $options = array();
+    while ($row = $result->fetch_assoc()) {
+        $option = new Option();
+        $option->setAll($row);
+        $optionValues = getProductOptionValues($productId, $option->__get('optionId'), $lang);
+        $option->__set('optionValues', $optionValues);
+        array_push($options, $option);
+    }
+    return $options;
+}
+
+function getProductOptionValues($productId, $optionId, $lang)
+{
+    global $conn;
+    $query = 'select ov.id optionValueId, i.text_' . $lang . ' optionValueName
+from webshop.product p
+       join webshop.product_option_value pov on p.id = pov.product_id
+       join webshop.option_value ov on pov.optionvalue_id = ov.id
+       join webshop.options o on ov.options_id = o.id
+       join webshop.i18n i on ov.name_i18n_id = i.id
+where p.id = ?
+and o.id = ?
+group by optionValueId';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ii', $productId, $optionId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $optionValues = array();
+    while ($row = $result->fetch_assoc()) {
+        $optionValue = new OptionValue();
+        $optionValue->setAll($row);
+        array_push($optionValues, $optionValue);
+    }
+    return $optionValues;
 }

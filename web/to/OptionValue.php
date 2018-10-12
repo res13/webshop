@@ -1,14 +1,10 @@
 <?php
 
-class Product_Orders extends TransferObject
+class OptionValue extends TransferObject
 {
     private $data = array(
-        'id' => '',
-        'orders_id' => '',
-        'product_id' => '',
-        'pname' => '',
-        'price' => '',
-        'quantity' => '',
+        'optionValueId' => '',
+        'optionValueName' => '',
     );
 
     public function setAll($dataArray)

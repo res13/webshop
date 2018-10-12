@@ -6,6 +6,7 @@ if (isset ($_GET['id']) && $_GET['id'] > 0) {
     $id = null;
 }
 $product = getProduct($id, $_SESSION['lang']);
+$productOptions = getProductOptions($id, $_SESSION['lang']);
 if ($product == null) {
     ?>
     <!DOCTYPE html>
@@ -27,14 +28,28 @@ if ($product == null) {
     <!DOCTYPE html>
     <html lang="de">
     <head>
-        <?php echo getHTMLHead(getTextForLanguage("PRODUCT") . " (" . $product->name . ")"); ?>
+        <?php echo getHTMLHead(htmlentities($product->__get('name'))); ?>
     </head>
     <body>
     <?php require('body.php'); ?>
     <div class="main">
-        <h1><?php echo getTextForLanguage("PRODUCT") . " (" . $product->name . ")"; ?></h1>
+        <h1><?php echo htmlentities($product->__get('name')); ?></h1>
         <?php
         echo $product;
+        foreach ($productOptions as $productOption) {
+            ?>
+            <div class="productOption">
+                <p><?php echo htmlentities($productOption->__get('optionName')) ?></p>
+                <select name="<?php echo $productOption->__get('optionId') ?>">
+                    <?php
+                    foreach ($productOption->__get('optionValues') as $optionValue) {
+                            ?><option value="<?php echo $optionValue->__get('optionValueId') ?>"><?php echo htmlentities($optionValue->__get('optionValueName')) ?></option><?php
+                    }
+                    ?>
+                </select><br/>
+            </div>
+            <?php
+        }
         ?>
     </div>
     </body>

@@ -14,14 +14,34 @@ from webshop.product p
 where p.id = 1;
 
 -- Get all options comma separated for product 1 and language german
-select i.text_de 'Option', GROUP_CONCAT((select text_de from webshop.i18n where id = ov.name_i18n_id)) Optionvalue
+select o.id optionId, i.text_de optionText, ov.id optionValueId, (select text_de from webshop.i18n where id = ov.name_i18n_id) optionValueText
+from webshop.product p
+       join webshop.product_option_value pov on p.id = pov.product_id
+       join webshop.option_value ov on pov.optionvalue_id = ov.id
+       join webshop.options o on ov.options_id = o.id
+       join webshop.i18n i on o.name_i18n_id = i.id
+where p.id = 1;
+
+-- Get all options for product 1
+select o.id optionId, i.text_de optionText
 from webshop.product p
        join webshop.product_option_value pov on p.id = pov.product_id
        join webshop.option_value ov on pov.optionvalue_id = ov.id
        join webshop.options o on ov.options_id = o.id
        join webshop.i18n i on o.name_i18n_id = i.id
 where p.id = 1
-group by 1;
+group by optionId;
+
+-- Get all optionsValues for product 1 and option 1
+select ov.id optionValueId, i.text_de optionValueText
+from webshop.product p
+       join webshop.product_option_value pov on p.id = pov.product_id
+       join webshop.option_value ov on pov.optionvalue_id = ov.id
+       join webshop.options o on ov.options_id = o.id
+       join webshop.i18n i on ov.name_i18n_id = i.id
+where p.id = 1
+and o.id = 1
+group by optionValueId;
 
 -- Get user by username
 select c.id,

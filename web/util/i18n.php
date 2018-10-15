@@ -145,6 +145,9 @@ $texts = array
     'NOT_FOUND' => array(
         'de' => 'Nicht gefunden',
         'en' => 'Not found'),
+    'ADD_TO_BASKET' => array(
+        'de' => 'In den Warenkorb',
+        'en' => 'Add to basket'),
 );
 
 function getAvailableLanguages()

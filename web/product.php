@@ -33,21 +33,18 @@ if ($product == null) {
     <body>
     <?php require('body.php'); ?>
     <div class="main">
-
-
         <div class="wrapper">
             <div class="product-img">
-                <img src="<?php echo $product->__get('image'); ?>" height="420" width="327">
+                <img src="<?php echo htmlentities($product->__get('image')); ?>" height="420" width="327">
             </div>
             <div class="product-info">
                 <div class="product-text">
-                    <h1><?php echo $product->__get('name'); ?></h1>
-                    <h2><?php echo $product->__get('manufacturer'); ?></h2>
-                    <p><?php echo $product->__get('description');?></p>
-
+                    <h1><?php echo htmlentities($product->__get('name')); ?></h1>
+                    <h2><?php echo htmlentities($product->__get('manufacturer')); ?></h2>
+                    <p><?php echo htmlentities($product->__get('description'));?></p>
                 </div>
                 <div class="product-price-btn">
-                    <p><span><?php echo $product->__get('price');?></span>CHF
+                    <p><span><?php echo htmlentities($product->__get('price'));?></span>CHF
                     <span>
                     <?php
                     foreach ($productOptions as $productOption) {
@@ -64,13 +61,10 @@ if ($product == null) {
                         <?php
                     }
                     ?></span></p>
-                    <button type="button">buy now</button>
+                    <button type="button"><?php echo getTextForLanguage("ADD_TO_BASKET") ?></button>
                 </div>
             </div>
         </div>
-
-
-
     </div>
     </body>
     </html>

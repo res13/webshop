@@ -389,3 +389,54 @@ group by optionValueId';
     }
     return $optionValues;
 }
+
+function getBasket($personId) {
+    global $conn;
+
+}
+
+function createOrAddToBasket($personId, $productId, $optionArray) {
+    global $conn;
+    $query = 'select o.id from webshop.orders o where o.person_id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $personId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (isset($row)) {
+        $orderId = $row['id'];
+    }
+    else {
+        $query = 'insert into webshop.orders (person_id) values (?)';
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $personId);
+        $stmt->execute();
+        $stmt->close();
+        $orderId =  $conn->insert_id;
+    }
+    $query = 'select p.pname name, p.price from webshop.product p where p.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (isset($row)) {
+        $productName = $row['name'];
+        $productPrice = $row['price'];
+        $query = 'insert into webshop.product_orders (orders_id, product_id, pname, price, quantity) values (?, ?, ?, ?, 1)';
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('iisi', $orderId, $productId, $productName, $productPrice);
+        $stmt->execute();
+        $stmt->close();
+        $productOrderId =  $conn->insert_id;
+    }
+    foreach ($optionArray as $optionId) {
+        $query = 'insert into webshop.product_orders_option_value (productorders_id, optionvalue_id) values (?, ?)';
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('iisi', $productOrderId, $optionId);
+        $stmt->execute();
+        $stmt->close();
+    }
+}

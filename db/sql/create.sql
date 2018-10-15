@@ -1,4 +1,5 @@
-drop table if exists product_option_value;
+drop table if exists product_orders_option_value;
+drop table if exists orders_option_value;
 drop table if exists option_value;
 drop table if exists options;
 drop table if exists product_orders;
@@ -135,6 +136,12 @@ create table product_orders
     quantity integer not null
 );
 
+create table product_orders_option_value
+(
+    productorders_id integer not null,
+    optionvalue_id integer not null
+);
+
 alter table person add constraint person_unique_email unique (email);
 alter table person add constraint person_unique_username unique (username);
 alter table category add constraint category_foreign_key_category_id foreign key (category_id) references category(id);
@@ -156,3 +163,5 @@ alter table orders add constraint orders_foreign_key_billingaddress_id foreign k
 alter table orders add constraint orders_foreign_key_deliveryaddress_id foreign key (deliveryaddress_id) references address(id);
 alter table product_orders add constraint product_orders_foreign_key_orders_id foreign key (orders_id) references orders(id);
 alter table product_orders add constraint product_orders_foreign_key_product_id foreign key (product_id) references product(id);
+alter table product_orders_option_value add constraint product_orders_option_value_foreign_key_product_orders_id foreign key (productorders_id) references product_orders(id);
+alter table product_orders_option_value add constraint product_orders_option_value_foreign_key_optionvalue_id foreign key (optionvalue_id) references option_value(id);

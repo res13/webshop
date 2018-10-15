@@ -69,7 +69,8 @@ where c.username = 'res13';
 select *
 from webshop.orders o
        join webshop.person p on p.id = o.person_id
-where o.state = 0;
+where o.state = 0
+and p.id = 0;
 
 -- Get all sub-categories
 select id, name_i18n_id, category_id
@@ -114,3 +115,5 @@ select c.id, i.text_de name, c.category_id categoryid
 from webshop.category c
 join webshop.i18n i on c.name_i18n_id = i.id
 where c.id = 1;
+
+-- create or add to basket

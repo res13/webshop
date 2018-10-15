@@ -46,12 +46,13 @@ if ($product == null) {
                 <div class="product-price-btn">
                     <p><span><?php echo htmlentities($product->__get('price'));?></span>CHF
                     <span>
+                    <form method="post">
                     <?php
                     foreach ($productOptions as $productOption) {
                         ?>
                         <span> - </span>
                             <?php echo htmlentities($productOption->__get('optionName')) ?>
-                            <select name="<?php echo $productOption->__get('optionId') ?>">
+                            <select name="options[]">
                                 <?php
                                 foreach ($productOption->__get('optionValues') as $optionValue) {
                                     ?><option value="<?php echo $optionValue->__get('optionValueId') ?>"><?php echo htmlentities($optionValue->__get('optionValueName')) ?></option><?php
@@ -61,7 +62,8 @@ if ($product == null) {
                         <?php
                     }
                     ?></span></p>
-                    <button type="button"><?php echo getTextForLanguage("ADD_TO_BASKET") ?></button>
+                        <button type="submit" name="toBasket" value="<?php echo $product->__get('id') ?>"><?php echo getTextForLanguage("ADD_TO_BASKET") ?></button>
+                    </form>
                 </div>
             </div>
         </div>

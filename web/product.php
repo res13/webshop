@@ -47,6 +47,7 @@ if ($product == null) {
                     <p><span><?php echo htmlentities($product->__get('price'));?></span>CHF
                     <span>
                     <form method="post">
+                    <input type="hidden" name="quantity" value="1" />
                     <?php
                     foreach ($productOptions as $productOption) {
                         ?>

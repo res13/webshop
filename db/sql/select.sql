@@ -14,7 +14,10 @@ from webshop.product p
 where p.id = 1;
 
 -- Get all options comma separated for product 1 and language german
-select o.id optionId, i.text_de optionText, ov.id optionValueId, (select text_de from webshop.i18n where id = ov.name_i18n_id) optionValueText
+select o.id                                                          optionId,
+       i.text_de                                                     optionText,
+       ov.id                                                         optionValueId,
+       (select text_de from webshop.i18n where id = ov.name_i18n_id) optionValueText
 from webshop.product p
        join webshop.product_option_value pov on p.id = pov.product_id
        join webshop.option_value ov on pov.optionvalue_id = ov.id
@@ -40,7 +43,7 @@ from webshop.product p
        join webshop.options o on ov.options_id = o.id
        join webshop.i18n i on ov.name_i18n_id = i.id
 where p.id = 1
-and o.id = 1
+  and o.id = 1
 group by optionValueId;
 
 -- Get user by username
@@ -66,11 +69,11 @@ from webshop.person c
 where c.username = 'res13';
 
 -- Get current basket of user
-select *
+select o.id
 from webshop.orders o
        join webshop.person p on p.id = o.person_id
 where o.state = 0
-and p.id = 0;
+  and p.id = 0;
 
 -- Get all sub-categories
 select id, name_i18n_id, category_id
@@ -113,7 +116,7 @@ where c.id in (select id
 -- Get category
 select c.id, i.text_de name, c.category_id categoryid
 from webshop.category c
-join webshop.i18n i on c.name_i18n_id = i.id
+       join webshop.i18n i on c.name_i18n_id = i.id
 where c.id = 1;
 
--- create or add to basket
+delete from webshop.orders o where o.person_id = 0 and o.state = 0;

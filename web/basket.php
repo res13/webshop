@@ -1,27 +1,50 @@
 <?php
-if (isset($_POST['person'])) {
-    $personId = $_POST['person']->__get('id');
-    $basket = getBasket($personId);
-    $_SESSION['person'] = $basket;
-}
-if (isset($_POST['toBasket']) && isset($_POST['options'])) {
-    $productId = $_POST['toBasket'];
-    $optionArray = $_POST['options'];
-    if (isset($_POST['person'])) {
-        $personId = $_POST['person']->__get('id');
-        createOrAddToBasket($personId, $productId, $optionArray);
-        $basket = getBasket($personId);
-        $_SESSION['person'] = $basket;
+require('head.php');
+?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <?php echo getHTMLHead(getTextForLanguage("BASKET")); ?>
+</head>
+<body>
+<?php require('body.php'); ?>
+<div class="main">
+    <h1><?php echo getTextForLanguage("BASKET"); ?></h1>
+    <?php
+    if (isset($_SESSION['basket'])) {
+        $basket = $_SESSION['basket'];
+        $basketProducts = $basket->__get('products');
+        foreach ($basketProducts as $basketProduct) {
+            $product = getProduct($basketProduct->__get('id'), $_SESSION['lang']);
+            $productOptions = getProductOptions($basketProduct->__get('id'), $_SESSION['lang']);
+            $basketProductOptions = $basketProduct->__get('options');
+            $basketProductOptionsArray = array();
+            foreach ($basketProductOptions as $basketProductOption) {
+                array_push($basketProductOptionsArray, $basketProductOption->__get('optionValueId'));
+            }
+            echo htmlentities($product->__get('name'));
+            echo " ";
+            echo htmlentities($basketProduct->__get('quantity'));
+            echo " [";
+            foreach ($productOptions as $productOption) {
+                echo htmlentities($productOption->__get('optionName'));
+                echo '=';
+                $productOptionValues = $productOption->__get('optionValues');
+                foreach ($productOptionValues as $productOptionValue) {
+                    if (in_array($productOptionValue->__get('optionValueId'), $basketProductOptionsArray)) {
+                        echo htmlentities($productOptionValue->__get('optionValueName'));
+                        echo " ";
+                    }
+                }
+            }
+            echo "]<br/>";
+        }
+        echo "<a href=\"cleanBasket.php\">" . getTextForLanguage("CLEAN_BASKET") . "</a>";
     }
     else {
-        $basketOptions = array();
-        foreach ($optionArray as $optionId) {
-            $basketOption = new BasketOption();
-            // todo: fill basketOption
-            array_push($basketOptions, $basketOption);
-        }
-        // todo: add basketOption to BasketProduct
-        // todo: add basketProduct to Basket
+        echo getTextForLanguage("BASKET_IS_EMPTY");
     }
-}
-// todo: show basket
+    ?>
+</div>
+</body>
+</html>

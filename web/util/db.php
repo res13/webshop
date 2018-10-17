@@ -390,14 +390,62 @@ group by optionValueId';
     return $optionValues;
 }
 
-function getBasket($personId) {
+function getBasket($personId)
+{
     global $conn;
-
+    $query = 'select o.id
+from webshop.orders o
+       join webshop.person p on p.id = o.person_id
+where o.state = 0
+and p.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $personId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (!isset($row)) {
+        return null;
+    }
+    $orderId = $row['id'];
+    $basket = new Basket();
+    $basket->__set('id', $orderId);
+    $query = 'select po.id, po.pname name, po.price, po.quantity from webshop.product_orders po where po.orders_id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $orderId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $products = array();
+    while ($row = $result->fetch_assoc()) {
+        $basketProduct = new BasketProduct();
+        $basketProduct->setAll($row);
+        $productOrderId = $row['id'];
+        $query = 'select poov.optionvalue_id optionvalueId
+from webshop.product_orders_option_value poov
+       join webshop.option_value ov on poov.optionvalue_id = ov.id = ov.id
+       join webshop.i18n i on ov.name_i18n_id = i.id
+where poov.optionvalue_id = ?';
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $productOrderId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $productOptions = array();
+        while ($row = $result->fetch_assoc()) {
+            $basketProductOption = new BasketProductOption();
+            $basketProductOption->setAll($row);
+            array_push($productOptions, $basketProductOption);
+        }
+        array_push($products, $basketProduct);
+    }
+    return $basket;
 }
 
-function createOrAddToBasket($personId, $productId, $optionArray) {
+function createOrAddToBasket($personId, $productId, $productQuantity, $optionArray)
+{
     global $conn;
-    $query = 'select o.id from webshop.orders o where o.person_id = ?';
+    $query = 'select o.id from webshop.orders o where o.person_id = ? and o.state = 0';
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $personId);
     $stmt->execute();
@@ -406,14 +454,44 @@ function createOrAddToBasket($personId, $productId, $optionArray) {
     $row = $result->fetch_assoc();
     if (isset($row)) {
         $orderId = $row['id'];
-    }
-    else {
+    } else {
         $query = 'insert into webshop.orders (person_id) values (?)';
         $stmt = $conn->prepare($query);
         $stmt->bind_param('i', $personId);
         $stmt->execute();
         $stmt->close();
-        $orderId =  $conn->insert_id;
+        $orderId = $conn->insert_id;
+    }
+    $query = 'select po.id, po.quantity from webshop.product_orders po where po.product_id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (isset($row)) {
+        $productOrderId = $row['id'];
+        $storedQuantity = $row['quantity'];
+        $query = 'select poov.optionvalue_id optionId from webshop.product_orders_option_value poov where poov.productorders_id = ?';
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $productOrderId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $optionIdArray = array();
+        while ($row = $result->fetch_assoc()) {
+            $optionId = $row['optionId'];
+            array_push($optionIdArray, $optionId);
+        }
+        sort($optionIdArray);
+        sort($optionArray);
+        if ($optionIdArray == $optionArray) {
+            $query = 'update webshop.product_orders po set po.quantity = ? where po.orderId = ?';
+            $stmt = $conn->prepare($query);
+            $newQuantity = $storedQuantity + $productQuantity;
+            $stmt->bind_param('ii', $newQuantity, $productOrderId);
+            return;
+        }
     }
     $query = 'select p.pname name, p.price from webshop.product p where p.id = ?';
     $stmt = $conn->prepare($query);
@@ -425,12 +503,12 @@ function createOrAddToBasket($personId, $productId, $optionArray) {
     if (isset($row)) {
         $productName = $row['name'];
         $productPrice = $row['price'];
-        $query = 'insert into webshop.product_orders (orders_id, product_id, pname, price, quantity) values (?, ?, ?, ?, 1)';
+        $query = 'insert into webshop.product_orders (orders_id, product_id, pname, price, quantity) values (?, ?, ?, ?, ?)';
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('iisi', $orderId, $productId, $productName, $productPrice);
+        $stmt->bind_param('iisii', $orderId, $productId, $productName, $productPrice, $productQuantity);
         $stmt->execute();
         $stmt->close();
-        $productOrderId =  $conn->insert_id;
+        $productOrderId = $conn->insert_id;
     }
     foreach ($optionArray as $optionId) {
         $query = 'insert into webshop.product_orders_option_value (productorders_id, optionvalue_id) values (?, ?)';
@@ -439,4 +517,16 @@ function createOrAddToBasket($personId, $productId, $optionArray) {
         $stmt->execute();
         $stmt->close();
     }
+}
+
+function cleanBasket($personId) {
+    global $conn;
+    $query = 'delete from webshop.orders o where o.person_id = ? and o.state = 0';
+    $stmt = $conn->prepare($query);
+    if (!$stmt) {
+        return;
+    }
+    $stmt->bind_param('i', $personId);
+    $stmt->execute();
+    $stmt->close();
 }

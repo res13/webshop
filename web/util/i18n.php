@@ -148,6 +148,15 @@ $texts = array
     'ADD_TO_BASKET' => array(
         'de' => 'In den Warenkorb',
         'en' => 'Add to basket'),
+    'BASKET' => array(
+        'de' => 'Warenkorb',
+        'en' => 'Basket'),
+    'BASKET_IS_EMPTY' => array(
+        'de' => 'Warenkorb ist leer',
+        'en' => 'Basket is empty'),
+    'CLEAN_BASKET' => array(
+        'de' => 'Warenkorb leeren',
+        'en' => 'Clean basket'),
 );
 
 function getAvailableLanguages()

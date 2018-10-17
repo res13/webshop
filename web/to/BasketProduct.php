@@ -4,8 +4,7 @@ class BasketProduct extends TransferObject
 {
     private $data = array(
         'id' => '',
-        'name' => '',
-        'price' => '',
+        'quantity' => '',
         'options' => '',
     );
 

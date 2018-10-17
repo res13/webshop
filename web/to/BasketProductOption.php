@@ -1,12 +1,9 @@
 <?php
 
-class BasketOption extends TransferObject
+class BasketProductOption extends TransferObject
 {
     private $data = array(
-        'optionId' => '',
-        'optionName' => '',
         'optionValueId' => '',
-        'optionValueName' => '',
     );
 
     public function setAll($dataArray)

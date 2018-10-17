@@ -35,7 +35,12 @@ abstract class TransferObject {
     {
         $prettyPrint = '';
         foreach ($data as $key => $value) {
-            $prettyPrint .= "$key = $value<br />";
+            if (is_array($value)){
+                $prettyPrint .= "<pre>". print_r($value) . "</pre>";
+            }
+            else {
+                $prettyPrint .= "$key = $value<br />";
+            }
         }
         return $prettyPrint;
     }

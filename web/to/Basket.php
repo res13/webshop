@@ -26,4 +26,30 @@ class Basket extends TransferObject
     {
         return parent::toString($this->data);
     }
+
+    public function getProductIfQuantityGreaterThanZero($productId, $options) {
+        $productArray = $this->__get('products');
+        foreach ($productArray as $myProduct) {
+            $myProductId = $myProduct->__get('id');
+            if ($myProductId != $productId) {
+                continue;
+            }
+            $myOptions = $myProduct->__get('options');
+            $resultingProduct = $myProduct;
+        }
+        if (!isset($myOptions)) {
+            return null;
+        }
+        $myOptionsArray = array();
+        foreach ($myOptions as $myOption) {
+            $myOptionValueId = $myOption->__get('optionValueId');
+            array_push($myOptionsArray, $myOptionValueId);
+        }
+        sort($options);
+        sort($myOptionsArray);
+        if ($options == $myOptionsArray) {
+            return $resultingProduct;
+        }
+        return null;
+    }
 }

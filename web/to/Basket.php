@@ -29,6 +29,7 @@ class Basket extends TransferObject
 
     public function getProductIfQuantityGreaterThanZero($productId, $options) {
         $productArray = $this->__get('products');
+        $resultingProduct = null;
         foreach ($productArray as $myProduct) {
             $myProductId = $myProduct->__get('id');
             if ($myProductId != $productId) {
@@ -54,6 +55,7 @@ class Basket extends TransferObject
     }
 
     public function removeProduct($productId) {
+        $resultingProduct = null;
         $productArray = $this->__get('products');
         foreach ($productArray as $myProduct) {
             $myProductId = $myProduct->__get('id');

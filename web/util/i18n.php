@@ -169,6 +169,12 @@ $texts = array
     'TOTAL' => array(
         'de' => 'Total',
         'en' => 'Total'),
+    'REMOVE' => array(
+        'de' => 'Entfernen',
+        'en' => 'Remove'),
+    'CHECKOUT' => array(
+        'de' => 'Bestellen',
+        'en' => 'Check out'),
 );
 
 function getAvailableLanguages()

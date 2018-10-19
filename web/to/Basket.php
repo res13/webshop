@@ -52,4 +52,16 @@ class Basket extends TransferObject
         }
         return null;
     }
+
+    public function removeProduct($productId) {
+        $productArray = $this->__get('products');
+        foreach ($productArray as $myProduct) {
+            $myProductId = $myProduct->__get('id');
+            if ($myProductId != $productId) {
+                continue;
+            }
+            $resultingProduct = $myProduct;
+        }
+        // todo: remove resulting product
+    }
 }

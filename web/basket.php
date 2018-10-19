@@ -21,6 +21,7 @@ require('head.php');
                 <th><?php echo getTextForLanguage("PRODUCT"); ?></th>
                 <th><?php echo getTextForLanguage("OPTIONS"); ?></th>
                 <th><?php echo getTextForLanguage("AMOUNT"); ?></th>
+                <th><?php echo getTextForLanguage("REMOVE"); ?></th>
                 <th><?php echo getTextForLanguage("PRICE"); ?></th>
             </tr>
             </thead>
@@ -52,6 +53,7 @@ require('head.php');
                 }
                 echo "</ul></td>";
                 echo "<td>" . htmlentities($basketProduct->__get('quantity')) . "</td>";
+                echo "<td><a href=\"basket.php?removeFromBasket=". $product->__get('id') ."\">X</a></td>";
                 echo "<td>" . htmlentities($basketProduct->__get('price')) . " CHF</td>";
                 $totalPrice += $basketProduct->__get('price');
             }
@@ -60,13 +62,14 @@ require('head.php');
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3"><?php echo getTextForLanguage("TOTAL"); ?></td>
+                <td colspan="4"><?php echo getTextForLanguage("TOTAL"); ?></td>
                 <td><?php echo $totalPrice . " CHF"; ?></td>
             </tr>
             </tfoot>
         </table>
         <?php
-        echo "<a href=\"cleanBasket.php\">" . getTextForLanguage("CLEAN_BASKET") . "</a>";
+        echo "<a href=\"cleanBasket.php\">" . getTextForLanguage("CLEAN_BASKET") . "</a><br/><br/>";
+        echo "<a href=\"checkout.php\">" . getTextForLanguage("CHECKOUT") . "</a>";
     } else {
         echo getTextForLanguage("BASKET_IS_EMPTY");
     }

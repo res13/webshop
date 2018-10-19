@@ -1,11 +1,5 @@
 <?php
-require_once('to/TransferObject.php');
-require_once('to/Person.php');
-require_once('to/Category.php');
-session_start();
-require_once('util/i18n.php');
-require_once('util/util.php');
-require_once('util/db.php');
+require ('head.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
     if ($person != null) {
@@ -13,6 +7,22 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
             redirect('resetPassword.php');
         }
         $_SESSION['person'] = $person;
+        if (isset($_SESSION['basket'])) {
+            $personId = $_SESSION['person']->__get('id');
+            $basketProducts = $_SESSION['basket']->__get('products');
+            foreach ($basketProducts as $basketProduct) {
+                $productId = $basketProduct->__get('realProductId');
+                $productQuantity = $basketProduct->__get('quantity');
+                $productOptions = $basketProduct->__get('options');
+                $optionArray = array();
+                foreach ($productOptions as $productOption) {
+                    $optionValueId = $productOption->__get('optionValueId');
+                    array_push($optionArray, $optionValueId);
+                }
+                addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
+                $_SESSION['basket'] = getBasket($personId, $_SESSION['lang']);
+            }
+        }
     }
     else {
         alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));

@@ -175,6 +175,9 @@ $texts = array
     'CHECKOUT' => array(
         'de' => 'Bestellen',
         'en' => 'Check out'),
+    'MUST_BE_LOGGED_IN_TO_CHECKOUT' => array(
+        'de' => 'Sie müssen eingeloggt sein um zu bestellen.',
+        'en' => 'You must be logged in to checkout.'),
 );
 
 function getAvailableLanguages()

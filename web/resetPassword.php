@@ -1,11 +1,5 @@
 <?php
-require_once('to/TransferObject.php');
-require_once('to/Person.php');
-require_once('to/Category.php');
-session_start();
-require_once('util/i18n.php');
-require_once('util/util.php');
-require_once('util/db.php');
+require ('head.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
     $oldPerson = authenticate($_POST['usernameOrEmail'], $_POST['oldPassword']);
     if ($oldPerson != null) {

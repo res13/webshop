@@ -62,6 +62,9 @@ class Basket extends TransferObject
             }
             $resultingProduct = $myProduct;
         }
-        // todo: remove resulting product
+        if(($key = array_search($resultingProduct, $productArray, true)) !== FALSE) {
+            unset($productArray[$key]);
+        }
+        $this->__set('products', $productArray);
     }
 }

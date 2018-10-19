@@ -597,6 +597,19 @@ function cleanBasket($personId)
     $stmt->close();
 }
 
+function removeProductFromBasket($basketProductId)
+{
+    global $conn;
+    $query = 'delete from webshop.product_orders where id = ?';
+    $stmt = $conn->prepare($query);
+    if (!$stmt) {
+        return;
+    }
+    $stmt->bind_param('i', $basketProductId);
+    $stmt->execute();
+    $stmt->close();
+}
+
 function arraySameContent($array1, $array2) {
     sort($array1);
     sort($array2);

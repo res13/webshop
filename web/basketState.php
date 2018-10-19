@@ -8,17 +8,21 @@ if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
     $productIdToRemove = $_GET['removeFromBasket'];
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
-        //todo remove in db
+        removeProductFromBasket($productIdToRemove);
         $basket = getBasket($personId, $_SESSION['lang']);
     }
     else {
         $basket = $_SESSION['basket'];
-        //todo remove from session basket
+        $basket->removeProduct($productIdToRemove);
     }
+    $_SESSION['basket'] = $basket;
 }
 if (isset($_POST['toBasket']) && isset($_POST['options'])) {
     $productId = $_POST['toBasket'];
     $productQuantity = $_POST['quantity'];
+    $productName = $_POST['productName'];
+    $productPrice = $_POST['productPrice'];
+    $realProductId = $_POST['realProductId'];
     $optionArray = $_POST['options'];
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
@@ -35,6 +39,9 @@ if (isset($_POST['toBasket']) && isset($_POST['options'])) {
         $basketProduct = new BasketProduct();
         $basketProduct->__set('id', $productId);
         $basketProduct->__set('quantity', $productQuantity);
+        $basketProduct->__set('name', $productName);
+        $basketProduct->__set('price', $productPrice);
+        $basketProduct->__set('realProductId', $realProductId);
         $basketProduct->__set('options', $basketOptions);
         if (isset($_SESSION['basket'])) {
             $basket = $_SESSION['basket'];

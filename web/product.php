@@ -48,6 +48,9 @@ if ($product == null) {
                     <span>
                     <form method="post">
                     <input type="hidden" name="quantity" value="1" />
+                    <input type="hidden" name="productName" value="<?php echo $product->__get('name'); ?>" />
+                    <input type="hidden" name="productPrice" value="<?php echo $product->__get('price');?>" />
+                    <input type="hidden" name="realProductId" value="<?php echo $product->__get('id');?>" />
                     <?php
                     foreach ($productOptions as $productOption) {
                         ?>

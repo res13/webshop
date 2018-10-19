@@ -119,4 +119,6 @@ from webshop.category c
        join webshop.i18n i on c.name_i18n_id = i.id
 where c.id = 1;
 
-delete from webshop.orders o where o.person_id = 0 and o.state = 0;
+delete from webshop.orders where person_id = 1 and state = 0;
+DELETE FROM `webshop`.`orders` WHERE `id` = 8;
+update webshop.product_orders po set po.quantity = 2 where po.orders_id = 19;

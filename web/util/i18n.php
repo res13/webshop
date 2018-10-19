@@ -157,6 +157,18 @@ $texts = array
     'CLEAN_BASKET' => array(
         'de' => 'Warenkorb leeren',
         'en' => 'Clean basket'),
+    'OPTIONS' => array(
+        'de' => 'Optionen',
+        'en' => 'Options'),
+    'AMOUNT' => array(
+        'de' => 'Anzahl',
+        'en' => 'Quantity'),
+    'PRICE' => array(
+        'de' => 'Preis',
+        'en' => 'Price'),
+    'TOTAL' => array(
+        'de' => 'Total',
+        'en' => 'Total'),
 );
 
 function getAvailableLanguages()

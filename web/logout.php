@@ -1,5 +1,5 @@
 <?php
-session_start();
-session_destroy();
-header('Location: login.php');
-exit;
+require('head.php');
+unset($_SESSION['person']);
+unset($_SESSION['basket']);
+redirect('index.php');

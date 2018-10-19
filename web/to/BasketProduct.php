@@ -4,8 +4,11 @@ class BasketProduct extends TransferObject
 {
     private $data = array(
         'id' => '',
+        'name' => '',
         'quantity' => '',
+        'price' => '',
         'options' => '',
+        'realProductId' => '',
     );
 
     public function setAll($dataArray)

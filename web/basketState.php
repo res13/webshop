@@ -1,6 +1,6 @@
 <?php
-if (isset($_POST['person']) && !isset($_SESSION['basket'])) {
-    $personId = $_POST['person']->__get('id');
+if (isset($_SESSION['person']) && !isset($_SESSION['basket'])) {
+    $personId = $_SESSION['person']->__get('id');
     $basket = getBasket($personId, $_SESSION['lang']);
     $_SESSION['basket'] = $basket;
 }
@@ -8,9 +8,9 @@ if (isset($_POST['toBasket']) && isset($_POST['options'])) {
     $productId = $_POST['toBasket'];
     $productQuantity = $_POST['quantity'];
     $optionArray = $_POST['options'];
-    if (isset($_POST['person'])) {
-        $personId = $_POST['person']->__get('id');
-        createOrAddToBasket($personId, $productId, $optionArray);
+    if (isset($_SESSION['person'])) {
+        $personId = $_SESSION['person']->__get('id');
+        addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
         $basket = getBasket($personId, $_SESSION['lang']);
     }
     else {

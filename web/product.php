@@ -44,8 +44,7 @@ if ($product == null) {
                     <p><?php echo htmlentities($product->__get('description'));?></p>
                 </div>
                 <div class="product-price-btn">
-                    <p><span><?php echo htmlentities($product->__get('price'));?></span>CHF
-                    <span>
+                        <span><?php echo htmlentities($product->__get('price'));?> CHF</span>
                     <form method="post">
                     <input type="hidden" name="quantity" value="1" />
                     <input type="hidden" name="productName" value="<?php echo $product->__get('name'); ?>" />
@@ -54,7 +53,7 @@ if ($product == null) {
                     <?php
                     foreach ($productOptions as $productOption) {
                         ?>
-                        <span> - </span>
+                        <span> -
                             <?php echo htmlentities($productOption->__get('optionName')) ?>
                             <select name="options[]">
                                 <?php
@@ -63,9 +62,10 @@ if ($product == null) {
                                 }
                                 ?>
                             </select>
+                        </span>
                         <?php
                     }
-                    ?></span></p>
+                    ?>
                         <button type="submit" name="toBasket" value="<?php echo $product->__get('id') ?>"><?php echo getTextForLanguage("ADD_TO_BASKET") ?></button>
                     </form>
                 </div>

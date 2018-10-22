@@ -202,6 +202,12 @@ $texts = array
     'INPUT_MISSING' => array(
         'de' => 'Es fehlen eingaben...',
         'en' => 'Input missing...'),
+    'ORDER' => array(
+        'de' => 'Bestellung',
+        'en' => 'Order'),
+    'ORDER_SUBMITTED' => array(
+        'de' => 'Die Bestellung wurde übermittelt, sie haben ein Bestätigungsmail bekommen.',
+        'en' => 'The order was submitted, you got an email.'),
 );
 
 function getAvailableLanguages()

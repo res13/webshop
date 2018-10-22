@@ -28,7 +28,7 @@ function getProductHierarchy($category, &$result)
     ?>
     <li><a href="aboutUs.php"><?php echo getTextForLanguage("ABOUT_US") ?></a></li>
     <?php
-    if ($_SESSION['person']->role === 'admin') {
+    if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
         echo '<li><a href="admin.php">' . getTextForLanguage("ADMIN") . '</a></li>';
     }
     ?>

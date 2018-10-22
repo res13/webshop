@@ -110,8 +110,9 @@ body{
 
 .product-price-btn {
     height: 103px;
-    margin-top: 17px;
+    margin: 17px 0 0 30px;
     position: relative;
+    display: -webkit-box;
 }
 
 .product-price-btn p {
@@ -134,11 +135,11 @@ span {
 }
 
 .product-price-btn button {
-    float: right;
-    display: inline-block;
+    position: absolute;
+    bottom: 60px;
+    right: 10px;
     height: 50px;
     width: 176px;
-    margin: 0 40px 0 16px;
     box-sizing: border-box;
     border: transparent;
     border-radius: 60px;

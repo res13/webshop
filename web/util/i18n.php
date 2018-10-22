@@ -163,6 +163,9 @@ $texts = array
     'AMOUNT' => array(
         'de' => 'Anzahl',
         'en' => 'Quantity'),
+    'SINGLE_PRICE' => array(
+        'de' => 'Einzelpreis',
+        'en' => 'Single price'),
     'PRICE' => array(
         'de' => 'Preis',
         'en' => 'Price'),
@@ -178,6 +181,12 @@ $texts = array
     'MUST_BE_LOGGED_IN_TO_CHECKOUT' => array(
         'de' => 'Sie müssen eingeloggt sein um zu bestellen.',
         'en' => 'You must be logged in to checkout.'),
+    'MUST_BE_ADMIN_FOR_THIS_PAGE' => array(
+        'de' => 'Sie müssen ein Administrator sein, um diese Seite zu sehen.',
+        'en' => 'You must be a administartor in order to see this page.'),
+    'ADMIN' => array(
+        'de' => 'Administrator',
+        'en' => 'Admin'),
 );
 
 function getAvailableLanguages()

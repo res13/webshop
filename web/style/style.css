@@ -280,3 +280,6 @@ span {
     background-color: #79b0a1;
 }
 
+#billingDiv {
+    display: none;
+}

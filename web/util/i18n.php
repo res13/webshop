@@ -187,6 +187,21 @@ $texts = array
     'ADMIN' => array(
         'de' => 'Administrator',
         'en' => 'Admin'),
+    'DELIVERY' => array(
+        'de' => 'Senden an:',
+        'en' => 'Deliver to:'),
+    'BILLING' => array(
+        'de' => 'Rechnung an:',
+        'en' => 'Bill:'),
+    'BILLING_DIFFERS' => array(
+        'de' => 'Rechnungsadresse anders als Lieferadresse',
+        'en' => 'Billing address differs to delivery address'),
+    'BUY' => array(
+        'de' => 'Kaufen',
+        'en' => 'Buy'),
+    'INPUT_MISSING' => array(
+        'de' => 'Es fehlen eingaben...',
+        'en' => 'Input missing...'),
 );
 
 function getAvailableLanguages()

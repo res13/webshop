@@ -615,3 +615,26 @@ function arraySameContent($array1, $array2) {
     sort($array2);
     return $array1 == $array2;
 }
+
+function orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry) {
+    global $conn;
+    $cityId = getOrCreateCity($deliveryCity, $deliveryZip);
+    $addressId = getOrCreateAddress($deliveryStreet, $deliveryHomenumber, $cityId, $deliveryCountry);
+    $query = 'update webshop.orders set deliveryfirstname = ?, deliverylastname = ?, deliveryaddress_id = ?, purchasedate = now(), state = 1 where id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ssii', $deliveryFirstname, $deliveryLastname, $addressId, $basketId);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry) {
+    global $conn;
+    orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
+    $cityId = getOrCreateCity($billingCity, $billingZip);
+    $addressId = getOrCreateAddress($billingStreet, $billingHomenumber, $cityId, $billingCountry);
+    $query = 'update webshop.orders set billingfirstname = ?, billinglastname = ?, billingaddress_id = ? where id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('ssii', $billingFirstname, $billingLastname, $addressId, $basketId);
+    $stmt->execute();
+    $stmt->close();
+}

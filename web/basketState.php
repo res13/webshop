@@ -18,12 +18,12 @@ if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
     $_SESSION['basket'] = $basket;
 }
 if (isset($_POST['toBasket']) && isset($_POST['options'])) {
-    $productId = $_POST['toBasket'];
-    $productQuantity = $_POST['quantity'];
-    $productName = $_POST['productName'];
-    $productPrice = $_POST['productPrice'];
-    $realProductId = $_POST['realProductId'];
-    $optionArray = $_POST['options'];
+    $productId = validateInput($_POST['toBasket']);
+    $productQuantity = validateInput($_POST['quantity']);
+    $productName = validateInput($_POST['productName']);
+    $productPrice = validateInput($_POST['productPrice']);
+    $realProductId = validateInput($_POST['realProductId']);
+    $optionArray = validateInput($_POST['options']);
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
         addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);

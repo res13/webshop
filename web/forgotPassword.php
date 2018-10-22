@@ -1,11 +1,11 @@
 <?php
 require('head.php');
 if (!isset($_SESSION['person']) && isset($_POST['email'])) {
-    if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == false) {
+    $email = validateInput($_POST['email']);
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
         alert(getTextForLanguage("EMAIL_NOT_VALID"));
     }
     else {
-        $email = $_POST['email'];
         $randomPassword = randomPassword(8);
         $hashedPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
         if (resetPassword($email, $hashedPassword, 1)) {

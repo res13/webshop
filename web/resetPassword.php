@@ -1,11 +1,14 @@
 <?php
 require ('head.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
-    $oldPerson = authenticate($_POST['usernameOrEmail'], $_POST['oldPassword']);
+    $usernameOrEmail = validateInput($_POST['usernameOrEmail']);
+    $oldPassword = validateInput($_POST['oldPassword']);
+    $newPassword = validateInput($_POST['newPassword']);
+    $oldPerson = authenticate($usernameOrEmail, $oldPassword);
     if ($oldPerson != null) {
-        $hashedPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
-        if (resetPassword($_POST['usernameOrEmail'], $hashedPassword, 0)) {
-            $person = authenticate($_POST['usernameOrEmail'], $_POST['newPassword']);
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        if (resetPassword($usernameOrEmail, $hashedPassword, 0)) {
+            $person = authenticate($usernameOrEmail, $newPassword);
             if ($person != null) {
                 $_SESSION['person'] = $person;
             }

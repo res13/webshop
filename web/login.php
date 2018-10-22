@@ -1,7 +1,9 @@
 <?php
-require ('head.php');
+require('head.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
-    $person = authenticate($_POST['usernameOrEmail'], $_POST['password']);
+    $usernameOrEmail = validateInput($_POST['usernameOrEmail']);
+    $password = validateInput($_POST['password']);
+    $person = authenticate($usernameOrEmail, $password);
     if ($person != null) {
         if ($person->resetpassword > 0) {
             redirect('resetPassword.php');
@@ -23,8 +25,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
                 $_SESSION['basket'] = getBasket($personId, $_SESSION['lang']);
             }
         }
-    }
-    else {
+    } else {
         alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
     }
 }
@@ -37,24 +38,24 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
 <body>
 <?php require('body.php'); ?>
 <div class="main">
-<h1><?php echo getTextForLanguage("LOGIN"); ?></h1>
-<?php
-if (isset($_SESSION['person'])) {
-    echo getTextForLanguage("SUCCESSFUL_LOGIN");
-}
-else {
-    ?>
-    <form method="post">
-        <?php echo getTextForLanguage("USERNAME")?> <?php echo getTextForLanguage("OR")?> <?php echo getTextForLanguage("EMAIL")?><br />
-        <input type="text" name="usernameOrEmail" maxlength="50"><br />
-        <?php echo getTextForLanguage("PASSWORD")?><br />
-        <input type="password" name="password"><br />
-        <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD")?></a><br />
-        <input type="submit" value="<?php echo getTextForLanguage("LOGIN")?>">
-    </form>
+    <h1><?php echo getTextForLanguage("LOGIN"); ?></h1>
     <?php
-}
-?>
+    if (isset($_SESSION['person'])) {
+        echo getTextForLanguage("SUCCESSFUL_LOGIN");
+    } else {
+        ?>
+        <form method="post">
+            <?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
+            <br/>
+            <input type="text" name="usernameOrEmail" maxlength="50"><br/>
+            <?php echo getTextForLanguage("PASSWORD") ?><br/>
+            <input type="password" name="password"><br/>
+            <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
+            <input type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
+        </form>
+        <?php
+    }
+    ?>
 </div>
 </body>
 </html>

@@ -38,8 +38,17 @@ function getHTMLHead($title) {
 }
 
 function validateInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    if (is_array($data)) {
+        $validatedArray = array();
+        foreach ($data as $dataElement) {
+            array_push($validatedArray, validateInput($dataElement));
+        }
+        return $validatedArray;
+    }
+    else {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+    }
     return $data;
 }

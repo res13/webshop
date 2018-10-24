@@ -89,8 +89,11 @@ function getAllCountries()
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
-    $row = $result->fetch_assoc();
-    return $row;
+    $results = array();
+    while ($row = $result->fetch_assoc()) {
+        $results[] = $row;
+    }
+    return $results;
 }
 
 function checkIfUsernameExists($username)

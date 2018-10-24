@@ -223,6 +223,9 @@ $texts = array
     'STATE' => array(
         'de' => 'Status',
         'en' => 'State'),
+    'YES' => array(
+        'de' => 'Ja',
+        'en' => 'Yes'),
 );
 
 function getAvailableLanguages()

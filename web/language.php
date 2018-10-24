@@ -1,7 +1,7 @@
 <?php
 ?>
 <form method="post">
-    <select name="lang" onchange="this.form.submit()">
+    <label><select name="lang" onchange="this.form.submit()">
         <?php
         foreach (getAvailableLanguages() as $lang) {
             if ($lang === $_SESSION['lang']) {
@@ -12,5 +12,5 @@
             }
         }
         ?>
-    </select>
+    </select></label>
 </form>

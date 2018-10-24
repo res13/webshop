@@ -44,9 +44,29 @@ if (
         orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
     }
     $subject = getTextForLanguage("ORDER") . " - " . $basketId;
-    $messageToShop = "<html><body><p>" . echoArray($_POST) . "</p></body></html>";
-    $messageToPerson = "<html><body><p>" . echoArray($_POST) . "</p></body></html>";
-    $mailSent = sendMail($_SESSION['person']->email, $subject, $messageToShop) && sendMail(null, $subject, $messageToPerson);
+    $message = "<html><body>
+    <h2>" . getTextForLanguage("DELIVERY") . "</h2>
+    <p>" . getTextForLanguage("ORDER_ID") . "=" . $basketId . "</p>
+    <p>" . getTextForLanguage("FIRSTNAME") . "=" . $deliveryFirstname . "</p>
+    <p>" . getTextForLanguage("LASTNAME") . "=" . $deliveryLastname . "</p>
+    <p>" . getTextForLanguage("STREET") . "=" . $deliveryStreet . "</p>
+    <p>" . getTextForLanguage("HOMENUMBER") . "=" . $deliveryHomenumber . "</p>
+    <p>" . getTextForLanguage("CITY") . "=" . $deliveryCity . "</p>
+    <p>" . getTextForLanguage("ZIP") . "=" . $deliveryZip . "</p>
+    <p>" . getTextForLanguage("COUNTRY") . "=" . $deliveryCountry . "</p>";
+    if (isset($_POST['billingDiffersCB']) && validateInput($_POST['billingDiffersCB']) === 'billingDiffers') {
+        $message .= "<h2>" . getTextForLanguage("BILLING") . "</h2>
+    <p>" . getTextForLanguage("BILLING_DIFFERS") . "=" . getTextForLanguage("YES") . "</p>
+    <p>" . getTextForLanguage("FIRSTNAME") . "=" . $billingFirstname . "</p>
+    <p>" . getTextForLanguage("LASTNAME") . "=" . $billingLastname . "</p>
+    <p>" . getTextForLanguage("STREET") . "=" . $billingStreet . "</p>
+    <p>" . getTextForLanguage("HOMENUMBER") . "=" . $billingHomenumber . "</p>
+    <p>" . getTextForLanguage("CITY") . "=" . $billingCity . "</p>
+    <p>" . getTextForLanguage("ZIP") . "=" . $billingZip . "</p>
+    <p>" . getTextForLanguage("COUNTRY") . "=" . $billingCountry . "</p>";
+    }
+    $message .= "</body></html>";
+    $mailSent = sendMail($_SESSION['person']->email, $subject, $message) && sendMail(null, $subject, $message);
     unset($_SESSION['basket']);
 }
 
@@ -68,47 +88,18 @@ if (
             ?>
             <h3><?php echo getTextForLanguage("DELIVERY") ?></h3>
             <form method="post">
-                <?php echo getTextForLanguage("FIRSTNAME") ?><br/>
-                <input type="text" name="deliveryFirstname" maxlength="50"><br/>
-                <?php echo getTextForLanguage("LASTNAME") ?><br/>
-                <input type="text" name="deliveryLastname" maxlength="50"><br/>
-                <?php echo getTextForLanguage("STREET") ?><br/>
-                <input type="text" name="deliveryStreet" maxlength="100"><br/>
-                <?php echo getTextForLanguage("HOMENUMBER") ?><br/>
-                <input type="text" name="deliveryHomenumber" maxlength="20"><br/>
-                <?php echo getTextForLanguage("CITY") ?><br/>
-                <input type="text" name="deliveryCity" maxlength="100"><br/>
-                <?php echo getTextForLanguage("ZIP") ?><br/>
-                <input type="number" name="deliveryZip"><br/>
-                <?php echo getTextForLanguage("COUNTRY") ?><br/>
-                <select name="deliveryCountry">
-                    <?php
-                    $countries = getAllCountries();
-                    foreach ($countries as $country) {
-                        ?>
-                        <option value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
-                    }
-                    ?>
-                </select><br/><br/>
-                <label><input type="checkbox" name="billingDiffersCB" value="billingDiffers"
-                              onchange="billingDiffers(this);"><?php echo getTextForLanguage("BILLING_DIFFERS") ?>
-                </label>
-                <div id="billingDiv">
-                    <h3><?php echo getTextForLanguage("BILLING") ?></h3>
-                    <?php echo getTextForLanguage("FIRSTNAME") ?><br/>
-                    <input type="text" name="billingFirstname" maxlength="50"><br/>
-                    <?php echo getTextForLanguage("LASTNAME") ?><br/>
-                    <input type="text" name="billingLastname" maxlength="50"><br/>
-                    <?php echo getTextForLanguage("STREET") ?><br/>
-                    <input type="text" name="billingStreet" maxlength="100"><br/>
-                    <?php echo getTextForLanguage("HOMENUMBER") ?><br/>
-                    <input type="text" name="billingHomenumber" maxlength="20"><br/>
-                    <?php echo getTextForLanguage("CITY") ?><br/>
-                    <input type="text" name="billingCity" maxlength="100"><br/>
-                    <?php echo getTextForLanguage("ZIP") ?><br/>
-                    <input type="number" name="billingZip"><br/>
-                    <?php echo getTextForLanguage("COUNTRY") ?><br/>
-                    <select name="billingCountry">
+                <label><?php echo getTextForLanguage("FIRSTNAME") ?><input type="text" name="deliveryFirstname"
+                                                                           maxlength="50"></label><br/>
+                <label><?php echo getTextForLanguage("LASTNAME") ?><input type="text" name="deliveryLastname"
+                                                                          maxlength="50"></label><br/>
+                <label><?php echo getTextForLanguage("STREET") ?><input type="text" name="deliveryStreet"
+                                                                        maxlength="100"></label><br/>
+                <label><?php echo getTextForLanguage("HOMENUMBER") ?><input type="text" name="deliveryHomenumber"
+                                                                            maxlength="20"></label><br/>
+                <label><?php echo getTextForLanguage("CITY") ?><input type="text" name="deliveryCity" maxlength="100">
+                </label><br/>
+                <label><?php echo getTextForLanguage("ZIP") ?><input type="number" name="deliveryZip"></label><br/>
+                <label><?php echo getTextForLanguage("COUNTRY") ?><select name="deliveryCountry">
                         <?php
                         $countries = getAllCountries();
                         foreach ($countries as $country) {
@@ -116,7 +107,33 @@ if (
                             <option value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
                         }
                         ?>
-                    </select>
+                    </select></label><br/><br/>
+                <label><input type="checkbox" name="billingDiffersCB" value="billingDiffers"
+                              onchange="billingDiffers(this);"><?php echo getTextForLanguage("BILLING_DIFFERS") ?>
+                </label>
+                <div id="billingDiv">
+                    <h3><?php echo getTextForLanguage("BILLING") ?></h3>
+                    <label><?php echo getTextForLanguage("FIRSTNAME") ?><input type="text" name="billingFirstname"
+                                                                               maxlength="50"></label><br/>
+                    <label><?php echo getTextForLanguage("LASTNAME") ?><input type="text" name="billingLastname"
+                                                                              maxlength="50"></label><br/>
+                    <label><?php echo getTextForLanguage("STREET") ?><input type="text" name="billingStreet"
+                                                                            maxlength="100"></label><br/>
+                    <label><?php echo getTextForLanguage("HOMENUMBER") ?><input type="text" name="billingHomenumber"
+                                                                                maxlength="20"></label><br/>
+                    <label><?php echo getTextForLanguage("CITY") ?><input type="text" name="billingCity"
+                                                                          maxlength="100"></label><br/>
+                    <label><?php echo getTextForLanguage("ZIP") ?><input type="number" name="billingZip"></label><br/>
+                    <label><?php echo getTextForLanguage("COUNTRY") ?><select name="billingCountry">
+                            <?php
+                            $countries = getAllCountries();
+                            foreach ($countries as $country) {
+                                ?>
+                                <option
+                                value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
+                            }
+                            ?>
+                        </select></label>
                 </div>
                 <br/>
                 <input type="submit" value="<?php echo getTextForLanguage("BUY") ?>">

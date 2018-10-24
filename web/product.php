@@ -55,13 +55,13 @@ if ($product == null) {
                         ?>
                         <span> -
                             <?php echo htmlentities($productOption->__get('optionName')) ?>
-                            <select name="options[]">
+                            <label><select name="options[]">
                                 <?php
                                 foreach ($productOption->__get('optionValues') as $optionValue) {
                                     ?><option value="<?php echo $optionValue->__get('optionValueId') ?>"><?php echo htmlentities($optionValue->__get('optionValueName')) ?></option><?php
                                 }
                                 ?>
-                            </select>
+                            </select></label>
                         </span>
                         <?php
                     }

@@ -8,8 +8,7 @@ if (isset($_POST['pw'])) {
     <html>
     <body>
     <form method="post">
-        Password to hash:<br />
-        <input type="password" name="pw"><br />
+        <label>Password to hash:<input type="password" name="pw"></label><br />
         <input type="submit" value="Submit">
     </form>
     </body>

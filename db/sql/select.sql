@@ -109,9 +109,7 @@ where c.id in (select id
                from (select * from webshop.category c order by c.category_id, id) category,
                     (select @pv := '1') initialisation
                where find_in_set(category_id, @pv) > 0
-                       and @pv := concat(@pv, ',', id)
-               union
-               select c.id from webshop.category c where id = 1);
+                       and @pv := concat(@pv, ',', id));
 
 -- Get category
 select c.id, i.text_de name, c.category_id categoryid

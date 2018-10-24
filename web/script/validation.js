@@ -1,5 +1,5 @@
 function billingDiffers(cb) {
-    var billingDiv = document.getElementById("billingDiv");
+    let billingDiv = document.getElementById("billingDiv");
     if (cb.checked) {
         billingDiv.style.display = "block";
     }

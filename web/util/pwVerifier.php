@@ -8,10 +8,8 @@ if (isset($_POST['pw']) && isset($_POST['hash'])) {
     <html>
     <body>
     <form method="post">
-        Password to verify:<br />
-        <input type="password" name="pw"><br />
-        Hash to verify:<br />
-        <input type="text" name="hash"><br />
+        <label>Password to verify:<input type="password" name="pw"></label><br />
+        <label>Hash to verify:<input type="text" name="hash"></label><br />
         <input type="submit" value="Submit">
     </form>
     </body>

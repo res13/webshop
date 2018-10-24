@@ -8,8 +8,10 @@ require('head.php');
 </head>
 <body>
 <?php require('body.php'); ?>
-<div>
-<h1><?php echo getTextForLanguage("HOME"); ?></h1>
+<div class="main">
+    <h1><?php echo getTextForLanguage("HOME"); ?></h1>
+    <?php // todo: aboutUs page ?>
+    <p>todo</p>
 </div>
 </body>
 </html>

@@ -13,6 +13,7 @@ require('head.php');
     <?php
     if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
         // todo: admin page
+        echo "<p>todo</p>";
     } else {
         echo "<p>".getTextForLanguage("MUST_BE_ADMIN_FOR_THIS_PAGE")."</p>";
     }

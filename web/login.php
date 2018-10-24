@@ -45,11 +45,8 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     } else {
         ?>
         <form method="post">
-            <?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
-            <br/>
-            <input type="text" name="usernameOrEmail" maxlength="50"><br/>
-            <?php echo getTextForLanguage("PASSWORD") ?><br/>
-            <input type="password" name="password"><br/>
+            <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?><input type="text" name="usernameOrEmail" maxlength="50"></label><br/>
+            <label><?php echo getTextForLanguage("PASSWORD") ?><input type="password" name="password"></label><br/>
             <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
             <input type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
         </form>

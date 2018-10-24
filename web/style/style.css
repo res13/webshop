@@ -19,6 +19,16 @@ table, td, th {
     width: 50px;
 }
 
+.loginState {
+    font-size: 20px;
+    color: #fff;
+    padding: 1em;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+
 .navigation {
     display: -webkit-box;
     background: dimgrey;

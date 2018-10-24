@@ -54,11 +54,11 @@ if ($product == null) {
                     foreach ($productOptions as $productOption) {
                         ?>
                         <span> -
-                            <?php echo htmlentities($productOption->__get('optionName')) ?>
+                            <?php echo htmlentities($productOption->optionName) ?>
                             <label><select name="options[]">
                                 <?php
-                                foreach ($productOption->__get('optionValues') as $optionValue) {
-                                    ?><option value="<?php echo $optionValue->__get('optionValueId') ?>"><?php echo htmlentities($optionValue->__get('optionValueName')) ?></option><?php
+                                foreach ($productOption->optionValues as $optionValue) {
+                                    ?><option value="<?php echo $optionValue->optionValueId ?>"><?php echo htmlentities($optionValue->optionValueName) ?></option><?php
                                 }
                                 ?>
                             </select></label>

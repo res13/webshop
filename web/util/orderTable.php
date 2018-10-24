@@ -20,35 +20,35 @@
     $totalPrice = 0;
     foreach ($products as $basketProduct) {
         echo "<tr>";
-        $productOptions = getProductOptions($basketProduct->__get('realProductId'), $_SESSION['lang']);
-        $basketProductOptions = $basketProduct->__get('options');
+        $productOptions = getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
+        $basketProductOptions = $basketProduct->options;
         $basketProductOptionsArray = array();
         foreach ($basketProductOptions as $basketProductOption) {
-            array_push($basketProductOptionsArray, $basketProductOption->__get('optionValueId'));
+            array_push($basketProductOptionsArray, $basketProductOption->optionValueId);
         }
-        echo "<td>" . htmlentities($basketProduct->__get('name')) . "</td>";
+        echo "<td>" . htmlentities($basketProduct->name) . "</td>";
         echo "<td><ul>";
         foreach ($productOptions as $productOption) {
             echo "<li>";
-            echo htmlentities($productOption->__get('optionName'));
+            echo htmlentities($productOption->optionName);
             echo '=';
-            $productOptionValues = $productOption->__get('optionValues');
+            $productOptionValues = $productOption->optionValues;
             foreach ($productOptionValues as $productOptionValue) {
-                if (in_array($productOptionValue->__get('optionValueId'), $basketProductOptionsArray)) {
-                    echo htmlentities($productOptionValue->__get('optionValueName'));
+                if (in_array($productOptionValue->optionValueId, $basketProductOptionsArray)) {
+                    echo htmlentities($productOptionValue->optionValueName);
                 }
             }
             echo "</li>";
         }
         echo "</ul></td>";
-        echo "<td>" . htmlentities($basketProduct->__get('quantity')) . "</td>";
+        echo "<td>" . htmlentities($basketProduct->quantity) . "</td>";
         if (isset($remove) && $remove) {
-            echo "<td><a href=\"basket.php?removeFromBasket=" . $basketProduct->__get('id') . "\">X</a></td>";
+            echo "<td><a href=\"basket.php?removeFromBasket=" . $basketProduct->id . "\">X</a></td>";
         }
-        echo "<td>" . htmlentities($basketProduct->__get('price')) . " CHF</td>";
-        $price = number_format((float)$basketProduct->__get('price') * $basketProduct->__get('quantity'), 2, '.', '');
+        echo "<td>" . htmlentities($basketProduct->price) . " CHF</td>";
+        $price = number_format((float)$basketProduct->price * $basketProduct->quantity, 2, '.', '');
         echo "<td>" . htmlentities($price) . " CHF</td></tr>";
-        $totalPrice += $price;
+        $totalPrice .= $price;
     }
     ?>
     </tbody>

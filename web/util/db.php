@@ -89,10 +89,8 @@ function getAllCountries()
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
-    while ($row = $result->fetch_assoc()) {
-        $results[] = $row;
-    }
-    return $results;
+    $row = $result->fetch_assoc();
+    return $row;
 }
 
 function checkIfUsernameExists($username)
@@ -106,7 +104,6 @@ function checkIfUsernameExists($username)
     $row = $result->fetch_assoc();
     $stmt->close();
     return isset($row);
-    return $results;
 }
 
 
@@ -121,7 +118,6 @@ function checkIfEmailExists($email)
     $row = $result->fetch_assoc();
     $stmt->close();
     return isset($row);
-    return $results;
 }
 
 function createPerson($person)
@@ -512,6 +508,7 @@ function getBasketProduct($basketProductId) {
         $basketProduct->setAll($row);
         return $basketProduct;
     }
+    return null;
 }
 
 function getBasketProductOptionsByProductOrderId($productOrderId) {
@@ -685,10 +682,10 @@ function getOrder($orderId) {
         $order->__set('products', getBasketProductsByOrderId($orderId));
         return $order;
     }
+    return null;
 }
 
 function getOrders($personId) {
-    global $conn;
     $orderIdList = getOrderIdsOfPerson($personId);
     $orderList = array();
     foreach ($orderIdList as $orderId) {

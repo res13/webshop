@@ -26,13 +26,13 @@ if (isset($_SESSION['person'])) {
             <tbody>
             <?php foreach ($orderList as $order) { ?>
                 <tr>
-                    <td><?php echo htmlentities($order->__get('id')) ?></td>
-                    <td><?php echo htmlentities($order->__get('purchasedate')) ?></td>
-                    <td><?php echo htmlentities($order->__get('paymentmethod')) ?></td>
-                    <td><?php echo htmlentities($order->__get('state')) ?></td>
+                    <td><?php echo htmlentities($order->id) ?></td>
+                    <td><?php echo htmlentities($order->purchasedate) ?></td>
+                    <td><?php echo htmlentities($order->paymentmethod) ?></td>
+                    <td><?php echo htmlentities($order->state) ?></td>
                     <td>
                         <?php
-                        $products = $order->__get('products');
+                        $products = $order->products;
                         $remove = false;
                         include('util/orderTable.php');
                         ?>

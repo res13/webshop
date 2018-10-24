@@ -31,11 +31,11 @@ class Basket extends TransferObject
         $productArray = $this->__get('products');
         $resultingProduct = null;
         foreach ($productArray as $myProduct) {
-            $myProductId = $myProduct->__get('id');
+            $myProductId = $myProduct->id;
             if ($myProductId != $productId) {
                 continue;
             }
-            $myOptions = $myProduct->__get('options');
+            $myOptions = $myProduct->options;
             $resultingProduct = $myProduct;
         }
         if (!isset($myOptions)) {
@@ -43,7 +43,7 @@ class Basket extends TransferObject
         }
         $myOptionsArray = array();
         foreach ($myOptions as $myOption) {
-            $myOptionValueId = $myOption->__get('optionValueId');
+            $myOptionValueId = $myOption->optionValueId;
             array_push($myOptionsArray, $myOptionValueId);
         }
         sort($options);
@@ -58,7 +58,7 @@ class Basket extends TransferObject
         $resultingProduct = null;
         $productArray = $this->__get('products');
         foreach ($productArray as $myProduct) {
-            $myProductId = $myProduct->__get('id');
+            $myProductId = $myProduct->id;
             if ($myProductId != $productId) {
                 continue;
             }

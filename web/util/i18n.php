@@ -85,9 +85,6 @@ $texts = array
     'LASTNAME' => array(
         'de' => 'Nachname',
         'en' => 'Last name'),
-    'LASTNAME' => array(
-        'de' => 'Nachname',
-        'en' => 'Last name'),
     'BIRTHDATE' => array(
         'de' => 'Geburtsdatum',
         'en' => 'Birthdate'),
@@ -249,4 +246,5 @@ function getTextForLanguage($id)
             return htmlentities($values[getDefaultLanguage()]);
         }
     }
+    return "";
 }

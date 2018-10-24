@@ -1,7 +1,7 @@
 <?php
 if (isset($_SESSION['person']) && !isset($_SESSION['basket'])) {
     $personId = $_SESSION['person']->__get('id');
-    $basket = getBasket($personId, $_SESSION['lang']);
+    $basket = getBasket($personId);
     $_SESSION['basket'] = $basket;
 }
 if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
@@ -9,7 +9,7 @@ if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
         removeProductFromBasket($productIdToRemove);
-        $basket = getBasket($personId, $_SESSION['lang']);
+        $basket = getBasket($personId);
     }
     else {
         $basket = $_SESSION['basket'];
@@ -27,7 +27,7 @@ if (isset($_POST['toBasket']) && isset($_POST['options'])) {
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
         addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
-        $basket = getBasket($personId, $_SESSION['lang']);
+        $basket = getBasket($personId);
     }
     else {
         $basketOptions = array();
@@ -47,9 +47,9 @@ if (isset($_POST['toBasket']) && isset($_POST['options'])) {
             $basket = $_SESSION['basket'];
             $storedProduct = $basket->getProductIfQuantityGreaterThanZero($productId, $optionArray);
             if ($storedProduct != null) {
-                $storedQuantity = $storedProduct->__get('quantity');
+                $storedQuantity = $storedProduct->quantity;
                 if ($storedQuantity > 0) {
-                    $storedProduct->__set('quantity', $storedQuantity + $productQuantity);
+                    $storedProduct->quantity = $storedQuantity + $productQuantity;
                 }
             }
             else {

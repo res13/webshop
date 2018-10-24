@@ -5,7 +5,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $password = validateInput($_POST['password']);
     $person = authenticate($usernameOrEmail, $password);
     if ($person != null) {
-        if ($person->resetpassword > 0) {
+        if ($person->__get('resetpassword') > 0) {
             redirect('resetPassword.php');
         }
         $_SESSION['person'] = $person;
@@ -13,16 +13,16 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
             $personId = $_SESSION['person']->__get('id');
             $basketProducts = $_SESSION['basket']->__get('products');
             foreach ($basketProducts as $basketProduct) {
-                $productId = $basketProduct->__get('realProductId');
-                $productQuantity = $basketProduct->__get('quantity');
-                $productOptions = $basketProduct->__get('options');
+                $productId = $basketProduct->realProductId;
+                $productQuantity = $basketProduct->quantity;
+                $productOptions = $basketProduct->options;
                 $optionArray = array();
                 foreach ($productOptions as $productOption) {
-                    $optionValueId = $productOption->__get('optionValueId');
+                    $optionValueId = $productOption->optionValueId;
                     array_push($optionArray, $optionValueId);
                 }
                 addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
-                $_SESSION['basket'] = getBasket($personId, $_SESSION['lang']);
+                $_SESSION['basket'] = getBasket($personId);
             }
         }
     } else {

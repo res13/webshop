@@ -28,11 +28,6 @@ table, td, th {
     font-size: 20px;
 }
 
-.navigation a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
 .navigation ul {
     list-style: none;
     padding: 0;

@@ -7,8 +7,7 @@ if (
     && isset($_POST['deliveryHomenumber'])
     && isset($_POST['deliveryCity'])
     && isset($_POST['deliveryZip'])
-    && isset($_POST['deliveryCountry'])
-    && isset($_POST['billingDiffersCB'])) {
+    && isset($_POST['deliveryCountry'])) {
     $basketId = $_SESSION['basket']->id;
     $deliveryFirstname = validateInput($_POST['deliveryFirstname']);
     $deliveryLastname = validateInput($_POST['deliveryLastname']);
@@ -17,27 +16,29 @@ if (
     $deliveryCity = validateInput($_POST['deliveryCity']);
     $deliveryZip = validateInput($_POST['deliveryZip']);
     $deliveryCountry = validateInput($_POST['deliveryCountry']);
-    $billingDiffersCB = validateInput($_POST['billingDiffersCB']);
-    if ($billingDiffersCB === 'billingDiffers') {
-        if (
-            isset($_POST['billingFirstname'])
-            && isset($_POST['billingLastname'])
-            && isset($_POST['billingStreet'])
-            && isset($_POST['billingHomenumber'])
-            && isset($_POST['billingCity'])
-            && isset($_POST['billingZip'])
-            && isset($_POST['billingCountry'])
-        ) {
-            $billingFirstname = validateInput($_POST['billingFirstname']);
-            $billingLastname = validateInput($_POST['billingLastname']);
-            $billingStreet = validateInput($_POST['billingStreet']);
-            $billingHomenumber = validateInput($_POST['billingHomenumber']);
-            $billingCity = validateInput($_POST['billingCity']);
-            $billingZip = validateInput($_POST['billingZip']);
-            $billingCountry = validateInput($_POST['billingCountry']);
-            orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry);
-        } else {
-            alert(getTextForLanguage("INPUT_MISSING"));
+    if (isset($_POST['billingDiffersCB'])) {
+        $billingDiffersCB = validateInput($_POST['billingDiffersCB']);
+        if ($billingDiffersCB === 'billingDiffers') {
+            if (
+                isset($_POST['billingFirstname'])
+                && isset($_POST['billingLastname'])
+                && isset($_POST['billingStreet'])
+                && isset($_POST['billingHomenumber'])
+                && isset($_POST['billingCity'])
+                && isset($_POST['billingZip'])
+                && isset($_POST['billingCountry'])
+            ) {
+                $billingFirstname = validateInput($_POST['billingFirstname']);
+                $billingLastname = validateInput($_POST['billingLastname']);
+                $billingStreet = validateInput($_POST['billingStreet']);
+                $billingHomenumber = validateInput($_POST['billingHomenumber']);
+                $billingCity = validateInput($_POST['billingCity']);
+                $billingZip = validateInput($_POST['billingZip']);
+                $billingCountry = validateInput($_POST['billingCountry']);
+                orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry);
+            } else {
+                alert(getTextForLanguage("INPUT_MISSING"));
+            }
         }
     } else {
         orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
@@ -45,16 +46,8 @@ if (
     $subject = getTextForLanguage("ORDER") . " - " . $basketId;
     $messageToShop = "<html><body><p>" . echoArray($_POST) . "</p></body></html>";
     $messageToPerson = "<html><body><p>" . echoArray($_POST) . "</p></body></html>";
-    $headers =
-        'MIME-Version: 1.0' . "\r\n" .
-        'Content-Type: text/html; charset=utf-8' . "\r\n" .
-        'From: parachute.webshop@gmail.com' . "\r\n" .
-        'Reply-To: parachute.webshop@gmail.com' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
-    mail($_SESSION['person']->email, $subject, $messageToShop, $headers);
-    mail('parachute.webshop@gmail.com', $subject, $messageToPerson, $headers);
+    $mailSent = sendMail($_SESSION['person']->email, $subject, $messageToShop) && sendMail(null, $subject, $messageToPerson);
     unset($_SESSION['basket']);
-    $mailSent = true;
 }
 
 ?>
@@ -62,17 +55,6 @@ if (
 <html lang="de">
 <head>
     <?php echo getHTMLHead(getTextForLanguage("CHECKOUT")); ?>
-    <script>
-        function billingDiffers(cb) {
-            var billingDiv = document.getElementById("billingDiv");
-            if (cb.checked) {
-                billingDiv.style.display = "block";
-            }
-            else {
-                billingDiv.style.display = "none";
-            }
-        }
-    </script>
 </head>
 <body>
 <?php require('body.php'); ?>

@@ -11,13 +11,7 @@ if (!isset($_SESSION['person']) && isset($_POST['email'])) {
         if (resetPassword($email, $hashedPassword, 1)) {
             $subject = getTextForLanguage("PASSWORD_RESET");
             $message = "<html><body><p>". getTextForLanguage('NEW_PASSWORD_EMAIL1') . "<b>". $randomPassword . "</b>" . getTextForLanguage('NEW_PASSWORD_EMAIL2'). "</p></body></html>" ;
-            $headers =
-                'MIME-Version: 1.0' . "\r\n" .
-                'Content-Type: text/html; charset=utf-8' . "\r\n" .
-                'From: parachute.webshop@gmail.com' . "\r\n" .
-                'Reply-To: parachute.webshop@gmail.com' . "\r\n" .
-                'X-Mailer: PHP/' . phpversion();
-            mail($email, $subject, $message, $headers);
+            $mailSent = sendMail($email, $subject, $message);
             $mailSent = true;
         }
         else {

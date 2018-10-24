@@ -34,7 +34,8 @@ function getHTMLHead($title) {
     <link rel=\"manifest\" href=\"img/favicon/manifest.json\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\">
     <!-- TODO: should we include font awesome? -->
-    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">";
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">
+    <script src=\"script/validation.js\"></script>";
 }
 
 function validateInput($data) {
@@ -51,4 +52,17 @@ function validateInput($data) {
         $data = htmlspecialchars($data);
     }
     return $data;
+}
+
+function sendMail($receiver, $subject, $message) {
+    if ($receiver == null || empty($receiver)) {
+        $receiver = 'parachute.webshop@gmail.com';
+    }
+    $headers =
+        'MIME-Version: 1.0' . "\r\n" .
+        'Content-Type: text/html; charset=utf-8' . "\r\n" .
+        'From: parachute.webshop@gmail.com' . "\r\n" .
+        'Reply-To: parachute.webshop@gmail.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+    return mail($receiver, $subject, $message, $headers);
 }

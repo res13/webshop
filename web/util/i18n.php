@@ -208,6 +208,21 @@ $texts = array
     'ORDER_SUBMITTED' => array(
         'de' => 'Die Bestellung wurde übermittelt, sie haben ein Bestätigungsmail bekommen.',
         'en' => 'The order was submitted, you got an email.'),
+    'MY_ORDERS' => array(
+        'de' => 'Meine Bestellungen',
+        'en' => 'My Orders'),
+    'ORDER_ID' => array(
+        'de' => 'Bestellnummer',
+        'en' => 'Order id'),
+    'PURCHASEDATE' => array(
+        'de' => 'Bestellzeitpunkt',
+        'en' => 'Purchase date'),
+    'PAYMENTMETHOD' => array(
+        'de' => 'Bezahlmethode',
+        'en' => 'Payment method'),
+    'STATE' => array(
+        'de' => 'Status',
+        'en' => 'State'),
 );
 
 function getAvailableLanguages()

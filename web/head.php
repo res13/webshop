@@ -8,6 +8,7 @@ require_once('to/OptionValue.php');
 require_once('to/BasketProductOption.php');
 require_once('to/BasketProduct.php');
 require_once('to/Basket.php');
+require_once('to/Order.php');
 session_start();
 require_once('util/db.php');
 require_once('util/i18n.php');

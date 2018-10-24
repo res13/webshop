@@ -441,6 +441,22 @@ function getBasketOrderIdOfPerson($personId) {
     return $row['id'];
 }
 
+function getOrderIdsOfPerson($personId) {
+    global $conn;
+    $query = 'select o.id from webshop.orders o where o.person_id = ? and o.state = 1';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $personId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $orderIdList = array();
+    while ($row = $result->fetch_assoc()) {
+        $orderId = $row['id'];
+        array_push($orderIdList, $orderId);
+    }
+    return $orderIdList;
+}
+
 function getBasketProductsByOrderId($orderId) {
     global $conn;
     $query = 'select po.id, po.pname name, po.price, po.quantity, po.product_id realProductId from webshop.product_orders po where po.orders_id = ?';
@@ -637,4 +653,32 @@ function orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastn
     $stmt->bind_param('ssii', $billingFirstname, $billingLastname, $addressId, $basketId);
     $stmt->execute();
     $stmt->close();
+}
+
+function getOrder($orderId) {
+    global $conn;
+    $query = 'select o.id, o.purchasedate, o.paymentmethod, o.state from webshop.orders o where o.id = ?';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $orderId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $row = $result->fetch_assoc();
+    if (isset($row)) {
+        $order = new Order();
+        $order->setAll($row);
+        $order->__set('products', getBasketProductsByOrderId($orderId));
+        return $order;
+    }
+}
+
+function getOrders($personId) {
+    global $conn;
+    $orderIdList = getOrderIdsOfPerson($personId);
+    $orderList = array();
+    foreach ($orderIdList as $orderId) {
+        $order = getOrder($orderId);
+        array_push($orderList, $order);
+    }
+    return $orderList;
 }

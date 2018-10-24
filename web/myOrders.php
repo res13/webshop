@@ -13,7 +13,7 @@ if (isset($_SESSION['person'])) {
     <?php require('body.php'); ?>
     <div class="main">
         <h1><?php echo getTextForLanguage("MY_ORDERS"); ?></h1>
-        <table>
+        <table class="table-border">
             <thead>
             <tr>
                 <th><?php echo getTextForLanguage("ORDER_ID"); ?></th>

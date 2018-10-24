@@ -48,7 +48,7 @@
         echo "<td>" . htmlentities($basketProduct->price) . " CHF</td>";
         $price = number_format((float)$basketProduct->price * $basketProduct->quantity, 2, '.', '');
         echo "<td>" . htmlentities($price) . " CHF</td></tr>";
-        $totalPrice .= $price;
+        $totalPrice = $totalPrice + $price;
     }
     ?>
     </tbody>

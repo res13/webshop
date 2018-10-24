@@ -75,4 +75,4 @@ if (isset($_SESSION['basket'])) {
 else {
     $productCount = 0;
 }
-echo "<a href=\"basket.php\">" . getTextForLanguage("BASKET") . "[". $productCount ."]</a>";
+echo "<div class=\"state\"><a href=\"basket.php\">" . getTextForLanguage("BASKET") . "[". $productCount ."]</a></div>";

@@ -13,7 +13,7 @@ if (!isset($_SESSION['CREATED'])) {
 if (isset($_SESSION['person'])) {
     $person = $_SESSION['person'];
     $username = $person->__get('username');
-    echo "<div class=\"loginState\">" . getTextForLanguage("HELLO") . " " . "<a href=\"user.php\">" . $username . "</a>, <a href=\"logout.php\">" . getTextForLanguage("LOGOUT") . "</a></div>";
+    echo "<div class=\"state\">" . getTextForLanguage("HELLO") . " " . "<a href=\"user.php\">" . $username . "</a>, <a href=\"logout.php\">" . getTextForLanguage("LOGOUT") . "</a></div>";
 } else {
-    echo "<div class=\"loginState\"><a href=\"login.php\">" . getTextForLanguage("LOGIN") . "</a> " . getTextForLanguage("OR") . " <a href=\"register.php\">" . getTextForLanguage("REGISTER") . "</a></div>";
+    echo "<div class=\"state\"><a href=\"login.php\">" . getTextForLanguage("LOGIN") . "</a> " . getTextForLanguage("OR") . " <a href=\"register.php\">" . getTextForLanguage("REGISTER") . "</a></div>";
 }

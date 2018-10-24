@@ -1,18 +1,17 @@
-drop table if exists product_orders_option_value;
-drop table if exists orders_option_value;
+drop table if exists product_option_value;
 drop table if exists option_value;
 drop table if exists options;
 drop table if exists product_orders;
-drop table if exists product;
-drop table if exists manufacturer;
-drop table if exists category;
 drop table if exists orders;
 drop table if exists person;
-drop table if exists role;
 drop table if exists address;
 drop table if exists city;
 drop table if exists country;
+drop table if exists product;
+drop table if exists category;
 drop table if exists i18n;
+drop table if exists manufacturer;
+drop table if exists role;
 
 create table manufacturer
 (

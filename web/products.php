@@ -2,23 +2,23 @@
 require('head.php');
 if (isset ($_GET['category']) && $_GET['category'] > 0) {
     $categoryid = $_GET['category'];
-    $category = getCategory($categoryid, $_SESSION['lang']);
-    $categoryName = $category->text;
+    $categoryPath = "";
+    getCategoryPath($categoryid, $_SESSION['lang'], $categoryPath);
 } else {
     $categoryid = null;
-    $categoryName = getTextForLanguage("ALL_PRODUCTS");
+    $categoryPath = getTextForLanguage("PRODUCTS");
 }
 $products = getAllProductsInCategory($categoryid, $_SESSION['lang']);
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php echo getHTMLHead($categoryName); ?>
+    <?php echo getHTMLHead($categoryPath); ?>
 </head>
 <body>
 <?php require('body.php'); ?>
 <div class="main">
-    <h1><?php echo $categoryName; ?></h1>
+    <h1><?php echo $categoryPath; ?></h1>
     <div class="full-Size">
         <?php
         foreach ($products as $product) { ?>

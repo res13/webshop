@@ -360,6 +360,21 @@ where c.id = ?';
     return null;
 }
 
+function getCategoryPath($categoryId, $lang, &$categoryPath) {
+    $category = getCategory($categoryId, $lang);
+    if (empty($categoryPath)) {
+        $categoryPath = $category->__get('text');
+    }
+    else {
+        $categoryPath = $category->__get('text') . " - " . $categoryPath;
+    }
+    $parentId = $category->__get('categoryid');
+    if ($parentId == null) {
+        return;
+    }
+    getCategoryPath($parentId, $lang, $categoryPath);
+}
+
 function getProductOptions($productId, $lang)
 {
     global $conn;

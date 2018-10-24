@@ -42,9 +42,9 @@ else {
 ?>
 
 <form method="post">
-    <label><?php echo getTextForLanguage("USERNAME")?> <?php echo getTextForLanguage("OR")?> <?php echo getTextForLanguage("EMAIL")?><input type="text" name="usernameOrEmail" maxlength="50"></label><br />
-    <label><?php echo getTextForLanguage("OLD_PASSWORD")?><input type="password" name="oldPassword" maxlength="255"></label><br/>
-    <label><?php echo getTextForLanguage("NEW_PASSWORD")?><input type="password" name="newPassword" maxlength="255"></label><br/>
+    <label><?php echo getTextForLanguage("USERNAME")?> <?php echo getTextForLanguage("OR")?> <?php echo getTextForLanguage("EMAIL")?><br/><input type="text" name="usernameOrEmail" maxlength="50"></label><br />
+    <label><?php echo getTextForLanguage("OLD_PASSWORD")?><br/><input type="password" name="oldPassword" maxlength="255"></label><br/>
+    <label><?php echo getTextForLanguage("NEW_PASSWORD")?><br/><input type="password" name="newPassword" maxlength="255"></label><br/>
     <input type="submit" value="<?php echo getTextForLanguage("PASSWORD_RESET")?>">
 </form>
     <?php

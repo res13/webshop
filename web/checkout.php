@@ -88,18 +88,18 @@ if (
             ?>
             <h3><?php echo getTextForLanguage("DELIVERY") ?></h3>
             <form method="post">
-                <label><?php echo getTextForLanguage("FIRSTNAME") ?><input type="text" name="deliveryFirstname"
+                <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="deliveryFirstname"
                                                                            maxlength="50"></label><br/>
-                <label><?php echo getTextForLanguage("LASTNAME") ?><input type="text" name="deliveryLastname"
+                <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="deliveryLastname"
                                                                           maxlength="50"></label><br/>
-                <label><?php echo getTextForLanguage("STREET") ?><input type="text" name="deliveryStreet"
+                <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text" name="deliveryStreet"
                                                                         maxlength="100"></label><br/>
-                <label><?php echo getTextForLanguage("HOMENUMBER") ?><input type="text" name="deliveryHomenumber"
+                <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text" name="deliveryHomenumber"
                                                                             maxlength="20"></label><br/>
-                <label><?php echo getTextForLanguage("CITY") ?><input type="text" name="deliveryCity" maxlength="100">
+                <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="deliveryCity" maxlength="100">
                 </label><br/>
-                <label><?php echo getTextForLanguage("ZIP") ?><input type="number" name="deliveryZip"></label><br/>
-                <label><?php echo getTextForLanguage("COUNTRY") ?><select name="deliveryCountry">
+                <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="deliveryZip"></label><br/>
+                <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="deliveryCountry">
                         <?php
                         $countries = getAllCountries();
                         foreach ($countries as $country) {
@@ -113,18 +113,18 @@ if (
                 </label>
                 <div id="billingDiv">
                     <h3><?php echo getTextForLanguage("BILLING") ?></h3>
-                    <label><?php echo getTextForLanguage("FIRSTNAME") ?><input type="text" name="billingFirstname"
+                    <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="billingFirstname"
                                                                                maxlength="50"></label><br/>
-                    <label><?php echo getTextForLanguage("LASTNAME") ?><input type="text" name="billingLastname"
+                    <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="billingLastname"
                                                                               maxlength="50"></label><br/>
-                    <label><?php echo getTextForLanguage("STREET") ?><input type="text" name="billingStreet"
+                    <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text" name="billingStreet"
                                                                             maxlength="100"></label><br/>
-                    <label><?php echo getTextForLanguage("HOMENUMBER") ?><input type="text" name="billingHomenumber"
+                    <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text" name="billingHomenumber"
                                                                                 maxlength="20"></label><br/>
-                    <label><?php echo getTextForLanguage("CITY") ?><input type="text" name="billingCity"
+                    <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="billingCity"
                                                                           maxlength="100"></label><br/>
-                    <label><?php echo getTextForLanguage("ZIP") ?><input type="number" name="billingZip"></label><br/>
-                    <label><?php echo getTextForLanguage("COUNTRY") ?><select name="billingCountry">
+                    <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="billingZip"></label><br/>
+                    <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="billingCountry">
                             <?php
                             $countries = getAllCountries();
                             foreach ($countries as $country) {

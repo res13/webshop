@@ -28,22 +28,22 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
 <div class="main">
     <h1><?php echo getTextForLanguage("REGISTER"); ?></h1>
     <form method="post">
-        <label><?php echo getTextForLanguage("FIRSTNAME") ?><input type="text" name="firstname"
+        <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="firstname"
                                                                    maxlength="50"></label><br/>
-        <label><?php echo getTextForLanguage("LASTNAME") ?><input type="text" name="lastname"
+        <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="lastname"
                                                                   maxlength="50"></label><br/>
-        <label><?php echo getTextForLanguage("USERNAME") ?><input type="text" name="username"
+        <label><?php echo getTextForLanguage("USERNAME") ?><br/><input type="text" name="username"
                                                                   maxlength="20"></label><br/>
-        <label><?php echo getTextForLanguage("EMAIL") ?><input type="text" name="email" maxlength="255"></label><br/>
-        <label><?php echo getTextForLanguage("PASSWORD") ?><input type="password" name="password"></label><br/>
-        <label><?php echo getTextForLanguage("BIRTHDATE") ?><input type="date" name="birthdate"></label><br/>
-        <label><?php echo getTextForLanguage("PHONE") ?><input type="text" name="phone" maxlength="50"></label><br/>
-        <label><?php echo getTextForLanguage("STREET") ?><input type="text" name="street" maxlength="100"></label><br/>
-        <label><?php echo getTextForLanguage("HOMENUMBER") ?><input type="text" name="homenumber"
+        <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email" maxlength="255"></label><br/>
+        <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" name="password"></label><br/>
+        <label><?php echo getTextForLanguage("BIRTHDATE") ?><br/><input type="date" name="birthdate"></label><br/>
+        <label><?php echo getTextForLanguage("PHONE") ?><br/><input type="text" name="phone" maxlength="50"></label><br/>
+        <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text" name="street" maxlength="100"></label><br/>
+        <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text" name="homenumber"
                                                                     maxlength="20"></label><br/>
-        <label><?php echo getTextForLanguage("CITY") ?><input type="text" name="city" maxlength="100"></label><br/>
-        <label><?php echo getTextForLanguage("ZIP") ?><input type="number" name="zip"></label><br/>
-        <label><?php echo getTextForLanguage("COUNTRY") ?><select name="country">
+        <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="city" maxlength="100"></label><br/>
+        <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="zip"></label><br/>
+        <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="country">
                 <?php
                 $countries = getAllCountries();
                 foreach ($countries as $country) {
@@ -52,7 +52,7 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
                 }
                 ?>
             </select></label><br/>
-        <label><?php echo getTextForLanguage("LANGUAGE") ?><select name="lang">
+        <label><?php echo getTextForLanguage("LANGUAGE") ?><br/><select name="lang">
             <?php
             foreach (getAvailableLanguages() as $lang) {
                 if ($lang === $_SESSION['lang']) {

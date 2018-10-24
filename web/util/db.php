@@ -523,9 +523,9 @@ function addToBasketOrIncrease($personId, $productId, $productQuantity, $optionA
     if ($orderId == null) {
         $orderId = createNewBasket($personId);
     }
-    $query = 'select po.id, po.quantity from webshop.product_orders po where po.product_id = ?';
+    $query = 'select po.id, po.quantity from webshop.product_orders po where po.product_id = ? and po.orders_id = ?';
     $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $productId);
+    $stmt->bind_param('ii', $productId, $orderId);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();

@@ -47,7 +47,7 @@ if (isset($mailSent) && $mailSent == true) {
 else {
     ?>
     <form method="post">
-        <label><?php echo getTextForLanguage("EMAIL")?><input type="text" name="email" maxlength="100"></label><br />
+        <label><?php echo getTextForLanguage("EMAIL")?><br/><input type="text" name="email" maxlength="100"></label><br />
         <input type="submit" value="<?php echo getTextForLanguage("REQUEST_NEW_PASSWORD")?>">
     </form>
     <?php

@@ -16,7 +16,7 @@
     $totalPrice = 0;
 
     foreach ($products as $basketProduct) {
-        $productOptions = getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
+        $productOptions = Option::getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
         $basketProductOptions = $basketProduct->options;
         $basketProductOptionsArray = array();
         foreach ($basketProductOptions as $basketProductOption) {
@@ -53,7 +53,7 @@
 
             <div class="col col-qty layout-inline">
                 <a href="#" class="qty qty-minus">-</a>
-                <input type="numeric" value="<?php echo htmlentities($basketProduct->quantity) ?>"/>
+                <label><input type="numeric" value="<?php echo htmlentities($basketProduct->quantity) ?>"/></label>
                 <a href="#" class="qty qty-plus">+</a>
             </div>
 

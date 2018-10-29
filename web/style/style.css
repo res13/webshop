@@ -356,22 +356,12 @@ html {
 * {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
 }
 
 @font-face {
     font-family: 'Shopper';
     src: url('http://www.shopperfont.com/font/Shopper-Std.ttf');
 }
-
-.shopper {
-    text-transform: lowercase;
-    font: 2em 'Shopper', sans-serif;
-    line-height: 0.5em;
-    display: inline-block;
-}
-
-
 
 h1 {
     text-transform: uppercase;
@@ -413,24 +403,6 @@ a {
     border-radius: 0.6em;
     background: #ecf0f1;
     box-shadow: 0 0.5em 0 rgba(138, 148, 152, 0.2);
-}
-
-.heading {
-    padding: 1em;
-    position: relative;
-    z-index: 1;
-    color: #f7f7f7;
-    background: #f34d35;
-}
-
-.cart {
-    margin: 2.5em;
-    overflow: hidden;
-}
-
-.cart.is-closed {
-    height: 0;
-    margin-top: -2.5em;
 }
 
 .table {
@@ -504,21 +476,6 @@ a {
     vertical-align: middle;
 }
 
-.row-bg2 {
-    background: #f7f7f7;
-}
-
-.visibility-cart {
-    position: absolute;
-    color: #fff;
-    top: 0.5em;
-    right: 0.5em;
-    font:  bold 2em arial;
-    border: 0.16em solid #fff;
-    border-radius: 2.5em;
-    padding: 0 0.22em 0 0.25em ;
-}
-
 .col-qty > * {
     vertical-align: middle;
 }
@@ -555,11 +512,6 @@ a.qty:hover {
 
 .btn:hover {
     box-shadow: 0 3px 0 rgba(59,154,198, 0)
-}
-
-.btn-update {
-    float: right;
-    margin: 0 0 1.5em 0;
 }
 
 @media screen and ( max-width: 755px) {
@@ -635,12 +587,6 @@ input[type=text] {
 label {
     margin-bottom: 10px;
     display: block;
-}
-
-.icon-container {
-    margin-bottom: 20px;
-    padding: 7px 0;
-    font-size: 24px;
 }
 
 .btn {

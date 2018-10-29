@@ -30,8 +30,6 @@ require('head.php');
         </div>
         <div class="col-25">
             <div class="container">
-                <form action="/action_page.php">
-
                     <div class="row">
                         <div class="col-50">
                             <h3>Billing Address</h3>
@@ -60,7 +58,6 @@ require('head.php');
                         <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                     </label>
                     <input type="submit" value="Continue to checkout" class="btn">
-                </form>
             </div>
 
         </div>

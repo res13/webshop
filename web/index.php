@@ -10,8 +10,8 @@ require('head.php');
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo getTextForLanguage("HOME"); ?></h1>
-    <?php // todo: aboutUs page ?>
-    <p>todo</p>
+    <img src="img/parachuteshoplogo.png" alt="Parachute webshop">
+    <p><?php echo getTextForLanguage("WELCOME"); ?></p>
 </div>
 </body>
 </html>

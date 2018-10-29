@@ -10,8 +10,7 @@ require('head.php');
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo getTextForLanguage("ABOUT_US"); ?></h1>
-    <?php // todo: aboutUs page ?>
-    <p>todo</p>
+    <p><?php echo getTextForLanguage("PROJECT_DESCRIPTION"); ?></p>
 </div>
 </body>
 </html>

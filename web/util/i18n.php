@@ -223,6 +223,12 @@ $texts = array
     'YES' => array(
         'de' => 'Ja',
         'en' => 'Yes'),
+    'PROJECT_DESCRIPTION' => array(
+        'de' => 'Dieser web shop wurde im Rahmen des Projekts BTI7054q im Herbstsemeseter 2018/2019 an der Berner Fachhochschule von Nik Arm und Andreas Erb realisiert.',
+        'en' => 'This web shop was realized as part of the project BTI7054q in the autumn semester 2018/2019 at the Bern University of Applied Sciences by Nik Arm and Andreas Erb.'),
+    'WELCOME' => array(
+        'de' => 'Herzlich willkommen auf dem Parachute Shop',
+        'en' => 'Welcome to the parachute web shop'),
 );
 
 function getAvailableLanguages()

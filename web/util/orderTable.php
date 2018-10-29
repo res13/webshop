@@ -20,7 +20,7 @@
     $totalPrice = 0;
     foreach ($products as $basketProduct) {
         echo "<tr>";
-        $productOptions = getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
+        $productOptions = Option::getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
         $basketProductOptions = $basketProduct->options;
         $basketProductOptionsArray = array();
         foreach ($basketProductOptions as $basketProductOption) {
@@ -48,7 +48,7 @@
         echo "<td>" . htmlentities($basketProduct->price) . " CHF</td>";
         $price = number_format((float)$basketProduct->price * $basketProduct->quantity, 2, '.', '');
         echo "<td>" . htmlentities($price) . " CHF</td></tr>";
-        $totalPrice = $totalPrice + $price;
+        $totalPrice = number_format((float)$totalPrice + $price, 2, '.', '');
     }
     ?>
     </tbody>

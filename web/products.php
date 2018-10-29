@@ -3,12 +3,12 @@ require('head.php');
 if (isset ($_GET['category']) && $_GET['category'] > 0) {
     $categoryid = $_GET['category'];
     $categoryPath = "";
-    getCategoryPath($categoryid, $_SESSION['lang'], $categoryPath);
+    Category::getCategoryPath($categoryid, $_SESSION['lang'], $categoryPath);
 } else {
     $categoryid = null;
     $categoryPath = getTextForLanguage("PRODUCTS");
 }
-$products = getAllProductsInCategory($categoryid, $_SESSION['lang']);
+$products = Category::getAllProductsInCategory($categoryid, $_SESSION['lang']);
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -23,7 +23,7 @@ $products = getAllProductsInCategory($categoryid, $_SESSION['lang']);
     <div class="full-Size" id="productList">
         <?php
         foreach ($products as $product) { ?>
-            <div class="wrapper-small" name="<?php echo htmlentities($product->name); ?>">
+            <div class="wrapper-small" data-name="<?php echo htmlentities($product->name); ?>">
                 <div class="product-img-small">
                     <img src="<?php echo htmlentities($product->image); ?>" height="420" width="327">
                 </div>

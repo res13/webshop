@@ -16,7 +16,7 @@ function filterProducts() {
     productList = productWrapper.getElementsByTagName("div");
     for (i = 0; i < productList.length; i++) {
         product = productList[i];
-        name = product.getAttribute("name");
+        name = product.getAttribute("data-name");
         if (name) {
             if (name.toUpperCase().indexOf(filter) > -1) {
                 product.style.display = "";

@@ -3,7 +3,7 @@ require('head.php');
 if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
     $usernameOrEmail = validateInput($_POST['usernameOrEmail']);
     $password = validateInput($_POST['password']);
-    $person = authenticate($usernameOrEmail, $password);
+    $person = Person::authenticate($usernameOrEmail, $password);
     if ($person != null) {
         if ($person->__get('resetpassword') > 0) {
             redirect('resetPassword.php');
@@ -21,8 +21,8 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
                     $optionValueId = $productOption->optionValueId;
                     array_push($optionArray, $optionValueId);
                 }
-                addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
-                $_SESSION['basket'] = getBasket($personId);
+                Basket::addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
+                $_SESSION['basket'] = Basket::getBasket($personId);
             }
         }
     } else {

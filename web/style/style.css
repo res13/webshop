@@ -292,9 +292,7 @@ span {
 }
 
 #productFilterText {
-    background-image: url('../img/searchicon.png');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
+    background: url('../img/searchicon.png') no-repeat 10px 10px;
     width: 20%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
@@ -325,7 +323,7 @@ span {
     background-repeat: no-repeat;
     border: 1px solid #AAA;
     border-radius: 2px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     color: #555;
     margin-top: 1em;
     font-size: 20px;

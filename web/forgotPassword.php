@@ -8,7 +8,7 @@ if (!isset($_SESSION['person']) && isset($_POST['email'])) {
     else {
         $randomPassword = randomPassword(8);
         $hashedPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
-        if (resetPassword($email, $hashedPassword, 1)) {
+        if (Person::resetPassword($email, $hashedPassword, 1)) {
             $subject = getTextForLanguage("PASSWORD_RESET");
             $message = "<html><body><p>". getTextForLanguage('NEW_PASSWORD_EMAIL1') . "<b>". $randomPassword . "</b>" . getTextForLanguage('NEW_PASSWORD_EMAIL2'). "</p></body></html>" ;
             $mailSent = sendMail($email, $subject, $message);

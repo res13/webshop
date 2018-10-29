@@ -2,7 +2,7 @@
 require('head.php');
 if (isset($_SESSION['person'])) {
     $person = $_SESSION['person'];
-    $orderList = getOrders($person->id);
+    $orderList = Order::getOrders($person->id);
     ?>
     <!DOCTYPE html>
     <html lang="de">

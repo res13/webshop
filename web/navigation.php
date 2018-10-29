@@ -4,10 +4,10 @@ function getProductHierarchy($category, &$result)
 {
     if ($category == null) {
         $result .= "<li><a href=\"products.php\">" . getTextForLanguage("PRODUCTS") . "</a>";
-        $subcategories = getSubCategories(null);
+        $subcategories = Category::getSubCategories(null);
     } else {
         $result .= "<li><a href=\"products.php?category=$category->id\">$category->text</a>";
-        $subcategories = getSubCategories($category->categoryid);
+        $subcategories = Category::getSubCategories($category->categoryid);
     }
     if (empty($subcategories)) {
         return;

@@ -5,8 +5,8 @@ if (isset ($_GET['id']) && $_GET['id'] > 0) {
 } else {
     $id = null;
 }
-$product = getProduct($id, $_SESSION['lang']);
-$productOptions = getProductOptions($id, $_SESSION['lang']);
+$product = Product::getProduct($id, $_SESSION['lang']);
+$productOptions = Option::getProductOptions($id, $_SESSION['lang']);
 if ($product == null) {
     ?>
     <!DOCTYPE html>

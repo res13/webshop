@@ -4,11 +4,11 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
     $usernameOrEmail = validateInput($_POST['usernameOrEmail']);
     $oldPassword = validateInput($_POST['oldPassword']);
     $newPassword = validateInput($_POST['newPassword']);
-    $oldPerson = authenticate($usernameOrEmail, $oldPassword);
+    $oldPerson = Person::authenticate($usernameOrEmail, $oldPassword);
     if ($oldPerson != null) {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-        if (resetPassword($usernameOrEmail, $hashedPassword, 0)) {
-            $person = authenticate($usernameOrEmail, $newPassword);
+        if (Person::resetPassword($usernameOrEmail, $hashedPassword, 0)) {
+            $person = Person::authenticate($usernameOrEmail, $newPassword);
             if ($person != null) {
                 $_SESSION['person'] = $person;
             }

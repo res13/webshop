@@ -6,15 +6,15 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
     $password = validateInput($_POST['password']);
     if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
         alert(getTextForLanguage("EMAIL_NOT_VALID"));
-    } else if (checkIfEmailExists($email)) {
+    } else if (Person::checkIfEmailExists($email)) {
         alert(getTextForLanguage("EMAIL_ADDRESS_ALREADY_EXISTS"));
-    } else if (checkIfUsernameExists($username)) {
+    } else if (Person::checkIfUsernameExists($username)) {
         alert(getTextForLanguage("USERNAME_ADDRESS_ALREADY_EXISTS"));
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $person = new Person();
         $person->setAll($_POST);
-        createPerson($person);
+        Person::createPerson($person);
     }
 }
 ?>
@@ -45,7 +45,7 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
         <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="zip"></label><br/>
         <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="country">
                 <?php
-                $countries = getAllCountries();
+                $countries = Person::getAllCountries();
                 foreach ($countries as $country) {
                     ?>
                     <option value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php

@@ -35,13 +35,13 @@ if (
                 $billingCity = validateInput($_POST['billingCity']);
                 $billingZip = validateInput($_POST['billingZip']);
                 $billingCountry = validateInput($_POST['billingCountry']);
-                orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry);
+                Order::orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry);
             } else {
                 alert(getTextForLanguage("INPUT_MISSING"));
             }
         }
     } else {
-        orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
+        Order::orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
     }
     $subject = getTextForLanguage("ORDER") . " - " . $basketId;
     $message = "<html><body>
@@ -101,7 +101,7 @@ if (
                 <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="deliveryZip"></label><br/>
                 <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="deliveryCountry">
                         <?php
-                        $countries = getAllCountries();
+                        $countries = Person::getAllCountries();
                         foreach ($countries as $country) {
                             ?>
                             <option value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
@@ -126,7 +126,7 @@ if (
                     <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="billingZip"></label><br/>
                     <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="billingCountry">
                             <?php
-                            $countries = getAllCountries();
+                            $countries = Person::getAllCountries();
                             foreach ($countries as $country) {
                                 ?>
                                 <option

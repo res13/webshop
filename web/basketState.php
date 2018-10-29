@@ -1,15 +1,15 @@
 <?php
 if (isset($_SESSION['person']) && !isset($_SESSION['basket'])) {
     $personId = $_SESSION['person']->__get('id');
-    $basket = getBasket($personId);
+    $basket = Basket::getBasket($personId);
     $_SESSION['basket'] = $basket;
 }
 if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
     $productIdToRemove = $_GET['removeFromBasket'];
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
-        removeProductFromBasket($productIdToRemove);
-        $basket = getBasket($personId);
+        Basket::removeProductFromBasket($productIdToRemove);
+        $basket = Basket::getBasket($personId);
     }
     else {
         $basket = $_SESSION['basket'];
@@ -26,8 +26,8 @@ if (isset($_POST['toBasket']) && isset($_POST['options'])) {
     $optionArray = validateInput($_POST['options']);
     if (isset($_SESSION['person'])) {
         $personId = $_SESSION['person']->__get('id');
-        addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
-        $basket = getBasket($personId);
+        Basket::addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
+        $basket = Basket::getBasket($personId);
     }
     else {
         $basketOptions = array();

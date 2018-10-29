@@ -19,10 +19,11 @@ $products = getAllProductsInCategory($categoryid, $_SESSION['lang']);
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo $categoryPath; ?></h1>
-    <div class="full-Size">
+    <input type="text" id="productFilterText" onkeyup="filterProducts()" placeholder="Filter...">
+    <div class="full-Size" id="productList">
         <?php
         foreach ($products as $product) { ?>
-            <div class="wrapper-small">
+            <div class="wrapper-small" name="<?php echo htmlentities($product->name); ?>">
                 <div class="product-img-small">
                     <img src="<?php echo htmlentities($product->image); ?>" height="420" width="327">
                 </div>

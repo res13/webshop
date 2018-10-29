@@ -1,14 +1,12 @@
 <?php
-require_once('to/TransferObject.php');
-require_once('to/Person.php');
-require_once('to/Category.php');
-require_once('to/Product.php');
-require_once('to/Option.php');
-require_once('to/OptionValue.php');
-require_once('to/BasketProductOption.php');
-require_once('to/BasketProduct.php');
-require_once('to/Basket.php');
-require_once('to/Order.php');
+function __autoload($classname) {
+    $path = 'to/' . $classname . '.php';
+    if (file_exists($path)) {
+        require_once $path;
+    } else {
+        return false;
+    }
+}
 session_start();
 require_once('util/db.php');
 require_once('util/i18n.php');

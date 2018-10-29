@@ -1,69 +1,85 @@
-<?php
-?>
-<table>
-    <thead>
-    <tr>
-        <th><?php echo getTextForLanguage("PRODUCT"); ?></th>
-        <th><?php echo getTextForLanguage("OPTIONS"); ?></th>
-        <th><?php echo getTextForLanguage("AMOUNT"); ?></th>
-        <?php
-        if (isset($remove) && $remove) {
-            echo "<th>" . getTextForLanguage("REMOVE") . "</th>";
-        }
-        ?>
-        <th><?php echo getTextForLanguage("SINGLE_PRICE"); ?></th>
-        <th><?php echo getTextForLanguage("PRICE"); ?></th>
-    </tr>
-    </thead>
-    <tbody>
+
+
+<div class="table">
+    <div class="layout-inline row th">
+        <div class="col col-pro"><?php echo getTextForLanguage("PRODUCT"); ?></div>
+        <div class="col"><?php echo getTextForLanguage("OPTIONS"); ?></div>
+        <div class="col col-price align-center "><?php echo getTextForLanguage("SINGLE_PRICE"); ?></div>
+        <div class="col col-qty align-center"><?php echo getTextForLanguage("AMOUNT"); ?></div>
+        <?php if (isset($remove) && $remove) {
+            echo "<div class=\"col\">" . getTextForLanguage("REMOVE") . "</div>";
+        } ?>
+        <div class="col"><?php echo getTextForLanguage("PRICE"); ?></div>
+    </div>
+
     <?php
     $totalPrice = 0;
+
     foreach ($products as $basketProduct) {
-        echo "<tr>";
-        $productOptions = Option::getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
+        $productOptions = getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
         $basketProductOptions = $basketProduct->options;
         $basketProductOptionsArray = array();
         foreach ($basketProductOptions as $basketProductOption) {
             array_push($basketProductOptionsArray, $basketProductOption->optionValueId);
         }
-        echo "<td>" . htmlentities($basketProduct->name) . "</td>";
-        echo "<td><ul>";
-        foreach ($productOptions as $productOption) {
-            echo "<li>";
-            echo htmlentities($productOption->optionName);
-            echo '=';
-            $productOptionValues = $productOption->optionValues;
-            foreach ($productOptionValues as $productOptionValue) {
-                if (in_array($productOptionValue->optionValueId, $basketProductOptionsArray)) {
-                    echo htmlentities($productOptionValue->optionValueName);
-                }
-            }
-            echo "</li>";
-        }
-        echo "</ul></td>";
-        echo "<td>" . htmlentities($basketProduct->quantity) . "</td>";
-        if (isset($remove) && $remove) {
-            echo "<td><a href=\"basket.php?removeFromBasket=" . $basketProduct->id . "\">X</a></td>";
-        }
-        echo "<td>" . htmlentities($basketProduct->price) . " CHF</td>";
-        $price = number_format((float)$basketProduct->price * $basketProduct->quantity, 2, '.', '');
-        echo "<td>" . htmlentities($price) . " CHF</td></tr>";
-        $totalPrice = number_format((float)$totalPrice + $price, 2, '.', '');
-    }
-    ?>
-    </tbody>
-    <tfoot>
-    <tr>
-        <?php
-        if (isset($remove) && $remove) {
-            $colspan = 5;
-        }
-        else {
-            $colspan = 4;
-        }
+
         ?>
-        <td colspan="<?php echo $colspan ?>"><?php echo getTextForLanguage("TOTAL"); ?></td>
-        <td><?php echo number_format((float)$totalPrice, 2, '.', '') . " CHF"; ?></td>
-    </tr>
-    </tfoot>
-</table>
+        <div class="layout-inline row">
+
+            <div class="col col-pro layout-inline">
+                <p><?php echo htmlentities($basketProduct->name) ?></p>
+            </div>
+
+            <div class="col layout-inline">
+                <p>
+
+                    <?php
+                    foreach ($productOptions as $productOption) {
+                        echo htmlentities($productOption->optionName);
+                        echo ' = ';
+                        $productOptionValues = $productOption->optionValues;
+                        foreach ($productOptionValues as $productOptionValue) {
+                            if (in_array($productOptionValue->optionValueId, $basketProductOptionsArray)) {
+                                echo htmlentities($productOptionValue->optionValueName);
+                            }
+                        }
+                    }
+                    ?></p>
+            </div>
+
+            <div class="col col-price col-numeric align-center ">
+                <p><?php echo htmlentities($basketProduct->price) ?> CHF</p>
+            </div>
+
+            <div class="col col-qty layout-inline">
+                <a href="#" class="qty qty-minus">-</a>
+                <input type="numeric" value="<?php echo htmlentities($basketProduct->quantity) ?>"/>
+                <a href="#" class="qty qty-plus">+</a>
+            </div>
+
+            <?php if (isset($remove) && $remove) {
+                echo "<div class=\"col col-vat col-numeric\">
+                <p><a href=\"basket.php?removeFromBasket=" . $basketProduct->id . "\">X</a></p>
+            </div>";
+            } ?>
+
+
+            <div class="col col-total col-numeric">
+                <p><?php
+                    $price = number_format((float)$basketProduct->price * $basketProduct->quantity, 2, '.', '');
+                    echo htmlentities($price) ?> CHF</p>
+            </div>
+        </div>
+
+    <?php } ?>
+
+    <div class="tf">
+        <div class="row layout-inline">
+            <div class="col">
+                <p><?php echo getTextForLanguage("TOTAL"); ?></p>
+            </div>
+            <div class="col"><?php echo number_format((float)$totalPrice, 2, '.', '') . " CHF"; ?></div>
+        </div>
+    </div>
+</div>
+

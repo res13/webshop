@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     background-color: lightgrey;
 }
@@ -52,7 +52,9 @@ table, tr, th, td {
     float: left;
 }
 
-.navigation li ul { display: none; }
+.navigation li ul {
+    display: none;
+}
 
 .navigation ul li a {
     display: block;
@@ -62,20 +64,30 @@ table, tr, th, td {
     color: #fff;
 }
 
-.navigation ul li a:hover { background: #C29D23; }
+.navigation ul li a:hover {
+    background: #C29D23;
+}
 
 .navigation li:hover > ul {
     display: block;
     position: absolute;
 }
 
-.navigation li:hover li { float: none; }
+.navigation li:hover li {
+    float: none;
+}
 
-.navigation li:hover a { background: #300707; }
+.navigation li:hover a {
+    background: #300707;
+}
 
-.navigation li:hover li a:hover { background: #C29D23; }
+.navigation li:hover li a:hover {
+    background: #C29D23;
+}
 
-.navigation .main-navigation li ul li { border-top: 0; }
+.navigation .main-navigation li ul li {
+    border-top: 0;
+}
 
 .navigation ul ul ul {
     left: 100%;
@@ -88,8 +100,9 @@ table, tr, th, td {
     display: table; /* 2 */
 }
 
-.navigation     ul:after { clear: both; }
-
+.navigation ul:after {
+    clear: both;
+}
 
 .wrapper {
     height: 420px;
@@ -169,11 +182,12 @@ span {
     background-color: #79b0a1;
 }
 
-.full-Size{
+.full-Size {
     display: grid;
     grid-template-columns: auto auto auto auto;
 
 }
+
 .wrapper-small {
     height: 220px;
     margin: 10px;
@@ -184,7 +198,7 @@ span {
     box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
 }
 
-.product-img-small{
+.product-img-small {
     float: left;
     height: 220px;
     width: 26%;
@@ -210,7 +224,7 @@ span {
 }
 
 .product-img img,
-.product-img-small img{
+.product-img-small img {
     border-radius: 7px 0 0 7px;
 }
 
@@ -330,4 +344,340 @@ span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/*table*/
+
+html {
+    background: #bbc3c6;
+    font: 62.5%/1.5em "Trebuchet Ms", helvetica;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+@font-face {
+    font-family: 'Shopper';
+    src: url('http://www.shopperfont.com/font/Shopper-Std.ttf');
+}
+
+.shopper {
+    text-transform: lowercase;
+    font: 2em 'Shopper', sans-serif;
+    line-height: 0.5em;
+    display: inline-block;
+}
+
+
+
+h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.5em;
+    color: #8a8a8a;
+}
+
+input {
+    border: 0.3em solid #bbc3c6;
+    padding: 0.5em 0.3em;
+    font-size: 1.4em;
+    color: #8a8a8a;
+    text-align: center;
+}
+
+img {
+    max-width: 9em;
+    width: 100%;
+    overflow: hidden;
+    margin-right: 1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 75em;
+    width: 95%;
+    margin: 40px auto;
+    overflow: hidden;
+    position: relative;
+
+    border-radius: 0.6em;
+    background: #ecf0f1;
+    box-shadow: 0 0.5em 0 rgba(138, 148, 152, 0.2);
+}
+
+.heading {
+    padding: 1em;
+    position: relative;
+    z-index: 1;
+    color: #f7f7f7;
+    background: #f34d35;
+}
+
+.cart {
+    margin: 2.5em;
+    overflow: hidden;
+}
+
+.cart.is-closed {
+    height: 0;
+    margin-top: -2.5em;
+}
+
+.table {
+    background: #ffffff;
+    border-radius: 0.6em;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 1.8em;
+}
+
+
+.layout-inline > * {
+    display: inline-block;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.th {
+    background: #f34d35;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.tf {
+    background: #f34d35;
+    text-transform: uppercase;
+    text-align: right;
+    font-size: 1.2em;
+}
+
+.tf p {
+    color: #fff;
+    font-weight: bold;
+}
+
+.col {
+    padding: 1em;
+    width: 12%;
+}
+
+.col-pro {
+    width: 33%;
+}
+
+.col-pro > * {
+    vertical-align: middle;
+}
+
+.col-qty {
+    text-align: center;
+    width: 17%;
+}
+
+.col-numeric p {
+    font: bold 1.8em helvetica;
+}
+
+.col-total p {
+    color: #12c8b1;
+}
+
+.tf .col {
+    width: 20%;
+}
+
+.row > div {
+    vertical-align: middle;
+}
+
+.row-bg2 {
+    background: #f7f7f7;
+}
+
+.visibility-cart {
+    position: absolute;
+    color: #fff;
+    top: 0.5em;
+    right: 0.5em;
+    font:  bold 2em arial;
+    border: 0.16em solid #fff;
+    border-radius: 2.5em;
+    padding: 0 0.22em 0 0.25em ;
+}
+
+.col-qty > * {
+    vertical-align: middle;
+}
+
+.col-qty > input {
+    max-width: 2.6em;
+}
+
+
+a.qty {
+    width: 1em;
+    line-height: 1em;
+    border-radius: 2em;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    background: #43ace3;
+    color: #fff;
+}
+
+a.qty:hover {
+    background: #3b9ac6;
+}
+
+.btn {
+    padding: 10px 30px;
+    border-radius: 0.3em;
+    font-size: 1.4em;
+    font-weight: bold;
+    background: #43ace3;
+    color: #fff;
+    box-shadow: 0 3px 0 rgba(59,154,198, 1)
+}
+
+.btn:hover {
+    box-shadow: 0 3px 0 rgba(59,154,198, 0)
+}
+
+.btn-update {
+    float: right;
+    margin: 0 0 1.5em 0;
+}
+
+@media screen and ( max-width: 755px) {
+    .container {
+        width: 98%;
+    }
+
+    .col-pro {
+        width: 35%;
+    }
+
+    .col-qty {
+        width: 22%;
+    }
+
+    img {
+        max-width: 100%;
+        margin-bottom: 1em;
+    }
+}
+
+@media screen and ( max-width: 591px) {
+
+}
+
+/*order*/
+
+
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+
+.col-25 {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+    padding: 0 16px;
+}
+
+.container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+a {
+    color: #2196F3;
+}
+
+hr {
+    border: 1px solid lightgrey;
+}
+
+span.price {
+    float: right;
+    color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+    .row {
+        flex-direction: column-reverse;
+    }
+    .col-25 {
+        margin-bottom: 20px;
+    }
 }

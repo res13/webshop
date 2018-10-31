@@ -349,8 +349,7 @@ span {
 /*table*/
 
 html {
-    background: #bbc3c6;
-    font: 62.5%/1.5em "Trebuchet Ms", helvetica;
+    font: 75%/1.5em "Trebuchet Ms", helvetica;
 }
 
 * {
@@ -388,7 +387,7 @@ a {
     margin: 40px auto;
     overflow: hidden;
     position: relative;
-
+    padding: 20px;
     border-radius: 0.6em;
     background: #ecf0f1;
 }
@@ -548,7 +547,7 @@ a.qty:hover {
     padding: 0 16px;
 }
 
-input[type=text], input[type=password], input[type=number], select[class=selectLog] {
+input[type=text],input[type=date], input[type=password], input[type=number], select[class=selectLog] {
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;

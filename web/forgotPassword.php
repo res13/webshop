@@ -46,16 +46,17 @@ function randomPassword($length)
     } else {
         ?>
         <div class="row">
+            <div class="col-25"></div>
             <div class="col-25">
                 <div class="container">
                     <form method="post">
                         <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email"
                                                                                     maxlength="100"></label><br/>
-                        <input type="submit" value="<?php echo getTextForLanguage("REQUEST_NEW_PASSWORD") ?>">
+                        <input class="btn" type="submit" value="<?php echo getTextForLanguage("REQUEST_NEW_PASSWORD") ?>">
                     </form>
                 </div>
             </div>
-            <div class="col-75"></div>
+            <div class="col-25"></div>
         </div>
         <?php
     }

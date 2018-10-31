@@ -15,7 +15,8 @@ require('head.php');
         <div class="col-75">
             <div class="container">
                 <?php
-                if (isset($_SESSION['basket']) && count($_SESSION['basket']->products) > 0) {
+                $show = (isset($_SESSION['basket']) && count($_SESSION['basket']->products) > 0);
+                if ($show) {
                     $basket = $_SESSION['basket'];
                     $products = $basket->__get('products');
                     $remove = true;
@@ -29,7 +30,10 @@ require('head.php');
         </div>
         <div class="col-25">
             <div class="container">
-                    <?php include("checkout.php")?>
+                    <?php
+                    if ($show) {
+                        include("checkout.php");
+                    } ?>
             </div>
 
         </div>

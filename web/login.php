@@ -40,6 +40,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
 <div class="main">
     <h1><?php echo getTextForLanguage("LOGIN"); ?></h1>
     <div class="row">
+        <div class="col-25"></div>
         <div class="col-25">
             <div class="container">
                 <?php
@@ -60,7 +61,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
                 ?>
             </div>
         </div>
-        <div class="col-75"></div>
+        <div class="col-25"></div>
     </div>
 </div>
 </body>

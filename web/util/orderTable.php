@@ -53,7 +53,7 @@
 
             <div class="col col-qty layout-inline">
                 <a href="#" class="qty qty-minus">-</a>
-                <label><input type="numeric" value="<?php echo htmlentities($basketProduct->quantity) ?>"/></label>
+                <label class="labelQty"><input type="numeric" value="<?php echo htmlentities($basketProduct->quantity) ?>"/></label>
                 <a href="#" class="qty qty-plus">+</a>
             </div>
 

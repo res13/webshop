@@ -39,20 +39,29 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo getTextForLanguage("LOGIN"); ?></h1>
-    <?php
-    if (isset($_SESSION['person'])) {
-        echo getTextForLanguage("SUCCESSFUL_LOGIN");
-    } else {
-        ?>
-        <form method="post">
-            <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="usernameOrEmail" maxlength="50"></label><br/>
-            <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" name="password"></label><br/>
-            <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
-            <input type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
-        </form>
-        <?php
-    }
-    ?>
+    <div class="row">
+        <div class="col-25">
+            <div class="container">
+                <?php
+                if (isset($_SESSION['person'])) {
+                    echo getTextForLanguage("SUCCESSFUL_LOGIN");
+                } else {
+                    ?>
+                    <form method="post">
+                        <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
+                            <br/><input type="text" name="usernameOrEmail" maxlength="50"></label><br/>
+                        <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password"
+                                                                                       name="password"></label><br/>
+                        <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
+                        <input class="btn" type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
+                    </form>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+        <div class="col-75"></div>
+    </div>
 </div>
 </body>
 </html>

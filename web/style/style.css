@@ -244,7 +244,7 @@ span {
 
 .product-text-small h2,
 .product-text h2 {
-    margin: 0 0 47px 38px;
+    margin: 15px 0 10px 38px;
     font-size: 13px;
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
@@ -374,16 +374,7 @@ p {
     color: #8a8a8a;
 }
 
-input {
-    border: 0.3em solid #bbc3c6;
-    padding: 0.5em 0.3em;
-    font-size: 1.4em;
-    color: #8a8a8a;
-    text-align: center;
-}
-
 img {
-    max-width: 9em;
     width: 100%;
     overflow: hidden;
     margin-right: 1em;
@@ -394,15 +385,12 @@ a {
 }
 
 .container {
-    max-width: 75em;
-    width: 95%;
     margin: 40px auto;
     overflow: hidden;
     position: relative;
 
     border-radius: 0.6em;
     background: #ecf0f1;
-    box-shadow: 0 0.5em 0 rgba(138, 148, 152, 0.2);
 }
 
 .table {
@@ -413,7 +401,6 @@ a {
     margin-bottom: 1.8em;
 }
 
-
 .layout-inline > * {
     display: inline-block;
 }
@@ -423,7 +410,7 @@ a {
 }
 
 .th {
-    background: #f34d35;
+    background: #bbc3c6;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
@@ -431,7 +418,7 @@ a {
 }
 
 .tf {
-    background: #f34d35;
+    background: #bbc3c6;
     text-transform: uppercase;
     text-align: right;
     font-size: 1.2em;
@@ -444,11 +431,11 @@ a {
 
 .col {
     padding: 1em;
-    width: 12%;
+    width: 13%;
 }
 
 .col-pro {
-    width: 33%;
+    width: 30%;
 }
 
 .col-pro > * {
@@ -484,7 +471,6 @@ a {
     max-width: 2.6em;
 }
 
-
 a.qty {
     width: 1em;
     line-height: 1em;
@@ -507,11 +493,6 @@ a.qty:hover {
     font-weight: bold;
     background: #43ace3;
     color: #fff;
-    box-shadow: 0 3px 0 rgba(59,154,198, 1)
-}
-
-.btn:hover {
-    box-shadow: 0 3px 0 rgba(59,154,198, 0)
 }
 
 @media screen and ( max-width: 755px) {
@@ -539,13 +520,11 @@ a.qty:hover {
 
 /*order*/
 
-
 .row {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     -ms-flex-wrap: wrap; /* IE10 */
     flex-wrap: wrap;
-    margin: 0 -16px;
 }
 
 .col-25 {
@@ -569,24 +548,23 @@ a.qty:hover {
     padding: 0 16px;
 }
 
-.container {
-    background-color: #f2f2f2;
-    padding: 5px 20px 15px 20px;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
-}
-
-input[type=text] {
+input[type=text], input[type=password], input[type=number], select[class=selectLog] {
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    font-size: 1.4em;
+    color: #8a8a8a;
+    text-align: center;
 }
 
-label {
-    margin-bottom: 10px;
-    display: block;
+input {
+    width: 50%;
+}
+
+.labelQty {
+    width: 50%;
 }
 
 .btn {
@@ -623,6 +601,7 @@ span.price {
     .row {
         flex-direction: column-reverse;
     }
+
     .col-25 {
         margin-bottom: 20px;
     }

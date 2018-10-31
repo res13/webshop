@@ -71,13 +71,6 @@ if (
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <?php echo getHTMLHead(getTextForLanguage("CHECKOUT")); ?>
-</head>
-<body>
-<?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo getTextForLanguage("CHECKOUT"); ?></h1>
     <?php
@@ -136,7 +129,7 @@ if (
                         </select></label>
                 </div>
                 <br/>
-                <input type="submit" value="<?php echo getTextForLanguage("BUY") ?>">
+                <input class="btn" type="submit" value="<?php echo getTextForLanguage("BUY") ?>">
             </form>
 
             <?php
@@ -147,7 +140,5 @@ if (
     }
     ?>
 </div>
-</body>
-</html>
 
 

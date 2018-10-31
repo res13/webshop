@@ -92,7 +92,7 @@ if (
                 <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="deliveryCity" maxlength="100">
                 </label><br/>
                 <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="deliveryZip"></label><br/>
-                <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="deliveryCountry">
+                <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="deliveryCountry">
                         <?php
                         $countries = Person::getAllCountries();
                         foreach ($countries as $country) {
@@ -117,7 +117,7 @@ if (
                     <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="billingCity"
                                                                           maxlength="100"></label><br/>
                     <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="billingZip"></label><br/>
-                    <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select name="billingCountry">
+                    <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="billingCountry">
                             <?php
                             $countries = Person::getAllCountries();
                             foreach ($countries as $country) {

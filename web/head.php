@@ -8,6 +8,9 @@ spl_autoload_register(function ($classname) {
         return false;
     }
 });
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 require_once('util/i18n.php');
 require_once('util/util.php');

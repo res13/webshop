@@ -32,7 +32,7 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
         <div class="col-25"></div>
         <div class="col-50">
             <div class="container">
-                <form method="post">
+                <form method="post" onsubmit="return validateRegister()">
                     <div class="row">
                         <div class="col-50">
 

@@ -40,7 +40,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
             <div class="col-25"></div>
             <div class="col-25">
                 <div class="container">
-                    <form method="post">
+                    <form method="post" onsubmit="return validateResetPassword()">
                         <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
                             <br/><input type="text" name="usernameOrEmail" maxlength="50"></label><br/>
                         <label><?php echo getTextForLanguage("OLD_PASSWORD") ?><br/><input type="password"

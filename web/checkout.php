@@ -80,7 +80,7 @@ if (
         if (isset($_SESSION['person'])) {
             ?>
             <h3><?php echo getTextForLanguage("DELIVERY") ?></h3>
-            <form method="post">
+            <form method="post" onsubmit="return validateCheckout()">
                 <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="deliveryFirstname"
                                                                            maxlength="50"></label><br/>
                 <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="deliveryLastname"

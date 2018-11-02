@@ -26,3 +26,35 @@ function filterProducts() {
         }
     }
 }
+
+function validateLogin() {
+    let usernameOrEmail, password, result;
+    usernameOrEmail = document.getElementById("usernameOrEmail");
+    result = true;
+    if (usernameOrEmail.text() === "") {
+        usernameOrEmail.style.borderColor = "Red";
+        result = false;
+    }
+    password = document.getElementById("password");
+    if (password.text() === "") {
+        password.style.borderColor = "Red";
+        result = false;
+    }
+    return result;
+}
+
+function validateRegister() {
+    // todo
+}
+
+function validateCheckout() {
+    // todo
+}
+
+function validateResetPassword() {
+    // todo
+}
+
+function validateForgotPassword() {
+    // todo
+}

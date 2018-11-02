@@ -49,7 +49,7 @@ function randomPassword($length)
             <div class="col-25"></div>
             <div class="col-25">
                 <div class="container">
-                    <form method="post">
+                    <form method="post" onsubmit="return validateForgotPassword()">
                         <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email"
                                                                                     maxlength="100"></label><br/>
                         <input class="btn" type="submit" value="<?php echo getTextForLanguage("REQUEST_NEW_PASSWORD") ?>">

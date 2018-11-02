@@ -57,6 +57,9 @@ class Basket extends TransferObject
     public function removeProduct($productId) {
         $productArray = $this->__get('products');
         $resultingProduct = $this->searchProduct($productId);
+        if ($resultingProduct == null) {
+            return;
+        }
         if(($key = array_search($resultingProduct, $productArray, true)) !== FALSE) {
             unset($productArray[$key]);
         }
@@ -65,6 +68,9 @@ class Basket extends TransferObject
 
     public function increaseProduct($productId) {
         $resultingProduct = $this->searchProduct($productId);
+        if ($resultingProduct == null) {
+            return;
+        }
         $actualQuantity = $resultingProduct->quantity;
         if ($actualQuantity < 50) {
             $resultingProduct->quantity = $actualQuantity + 1;
@@ -73,6 +79,9 @@ class Basket extends TransferObject
 
     public function decreaseProduct($productId) {
         $resultingProduct = $this->searchProduct($productId);
+        if ($resultingProduct == null) {
+            return;
+        }
         $actualQuantity = $resultingProduct->quantity;
         if ($actualQuantity == 1) {
             $this->removeProduct($productId);

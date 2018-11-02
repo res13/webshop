@@ -55,6 +55,34 @@ class Basket extends TransferObject
     }
 
     public function removeProduct($productId) {
+        $productArray = $this->__get('products');
+        $resultingProduct = $this->searchProduct($productId);
+        if(($key = array_search($resultingProduct, $productArray, true)) !== FALSE) {
+            unset($productArray[$key]);
+        }
+        $this->__set('products', $productArray);
+    }
+
+    public function increaseProduct($productId) {
+        $resultingProduct = $this->searchProduct($productId);
+        $actualQuantity = $resultingProduct->quantity;
+        if ($actualQuantity < 50) {
+            $resultingProduct->quantity = $actualQuantity + 1;
+        }
+    }
+
+    public function decreaseProduct($productId) {
+        $resultingProduct = $this->searchProduct($productId);
+        $actualQuantity = $resultingProduct->quantity;
+        if ($actualQuantity == 1) {
+            $this->removeProduct($productId);
+        }
+        else if ($actualQuantity > 1) {
+            $resultingProduct->quantity = $actualQuantity - 1;
+        }
+    }
+
+    private function searchProduct($productId) {
         $resultingProduct = null;
         $productArray = $this->__get('products');
         foreach ($productArray as $myProduct) {
@@ -64,10 +92,7 @@ class Basket extends TransferObject
             }
             $resultingProduct = $myProduct;
         }
-        if(($key = array_search($resultingProduct, $productArray, true)) !== FALSE) {
-            unset($productArray[$key]);
-        }
-        $this->__set('products', $productArray);
+        return $resultingProduct;
     }
 
     public static function getBasket($personId)
@@ -143,7 +168,7 @@ class Basket extends TransferObject
             $storedQuantity = $row['quantity'];
             $storedOptionArray = BasketProductOption::getBasketProductOptionsByProductOrderId($productOrderId);
             if (TransferObject::arraySameContent($storedOptionArray, $optionArray)) {
-                Basket::increaseQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId);
+                Basket::changeQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId);
                 return;
             }
         }
@@ -170,15 +195,39 @@ class Basket extends TransferObject
         }
     }
 
-    public static function increaseQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId)
+    public static function getQuantityOfProductInBasket($productOrderId)
     {
-        $query = 'update webshop.product_orders po set po.quantity = ? where po.id = ?';
+        $query = 'select po.quantity from webshop.product_orders po where po.id = ?';
         $stmt = DB::prepareWithErrorHandling($query);
-        $newQuantity = $storedQuantity + $productQuantity;
-        $success = $stmt->bind_param('ii', $newQuantity, $productOrderId);
+        $success = $stmt->bind_param('i', $productOrderId);
         DB::checkBindingError($success);
         DB::executeWithErrorHandling($stmt);
+        $result = $stmt->get_result();
         $stmt->close();
+        $row = $result->fetch_assoc();
+        if (!isset($row)) {
+            return null;
+        }
+        return $row['quantity'];
+    }
+
+    public static function changeQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId)
+    {
+        if ($storedQuantity == null) {
+            $storedQuantity = Basket::getQuantityOfProductInBasket($productOrderId);
+        }
+        $newQuantity = $storedQuantity + $productQuantity;
+        if ($newQuantity == 0) {
+            Basket::removeProductFromBasket($productOrderId);
+        }
+        else if ($newQuantity > 0 && $newQuantity <= 50) {
+            $query = 'update webshop.product_orders po set po.quantity = ? where po.id = ?';
+            $stmt = DB::prepareWithErrorHandling($query);
+            $success = $stmt->bind_param('ii', $newQuantity, $productOrderId);
+            DB::checkBindingError($success);
+            DB::executeWithErrorHandling($stmt);
+            $stmt->close();
+        }
     }
 
     public static function createNewBasket($personId)

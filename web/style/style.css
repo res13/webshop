@@ -359,7 +359,6 @@ html {
 
 @font-face {
     font-family: 'Shopper';
-    src: url('http://www.shopperfont.com/font/Shopper-Std.ttf');
 }
 
 h1 {
@@ -385,8 +384,6 @@ a {
 
 .container {
     margin: 40px auto;
-    overflow: hidden;
-    position: relative;
     padding: 20px;
     border-radius: 0.6em;
     background: #ecf0f1;

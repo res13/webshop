@@ -17,6 +17,32 @@ if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
     }
     $_SESSION['basket'] = $basket;
 }
+if (isset($_GET['increaseQuantity']) && isset($_SESSION['basket'])) {
+    $productIdToIncrease = $_GET['increaseQuantity'];
+    if (isset($_SESSION['person'])) {
+        $personId = $_SESSION['person']->__get('id');
+        Basket::changeQuantityOfProductInBasket(null, 1, $productIdToIncrease);
+        $basket = Basket::getBasket($personId);
+    }
+    else {
+        $basket = $_SESSION['basket'];
+        $basket->increaseProduct($productIdToIncrease);
+    }
+    $_SESSION['basket'] = $basket;
+}
+if (isset($_GET['decreaseQuantity']) && isset($_SESSION['basket'])) {
+    $productIdToDecrease = $_GET['decreaseQuantity'];
+    if (isset($_SESSION['person'])) {
+        $personId = $_SESSION['person']->__get('id');
+        Basket::changeQuantityOfProductInBasket(null, -1, $productIdToDecrease);
+        $basket = Basket::getBasket($personId);
+    }
+    else {
+        $basket = $_SESSION['basket'];
+        $basket->decreaseProduct($productIdToDecrease);
+    }
+    $_SESSION['basket'] = $basket;
+}
 if (isset($_POST['toBasket']) && isset($_POST['options'])) {
     $productId = validateInput($_POST['toBasket']);
     $productQuantity = validateInput($_POST['quantity']);

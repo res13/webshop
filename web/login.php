@@ -48,11 +48,16 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
                     echo getTextForLanguage("SUCCESSFUL_LOGIN");
                 } else {
                     ?>
-                    <form method="post" onsubmit="return validateLogin()">
+                    <form method="post"
+                          onsubmit="return (validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]) && validateForm('password', [validateMoreThan5, validateLessThan256]));">
                         <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
-                            <br/><input type="text" id="usernameOrEmail" name="usernameOrEmail" maxlength="50"></label><br/>
+                            <br/><input type="text" id="usernameOrEmail" name="usernameOrEmail" maxlength="255"
+                                        minlength="4"
+                                        onblur="validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256])"></label><br/>
                         <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" id="password"
-                                                                                       name="password"></label><br/>
+                                                                                       minlength="6" maxlength="255"
+                                                                                       name="password"
+                                                                                       onblur="validateForm('password', [validateMoreThan5, validateLessThan256])"></label><br/>
                         <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
                         <input class="btn" type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
                     </form>

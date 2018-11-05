@@ -80,19 +80,56 @@ if (
         if (isset($_SESSION['person'])) {
             ?>
             <h3><?php echo getTextForLanguage("DELIVERY") ?></h3>
-            <form method="post" onsubmit="return validateCheckout()">
+            <form method="post" onsubmit="return (
+            validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
+            validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
+            validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
+            validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
+            validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
+            validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &&
+            validateForm('deliveryCountry', [validateNotEmpty, validateCountry]) &&
+            document.getElementById('billingDiffersCB').checked ? (
+                validateForm('billingFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
+                validateForm('billingLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
+                validateForm('billingStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
+                validateForm('billingHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
+                validateForm('billingCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
+                validateForm('billingZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &&
+                validateForm('billingCountry', [validateNotEmpty, validateCountry])) : true);
+            ">
                 <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="deliveryFirstname"
-                                                                           maxlength="50"></label><br/>
+                                                                                id="deliveryFirstname"
+                                                                                onblur="validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
+                                                                                minlength="1"
+                                                                                maxlength="50"></label><br/>
                 <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="deliveryLastname"
-                                                                          maxlength="50"></label><br/>
+                                                                               id="deliveryLastname"
+                                                                               onblur="validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
+                                                                               minlength="1"
+                                                                               maxlength="50"></label><br/>
                 <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text" name="deliveryStreet"
-                                                                        maxlength="100"></label><br/>
+                                                                             id="deliveryStreet"
+                                                                             onblur="validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                             minlength="1" maxlength="100"></label><br/>
                 <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text" name="deliveryHomenumber"
-                                                                            maxlength="20"></label><br/>
-                <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="deliveryCity" maxlength="100">
+                                                                                 id="deliveryHomenumber"
+                                                                                 onblur="validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                                 minlength="1"
+                                                                                 maxlength="20"></label><br/>
+                <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="deliveryCity"
+                                                                           id="deliveryCity"
+                                                                           onblur="validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                           minlength="1"
+                                                                           maxlength="100">
                 </label><br/>
-                <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="deliveryZip"></label><br/>
-                <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="deliveryCountry">
+                <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="deliveryZip"
+                                                                          id="deliveryZip"
+                                                                          onblur="validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21])"
+                                                                          minlength="1" maxlength="20"></label><br/>
+                <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="deliveryCountry"
+                                                                               id="deliveryCountry"
+                                                                               onblur="validateForm('deliveryCountry', [validateNotEmpty, validateCountry])"
+                                                                               name="country">
                         <?php
                         $countries = Person::getAllCountries();
                         foreach ($countries as $country) {
@@ -101,29 +138,49 @@ if (
                         }
                         ?>
                     </select></label><br/><br/>
-                <label><input type="checkbox" name="billingDiffersCB" value="billingDiffers"
+                <label><input type="checkbox" name="billingDiffersCB" id="billingDiffersCB" value="billingDiffers"
                               onchange="billingDiffers(this);"><?php echo getTextForLanguage("BILLING_DIFFERS") ?>
                 </label>
                 <div id="billingDiv">
                     <h3><?php echo getTextForLanguage("BILLING") ?></h3>
                     <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="billingFirstname"
-                                                                               maxlength="50"></label><br/>
+                                                                                    id="billingFirstname"
+                                                                                    onblur="validateForm('billingFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
+                                                                                    minlength="1"
+                                                                                    maxlength="50"></label><br/>
                     <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="billingLastname"
-                                                                              maxlength="50"></label><br/>
+                                                                                   id="billingLastname"
+                                                                                   onblur="validateForm('billingLastname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
+                                                                                   minlength="1"
+                                                                                   maxlength="50"></label><br/>
                     <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text" name="billingStreet"
-                                                                            maxlength="100"></label><br/>
+                                                                                 id="billingStreet"
+                                                                                 onblur="validateForm('billingStreet', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                                 minlength="1" maxlength="100"></label><br/>
                     <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text" name="billingHomenumber"
-                                                                                maxlength="20"></label><br/>
+                                                                                     id="billingHomenumber"
+                                                                                     onblur="validateForm('billingHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                                     minlength="1"
+                                                                                     maxlength="20"></label><br/>
                     <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="billingCity"
-                                                                          maxlength="100"></label><br/>
-                    <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="billingZip"></label><br/>
-                    <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="billingCountry">
+                                                                               id="billingCity"
+                                                                               onblur="validateForm('billingCity', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                               minlength="1"
+                                                                               maxlength="100">
+                    </label><br/>
+                    <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="billingZip"
+                                                                              id="billingZip"
+                                                                              onblur="validateForm('billingZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21])"
+                                                                              minlength="1" maxlength="20"></label><br/>
+                    <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="billingCountry"
+                                                                                   id="billingCountry"
+                                                                                   onblur="validateForm('billingCountry', [validateNotEmpty, validateCountry])"
+                                                                                   name="country">
                             <?php
                             $countries = Person::getAllCountries();
                             foreach ($countries as $country) {
                                 ?>
-                                <option
-                                value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
+                                <option value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
                             }
                             ?>
                         </select></label>

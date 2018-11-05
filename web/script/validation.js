@@ -27,34 +27,76 @@ function filterProducts() {
     }
 }
 
-function validateLogin() {
-    let usernameOrEmail, password, result;
-    usernameOrEmail = document.getElementById("usernameOrEmail");
-    result = true;
-    if (usernameOrEmail.text() === "") {
-        usernameOrEmail.style.borderColor = "Red";
-        result = false;
-    }
-    password = document.getElementById("password");
-    if (password.text() === "") {
-        password.style.borderColor = "Red";
-        result = false;
-    }
-    return result;
+function validateForm(id, validateFunctions) {
+    let element = document.getElementById(id);
+    element.style.borderColor = "initial";
+    validateFunctions.forEach(function (validateFunction) {
+        if (!validateFunction(element)) {
+            element.style.borderColor = "Red";
+            return false;
+        }
+    });
+    return true;
 }
 
-function validateRegister() {
-    // todo
+function validateNotEmpty(element) {
+    return element.value !== "";
 }
 
-function validateCheckout() {
-    // todo
+function validateMoreThan5(element) {
+    return element.value.length > 5;
 }
 
-function validateResetPassword() {
-    // todo
+function validateEmail(element) {
+    let emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(element.value);
 }
 
-function validateForgotPassword() {
-    // todo
+function validateLessThan51(element) {
+    return element.value.length < 51;
+}
+
+function validateLessThan256(element) {
+    return element.value.length < 256;
+}
+
+function validateLessThan21(element) {
+    return element.value.length < 21;
+}
+
+function validateMoreThan3(element) {
+    return element.value.length > 3;
+}
+
+function validateDate(element) {
+    let date = new Date(element.value);
+    return date instanceof Date;
+}
+
+function validateOnlyText(element) {
+    let onlyTextRegex = /^([a-zA-Z]+)$/;
+    return onlyTextRegex.test(element.value);
+}
+
+function validateUsername(element) {
+    let onlyUsernameRegex = /^([a-zA-Z0-9_\-]+)$/;
+    return onlyUsernameRegex.test(element.value);
+}
+
+function validateOnlyTextAndNumbers(element) {
+    let onlyUsernameRegex = /^([a-zA-Z0-9]+)$/;
+    return onlyUsernameRegex.test(element.value);
+}
+
+function validateOnlyNumbers(element) {
+    let onlyUsernameRegex = /^([0-9]+)$/;
+    return onlyUsernameRegex.test(element.value);
+}
+
+function validateCountry(element) {
+    return element.value == 1;
+}
+
+function validateLanguage(element) {
+    return element.value === 'de' || element.value === 'en';
 }

@@ -13,34 +13,30 @@ if (isset($_SESSION['person'])) {
     <?php require('body.php'); ?>
     <div class="main">
         <h1><?php echo getTextForLanguage("MY_ORDERS"); ?></h1>
-        <table class="table-border">
-            <thead>
-            <tr>
-                <th><?php echo getTextForLanguage("ORDER_ID"); ?></th>
-                <th><?php echo getTextForLanguage("PURCHASEDATE"); ?></th>
-                <th><?php echo getTextForLanguage("PAYMENTMETHOD"); ?></th>
-                <th><?php echo getTextForLanguage("STATE"); ?></th>
-                <th><?php echo getTextForLanguage("PRODUCTS"); ?></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($orderList as $order) { ?>
-                <tr>
-                    <td><?php echo htmlentities($order->id) ?></td>
-                    <td><?php echo htmlentities($order->purchasedate) ?></td>
-                    <td><?php echo htmlentities($order->paymentmethod) ?></td>
-                    <td><?php echo htmlentities($order->state) ?></td>
-                    <td>
-                        <?php
-                        $products = $order->products;
-                        $remove = false;
-                        include('util/orderTable.php');
-                        ?>
-                    </td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
+
+        <div class="accordion vertical">
+            <ul>
+                <?php foreach ($orderList as $order) { ?>
+                    <li>
+                        <input type="checkbox" id="<?php echo htmlentities($order->id) ?>" name="checkbox-accordion"/>
+                        <label for="<?php echo htmlentities($order->id) ?>">
+                            #<?php echo htmlentities($order->id) ?></td> -
+                            <?php echo htmlentities($order->purchasedate) ?> -
+                            <?php echo htmlentities($order->paymentmethod) ?> -
+                            <?php echo htmlentities($order->state) ?>
+                        </label>
+                        <div class="content">
+                            <?php
+                            $products = $order->products;
+                            $remove = false;
+                            include('util/orderTable.php');
+                            ?>
+                        </div>
+                    </li>
+
+                <?php } ?>
+            </ul>
+        </div>
     </div>
     </body>
     </html>

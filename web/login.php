@@ -49,7 +49,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
                 } else {
                     ?>
                     <form method="post"
-                          onsubmit="return (validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]) && validateForm('password', [validateMoreThan5, validateLessThan256]));">
+                          onsubmit="return validateLogin()">
                         <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
                             <br/><input type="text" id="usernameOrEmail" name="usernameOrEmail" maxlength="255"
                                         minlength="4"

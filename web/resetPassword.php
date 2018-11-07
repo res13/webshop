@@ -33,7 +33,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
     <h1><?php echo getHTMLHead(getTextForLanguage("PASSWORD_RESET")); ?></h1>
     <?php
     if (isset($_SESSION['person']) && $_SESSION['person']->resetpassword == 0) {
-        echo getTextForLanguage("RESET_PASSWORD");
+        echo "<p>" . getTextForLanguage("RESET_PASSWORD") . "</p>";
     } else {
         ?>
         <div class="row">
@@ -41,7 +41,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
             <div class="col-25">
                 <div class="container">
                     <form method="post"
-                          onsubmit="return (validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]) && validateForm('oldPassword', [validateMoreThan5, validateLessThan256]) && validateForm('newPassword', [validateMoreThan5, validateLessThan256]));">
+                          onsubmit="return validateResetPassword()">
                         <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
                             <br/><input type="text" name="usernameOrEmail" id="usernameOrEmail" maxlength="255"
                                         minlength="4"

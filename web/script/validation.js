@@ -9,6 +9,7 @@ function billingDiffers(cb) {
 }
 
 function filterProducts() {
+    // todo: search instead of filtering
     let input, filter, productWrapper, productList, product, name, i;
     input = document.getElementById("productFilterText");
     filter = input.value.toUpperCase();
@@ -28,15 +29,16 @@ function filterProducts() {
 }
 
 function validateForm(id, validateFunctions) {
+    let result = true;
     let element = document.getElementById(id);
     element.style.borderColor = "initial";
     validateFunctions.forEach(function (validateFunction) {
         if (!validateFunction(element)) {
             element.style.borderColor = "Red";
-            return false;
+            result = false;
         }
     });
-    return true;
+    return result;
 }
 
 function validateNotEmpty(element) {
@@ -99,4 +101,65 @@ function validateCountry(element) {
 
 function validateLanguage(element) {
     return element.value === 'de' || element.value === 'en';
+}
+
+function validateLogin() {
+    let result = true;
+    result &= validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]);
+    result &= validateForm('password', [validateMoreThan5, validateLessThan256]);
+    return result == 1 ? true : false;
+}
+
+function validateForgotPassword() {
+    let result = true;
+    result &= validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]);
+    return result == 1 ? true : false;
+}
+
+function validateRegister() {
+    let result = true;
+    result &= validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText]);
+    result &= validateForm('lastname', [validateNotEmpty, validateLessThan51, validateOnlyText]);
+    result &= validateForm('username', [validateMoreThan3, validateLessThan21, validateUsername]);
+    result &= validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]);
+    result &= validateForm('password', [validateMoreThan5, validateLessThan256]);
+    result &= validateForm('birthdate', [validateNotEmpty, validateDate]);
+    result &= validateForm('phone', [validateMoreThan5, validateOnlyNumbers, validateLessThan21]);
+    result &= validateForm('street', [validateNotEmpty, validateOnlyTextAndNumbers]);
+    result &= validateForm('homenumber', [validateNotEmpty, validateOnlyTextAndNumbers]);
+    result &= validateForm('city', [validateNotEmpty, validateOnlyTextAndNumbers]);
+    result &= validateForm('zip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]);
+    result &= validateForm('country', [validateNotEmpty, validateCountry]);
+    result &= validateForm('lang', [validateNotEmpty, validateLanguage]);
+    return result == 1 ? true : false;
+}
+
+function validateResetPassword() {
+    let result = true;
+    result &= validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]);
+    result &= validateForm('oldPassword', [validateMoreThan5, validateLessThan256]);
+    result &= validateForm('newPassword', [validateMoreThan5, validateLessThan256]);
+    return result == 1 ? true : false;
+}
+
+function validateCheckout() {
+    let result = true;
+    result &= validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
+        validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
+        validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+        validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+        validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+        validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &
+        validateForm('deliveryCountry', [validateNotEmpty, validateCountry]);
+    let billingDiffersCB = document.getElementById('billingDiffersCB');
+    if (billingDiffersCB != null && billingDiffersCB.checked) {
+        result &= validateForm('billingFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
+            validateForm('billingLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
+            validateForm('billingStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+            validateForm('billingHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+            validateForm('billingCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+            validateForm('billingZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &
+            validateForm('billingCountry', [validateNotEmpty, validateCountry]);
+    }
+    return result == 1 ? true : false
 }

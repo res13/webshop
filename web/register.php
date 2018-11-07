@@ -32,20 +32,7 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
         <div class="col-25"></div>
         <div class="col-50">
             <div class="container">
-                <form method="post" onsubmit="return (
-                validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
-                validateForm('lastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
-                validateForm('username', [validateMoreThan3, validateLessThan21, validateUsername]) &&
-                validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]) &&
-                validateForm('password', [validateMoreThan5, validateLessThan256]) &&
-                validateForm('birthdate', [validateNotEmpty, validateDate]) &&
-                validateForm('phone', [validateMoreThan5, validateOnlyNumbers, validateLessThan21]) &&
-                validateForm('street', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-                validateForm('homenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-                validateForm('city', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-                validateForm('zip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &&
-                validateForm('country', [validateNotEmpty, validateCountry]) &&
-                validateForm('lang', [validateNotEmpty, validateLanguage]));">
+                <form method="post" onsubmit="return validateRegister()">
                     <div class="row">
                         <div class="col-50">
 

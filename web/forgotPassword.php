@@ -50,7 +50,7 @@ function randomPassword($length)
             <div class="col-25">
                 <div class="container">
                     <form method="post"
-                          onsubmit="return (validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]));">
+                          onsubmit="return validateForgotPassword()">
                         <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email" id="email"
                                                                                     maxlength="255" minlength="4"
                                                                                     onblur="validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail])"></label><br/>

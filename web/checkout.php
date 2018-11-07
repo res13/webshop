@@ -80,23 +80,7 @@ if (
         if (isset($_SESSION['person'])) {
             ?>
             <h3><?php echo getTextForLanguage("DELIVERY") ?></h3>
-            <form method="post" onsubmit="return (
-            validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
-            validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
-            validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-            validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-            validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-            validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &&
-            validateForm('deliveryCountry', [validateNotEmpty, validateCountry]) &&
-            document.getElementById('billingDiffersCB').checked ? (
-                validateForm('billingFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
-                validateForm('billingLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &&
-                validateForm('billingStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-                validateForm('billingHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-                validateForm('billingCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &&
-                validateForm('billingZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &&
-                validateForm('billingCountry', [validateNotEmpty, validateCountry])) : true);
-            ">
+            <form method="post" onsubmit="return validateCheckout();">
                 <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="deliveryFirstname"
                                                                                 id="deliveryFirstname"
                                                                                 onblur="validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText])"

@@ -37,6 +37,9 @@ $texts = array
     'PASSWORD' => array(
         'de' => 'Passwort',
         'en' => 'Password'),
+    'REPEAT_PASSWORD' => array(
+        'de' => 'Passwort wiederholen',
+        'en' => 'Repeat Password'),
     'WRONG_USERNAME_EMAIL_PASSWORD' => array(
         'de' => 'Falsche Benutzername/Email und Passwort kombination',
         'en' => 'Wrong username/email or password!'),
@@ -229,6 +232,9 @@ $texts = array
     'WELCOME' => array(
         'de' => 'Herzlich willkommen auf dem Parachute Shop',
         'en' => 'Welcome to the parachute web shop'),
+    'CHANGE_LANGUAGE' => array(
+        'de' => 'Sprache wechseln',
+        'en' => 'Change language'),
 );
 
 function getAvailableLanguages()

@@ -29,16 +29,19 @@ function filterProducts() {
 }
 
 function validateForm(id, validateFunctions) {
-    let result = true;
     let element = document.getElementById(id);
-    element.style.borderColor = "initial";
-    validateFunctions.forEach(function (validateFunction) {
-        if (!validateFunction(element)) {
-            element.style.borderColor = "Red";
-            result = false;
-        }
-    });
-    return result;
+    if (element != null) {
+        let result = true;
+        element.style.borderColor = "initial";
+        validateFunctions.forEach(function (validateFunction) {
+            if (!validateFunction(element)) {
+                element.style.borderColor = "Red";
+                result = false;
+            }
+        });
+        return result;
+    }
+    return false;
 }
 
 function validateNotEmpty(element) {
@@ -103,6 +106,22 @@ function validateLanguage(element) {
     return element.value === 'de' || element.value === 'en';
 }
 
+function validatePasswordSame(password1, password2) {
+    let password1Element = document.getElementById(password1);
+    let password2Element = document.getElementById(password2);
+    if (password1Element != null && password2Element != null) {
+        password1Element.style.borderColor = "initial";
+        password2Element.style.borderColor = "initial";
+        if (password1Element.value !== password2Element.value) {
+            password1Element.style.borderColor = "Red";
+            password2Element.style.borderColor = "Red";
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
 function validateLogin() {
     let result = true;
     result &= validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]);
@@ -123,6 +142,7 @@ function validateRegister() {
     result &= validateForm('username', [validateMoreThan3, validateLessThan21, validateUsername]);
     result &= validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]);
     result &= validateForm('password', [validateMoreThan5, validateLessThan256]);
+    result &= validatePasswordSame('password', 'passwordRepeat');
     result &= validateForm('birthdate', [validateNotEmpty, validateDate]);
     result &= validateForm('phone', [validateMoreThan5, validateOnlyNumbers, validateLessThan21]);
     result &= validateForm('street', [validateNotEmpty, validateOnlyTextAndNumbers]);
@@ -139,6 +159,7 @@ function validateResetPassword() {
     result &= validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]);
     result &= validateForm('oldPassword', [validateMoreThan5, validateLessThan256]);
     result &= validateForm('newPassword', [validateMoreThan5, validateLessThan256]);
+    result &= validatePasswordSame('newPassword', 'repeatNewPassword');
     return result == 1 ? true : false;
 }
 

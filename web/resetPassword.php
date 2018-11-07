@@ -58,6 +58,12 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
                                                                                            minlength="6"
                                                                                            maxlength="255"
                                                                                            onblur="validateForm('newPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
+                        <label><?php echo getTextForLanguage("REPEAT_NEW_PASSWORD") ?><br/><input type="password"
+                                                                                           name="repeatNewPassword"
+                                                                                           id="repeatNewPassword"
+                                                                                           minlength="6"
+                                                                                           maxlength="255"
+                                                                                           onblur="validateForm('repeatNewPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
                         <input class="btn" type="submit" value="<?php echo getTextForLanguage("PASSWORD_RESET") ?>">
                     </form>
                 </div>

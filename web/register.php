@@ -58,6 +58,10 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
                                                                                            onblur="validateForm('password', [validateMoreThan5, validateLessThan256])"
                                                                                            minlength="6" name="password"
                                                                                            maxlength="255"></label><br/>
+                            <label><?php echo getTextForLanguage("REPEAT_PASSWORD") ?><br/><input type="password" id="passwordRepeat"
+                                                                                           onblur="validateForm('passwordRepeat', [validateMoreThan5, validateLessThan256])"
+                                                                                           minlength="6" name="passwordRepeat"
+                                                                                           maxlength="255"></label><br/>
                             <label><?php echo getTextForLanguage("BIRTHDATE") ?><br/><input type="date" id="birthdate"
                                                                                             onblur="validateForm('birthdate', [validateNotEmpty, validateDate])"
                                                                                             name="birthdate"></label><br/>

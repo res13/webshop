@@ -13,7 +13,6 @@ table, tr, th, td {
 
 .main {
     margin: 8px;
-    padding: 20px;
 }
 
 .logo {
@@ -219,13 +218,6 @@ span {
     border-radius: 20px;
 }
 
-
-.full-Size {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-
-}
-
 .wrapper-small {
     height: 220px;
     margin: 10px;
@@ -344,12 +336,10 @@ span {
 }
 
 #productFilterText {
-    background: url('../img/searchicon.png') no-repeat 10px 10px;
     width: 20%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
+    position: absolute;
+    right: 35px;
+    top: 70px;
 }
 
 #billingDiv {
@@ -400,6 +390,10 @@ a {
     margin: 40px auto;
     border-radius: 0.6em;
     background: #ecf0f1;
+}
+
+.innerContainer {
+    padding: 20px;
 }
 
 .table {
@@ -560,6 +554,7 @@ a.qty:hover {
 .col-75 {
     padding: 0 16px 0 0;
 }
+
 
 input[type=text],input[type=date], input[type=password], input[type=number], select[class=selectLog] {
     width: 100%;

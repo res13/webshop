@@ -20,9 +20,9 @@ function filterProducts() {
         name = product.getAttribute("data-name");
         if (name) {
             if (name.toUpperCase().indexOf(filter) > -1) {
-                product.style.visibility = "visible";
+              product.parentNode.style.display = "block";
             } else {
-                product.style.visibility = "hidden";
+              product.parentNode.style.display = "none";
             }
         }
     }

@@ -43,27 +43,30 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
         <div class="col-25"></div>
         <div class="col-25">
             <div class="container">
-                <?php
-                if (isset($_SESSION['person'])) {
-                    redirect("user.php");
-                } else {
-                    ?>
-                    <form method="post"
-                          onsubmit="return validateLogin()">
-                        <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
-                            <br/><input type="text" id="usernameOrEmail" name="usernameOrEmail" maxlength="255"
-                                        minlength="3"
-                                        onblur="validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])"></label><br/>
-                        <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" id="password"
-                                                                                       minlength="6" maxlength="255"
-                                                                                       name="password"
-                                                                                       onblur="validateForm('password', [validateMoreThan5, validateLessThan256])"></label><br/>
-                        <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
-                        <input class="btn" type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
-                    </form>
+                <div class="innerContainer">
+
                     <?php
-                }
-                ?>
+                    if (isset($_SESSION['person'])) {
+                        redirect("user.php");
+                    } else {
+                        ?>
+                        <form method="post"
+                              onsubmit="return validateLogin()">
+                            <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
+                                <br/><input type="text" id="usernameOrEmail" name="usernameOrEmail" maxlength="255"
+                                            minlength="3"
+                                            onblur="validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])"></label><br/>
+                            <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" id="password"
+                                                                                           minlength="6" maxlength="255"
+                                                                                           name="password"
+                                                                                           onblur="validateForm('password', [validateMoreThan5, validateLessThan256])"></label><br/>
+                            <a href="forgotPassword.php"><?php echo getTextForLanguage("FORGOT_PASSWORD") ?></a><br/>
+                            <input class="btn" type="submit" value="<?php echo getTextForLanguage("LOGIN") ?>">
+                        </form>
+                        <?php
+                    }
+                    ?>
+                </div>
             </div>
         </div>
         <div class="col-25"></div>

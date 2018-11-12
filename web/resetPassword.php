@@ -40,32 +40,34 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
             <div class="col-25"></div>
             <div class="col-25">
                 <div class="container">
-                    <form method="post"
-                          onsubmit="return validateResetPassword()">
-                        <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
-                            <br/><input type="text" name="usernameOrEmail" id="usernameOrEmail" maxlength="255"
-                                        minlength="4"
-                                        onblur="validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])"></label><br/>
-                        <label><?php echo getTextForLanguage("OLD_PASSWORD") ?><br/><input type="password"
-                                                                                           name="oldPassword"
-                                                                                           id="oldPassword"
-                                                                                           minlength="6"
-                                                                                           maxlength="255"
-                                                                                           onblur="validateForm('oldPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
-                        <label><?php echo getTextForLanguage("NEW_PASSWORD") ?><br/><input type="password"
-                                                                                           name="newPassword"
-                                                                                           id="newPassword"
-                                                                                           minlength="6"
-                                                                                           maxlength="255"
-                                                                                           onblur="validateForm('newPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
-                        <label><?php echo getTextForLanguage("REPEAT_NEW_PASSWORD") ?><br/><input type="password"
-                                                                                           name="repeatNewPassword"
-                                                                                           id="repeatNewPassword"
-                                                                                           minlength="6"
-                                                                                           maxlength="255"
-                                                                                           onblur="validateForm('repeatNewPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
-                        <input class="btn" type="submit" value="<?php echo getTextForLanguage("PASSWORD_RESET") ?>">
-                    </form>
+                    <div class="innerContainer">
+                        <form method="post"
+                              onsubmit="return validateResetPassword()">
+                            <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
+                                <br/><input type="text" name="usernameOrEmail" id="usernameOrEmail" maxlength="255"
+                                            minlength="4"
+                                            onblur="validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])"></label><br/>
+                            <label><?php echo getTextForLanguage("OLD_PASSWORD") ?><br/><input type="password"
+                                                                                               name="oldPassword"
+                                                                                               id="oldPassword"
+                                                                                               minlength="6"
+                                                                                               maxlength="255"
+                                                                                               onblur="validateForm('oldPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
+                            <label><?php echo getTextForLanguage("NEW_PASSWORD") ?><br/><input type="password"
+                                                                                               name="newPassword"
+                                                                                               id="newPassword"
+                                                                                               minlength="6"
+                                                                                               maxlength="255"
+                                                                                               onblur="validateForm('newPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
+                            <label><?php echo getTextForLanguage("REPEAT_NEW_PASSWORD") ?><br/><input type="password"
+                                                                                                      name="repeatNewPassword"
+                                                                                                      id="repeatNewPassword"
+                                                                                                      minlength="6"
+                                                                                                      maxlength="255"
+                                                                                                      onblur="validateForm('repeatNewPassword', [validateMoreThan5, validateLessThan256])"></label><br/>
+                            <input class="btn" type="submit" value="<?php echo getTextForLanguage("PASSWORD_RESET") ?>">
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="col-25"></div>

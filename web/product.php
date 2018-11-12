@@ -55,7 +55,7 @@ if ($product == null) {
                         ?>
                         <span> -
                             <?php echo htmlentities($productOption->optionName) ?>
-                            <label><select name="options[]">
+                            <label><select class="styled-select rounded" name="options[]">
                                 <?php
                                 foreach ($productOption->optionValues as $optionValue) {
                                     ?><option value="<?php echo $optionValue->optionValueId ?>"><?php echo htmlentities($optionValue->optionValueName) ?></option><?php

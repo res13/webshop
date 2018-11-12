@@ -47,11 +47,11 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
                                                                                            minlength="1" maxlength="50"></label><br/>
                             <label><?php echo getTextForLanguage("USERNAME") ?><br/><input type="text" name="username"
                                                                                            id="username"
-                                                                                           onblur="validateForm('username', [validateMoreThan3, validateLessThan21, validateUsername])"
+                                                                                           onblur="validateForm('username', [validateMoreThan2, validateLessThan21, validateUsername])"
                                                                                            minlength="4" maxlength="20"></label><br/>
                             <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email"
                                                                                         id="email"
-                                                                                        onblur="validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail])"
+                                                                                        onblur="validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail])"
                                                                                         minlength="4"
                                                                                         maxlength="255"></label><br/>
                             <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" id="password"

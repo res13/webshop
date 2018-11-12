@@ -45,15 +45,15 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
             <div class="container">
                 <?php
                 if (isset($_SESSION['person'])) {
-                    echo getTextForLanguage("SUCCESSFUL_LOGIN");
+                    redirect("user.php");
                 } else {
                     ?>
                     <form method="post"
                           onsubmit="return validateLogin()">
                         <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
                             <br/><input type="text" id="usernameOrEmail" name="usernameOrEmail" maxlength="255"
-                                        minlength="4"
-                                        onblur="validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256])"></label><br/>
+                                        minlength="3"
+                                        onblur="validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])"></label><br/>
                         <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password" id="password"
                                                                                        minlength="6" maxlength="255"
                                                                                        name="password"

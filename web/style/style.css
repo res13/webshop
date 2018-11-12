@@ -13,6 +13,7 @@ table, tr, th, td {
 
 .main {
     margin: 8px;
+    padding: 20px;
 }
 
 .logo {
@@ -22,7 +23,7 @@ table, tr, th, td {
 .state {
     font-size: 20px;
     color: #fff;
-    padding: 1em;
+    padding: 20px 10px 10px 0;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -104,6 +105,12 @@ table, tr, th, td {
     clear: both;
 }
 
+.navRight {
+    position: absolute;
+    right: 0px;
+    display: -webkit-box;
+}
+
 .wrapper {
     height: 420px;
     margin: 50px auto;
@@ -181,6 +188,37 @@ span {
 .product-price-btn button:hover {
     background-color: #79b0a1;
 }
+
+.styled-select {
+    height: 29px;
+    overflow: hidden;
+    font-size: 18px;
+}
+
+.styled-select select {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    height: 29px;
+    padding: 5px; /* If you add too much padding here, the options won't show in IE */
+    width: 268px;
+}
+
+
+.styled-select.slate select {
+    border: 1px solid #ccc;
+    font-size: 16px;
+    height: 34px;
+    width: 268px;
+}
+
+/* -------------------- Rounded Corners */
+.rounded {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
 
 .full-Size {
     display: grid;
@@ -319,30 +357,7 @@ span {
 }
 
 .top-selector {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -webkit-padding-end: 20px;
-    -moz-padding-end: 20px;
-    -webkit-padding-start: 2px;
-    -moz-padding-start: 2px;
-    background-color: #C29D23;
-    background-image: url(../img/select-arrow.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4);
-    background-image: url(../img/select-arrow.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4);
-    background-image: url(../img/select-arrow.png), -ms-linear-gradient(top, #E5E5E5, #F4F4F4);
-    background-image: url(../img/select-arrow.png), -o-linear-gradient(top, #E5E5E5, #F4F4F4);
-    background-image: url(../img/select-arrow.png), linear-gradient(to bottom, #E5E5E5, #F4F4F4);
-    background-position: center right;
-    background-repeat: no-repeat;
-    border: 1px solid #AAA;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    color: #555;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    margin-top: -3px;
 }
 
 /*table*/
@@ -383,7 +398,6 @@ a {
 
 .container {
     margin: 40px auto;
-    padding: 20px;
     border-radius: 0.6em;
     background: #ecf0f1;
 }
@@ -425,11 +439,11 @@ a {
 
 .col {
     padding: 1em;
-    width: 13%;
+    width: 15%;
 }
 
 .col-pro {
-    width: 30%;
+    width: 23%;
 }
 
 .col-pro > * {
@@ -443,10 +457,15 @@ a {
 
 .col-numeric p {
     font: bold 1.8em helvetica;
+    text-align: right;
 }
 
 .col-total p {
     color: #12c8b1;
+}
+
+.colPad {
+    padding-top: 22px;
 }
 
 .tf .col {
@@ -539,7 +558,7 @@ a.qty:hover {
 .col-25,
 .col-50,
 .col-75 {
-    padding: 0 16px;
+    padding: 0 16px 0 0;
 }
 
 input[type=text],input[type=date], input[type=password], input[type=number], select[class=selectLog] {

@@ -45,7 +45,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_
                         <label><?php echo getTextForLanguage("USERNAME") ?> <?php echo getTextForLanguage("OR") ?> <?php echo getTextForLanguage("EMAIL") ?>
                             <br/><input type="text" name="usernameOrEmail" id="usernameOrEmail" maxlength="255"
                                         minlength="4"
-                                        onblur="validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256])"></label><br/>
+                                        onblur="validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])"></label><br/>
                         <label><?php echo getTextForLanguage("OLD_PASSWORD") ?><br/><input type="password"
                                                                                            name="oldPassword"
                                                                                            id="oldPassword"

@@ -10,6 +10,7 @@ require('head.php');
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo getTextForLanguage("BASKET"); ?></h1>
+    <h2><?php echo "<a href=\"cleanBasket.php\">" . getTextForLanguage("CLEAN_BASKET") ."</a>"; ?></h2>
 
     <div class="row">
         <div class="col-75">
@@ -21,7 +22,6 @@ require('head.php');
                     $products = $basket->__get('products');
                     $remove = true;
                     include('util/orderTable.php');
-                    echo "<a href=\"cleanBasket.php\">" . getTextForLanguage("CLEAN_BASKET") . "</a><br/><br/>";
                 } else {
                     echo "<p>" . getTextForLanguage("BASKET_IS_EMPTY") . "</p>";
                 }

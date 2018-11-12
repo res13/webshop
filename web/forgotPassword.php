@@ -53,7 +53,7 @@ function randomPassword($length)
                           onsubmit="return validateForgotPassword()">
                         <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email" id="email"
                                                                                     maxlength="255" minlength="4"
-                                                                                    onblur="validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail])"></label><br/>
+                                                                                    onblur="validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail])"></label><br/>
                         <input class="btn" type="submit"
                                value="<?php echo getTextForLanguage("REQUEST_NEW_PASSWORD") ?>">
                     </form>

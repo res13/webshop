@@ -1,5 +1,4 @@
 <?php
-echo $_SESSION['lang'];
 if (isset($_POST['lang']) && in_array($_POST['lang'], getAvailableLanguages())) {
     $_SESSION['lang'] = $_POST['lang'];
     if (isset($_SESSION['person'])) {

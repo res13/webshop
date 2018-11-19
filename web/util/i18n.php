@@ -1,20 +1,26 @@
 <?php
+echo $_SESSION['lang'];
 if (isset($_POST['lang']) && in_array($_POST['lang'], getAvailableLanguages())) {
     $_SESSION['lang'] = $_POST['lang'];
     if (isset($_SESSION['person'])) {
         $_SESSION['person']->lang = $_POST['lang'];
         Person::setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
+        setcookie("lang", $_POST['lang'], 0, "", "parachute.webshop.ch", false, false);
     }
 }
 else if (!isset($_SESSION['lang'])) {
+    if(isset($_COOKIE['lang'])) {
+        $lang = $_COOKIE['lang'];
+    }
+    else {
+        $lang = getDefaultLanguage();
+    }
     if (isset($_SESSION['person'])) {
         $lang = Person::getLanguageOfPerson($_SESSION['person']->id);
         $_SESSION['person']->lang = $lang;
-        $_SESSION['lang'] = $lang;
     }
-    else {
-        $_SESSION['lang'] = getDefaultLanguage();
-    }
+    $_SESSION['lang'] = $lang;
+    setcookie("lang", $lang, 0, "", "parachute.webshop.ch", false, false);
 }
 
 $texts = array

@@ -9,7 +9,6 @@ function billingDiffers(cb) {
 }
 
 function filterProducts() {
-    // todo: search instead of filtering
     let input, filter, productWrapper, productList, product, name, i;
     input = document.getElementById("productFilterText");
     filter = input.value.toUpperCase();
@@ -183,4 +182,8 @@ function validateCheckout() {
             validateForm('billingCountry', [validateNotEmpty, validateCountry]);
     }
     return result == 1 ? true : false
+}
+
+function validateUser() {
+
 }

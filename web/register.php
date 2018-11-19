@@ -1,5 +1,6 @@
 <?php
 require('head.php');
+// todo: validate all post input
 if (isset($_POST['email']) && isset($_POST['username'])) {
     $email = validateInput($_POST['email']);
     $username = validateInput($_POST['username']);

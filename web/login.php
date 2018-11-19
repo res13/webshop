@@ -47,7 +47,7 @@ if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
 
                     <?php
                     if (isset($_SESSION['person'])) {
-                        redirect("user.php");
+                        redirect("index.php");
                     } else {
                         ?>
                         <form method="post"

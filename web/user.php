@@ -2,6 +2,23 @@
 require('head.php');
 if (isset($_SESSION['person'])) {
     $person = $_SESSION['person'];
+    // todo: validate all post input
+    if (isset($_POST['email']) && isset($_POST['username'])) {
+        $email = validateInput($_POST['email']);
+        $username = validateInput($_POST['username']);
+        $password = validateInput($_POST['password']);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+            alert(getTextForLanguage("EMAIL_NOT_VALID"));
+        } else if (Person::checkIfEmailExists($email)) {
+            alert(getTextForLanguage("EMAIL_ADDRESS_ALREADY_EXISTS"));
+        } else if (Person::checkIfUsernameExists($username)) {
+            alert(getTextForLanguage("USERNAME_ADDRESS_ALREADY_EXISTS"));
+        } else {
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $_SESSION['person']->setAll($_POST);
+            Person::updatePerson($person);
+        }
+    }
     ?>
     <!DOCTYPE html>
     <html lang="de">
@@ -12,67 +29,145 @@ if (isset($_SESSION['person'])) {
     <?php require('body.php'); ?>
     <div class="main">
         <h1><?php echo getTextForLanguage("USER"); ?></h1>
-        <?php
-        // todo: change user attributes
-        echo $person; ?>
         <?php echo "<br/><a href=\"myOrders.php\">" . getTextForLanguage("MY_ORDERS") . "</a>" ?>
-    </div>
-    <div class="container">
-        <div class="innerContainer">
-            <form method="post" onsubmit="return validateCheckout();">
-                <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text" name="deliveryFirstname"
-                                                                                id="deliveryFirstname"
-                                                                                onblur="validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
-                                                                                minlength="1"
-                                                                                maxlength="50"
-                                                                                value="<?php echo $person->__get("firstname") ?>"></label><br/>
-                <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text" name="deliveryLastname"
-                                                                               id="deliveryLastname"
-                                                                               onblur="validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
-                                                                               minlength="1"
-                                                                               maxlength="50"
-                                                                               value="<?php echo $person->__get("lastname") ?>"></label><br/>
-                <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text" name="deliveryStreet"
-                                                                             id="deliveryStreet"
-                                                                             onblur="validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers])"
-                                                                             minlength="1" maxlength="100"
-                                                                             value="<?php echo $person->__get("street") ?>"></label><br/>
-                <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text" name="deliveryHomenumber"
-                                                                                 id="deliveryHomenumber"
-                                                                                 onblur="validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers])"
-                                                                                 minlength="1"
-                                                                                 maxlength="20"
-                                                                                 value="<?php echo $person->__get("homenumber") ?>"></label><br/>
-                <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="deliveryCity"
-                                                                           id="deliveryCity"
-                                                                           onblur="validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers])"
-                                                                           minlength="1"
-                                                                           maxlength="100"
-                value="<?php echo $person->__get("city") ?>"></label><br/>
-                <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" name="deliveryZip"
-                                                                          id="deliveryZip"
-                                                                          onblur="validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21])"
-                                                                          minlength="1" maxlength="20"
-                                                                          value="<?php echo $person->__get("zip") ?>"></label><br/>
+        <div class="row">
+            <div class="col-25"></div>
+            <div class="col-50">
+                <div class="container">
+                    <div class="innerContainer">
+                        <form method="post" onsubmit="return validateRegister()">
+                            <div class="row">
+                                <div class="col-50">
 
-                <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog" name="deliveryCountry"
-                                                                               id="deliveryCountry"
-                                                                               onblur="validateForm('deliveryCountry', [validateNotEmpty, validateCountry])"
-                                                                               name="country">
-                        <?php
-                        $countries = Person::getAllCountries();
-                        foreach ($countries as $country) {
-                            ?>
-                            <option value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
-                        }
-                        ?>
-                    </select></label><br/><br/>
+                                    <label><?php echo getTextForLanguage("FIRSTNAME") ?><br/><input type="text"
+                                                                                                    name="firstname"
+                                                                                                    id="firstname"
+                                                                                                    onblur="validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
+                                                                                                    minlength="1"
+                                                                                                    maxlength="50"
+                                                                                                    value="<?php echo $person->firstname ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("LASTNAME") ?><br/><input type="text"
+                                                                                                   name="lastname"
+                                                                                                   id="lastname"
+                                                                                                   onblur="validateForm('lastname', [validateNotEmpty, validateLessThan51, validateOnlyText])"
+                                                                                                   minlength="1"
+                                                                                                   maxlength="50"
+                                                                                                   value="<?php echo $person->lastname ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("USERNAME") ?><br/><input type="text"
+                                                                                                   name="username"
+                                                                                                   id="username"
+                                                                                                   onblur="validateForm('username', [validateMoreThan2, validateLessThan21, validateUsername])"
+                                                                                                   minlength="4"
+                                                                                                   maxlength="20"
+                                                                                                   value="<?php echo $person->username ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email"
+                                                                                                id="email"
+                                                                                                onblur="validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail])"
+                                                                                                minlength="4"
+                                                                                                maxlength="255"
+                                                                                                value="<?php echo $person->email ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password"
+                                                                                                   id="password"
+                                                                                                   onblur="validateForm('password', [validateMoreThan5, validateLessThan256])"
+                                                                                                   minlength="6"
+                                                                                                   name="password"
+                                                                                                   maxlength="255"></label><br/>
+                                    <label><?php echo getTextForLanguage("REPEAT_PASSWORD") ?><br/><input
+                                                type="password"
+                                                id="passwordRepeat"
+                                                onblur="validateForm('passwordRepeat', [validateMoreThan5, validateLessThan256])"
+                                                minlength="6"
+                                                name="passwordRepeat"
+                                                maxlength="255"></label><br/>
+                                    <label><?php echo getTextForLanguage("BIRTHDATE") ?><br/><input type="date"
+                                                                                                    id="birthdate"
+                                                                                                    onblur="validateForm('birthdate', [validateNotEmpty, validateDate])"
+                                                                                                    name="birthdate"
+                                                                                                    value="<?php echo $person->birthdate ?>"></label><br/>
 
+                                </div>
+                                <div class="col-50">
+
+                                    <label><?php echo getTextForLanguage("PHONE") ?><br/><input type="text" name="phone"
+                                                                                                id="phone"
+                                                                                                onblur="validateForm('phone', [validateMoreThan5, validateOnlyNumbers, validateLessThan21])"
+                                                                                                minlength="6"
+                                                                                                maxlength="20"
+                                                                                                value="<?php echo $person->phone ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("STREET") ?><br/><input type="text"
+                                                                                                 name="street"
+                                                                                                 id="street"
+                                                                                                 onblur="validateForm('street', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                                                 minlength="1"
+                                                                                                 maxlength="100"
+                                                                                                 value="<?php echo $person->street ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("HOMENUMBER") ?><br/><input type="text"
+                                                                                                     name="homenumber"
+                                                                                                     id="homenumber"
+                                                                                                     onblur="validateForm('homenumber', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                                                     minlength="1"
+                                                                                                     maxlength="20"
+                                                                                                     value="<?php echo $person->homenumber ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("CITY") ?><br/><input type="text" name="city"
+                                                                                               id="city"
+                                                                                               onblur="validateForm('city', [validateNotEmpty, validateOnlyTextAndNumbers])"
+                                                                                               minlength="1"
+                                                                                               maxlength="100"
+                                                                                               value="<?php echo $person->city ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("ZIP") ?><br/><input type="number" id="zip"
+                                                                                              onblur="validateForm('zip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21])"
+                                                                                              minlength="1"
+                                                                                              maxlength="20"
+                                                                                              name="zip"
+                                                                                              value="<?php echo $person->zip ?>"></label><br/>
+                                    <label><?php echo getTextForLanguage("COUNTRY") ?><br/><select class="selectLog"
+                                                                                                   id="country"
+                                                                                                   onblur="validateForm('country', [validateNotEmpty, validateCountry])"
+                                                                                                   name="country">
+                                            <?php
+                                            $countries = Person::getAllCountries();
+                                            foreach ($countries as $country) {
+                                                if ($country === $person->country) {
+                                                    ?>
+                                                    <option
+                                                    value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?> selected</option><?php
+                                                } else {
+                                                    ?>
+                                                    <option
+                                                    value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?></option><?php
+                                                }
+
+                                            }
+                                            ?>
+                                        </select></label><br/>
+                                    <label><?php echo getTextForLanguage("LANGUAGE") ?><br/><select class="selectLog"
+                                                                                                    id="lang"
+                                                                                                    onblur="validateForm('lang', [validateNotEmpty, validateLanguage])"
+                                                                                                    name="lang">
+                                            <?php
+                                            foreach (getAvailableLanguages() as $lang) {
+                                                if ($lang === $person->lang) {
+                                                    ?>
+                                                    <option value="<?php echo $lang ?>"
+                                                            selected><?php echo $lang ?></option><?php
+                                                } else {
+                                                    ?>
+                                                    <option
+                                                    value="<?php echo $lang ?>"><?php echo $lang ?></option><?php
+                                                }
+                                            }
+                                            ?>
+                                        </select></label><br/>
+                                </div>
+                            </div>
+                            <input class="btn" type="submit" value="<?php echo getTextForLanguage("SAVE") ?>">
+                        </form>
+                    </div>
                 </div>
-                <br/>
-                <input class="btn" type="submit" value="<?php echo getTextForLanguage("SAVE") ?>">
-            </form>
+            </div>
+            <div class="col-25"></div>
         </div>
+    </div>
     </div>
     </body>
     </html>

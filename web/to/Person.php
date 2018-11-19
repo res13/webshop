@@ -270,4 +270,9 @@ class Person extends TransferObject
         return $results;
     }
 
+    public static function updatePerson()
+    {
+        // todo
+    }
+
 }

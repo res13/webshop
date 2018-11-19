@@ -640,8 +640,6 @@ span.price {
     font-weight:700;
     cursor:pointer;
     text-transform:uppercase;
-    -webkit-transition: all .2s ease-out;
-    -moz-transition: all .2s ease-out;
 }
 .accordion ul li label:hover, .accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
     background:#C02942;
@@ -651,8 +649,6 @@ span.price {
 .accordion .content {
     overflow:hidden;
     border:1px solid #fff; /* Make the border match the background so it fades in nicely */
-    -webkit-transition: all .5s ease-out;
-    -moz-transition: all .5s ease-out;
 }
 .accordion p {
     color:#333;

@@ -1,4 +1,5 @@
 <?php
+require_once('util/i18n.php');
 if (isset($_SESSION['person']) && !isset($_SESSION['basket'])) {
     $personId = $_SESSION['person']->__get('id');
     $basket = Basket::getBasket($personId);
@@ -101,4 +102,4 @@ if (isset($_SESSION['basket'])) {
 else {
     $productCount = 0;
 }
-echo "<div class=\"state\"><a href=\"basket.php\">" . getTextForLanguage("BASKET") . "[". $productCount ."]</a></div>";
+echo "<div class=\"state\" id='basketState'><a href=\"basket.php\">" . getTextForLanguage("BASKET") . "[". $productCount ."]</a></div>";

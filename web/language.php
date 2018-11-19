@@ -1,6 +1,6 @@
 <?php
 ?>
-<div class="state">
+<div class="state" id="languageState">
     <form method="post">
         <label><select class="styled-select rounded top-selector" name="lang" onchange="this.form.submit()">
                 <?php

@@ -13,7 +13,7 @@ require('head.php');
     <?php
     $show = (isset($_SESSION['basket']) && count($_SESSION['basket']->products) > 0);
     if ($show) {
-        echo "<h2><a href='cleanBasket . php'>" . getTextForLanguage("CLEAN_BASKET") . '</a></h2>';
+        echo "<h2><a href='cleanBasket.php'>" . getTextForLanguage("CLEAN_BASKET") . '</a></h2>';
     }
     ?>
 

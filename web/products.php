@@ -19,7 +19,7 @@ $products = Category::getAllProductsInCategory($categoryid, $_SESSION['lang']);
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo $categoryPath; ?></h1>
-    <input class="top-search" type="text" id="productFilterText" onkeyup="filterProducts()" placeholder="Filter...">
+    <input class="top-search rounded" type="text" id="productFilterText" onkeyup="filterProducts()" placeholder="Filter...">
     <div class="row" id="productList">
         <?php
         foreach ($products as $product) { ?>

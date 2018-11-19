@@ -66,13 +66,27 @@ if ($product == null) {
                         <?php
                     }
                     ?>
-                        <button type="submit" name="toBasket" value="<?php echo $product->__get('id') ?>"><?php echo getTextForLanguage("ADD_TO_BASKET") ?></button>
+                        <button type="submit" id="toBasket" name="toBasket" value="<?php echo $product->__get('id') ?>"><?php echo getTextForLanguage("ADD_TO_BASKET") ?></button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     </body>
+    <script type='text/javascript'>
+        $("form").submit(function(event) {
+            event.preventDefault();
+            let request_method = $(this).attr("method");
+            let form_data = $(this).serialize();
+            $.ajax({
+                url : "basketState.php",
+                type: request_method,
+                data : toBasket="<?php echo $product->__get('id') ?>",. form_data
+            }).done(function(response){
+                $('#basketState').replaceWith(response);
+            });
+        });
+    </script>
     </html>
     <?php
 }

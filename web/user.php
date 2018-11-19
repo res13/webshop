@@ -9,14 +9,13 @@ if (isset($_SESSION['person'])) {
         $password = validateInput($_POST['password']);
         if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
             alert(getTextForLanguage("EMAIL_NOT_VALID"));
-        } else if (Person::checkIfEmailExists($email)) {
-            alert(getTextForLanguage("EMAIL_ADDRESS_ALREADY_EXISTS"));
-        } else if (Person::checkIfUsernameExists($username)) {
-            alert(getTextForLanguage("USERNAME_ADDRESS_ALREADY_EXISTS"));
         } else {
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            if (!empty($password)) {
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                $_SESSION['person']->passwordhash = $hashedPassword;
+            }
             $_SESSION['person']->setAll($_POST);
-            Person::updatePerson($person);
+            Person::updatePerson($_SESSION['person']);
         }
     }
     ?>
@@ -35,7 +34,7 @@ if (isset($_SESSION['person'])) {
             <div class="col-50">
                 <div class="container">
                     <div class="innerContainer">
-                        <form method="post" onsubmit="return validateRegister()">
+                        <form method="post" onsubmit="return validateUserChange()">
                             <div class="row">
                                 <div class="col-50">
 
@@ -56,27 +55,17 @@ if (isset($_SESSION['person'])) {
                                     <label><?php echo getTextForLanguage("USERNAME") ?><br/><input type="text"
                                                                                                    name="username"
                                                                                                    id="username"
-                                                                                                   onblur="validateForm('username', [validateMoreThan2, validateLessThan21, validateUsername])"
-                                                                                                   minlength="4"
-                                                                                                   maxlength="20"
-                                                                                                   value="<?php echo $person->username ?>"></label><br/>
+                                                                                                   value="<?php echo $person->username ?>" readonly></label><br/>
                                     <label><?php echo getTextForLanguage("EMAIL") ?><br/><input type="text" name="email"
                                                                                                 id="email"
-                                                                                                onblur="validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail])"
-                                                                                                minlength="4"
-                                                                                                maxlength="255"
-                                                                                                value="<?php echo $person->email ?>"></label><br/>
+                                                                                                value="<?php echo $person->email ?>" readonly></label><br/>
                                     <label><?php echo getTextForLanguage("PASSWORD") ?><br/><input type="password"
                                                                                                    id="password"
-                                                                                                   onblur="validateForm('password', [validateMoreThan5, validateLessThan256])"
-                                                                                                   minlength="6"
                                                                                                    name="password"
                                                                                                    maxlength="255"></label><br/>
                                     <label><?php echo getTextForLanguage("REPEAT_PASSWORD") ?><br/><input
                                                 type="password"
                                                 id="passwordRepeat"
-                                                onblur="validateForm('passwordRepeat', [validateMoreThan5, validateLessThan256])"
-                                                minlength="6"
                                                 name="passwordRepeat"
                                                 maxlength="255"></label><br/>
                                     <label><?php echo getTextForLanguage("BIRTHDATE") ?><br/><input type="date"
@@ -130,7 +119,8 @@ if (isset($_SESSION['person'])) {
                                                 if ($country === $person->country) {
                                                     ?>
                                                     <option
-                                                    value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?> selected</option><?php
+                                                    value="<?php echo $country['id'] ?>"><?php echo $country['name'] ?>
+                                                    selected</option><?php
                                                 } else {
                                                     ?>
                                                     <option

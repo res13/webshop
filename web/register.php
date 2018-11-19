@@ -15,6 +15,7 @@ if (isset($_POST['email']) && isset($_POST['username'])) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $person = new Person();
         $person->setAll($_POST);
+        $person->passwordhash = $hashedPassword;
         Person::createPerson($person);
     }
 }

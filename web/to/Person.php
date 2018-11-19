@@ -270,9 +270,25 @@ class Person extends TransferObject
         return $results;
     }
 
-    public static function updatePerson()
+    public static function updatePerson($person)
     {
-        // todo
+        $cityId = Person::getOrCreateCity($person->city, $person->zip);
+        $addressId = Person::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
+        $query = 'UPDATE webshop.person SET firstname = ?, lastname = ?, username = ?, email = ?, birthdate = ?, phone = ?, passwordhash = ?, address_id = ?, lang = ? where id = ?';
+        $stmt = DB::prepareWithErrorHandling($query);
+        $firstname = $person->firstname;
+        $lastname = $person->lastname;
+        $username = $person->username;
+        $email = $person->email;
+        $birthdate = $person->birthdate;
+        $phone = $person->phone;
+        $passwordhash = $person->passwordhash;
+        $lang = $person->lang;
+        $id = $person->id;
+        $success = $stmt->bind_param('sssssssisi', $firstname, $lastname, $username, $email, $birthdate, $phone, $passwordhash, $addressId, $lang, $id);
+        DB::checkBindingError($success);
+        DB::executeWithErrorHandling($stmt);
+        $stmt->close();
     }
 
 }

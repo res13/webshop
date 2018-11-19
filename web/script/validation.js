@@ -153,6 +153,24 @@ function validateRegister() {
     return result == 1 ? true : false;
 }
 
+function validateUserChange() {
+    let result = true;
+    result &= validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText]);
+    result &= validateForm('lastname', [validateNotEmpty, validateLessThan51, validateOnlyText]);
+    result &= validateForm('username', [validateMoreThan2, validateLessThan21, validateUsername]);
+    result &= validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail]);
+    result &= validatePasswordSame('password', 'passwordRepeat');
+    result &= validateForm('birthdate', [validateNotEmpty, validateDate]);
+    result &= validateForm('phone', [validateMoreThan5, validateOnlyNumbers, validateLessThan21]);
+    result &= validateForm('street', [validateNotEmpty, validateOnlyTextAndNumbers]);
+    result &= validateForm('homenumber', [validateNotEmpty, validateOnlyTextAndNumbers]);
+    result &= validateForm('city', [validateNotEmpty, validateOnlyTextAndNumbers]);
+    result &= validateForm('zip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]);
+    result &= validateForm('country', [validateNotEmpty, validateCountry]);
+    result &= validateForm('lang', [validateNotEmpty, validateLanguage]);
+    return result == 1 ? true : false;
+}
+
 function validateResetPassword() {
     let result = true;
     result &= validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256]);

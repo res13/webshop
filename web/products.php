@@ -19,10 +19,11 @@ $products = Category::getAllProductsInCategory($categoryid, $_SESSION['lang']);
 <?php require('body.php'); ?>
 <div class="main">
     <h1><?php echo $categoryPath; ?></h1>
-    <input type="text" id="productFilterText" onkeyup="filterProducts()" placeholder="Filter...">
-    <div class="full-Size" id="productList">
+    <input class="top-search" type="text" id="productFilterText" onkeyup="filterProducts()" placeholder="Filter...">
+    <div class="row" id="productList">
         <?php
         foreach ($products as $product) { ?>
+            <div class="col-50">
             <div class="wrapper-small" data-name="<?php echo htmlentities($product->name); ?>">
                 <div class="product-img-small">
                     <img src="<?php echo htmlentities($product->image); ?>" height="420" width="327">
@@ -39,10 +40,12 @@ $products = Category::getAllProductsInCategory($categoryid, $_SESSION['lang']);
                     </div>
                 </div>
             </div>
+            </div>
             <?php
             echo "<br/>";
         }
         ?>
+        <div class="col-50"></div>
     </div>
 </div>
 </body>

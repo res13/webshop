@@ -241,6 +241,9 @@ $texts = array
     'CHANGE_LANGUAGE' => array(
         'de' => 'Sprache wechseln',
         'en' => 'Change language'),
+    'SAVE' => array(
+        'de' => 'Speichern',
+        'en' => 'Save'),
 );
 
 function getAvailableLanguages()

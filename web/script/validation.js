@@ -20,9 +20,9 @@ function filterProducts() {
         name = product.getAttribute("data-name");
         if (name) {
             if (name.toUpperCase().indexOf(filter) > -1) {
-                product.style.display = "";
+              product.parentNode.style.display = "block";
             } else {
-                product.style.display = "none";
+              product.parentNode.style.display = "none";
             }
         }
     }
@@ -69,8 +69,8 @@ function validateLessThan21(element) {
     return element.value.length < 21;
 }
 
-function validateMoreThan3(element) {
-    return element.value.length > 3;
+function validateMoreThan2(element) {
+    return element.value.length > 2;
 }
 
 function validateDate(element) {
@@ -124,14 +124,14 @@ function validatePasswordSame(password1, password2) {
 
 function validateLogin() {
     let result = true;
-    result &= validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]);
+    result &= validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256]);
     result &= validateForm('password', [validateMoreThan5, validateLessThan256]);
     return result == 1 ? true : false;
 }
 
 function validateForgotPassword() {
     let result = true;
-    result &= validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]);
+    result &= validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail]);
     return result == 1 ? true : false;
 }
 
@@ -139,8 +139,8 @@ function validateRegister() {
     let result = true;
     result &= validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText]);
     result &= validateForm('lastname', [validateNotEmpty, validateLessThan51, validateOnlyText]);
-    result &= validateForm('username', [validateMoreThan3, validateLessThan21, validateUsername]);
-    result &= validateForm('email', [validateMoreThan3, validateLessThan256, validateEmail]);
+    result &= validateForm('username', [validateMoreThan2, validateLessThan21, validateUsername]);
+    result &= validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail]);
     result &= validateForm('password', [validateMoreThan5, validateLessThan256]);
     result &= validatePasswordSame('password', 'passwordRepeat');
     result &= validateForm('birthdate', [validateNotEmpty, validateDate]);
@@ -156,7 +156,7 @@ function validateRegister() {
 
 function validateResetPassword() {
     let result = true;
-    result &= validateForm('usernameOrEmail', [validateMoreThan3, validateLessThan256]);
+    result &= validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256]);
     result &= validateForm('oldPassword', [validateMoreThan5, validateLessThan256]);
     result &= validateForm('newPassword', [validateMoreThan5, validateLessThan256]);
     result &= validatePasswordSame('newPassword', 'repeatNewPassword');

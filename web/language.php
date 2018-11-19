@@ -2,7 +2,7 @@
 ?>
 <div class="state">
     <form method="post">
-        <label><select class="top-selector" name="lang" onchange="this.form.submit()">
+        <label><select class="styled-select rounded top-selector" name="lang" onchange="this.form.submit()">
                 <?php
                 foreach (getAvailableLanguages() as $lang) {
                     if ($lang === $_SESSION['lang']) {

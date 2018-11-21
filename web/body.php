@@ -1,5 +1,5 @@
 <div class="navigation">
-    <img class="logo" src="img/parachuteshoplogo.png" alt="Parachute webshop">
+    <a href="index.php"><img class="logo" src="img/parachuteshoplogo.png" alt="Parachute webshop"></a>
     <?php
     require_once('navigation.php');
     ?>

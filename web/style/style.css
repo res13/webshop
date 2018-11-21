@@ -11,6 +11,63 @@ table, tr, th, td {
     border: 1px solid black;
 }
 
+.landing {
+    height: 100%;
+    /*Quelle: https://html5up.net/uploads/demos/lens/images/fulls/01.jpg*/
+    background: url(../img/01.jpg);
+    background-size: cover;
+    color: white;
+    font-size: 25px;
+}
+
+.top {
+    position: absolute;
+    top: 30px;
+}
+
+.topleft{
+    left: 16px;
+}
+
+.topright{
+    right: 16px;
+}
+
+.bigTitle{
+    font-size: 3em;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+
+.smallTitle{
+    font-weight: 900;
+    font-size: 1.5em;
+    line-height: 0.6em;
+    text-transform: uppercase;
+}
+
+.smallerTitle{
+    font-weight: 500;
+    margin: 0.5em 0 0 0;
+    font-size: 1.25em;
+    text-transform: uppercase
+}
+
+.centerButton {
+    position: absolute;
+    bottom: 25%;
+    left: 42%;
+    text-align: center;
+    padding-top: 25px;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 1);
+    color: #fff;
+    min-height: 2em;
+    min-width: 8em;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
 .main {
     margin: 8px;
 }
@@ -596,7 +653,7 @@ a {
 }
 
 hr {
-    border: 1px solid lightgrey;
+    border: 1px solid #ffffff;
 }
 
 span.price {

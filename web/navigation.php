@@ -21,7 +21,6 @@ function getProductHierarchy($category, &$result)
 
 ?>
 <ul>
-    <li><a href="index.php"><?php echo getTextForLanguage("HOME") ?></a></li>
     <?php
     getProductHierarchy(null, $productHierarchy);
     echo $productHierarchy;

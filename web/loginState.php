@@ -13,7 +13,7 @@ if (!isset($_SESSION['CREATED'])) {
 if (isset($_SESSION['person'])) {
     $person = $_SESSION['person'];
     $username = $person->__get('username'); ?>
-    <div class="state" id='loginState'><?php echo getTextForLanguage("HELLO") ?>
+    <div class="state" id='loginState'>
         <a href="user.php"><?php echo $username ?></a>
         <a href="myOrders.php"><?php echo getTextForLanguage("MY_ORDERS") ?></a>
         <hr/>

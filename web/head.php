@@ -1,10 +1,21 @@
 <?php
 spl_autoload_register(function ($classname) {
-    $path = 'model/' . $classname . '.php';
-    if (file_exists($path)) {
-        require_once "$path";
+    $modelPath = 'model/' . $classname . '.php';
+    $controllerPath = 'controller/' . $classname . '.php';
+    $viewPath = 'view/' . $classname . '.php';
+    if (file_exists($modelPath)) {
+        require_once "$modelPath";
         return true;
-    } else {
+    }
+    else if (file_exists($controllerPath)) {
+        require_once "$controllerPath";
+        return true;
+    }
+    else if (file_exists($viewPath)) {
+        require_once "$viewPath";
+        return true;
+    }
+    else {
         return false;
     }
 });

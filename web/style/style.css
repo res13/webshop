@@ -724,7 +724,7 @@ span.price {
     color: grey;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next model each other (also change the direction - make the "cart" column go on top) */
 @media (max-width: 800px) {
     .row {
         flex-direction: column-reverse;
@@ -793,7 +793,7 @@ span.price {
     border-bottom:0;
 }
 .vertical ul li label:hover {
-    border:1px solid #542437; /* We don't want the border to disappear on hover */
+    border:1px solid #542437; /* We don't want the border model disappear on hover */
 }
 .vertical ul li .content {
     height:0px;

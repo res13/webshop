@@ -34,7 +34,8 @@ function getHTMLHead($title) {
     <link rel=\"manifest\" href=\"img/favicon/manifest.json\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\">
     <script src=\"script/jquery-3.3.1.min.js\"></script>
-    <script src=\"script/validation.js\"></script>";
+    <script src=\"script/validation.js\"></script>
+    <script src=\"script/productFilter.js\"></script>";
 }
 
 function validateInput($data) {

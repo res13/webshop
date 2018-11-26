@@ -102,4 +102,8 @@ if (isset($_SESSION['basket'])) {
 else {
     $productCount = 0;
 }
-echo "<div class=\"state\" id='basketState'><a href=\"basket.php\">" . getTextForLanguage("BASKET") . "[". $productCount ."]</a></div>";
+?>
+<div class="icon-wrapper">
+    <a href="basket.php" class="button"><i class="faPad fas fa-shopping-cart fa-3x"></i></a>
+    <span class="badge"><?php echo $productCount ?></span>
+</div>

@@ -28,7 +28,6 @@ if (isset($_SESSION['person'])) {
     <?php require('body.php'); ?>
     <div class="main">
         <h1><?php echo getTextForLanguage("USER"); ?></h1>
-        <?php echo "<br/><a href=\"myOrders.php\">" . getTextForLanguage("MY_ORDERS") . "</a>" ?>
         <div class="row">
             <div class="col-25"></div>
             <div class="col-50">

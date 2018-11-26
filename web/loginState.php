@@ -12,8 +12,17 @@ if (!isset($_SESSION['CREATED'])) {
 }
 if (isset($_SESSION['person'])) {
     $person = $_SESSION['person'];
-    $username = $person->__get('username');
-    echo "<div class=\"state\" id='loginState'>" . getTextForLanguage("HELLO") . " " . "<a href=\"user.php\">" . $username . "</a>, <a href=\"logout.php\">" . getTextForLanguage("LOGOUT") . "</a></div>";
-} else {
-    echo "<div class=\"state\" id='loginState'><a href=\"login.php\">" . getTextForLanguage("LOGIN") . "</a> " . getTextForLanguage("OR") . " <a href=\"register.php\">" . getTextForLanguage("REGISTER") . "</a></div>";
-}
+    $username = $person->__get('username'); ?>
+    <div class="state" id='loginState'><?php echo getTextForLanguage("HELLO") ?>
+        <a href="user.php"><?php echo $username ?></a>
+        <a href="myOrders.php"><?php echo getTextForLanguage("MY_ORDERS") ?></a>
+        <hr/>
+        <a href="logout.php"><?php echo getTextForLanguage("LOGOUT") ?></a>
+    </div>
+<?php } else { ?>
+    <div class="state" id='loginState'>
+        <a href="login.php"><?php echo getTextForLanguage("LOGIN") ?></a>
+        <hr/>
+        <a href="register.php"><?php echo getTextForLanguage("REGISTER") ?></a>
+    </div>
+<?php } ?>

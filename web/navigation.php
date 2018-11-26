@@ -32,4 +32,3 @@ function getProductHierarchy($category, &$result)
     }
     ?>
 </ul>
-

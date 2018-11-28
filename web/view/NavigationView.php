@@ -3,43 +3,41 @@
 class NavigationView extends View
 {
 
-    private $languageController;
-    private $authenticationController;
-    private $basketController;
+    private $loginStateController;
+    private $basketStateController;
 
     public function __construct()
     {
-        $this->languageController = new LanguageController();
-        $this->authenticationController = new AuthenticationController();
-        $this->basketController = new BasketController();
+        $this->loginStateController = new LoginStateController();
+        $this->basketStateController = new BasketStateController();
     }
 
-    public function render()
+    public function render($languageController)
     {
-        $result = "<div class=\"navigation\"><a href=\"index.php\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
+        $result = "<div class=\"navigation\"><a href=\"index.php?siteId=1\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
         $productHierarchy = "";
-        $result .= "<ul>" . $this->getProductHierarchy(null, $productHierarchy) . $productHierarchy;
-        $result .= "<li><a href=\"aboutUs.php\">" . getTextForLanguage("ABOUT_US") . "</a></li>";
+        $result .= "<ul>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
+        $result .= "<li><a href=\"aboutUs.php\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
         if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
-            $result .= "<li><a href=<\"admin.php\">" . getTextForLanguage("ADMIN") . "</a></li>";
+            $result .= "<li><a href=<\"admin.php\">" . $languageController->getTextForLanguage("ADMIN") . "</a></li>";
         }
         $result .= "</ul>";
         $result .= "<div class=\"navRight\">";
-        $result .= $this->languageController->getContent();
+        $result .= $languageController->getContent();
         $result .= "<div class=\"dropdown\">
             <i class=\"faPad fas fa-user fa-3x\"></i>
             <div class=\"dropdown-content\">";
-        $result .= $this->authenticationController->getContent();
+        $result .= $this->loginStateController->getContent();
         $result .= "</div></div>";
-        $result .= $this->basketController->getContent();
+        $result .= $this->basketStateController->getContent();
         $result .= "</div></div>";
         return $result;
     }
 
-    private function getProductHierarchy($category, &$result)
+    private function getProductHierarchy($category, &$result, $languageController)
     {
         if ($category == null) {
-            $result .= "<li><a href=\"products.php\">" . getTextForLanguage("PRODUCTS") . "</a>";
+            $result .= "<li><a href=\"products.php\">" . $languageController->getTextForLanguage("PRODUCTS") . "</a>";
             $subcategories = Category::getSubCategories(null);
         } else {
             $result .= "<li><a href=\"products.php?category=$category->id\">$category->text</a>";
@@ -50,7 +48,7 @@ class NavigationView extends View
         }
         $result .= "<ul>";
         foreach ($subcategories as $subcategory) {
-            getProductHierarchy($subcategory, $result);
+            getProductHierarchy($subcategory, $result, $languageController);
         }
         $result .= "</ul></li>";
     }

@@ -3,8 +3,8 @@
 class NotFoundView extends View
 {
 
-    public function render()
+    public function render($languageController)
     {
-        return "<p>Site not found</p>";
+        return "<p>". $languageController->getTextForLanguage("NOT_FOUND") ."</p>";
     }
 }

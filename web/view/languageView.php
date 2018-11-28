@@ -3,12 +3,12 @@
 class languageView extends View
 {
 
-    public function render()
+    public function render($languageController)
     {
         $result = "<div class=\"state\" id=\"languageState\">
                     <form method=\"post\">
                         <label><select class=\"styled-select rounded top-selector\" name=\"lang\" onchange=\"this.form.submit()\">";
-        foreach (getAvailableLanguages() as $lang) {
+        foreach ($languageController->getAvailableLanguages() as $lang) {
             if ($lang === $_SESSION['lang']) {
                 $result .= "<option value=\"" . $lang . "\" selected><" . $lang . "</option>";
             } else {
@@ -17,7 +17,7 @@ class languageView extends View
         }
         $result .= "</select></label>
                     <noscript>
-                        <input type=\"submit\" value=\"" . getTextForLanguage("CHANGE_LANGUAGE") . "\"
+                        <input type=\"submit\" value=\"" . $languageController->getTextForLanguage("CHANGE_LANGUAGE") . "\"
                     </noscript>
                     </form>
                 </div>";

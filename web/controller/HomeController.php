@@ -3,21 +3,13 @@
 class HomeController extends Controller
 {
 
-    private $view;
-
     public function __construct()
     {
-        $this->view = new HomeView();
-    }
-
-    public function getTitle()
-    {
-        return "HOME";
+        parent::__construct(new HomeView(), "HOME");
     }
 
     public function getContent()
     {
-        $this->view->render();
+        return $this->view->render($this->languageController);
     }
-
 }

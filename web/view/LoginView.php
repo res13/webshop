@@ -5,7 +5,7 @@ class LoginView extends View
 
     public function render($languageController)
     {
-        $result = "<div class=\"main\">
+        $result = "<body><div class=\"main\">
     <h1>" . $languageController->getTextForLanguage("LOGIN") . "</h1>
     <div class=\"row\">
         <div class=\"col-25\"></div>
@@ -34,7 +34,7 @@ class LoginView extends View
         </div>
         <div class=\"col-25\"></div>
     </div>
-</div>";
+</div></body>";
         }
         return $result;
     }

@@ -14,7 +14,7 @@ class NavigationView extends View
 
     public function render($languageController)
     {
-        $result = "<div class=\"navigation\"><a href=\"index.php?siteId=1\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
+        $result = "<body><div class=\"navigation\"><a href=\"index.php?siteId=1\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
         $productHierarchy = "";
         $result .= "<ul>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
         $result .= "<li><a href=\"aboutUs.php\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
@@ -30,7 +30,7 @@ class NavigationView extends View
         $result .= $this->loginStateController->getContent();
         $result .= "</div></div>";
         $result .= $this->basketStateController->getContent();
-        $result .= "</div></div>";
+        $result .= "</div></div></body>";
         return $result;
     }
 

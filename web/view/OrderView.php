@@ -17,7 +17,7 @@ class OrderView extends View
 
     public function renderOrderList($languageController, $orderList)
     {
-        $result = " <div class=\"main\">
+        $result = "<body><div class=\"main\">
         <h1>" . $languageController->getTextForLanguage("MY_ORDERS") . "</h1>
         <div class=\"accordion vertical\">
             <ul>";
@@ -35,7 +35,7 @@ class OrderView extends View
             $result .= $this->orderTableController->getContent($order->products, false);
             $result .= "</div></li>";
         }
-        $result .= "</ul></div></div>";
+        $result .= "</ul></div></div></body>";
         return $result;
     }
 

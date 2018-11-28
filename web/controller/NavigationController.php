@@ -120,7 +120,7 @@ where c.id = ?';
         if ($parentId == null) {
             return;
         }
-        Category::getCategoryPath($parentId, $lang, $categoryPath);
+        NavigationController::getCategoryPath($parentId, $lang, $categoryPath);
     }
 
 }

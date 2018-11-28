@@ -5,7 +5,7 @@ class CheckoutView extends View
 
     public function render($languageController)
     {
-        $result = "<div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
+        $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<h3>" . $languageController->getTextForLanguage("DELIVERY") . "</h3>
             <form method=\"post\" onsubmit=\"return validateCheckout();\">
                 <label>" . $languageController->getTextForLanguage("FIRSTNAME") . "<br/><input type=\"text\" name=\"deliveryFirstname\"
@@ -92,22 +92,22 @@ class CheckoutView extends View
                 </div>
                 <br/>
                 <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("BUY") . "\">
-            </form><div>";
+            </form><div></body>";
         return $result;
     }
 
     public function renderOrderSubmitted($languageController)
     {
-        $result = "<div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
-        $result .= "<p>" . $languageController->getTextForLanguage("ORDER_SUBMITTED") . "</p></div>";
+        $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
+        $result .= "<p>" . $languageController->getTextForLanguage("ORDER_SUBMITTED") . "</p></div></body>";
         return $result;
     }
 
     public function renderMustLogin($languageController)
     {
-        $result = "<div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
+        $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<p>" . $languageController->getTextForLanguage("MUST_BE_LOGGED_IN_TO_CHECKOUT") . "</p>";
-        $result .= "<a href=\"login.php\">" . $languageController->getTextForLanguage("LOGIN") . "</a>" . $languageController->$languageController->getTextForLanguage("OR") . "<a href=\"register.php\">" . $languageController->$languageController->getTextForLanguage("REGISTER") . "</a></br></br></div>";
+        $result .= "<a href=\"login.php\">" . $languageController->getTextForLanguage("LOGIN") . "</a>" . $languageController->$languageController->getTextForLanguage("OR") . "<a href=\"register.php\">" . $languageController->$languageController->getTextForLanguage("REGISTER") . "</a></br></br></div></body>";
         return $result;
     }
 }

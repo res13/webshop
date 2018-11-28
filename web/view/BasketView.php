@@ -13,7 +13,7 @@ class BasketView extends View
 
     public function render($languageController)
     {
-        $result = "<div class=\"main\">
+        $result = "<body><div class=\"main\">
         <h1>" . $languageController->getTextForLanguage("BASKET") . "</h1>";
         $show = (isset($_SESSION['basket']) && count($_SESSION['basket']->products) > 0);
         if ($show) {
@@ -37,7 +37,7 @@ class BasketView extends View
             $result .= "</div>
                 </div>
             </div>";
-            $result .= "</div></div>";
+            $result .= "</div></div></body>";
             return $result;
         }
     }

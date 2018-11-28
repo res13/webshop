@@ -1,0 +1,133 @@
+<?php
+
+class UserView extends View
+{
+
+    public function render($languageController)
+    {
+        $person = $_SESSION['person'];
+        $result = "    <body>
+    <div class=\"main\">
+        <h1>" . getTextForLanguage("USER") . "</h1>
+        <div class=\"row\">
+            <div class=\"col-25\"></div>
+            <div class=\"col-50\">
+                <div class=\"container\">
+                    <div class=\"innerContainer\">
+                        <form method=\"post\" onsubmit=\"return validateUserChange()\">
+                            <div class=\"row\">
+                                <div class=\"col-50\">
+
+                                    <label>" . getTextForLanguage("FIRSTNAME") . "<br/><input type=\"text\"
+                                                                                                    name=\"firstname\"
+                                                                                                    id=\"firstname\"
+                                                                                                    onblur=\"validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"
+                                                                                                    minlength=\"1\"
+                                                                                                    maxlength=\"50\"
+                                                                                                    value=\"" . $person->firstname . "\"></label><br/>
+                                    <label>" . getTextForLanguage("LASTNAME") . "<br/><input type=\"text\"
+                                                                                                   name=\"lastname\"
+                                                                                                   id=\"lastname\"
+                                                                                                   onblur=\"validateForm('lastname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"
+                                                                                                   minlength=\"1\"
+                                                                                                   maxlength=\"50\"
+                                                                                                   value=\"" . $person->lastname . "\"></label><br/>
+                                    <label>" . getTextForLanguage("USERNAME") . "<br/><input type=\"text\"
+                                                                                                   name=\"username\"
+                                                                                                   id=\"username\"
+                                                                                                   value=\"" . $person->username . "\" readonly></label><br/>
+                                    <label>" . getTextForLanguage("EMAIL") . "<br/><input type=\"text\" name=\"email\"
+                                                                                                id=\"email\"
+                                                                                                value=\"" . $person->email . "\" readonly></label><br/>
+                                    <label>" . getTextForLanguage("PASSWORD") . "<br/><input type=\"password\"
+                                                                                                   id=\"password\"
+                                                                                                   name=\"password\"
+                                                                                                   maxlength=\"255\"></label><br/>
+                                    <label>" . getTextForLanguage("REPEAT_PASSWORD") . "<br/><input
+                                                type=\"password\"
+                                                id=\"passwordRepeat\"
+                                                name=\"passwordRepeat\"
+                                                maxlength=\"255\"></label><br/>
+                                    <label>" . getTextForLanguage("BIRTHDATE") . "<br/><input type=\"date\"
+                                                                                                    id=\"birthdate\"
+                                                                                                    onblur=\"validateForm('birthdate', [validateNotEmpty, validateDate])\"
+                                                                                                    name=\"birthdate\"
+                                                                                                    value=\"" . $person->birthdate . "\"></label><br/>
+
+                                </div>
+                                <div class=\"col-50\">
+
+                                    <label>" . getTextForLanguage("PHONE") . "<br/><input type=\"text\" name=\"phone\"
+                                                                                                id=\"phone\"
+                                                                                                onblur=\"validateForm('phone', [validateMoreThan5, validateOnlyNumbers, validateLessThan21])\"
+                                                                                                minlength=\"6\"
+                                                                                                maxlength=\"20\"
+                                                                                                value=\"" . $person->phone . "\"></label><br/>
+                                    <label>" . getTextForLanguage("STREET") . "<br/><input type=\"text\"
+                                                                                                 name=\"street\"
+                                                                                                 id=\"street\"
+                                                                                                 onblur=\"validateForm('street', [validateNotEmpty, validateOnlyTextAndNumbers])\"
+                                                                                                 minlength=\"1\"
+                                                                                                 maxlength=\"100\"
+                                                                                                 value=\"" . $person->street . "\"></label><br/>
+                                    <label>" . getTextForLanguage("HOMENUMBER") . "<br/><input type=\"text\"
+                                                                                                     name=\"homenumber\"
+                                                                                                     id=\"homenumber\"
+                                                                                                     onblur=\"validateForm('homenumber', [validateNotEmpty, validateOnlyTextAndNumbers])\"
+                                                                                                     minlength=\"1\"
+                                                                                                     maxlength=\"20\"
+                                                                                                     value=\"" . $person->homenumber . "\"></label><br/>
+                                    <label>" . getTextForLanguage("CITY") . "<br/><input type=\"text\" name=\"city\"
+                                                                                               id=\"city\"
+                                                                                               onblur=\"validateForm('city', [validateNotEmpty, validateOnlyTextAndNumbers])\"
+                                                                                               minlength=\"1\"
+                                                                                               maxlength=\"100\"
+                                                                                               value=\"" . $person->city . "\"></label><br/>
+                                    <label>" . getTextForLanguage("ZIP") . "<br/><input type=\"number\" id=\"zip\"
+                                                                                              onblur=\"validateForm('zip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21])\"
+                                                                                              minlength=\"1\"
+                                                                                              maxlength=\"20\"
+                                                                                              name=\"zip\"
+                                                                                              value=\"" . $person->zip . "\"></label><br/>
+                                    <label>" . getTextForLanguage("COUNTRY") . "<br/><select class=\"selectLog\"
+                                                                                                   id=\"country\"
+                                                                                                   onblur=\"validateForm('country', [validateNotEmpty, validateCountry])\"
+                                                                                                   name=\"country\">";
+        $countries = Person::getAllCountries();
+        foreach ($countries as $country) {
+            if ($country === $person->country) {
+                $result .= "<option value=\"" . $country['id'] . "\">" . $country['name'] . " selected</option>";
+            } else {
+                $result .= "<option value=\"" . $country['id'] . "\">" . $country['name'] . "</option>";
+            }
+        }
+        $result .= "
+                                        </select></label><br/>
+                                    <label>" . getTextForLanguage("LANGUAGE") . "<br/><select class=\"selectLog\"
+                                                                                                    id=\"lang\"
+                                                                                                    onblur=\"validateForm('lang', [validateNotEmpty, validateLanguage])\"
+                                                                                                    name=\"lang\">";
+        foreach (getAvailableLanguages() as $lang) {
+            if ($lang === $person->lang) {
+                $result .= "<option value=\"" . $lang . "\" selected>" . $lang . "</option>";
+            } else {
+                $result .= "<option value=\"" . $lang . "\">" . $lang . "</option>";
+            }
+        }
+        $result .= "
+                                        </select></label><br/>
+                                </div>
+                            </div>
+                            <input class=\"btn\" type=\"submit\" value=\"" . getTextForLanguage("SAVE") . "\">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class=\"col-25\"></div>
+        </div>
+    </div>
+    </div>
+    </body>";
+        return $result;
+    }
+}

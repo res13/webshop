@@ -10,7 +10,7 @@ class OrderTableView extends View
 
     public function renderOrderTable($languageController, $products, $remove)
     {
-        $result = "<div class=\"table\">
+        $result = "<body><div class=\"table\">
     <div class=\"layout-inline row th\">
         <div class=\"col col-pro\">" . $languageController->getTextForLanguage("PRODUCT") . "</div>
         <div class=\"col\">" . $languageController->getTextForLanguage("OPTIONS") . "</div>
@@ -77,8 +77,7 @@ class OrderTableView extends View
             $totalPrice = $totalPrice + $price;
             $result .= htmlentities($price) . " CHF</p>
             </div>
-        </div>
-    <?php";
+        </div>";
         }
         $result .= "
     <div class=\"tf\">
@@ -92,7 +91,7 @@ class OrderTableView extends View
             <div class=\"col\"><p>" . number_format((float)$totalPrice, 2, '.', '') . " CHF" . "</p></div>
         </div>
     </div>
-</div>";
+</div></body>";
         return $result;
     }
 }

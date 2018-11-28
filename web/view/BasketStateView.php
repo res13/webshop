@@ -9,10 +9,10 @@ class BasketStateView extends View
 
     public function renderWithCounter($languageController, $productCount)
     {
-        $result = "<div class=\"icon-wrapper\">
+        $result = "<body><div class=\"icon-wrapper\">
     <a href=\"index.php?siteId=8\" class=\"button\"><i class=\"faPad fas fa-shopping-cart fa-3x\"></i></a>
     <span class=\"badge\">" . $productCount . "</span>
-</div>";
+</div></body>";
         return $result;
     }
 }

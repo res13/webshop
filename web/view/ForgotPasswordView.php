@@ -5,7 +5,7 @@ class ForgotPasswordView extends View
 
     public function render($languageController)
     {
-        $result = "<div class=\"main\"><h1>" . $languageController->getHTMLHead("FORGOT_PASSWORD") . "></h1>";
+        $result = "<body><div class=\"main\"><h1>" . $languageController->getHTMLHead("FORGOT_PASSWORD") . "></h1>";
         $result .= "<div class=\"row\">
             <div class=\"col-25\"></div>
             <div class=\"col-25\">
@@ -25,13 +25,13 @@ class ForgotPasswordView extends View
             </div>
             <div class=\"col-25\"></div>
         </div>";
-        $result .= "</div>";
+        $result .= "</div></body>";
         return $result;
     }
 
     public function renderEmailSent($languageController) {
-        $result = "<div class=\"main\"><h1>" . $languageController->getHTMLHead("FORGOT_PASSWORD") . "></h1>";
-        $result .= "<p>" . $languageController->getTextForLanguage("EMAIL_SENT") . "</p></div>";
+        $result = "<body><div class=\"main\"><h1>" . $languageController->getHTMLHead("FORGOT_PASSWORD") . "></h1>";
+        $result .= "<p>" . $languageController->getTextForLanguage("EMAIL_SENT") . "</p></div></body>";
         return $result;
     }
 }

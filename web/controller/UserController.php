@@ -4,7 +4,34 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new ProductView(), "PRODUCT");
+        parent::__construct(new UserView(), "USER");
+    }
+
+    public function getContent()
+    {
+        if (isset($_SESSION['person'])) {
+            $person = $_SESSION['person'];
+            // todo: validate all post input
+            if (isset($_POST['email']) && isset($_POST['username'])) {
+                $email = UtilityController::validateInput($_POST['email']);
+                $username = UtilityController::validateInput($_POST['username']);
+                $password = UtilityController::validateInput($_POST['password']);
+                if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+                    UtilityController::alert($this->languageController->getTextForLanguage("EMAIL_NOT_VALID"));
+                } else {
+                    if (!empty($password)) {
+                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                        $_SESSION['person']->passwordhash = $hashedPassword;
+                    }
+                    $_SESSION['person']->setAll($_POST);
+                    Person::updatePerson($_SESSION['person']);
+                }
+            }
+            return parent::getContent();
+        } else {
+            UtilityController::redirect("index.php?siteId=12");
+            return null;
+        }
     }
 
     public static function authenticate($usernameOrEmail, $password)

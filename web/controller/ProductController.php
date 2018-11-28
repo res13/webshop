@@ -7,6 +7,20 @@ class ProductController extends Controller
         parent::__construct(new ProductView(), "PRODUCT");
     }
 
+    public function getContent()
+    {
+        if (isset ($_GET['id']) && $_GET['id'] > 0) {
+            $id = $_GET['id'];
+        } else {
+            $id = null;
+        }
+        $product = Product::getProduct($id, $_SESSION['lang']);
+        $productOptions = Option::getProductOptions($id, $_SESSION['lang']);
+        $result = $this->navigationController->getContent();
+        $result .= $this->view->renderProduct($this->languageController, $product, $productOptions);
+        return $result;
+    }
+
     public static function getProductOptions($productId, $lang)
     {
         $query = 'select o.id optionId, i.text_' . $lang . ' optionName

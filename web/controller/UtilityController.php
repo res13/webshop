@@ -68,4 +68,11 @@ class UtilityController
             'X-Mailer: PHP/' . phpversion();
         return mail($receiver, $subject, $message, $headers);
     }
+
+    public static function arraySameContent($array1, $array2)
+    {
+        sort($array1);
+        sort($array2);
+        return $array1 == $array2;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class DB extends mysqli
+class DatabaseController extends mysqli
 {
     const HOST = "localhost", USER = "root", PW = "", DB_NAME = "webshop";
     static private $instance;
@@ -13,7 +13,7 @@ class DB extends mysqli
 
     public static function getInstance()
     {
-        if (!self::$instance) @self::$instance = new DB();
+        if (!self::$instance) @self::$instance = new DatabaseController();
         return self::$instance;
     }
 

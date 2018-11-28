@@ -14,6 +14,12 @@ class BasketStateController extends Controller
             $basket = Basket::getBasket($personId);
             $_SESSION['basket'] = $basket;
         }
+        if (isset($_GET['cleanBasket']) && isset($_SESSION['basket'])) {
+            if (isset($_SESSION['person'])) {
+                Basket::cleanBasket($_SESSION['person']->__get('id'));
+            }
+            unset($_SESSION['basket']);
+        }
         if (isset($_GET['removeFromBasket']) && isset($_SESSION['basket'])) {
             $productIdToRemove = $_GET['removeFromBasket'];
             if (isset($_SESSION['person'])) {

@@ -86,9 +86,8 @@ class CheckoutController extends Controller
                 $result .= $this->view->render($this->languageController);
             }
             else {
-
+                $result .= $this->view->renderMustLogin($this->languageController);
             }
-
         }
         return $result;
     }

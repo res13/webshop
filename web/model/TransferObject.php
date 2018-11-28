@@ -45,10 +45,4 @@ abstract class TransferObject {
         return $prettyPrint;
     }
 
-    protected static function arraySameContent($array1, $array2)
-    {
-        sort($array1);
-        sort($array2);
-        return $array1 == $array2;
-    }
 }

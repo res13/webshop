@@ -31,21 +31,4 @@ class BasketProduct extends TransferObject
         return parent::toString($this->data);
     }
 
-    function getBasketProduct($basketProductId)
-    {
-        $query = 'select po.id, po.pname name, po.price, po.quantity, po.product_id realProductId from webshop.product_orders po where po.id = ?';
-        $stmt = DB::prepareWithErrorHandling($query);
-        $success = $stmt->bind_param('i', $basketProductId);
-        DB::checkBindingError($success);
-        DB::executeWithErrorHandling($stmt);
-        $result = $stmt->get_result();
-        $stmt->close();
-        $row = $result->fetch_assoc();
-        if (isset($row)) {
-            $basketProduct = new BasketProduct();
-            $basketProduct->setAll($row);
-            return $basketProduct;
-        }
-        return null;
-    }
 }

@@ -16,13 +16,13 @@ spl_autoload_register(function ($classname) {
         return false;
     }
 });
-if (isset($_GET['siteId'])) {
-    $siteId = UtilityController::validateInput($_GET['siteId']);
+if (isset($_GET['site'])) {
+    $site = UtilityController::validateInput($_GET['site']);
 }
 else {
-    $siteId = 1;
+    $site = "home";
 }
-$siteController = UtilityController::getControllerObject($siteId);
+$siteController = UtilityController::getControllerObject($site);
 $siteController->performHead();
 ?>
 <!DOCTYPE html>

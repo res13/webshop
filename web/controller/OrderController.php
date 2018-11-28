@@ -16,7 +16,7 @@ class OrderController extends Controller
             $result .= $this->view->renderOrderList($this->languageController, $orderList);
         }
         else {
-            return UtilityController::redirect("index.php?siteId=12");
+            UtilityController::redirect("index.php?siteId=12");
         }
         return $result;
     }
@@ -44,8 +44,8 @@ class OrderController extends Controller
 
     public static function orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry)
     {
-        $cityId = Person::getOrCreateCity($deliveryCity, $deliveryZip);
-        $addressId = Person::getOrCreateAddress($deliveryStreet, $deliveryHomenumber, $cityId, $deliveryCountry);
+        $cityId = UserController::getOrCreateCity($deliveryCity, $deliveryZip);
+        $addressId = UserController::getOrCreateAddress($deliveryStreet, $deliveryHomenumber, $cityId, $deliveryCountry);
         $query = 'update webshop.orders set deliveryfirstname = ?, deliverylastname = ?, deliveryaddress_id = ?, purchasedate = now(), state = 1 where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ssii', $deliveryFirstname, $deliveryLastname, $addressId, $basketId);
@@ -57,8 +57,8 @@ class OrderController extends Controller
     public static function orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry)
     {
         Order::orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
-        $cityId = Person::getOrCreateCity($billingCity, $billingZip);
-        $addressId = Person::getOrCreateAddress($billingStreet, $billingHomenumber, $cityId, $billingCountry);
+        $cityId = UserController::getOrCreateCity($billingCity, $billingZip);
+        $addressId = UserController::getOrCreateAddress($billingStreet, $billingHomenumber, $cityId, $billingCountry);
         $query = 'update webshop.orders set billingfirstname = ?, billinglastname = ?, billingaddress_id = ? where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ssii', $billingFirstname, $billingLastname, $addressId, $basketId);
@@ -80,7 +80,7 @@ class OrderController extends Controller
         if (isset($row)) {
             $order = new Order();
             $order->setAll($row);
-            $order->__set('products', Basket::getBasketProductsByOrderId($orderId));
+            $order->__set('products', BasketController::getBasketProductsByOrderId($orderId));
             return $order;
         }
         return null;

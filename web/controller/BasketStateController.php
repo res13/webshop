@@ -11,12 +11,12 @@ class BasketStateController extends Controller
     {
         if (isset($_SESSION['person']) && !isset($_SESSION['basket'])) {
             $personId = $_SESSION['person']->__get('id');
-            $basket = Basket::getBasket($personId);
+            $basket = BasketController::getBasket($personId);
             $_SESSION['basket'] = $basket;
         }
         if (isset($_GET['cleanBasket']) && isset($_SESSION['basket'])) {
             if (isset($_SESSION['person'])) {
-                Basket::cleanBasket($_SESSION['person']->__get('id'));
+                BasketController::cleanBasket($_SESSION['person']->__get('id'));
             }
             unset($_SESSION['basket']);
         }
@@ -24,8 +24,8 @@ class BasketStateController extends Controller
             $productIdToRemove = $_GET['removeFromBasket'];
             if (isset($_SESSION['person'])) {
                 $personId = $_SESSION['person']->__get('id');
-                Basket::removeProductFromBasket($productIdToRemove);
-                $basket = Basket::getBasket($personId);
+                BasketController::removeProductFromBasket($productIdToRemove);
+                $basket = BasketController::getBasket($personId);
             } else {
                 $basket = $_SESSION['basket'];
                 $basket->removeProduct($productIdToRemove);
@@ -36,8 +36,8 @@ class BasketStateController extends Controller
             $productIdToIncrease = $_GET['increaseQuantity'];
             if (isset($_SESSION['person'])) {
                 $personId = $_SESSION['person']->__get('id');
-                Basket::changeQuantityOfProductInBasket(null, 1, $productIdToIncrease);
-                $basket = Basket::getBasket($personId);
+                BasketController::changeQuantityOfProductInBasket(null, 1, $productIdToIncrease);
+                $basket = BasketController::getBasket($personId);
             } else {
                 $basket = $_SESSION['basket'];
                 $basket->increaseProduct($productIdToIncrease);
@@ -48,8 +48,8 @@ class BasketStateController extends Controller
             $productIdToDecrease = $_GET['decreaseQuantity'];
             if (isset($_SESSION['person'])) {
                 $personId = $_SESSION['person']->__get('id');
-                Basket::changeQuantityOfProductInBasket(null, -1, $productIdToDecrease);
-                $basket = Basket::getBasket($personId);
+                BasketController::changeQuantityOfProductInBasket(null, -1, $productIdToDecrease);
+                $basket = BasketController::getBasket($personId);
             } else {
                 $basket = $_SESSION['basket'];
                 $basket->decreaseProduct($productIdToDecrease);
@@ -65,8 +65,8 @@ class BasketStateController extends Controller
             $optionArray = UtilityController::validateInput($_POST['options']);
             if (isset($_SESSION['person'])) {
                 $personId = $_SESSION['person']->__get('id');
-                Basket::addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
-                $basket = Basket::getBasket($personId);
+                BasketController::addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
+                $basket = BasketController::getBasket($personId);
             } else {
                 $basketOptions = array();
                 foreach ($optionArray as $optionId) {

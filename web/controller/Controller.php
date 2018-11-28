@@ -38,17 +38,17 @@ abstract class Controller
             $_SESSION['lang'] = $_POST['lang'];
             if (isset($_SESSION['person'])) {
                 $_SESSION['person']->lang = $_POST['lang'];
-                Person::setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
+                UserController::setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
                 setcookie("lang", $_POST['lang'], 0, "", "parachute.webshop.ch", false, false);
             }
         } else if (!isset($_SESSION['lang'])) {
             if (isset($_COOKIE['lang'])) {
                 $lang = $_COOKIE['lang'];
             } else {
-                $lang = getDefaultLanguage();
+                $lang = $this->languageController->getDefaultLanguage();
             }
             if (isset($_SESSION['person'])) {
-                $lang = Person::getLanguageOfPerson($_SESSION['person']->id);
+                $lang = UserController::getLanguageOfPerson($_SESSION['person']->id);
                 $_SESSION['person']->lang = $lang;
             }
             $_SESSION['lang'] = $lang;

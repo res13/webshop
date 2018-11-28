@@ -10,24 +10,24 @@ class ResetPasswordController extends Controller
     public function getContent()
     {
         if (isset($_POST['usernameOrEmail']) && isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
-            $usernameOrEmail = validateInput($_POST['usernameOrEmail']);
-            $oldPassword = validateInput($_POST['oldPassword']);
-            $newPassword = validateInput($_POST['newPassword']);
-            $oldPerson = Person::authenticate($usernameOrEmail, $oldPassword);
+            $usernameOrEmail = UtilityController::validateInput($_POST['usernameOrEmail']);
+            $oldPassword = UtilityController::validateInput($_POST['oldPassword']);
+            $newPassword = UtilityController::validateInput($_POST['newPassword']);
+            $oldPerson = UserController::authenticate($usernameOrEmail, $oldPassword);
             if ($oldPerson != null) {
                 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-                if (Person::resetPassword($usernameOrEmail, $hashedPassword, 0)) {
-                    $person = Person::authenticate($usernameOrEmail, $newPassword);
+                if (UserController::resetPassword($usernameOrEmail, $hashedPassword, 0)) {
+                    $person = UserController::authenticate($usernameOrEmail, $newPassword);
                     if ($person != null) {
                         $_SESSION['person'] = $person;
                     } else {
-                        alert($this->languageController->getTextForLanguage("RESET_PASSWORD_FAILED"));
+                        UtilityController::alert($this->languageController->getTextForLanguage("RESET_PASSWORD_FAILED"));
                     }
                 } else {
-                    alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
+                    UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
                 }
             } else {
-                alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
+                UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
             }
         }
         $result = $this->navigationController->getContent();

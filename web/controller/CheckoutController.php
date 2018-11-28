@@ -46,7 +46,7 @@ class CheckoutController extends Controller
                         $billingCountry = UtilityController::validateInput($_POST['billingCountry']);
                         Order::orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry);
                     } else {
-                        alert($this->languageController->getTextForLanguage("INPUT_MISSING"));
+                        UtilityController::alert($this->languageController->getTextForLanguage("INPUT_MISSING"));
                     }
                 }
             } else {
@@ -75,7 +75,7 @@ class CheckoutController extends Controller
     <p>" . $this->languageController->getTextForLanguage("COUNTRY") . "=" . $billingCountry . "</p>";
             }
             $message .= "</body></html>";
-            $mailSent = UtilityController::sendMail($_SESSION['person']->email, $subject, $message) && sendMail(null, $subject, $message);
+            $mailSent = UtilityController::sendMail($_SESSION['person']->email, $subject, $message) && UtilityController::sendMail(null, $subject, $message);
             unset($_SESSION['basket']);
         }
         $result = $this->navigationController->getContent();

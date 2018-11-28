@@ -259,7 +259,7 @@ class LanguageController
             if (isset($_SESSION['lang']) && array_key_exists($_SESSION['lang'], $values)) {
                 return htmlentities($values[$_SESSION['lang']]);
             } else {
-                return htmlentities($values[getDefaultLanguage()]);
+                return htmlentities($values[$this->getDefaultLanguage()]);
             }
         }
         return "";

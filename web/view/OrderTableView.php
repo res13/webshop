@@ -56,18 +56,18 @@ class OrderTableView extends View
             </div>
             <div class=\"col col-qty layout-inline colPad\">";
             if (isset($remove) && $remove) {
-                $result .= "<a href=\"basket.php?decreaseQuantity=" . $basketProduct->id . "\" class=\"qty\">-</a>";
+                $result .= "<a href=\"index.php?site=basket&decreaseQuantity=" . $basketProduct->id . "\" class=\"qty\">-</a>";
             }
             $result .= "<label class=\"labelQty\"><input disabled class=\"inputSmall\" type=\"numeric\"
                                                value=\"" . htmlentities($basketProduct->quantity) . "\"/></label>";
             if (isset($remove) && $remove) {
-                $result .= "<a href=\"basket.php?increaseQuantity=" . $basketProduct->id . "\" class=\"qty\">+</a>";
+                $result .= "<a href=\"index.php?site=basket&increaseQuantity=" . $basketProduct->id . "\" class=\"qty\">+</a>";
             }
             $result .= "
             </div>
             <div class=\"col col-vat layout-inline colPad align-center\">";
             if (isset($remove) && $remove) {
-                $result .= "<a href=\"basket.php?removeFromBasket=" . $basketProduct->id . "\" class=\"qty\">x</a>";
+                $result .= "<a href=\"index.php?site=basket&removeFromBasket=" . $basketProduct->id . "\" class=\"qty\">x</a>";
             }
             $result .= "
             </div>

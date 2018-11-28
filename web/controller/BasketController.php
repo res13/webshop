@@ -86,13 +86,13 @@ class BasketController extends Controller
 
     public static function getBasket($personId)
     {
-        $orderId = Basket::getBasketOrderIdOfPerson($personId);
+        $orderId = BasketController::getBasketOrderIdOfPerson($personId);
         if ($orderId == null) {
             return null;
         }
         $basket = new Basket();
         $basket->__set('id', $orderId);
-        $basketProducts = Basket::getBasketProductsByOrderId($orderId);
+        $basketProducts = BasketController::getBasketProductsByOrderId($orderId);
         $basket->__set('products', $basketProducts);
         return $basket;
     }
@@ -110,7 +110,7 @@ class BasketController extends Controller
             $basketProduct = new BasketProduct();
             $basketProduct->setAll($row);
             $productOrderId = $row['id'];
-            $productOptionIds = BasketProductOption::getBasketProductOptionsByProductOrderId($productOrderId);
+            $productOptionIds = BasketController::getBasketProductOptionsByProductOrderId($productOrderId);
             $productOptions = array();
             foreach ($productOptionIds as $productOptionId) {
                 $basketProductOption = new BasketProductOption();
@@ -141,9 +141,9 @@ class BasketController extends Controller
 
     public static function addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray)
     {
-        $orderId = Basket::getBasketOrderIdOfPerson($personId);
+        $orderId = BasketController::getBasketOrderIdOfPerson($personId);
         if ($orderId == null) {
-            $orderId = Basket::createNewBasket($personId);
+            $orderId = BasketController::createNewBasket($personId);
         }
         $query = 'select po.id, po.quantity from webshop.product_orders po where po.product_id = ? and po.orders_id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
@@ -155,13 +155,13 @@ class BasketController extends Controller
         while ($row = $result->fetch_assoc()) {
             $productOrderId = $row['id'];
             $storedQuantity = $row['quantity'];
-            $storedOptionArray = BasketProductOption::getBasketProductOptionsByProductOrderId($productOrderId);
+            $storedOptionArray = BasketController::getBasketProductOptionsByProductOrderId($productOrderId);
             if (UtilityController::arraySameContent($storedOptionArray, $optionArray)) {
-                Basket::changeQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId);
+                BasketController::changeQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId);
                 return;
             }
         }
-        Basket::addToBasket($productId, $orderId, $productQuantity, $optionArray);
+        BasketController::addToBasket($productId, $orderId, $productQuantity, $optionArray);
     }
 
     public static function addToBasket($productId, $orderId, $productQuantity, $optionArray)
@@ -203,11 +203,11 @@ class BasketController extends Controller
     public static function changeQuantityOfProductInBasket($storedQuantity, $productQuantity, $productOrderId)
     {
         if ($storedQuantity == null) {
-            $storedQuantity = Basket::getQuantityOfProductInBasket($productOrderId);
+            $storedQuantity = BasketController::getQuantityOfProductInBasket($productOrderId);
         }
         $newQuantity = $storedQuantity + $productQuantity;
         if ($newQuantity == 0) {
-            Basket::removeProductFromBasket($productOrderId);
+            BasketController::removeProductFromBasket($productOrderId);
         }
         else if ($newQuantity > 0 && $newQuantity <= 50) {
             $query = 'update webshop.product_orders po set po.quantity = ? where po.id = ?';

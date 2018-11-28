@@ -32,7 +32,7 @@ class OrderView extends View
                             " . htmlentities($order->state) . "
                         </label>
                         <div class=\"content\">";
-            $result .= $this->orderTableController->getContent($order->products, false);
+            $result .= $this->orderTableController->getOrderTable($order->products, false);
             $result .= "</div></li>";
         }
         $result .= "</ul></div></div></body>";

@@ -16,14 +16,14 @@ class LoginView extends View
             UtilityController::redirect("index.php?siteId=1");
         } else {
             $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
-                            <label>" . $languageController->getTextForLanguage("USERNAME") . $languageController->getTextForLanguage("OR") . getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
+                            <label>" . $languageController->getTextForLanguage("USERNAME") . $languageController->getTextForLanguage("OR") . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
                                             minlength=\"3\"
                                             onblur=\"validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])\"></label><br/>
                             <label>" . $languageController->getTextForLanguage("PASSWORD") . "<br/><input type=\"password\" id=\"password\"
                                                                                            minlength=\"6\" maxlength=\"255\"
                                                                                            name=\"password\"
                                                                                            onblur=\"validateForm('password', [validateMoreThan5, validateLessThan256])\"></label><br/>
-                            <a href=\"forgotPassword.php\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>
+                            <a href=\"index.php?site=forgotPassword\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>
                             <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("LOGIN") . "\">
                         </form>
                         <?php

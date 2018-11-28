@@ -3,28 +3,26 @@
 class UtilityController
 {
     private static $sites = array(
-        1 => "Home",
-        2 => "Products",
-        3 => "ProductDetail",
-        4 => "AboutUs",
-        8 => "Basket",
-        9 => "Checkout",
-        10 => "Basket",
-        11 => "LoginState",
-        12 => "Login",
-        13 => "Logout",
-        14 => "ForgotPassword",
-        15 => "ResetPassword",
-        16 => "Register",
-        17 => "Language",
-        18 => "User",
-        19 => "Orders",
+        "home",
+        "productDetail",
+        "productList",
+        "aboutUs",
+        "basket",
+        "checkout",
+        "login",
+        "logout",
+        "forgotPassword",
+        "resetPassword",
+        "register",
+        "user",
+        "order"
     );
+
 
     public static function getControllerObject($id)
     {
         if (array_key_exists($id, self::$sites)) {
-            $controllerName = self::$sites[$id] . "Controller";
+            $controllerName = ucfirst($id) . "Controller";
             if (class_exists($controllerName)) {
                 return new $controllerName();
             }
@@ -32,23 +30,25 @@ class UtilityController
         return new NotFoundController();
     }
 
-    public static function alert($msg) {
+    public static function alert($msg)
+    {
         echo "<script type='text/javascript'>alert('$msg');</script>";
     }
 
-    public static function redirect($path) {
+    public static function redirect($path)
+    {
         header('Location: ' . $path);
     }
 
-    public static function validateInput($data) {
+    public static function validateInput($data)
+    {
         if (is_array($data)) {
             $validatedArray = array();
             foreach ($data as $dataElement) {
-                array_push($validatedArray, validateInput($dataElement));
+                array_push($validatedArray, self::validateInput($dataElement));
             }
             return $validatedArray;
-        }
-        else {
+        } else {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
@@ -56,7 +56,8 @@ class UtilityController
         return $data;
     }
 
-    public static function sendMail($receiver, $subject, $message) {
+    public static function sendMail($receiver, $subject, $message)
+    {
         if ($receiver == null || empty($receiver)) {
             $receiver = 'parachute.webshop@gmail.com';
         }

@@ -24,7 +24,7 @@ class UserController extends Controller
                         $_SESSION['person']->passwordhash = $hashedPassword;
                     }
                     $_SESSION['person']->setAll($_POST);
-                    Person::updatePerson($_SESSION['person']);
+                    UserController::updatePerson($_SESSION['person']);
                 }
             }
             return parent::getContent();
@@ -137,8 +137,8 @@ class UserController extends Controller
 
     public static function createPerson($person)
     {
-        $cityId = Person::getOrCreateCity($person->city, $person->zip);
-        $addressId = Person::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
+        $cityId = UserController::getOrCreateCity($person->city, $person->zip);
+        $addressId = UserController::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
         $query = 'INSERT INTO webshop.person(firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $firstname = $person->firstname;
@@ -169,7 +169,7 @@ class UserController extends Controller
         if (isset($row)) {
             return $row['id'];
         } else {
-            return Person::createCity($city, $zip);
+            return UserController::createCity($city, $zip);
         }
     }
 
@@ -197,7 +197,7 @@ class UserController extends Controller
         if (isset($row)) {
             return $row['id'];
         } else {
-            return Person::createAddress($street, $homenumber, $cityId, $countryId);
+            return UserController::createAddress($street, $homenumber, $cityId, $countryId);
         }
     }
 
@@ -219,7 +219,7 @@ class UserController extends Controller
         } else {
             $where = 'p.email';
         }
-        if (!Person::isUsernameOrEmailValid($usernameOrEmail)) {
+        if (!UserController::isUsernameOrEmailValid($usernameOrEmail)) {
             return false;
         }
         $query = 'update webshop.person p set p.passwordhash = ?, p.resetPassword = ? where ' . $where . ' = ?';
@@ -265,8 +265,8 @@ class UserController extends Controller
 
     public static function updatePerson($person)
     {
-        $cityId = Person::getOrCreateCity($person->city, $person->zip);
-        $addressId = Person::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
+        $cityId = UserController::getOrCreateCity($person->city, $person->zip);
+        $addressId = UserController::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
         $query = 'UPDATE webshop.person SET firstname = ?, lastname = ?, username = ?, email = ?, birthdate = ?, phone = ?, passwordhash = ?, address_id = ?, lang = ? where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $firstname = $person->firstname;

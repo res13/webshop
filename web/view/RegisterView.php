@@ -88,7 +88,7 @@ class RegisterView extends View
                                                                                                id=\"country\"
                                                                                                onblur=\"validateForm('country', [validateNotEmpty, validateCountry])\"
                                                                                                name=\"country\">";
-        $countries = Person::getAllCountries();
+        $countries = UserController::getAllCountries();
         foreach ($countries as $country) {
             $result .= "<option value=\"" . $country['id'] . "\">" . $country['name'] . "</option>";
         }
@@ -98,7 +98,7 @@ class RegisterView extends View
                                                                                                 id=\"lang\"
                                                                                                 onblur=\"validateForm('lang', [validateNotEmpty, validateLanguage])\"
                                                                                                 name=\"lang\">";
-        foreach (getAvailableLanguages() as $lang) {
+        foreach ($this->languageController->getAvailableLanguages() as $lang) {
             if ($lang === $_SESSION['lang']) {
                 $result .= "<option value=\"" . $lang . "\" selected>" . $lang . "</option>";
             } else {

@@ -5,7 +5,7 @@ class languageView extends View
 
     public function render($languageController)
     {
-        $result = "<div class=\"state\" id=\"languageState\">
+        $result = "<body><div class=\"state\" id=\"languageState\">
                     <form method=\"post\">
                         <label><select class=\"styled-select rounded top-selector\" name=\"lang\" onchange=\"this.form.submit()\">";
         foreach ($languageController->getAvailableLanguages() as $lang) {
@@ -20,7 +20,7 @@ class languageView extends View
                         <input type=\"submit\" value=\"" . $languageController->getTextForLanguage("CHANGE_LANGUAGE") . "\"
                     </noscript>
                     </form>
-                </div>";
+                </div></body>";
         return $result;
     }
 }

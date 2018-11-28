@@ -11,7 +11,7 @@ class LoginController extends Controller
         if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
             $usernameOrEmail = UtilityController::validateInput($_POST['usernameOrEmail']);
             $password = UtilityController::validateInput($_POST['password']);
-            $person = Person::authenticate($usernameOrEmail, $password);
+            $person = UserController::authenticate($usernameOrEmail, $password);
             if ($person != null) {
                 if ($person->__get('resetpassword') > 0) {
                     UtilityController::redirect('resetPassword.php');
@@ -29,12 +29,12 @@ class LoginController extends Controller
                             $optionValueId = $productOption->optionValueId;
                             array_push($optionArray, $optionValueId);
                         }
-                        Basket::addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
-                        $_SESSION['basket'] = Basket::getBasket($personId);
+                        BasketController::addToBasketOrIncrease($personId, $productId, $productQuantity, $optionArray);
+                        $_SESSION['basket'] = BasketController::getBasket($personId);
                     }
                 }
             } else {
-                UtilityController::alert(getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
+                UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
             }
         }
     }

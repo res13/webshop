@@ -4,7 +4,8 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new ProductView(), "PRODUCT");
+        $productView = new ProductView();
+        parent::__construct($productView, "PRODUCT");
     }
 
     public function getContent()

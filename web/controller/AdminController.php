@@ -4,7 +4,8 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new AdminView(), "ADMIN");
+        $adminView = new AdminView();
+        parent::__construct($adminView, "ADMIN");
     }
 
     public function getContent()

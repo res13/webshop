@@ -4,7 +4,8 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new RegisterView(), "REGISTER");
+        $registerView = new RegisterView();
+        parent::__construct($registerView, "REGISTER");
     }
 
     public function getContent()

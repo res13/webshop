@@ -5,7 +5,8 @@ class NotFoundController extends Controller
 
     public function __construct()
     {
-        parent::__construct(new NotFoundView(), "NOT_FOUND");
+        $notFoundView = new NotFoundView();
+        parent::__construct($notFoundView, "NOT_FOUND");
     }
 
 }

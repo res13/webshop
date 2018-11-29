@@ -4,7 +4,8 @@ class CheckoutController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new CheckoutView(), "CHECKOUT");
+        $checkoutView = new CheckoutView();
+        parent::__construct($checkoutView, "CHECKOUT");
     }
 
     public function getContent()

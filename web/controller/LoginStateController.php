@@ -4,7 +4,8 @@ class LoginStateController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new LoginStateView(), null);
+        $loginStateView = new LoginStateView();
+        parent::__construct($loginStateView, null);
     }
 
     public function getContent() {

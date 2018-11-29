@@ -1,10 +1,16 @@
 <?php
 
-class OrderTableController
+class OrderTableController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new OrderTableView(), null);
+        $orderTableView = new OrderTableView();
+        parent::__construct($orderTableView, null);
+    }
+
+    public function getContent()
+    {
+
     }
 
     public function getOrderTable($products, $remove)

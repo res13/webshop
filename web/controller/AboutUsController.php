@@ -4,6 +4,7 @@ class AboutUsController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new AboutUsView(), "ABOUT_US");
+        $aboutUsView = new AboutUsView();
+        parent::__construct($aboutUsView, "ABOUT_US");
     }
 }

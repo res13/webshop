@@ -5,7 +5,8 @@ class LogoutController extends Controller
 
     public function __construct()
     {
-        parent::__construct(null, null);
+        $logoutView = null;
+        parent::__construct($logoutView, null);
     }
 
     public function getHead()

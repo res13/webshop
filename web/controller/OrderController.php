@@ -4,7 +4,8 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new OrderView(), "MY_ORDERS");
+        $orderView = new OrderView();
+        parent::__construct($orderView, "MY_ORDERS");
     }
 
     public function getContent()

@@ -4,7 +4,8 @@ class ResetPasswordController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new ResetPasswordView(), "PASSWORD_RESET");
+        $resetPasswordView = new ResetPasswordView();
+        parent::__construct($resetPasswordView, "PASSWORD_RESET");
     }
 
     public function getContent()

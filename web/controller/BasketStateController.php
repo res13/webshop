@@ -4,7 +4,8 @@ class BasketStateController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new BasketStateView(), null);
+        $basketStateView = new BasketStateView();
+        parent::__construct($basketStateView, null);
     }
 
     public function getContent()

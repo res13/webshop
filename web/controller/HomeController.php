@@ -5,7 +5,8 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        parent::__construct(new HomeView(), "HOME");
+        $homeView = new HomeView();
+        parent::__construct($homeView, "HOME");
     }
 
     public function getContent()

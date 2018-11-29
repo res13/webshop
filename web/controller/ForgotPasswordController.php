@@ -4,7 +4,8 @@ class ForgotPasswordController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new ForgotPasswordView(), "FORGOT_PASSWORD");
+        $forgotPasswordView = new ForgotPasswordView();
+        parent::__construct($forgotPasswordView, "FORGOT_PASSWORD");
     }
 
     public function getContent()

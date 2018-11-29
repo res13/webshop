@@ -17,7 +17,8 @@ class ProductListController extends Controller
             $this->categoryPath = $this->languageController->getTextForLanguage("PRODUCTS");
         }
         $this->products = NavigationController::getAllProductsInCategory($categoryId, $_SESSION['lang']);
-        parent::__construct(new ProductListView(), "PRODUCTS");
+        $productListView = new ProductListView();
+        parent::__construct($productListView, "PRODUCTS");
     }
 
     public function getTitle() {

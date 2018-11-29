@@ -4,7 +4,8 @@ class BasketController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new BasketView(), "BASKET");
+        $basketView = new BasketView();
+        parent::__construct($basketView, "BASKET");
     }
 
     public function getProductIfQuantityGreaterThanZero($productId, $options) {

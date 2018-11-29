@@ -4,7 +4,8 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new LoginView(), "LOGIN");
+        $loginView = new LoginView();
+        parent::__construct($loginView, "LOGIN");
     }
 
     public function performHead() {

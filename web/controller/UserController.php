@@ -4,7 +4,8 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new UserView(), "USER");
+        $userView = new UserView();
+        parent::__construct($userView, "USER");
     }
 
     public function getContent()

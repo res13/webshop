@@ -3,7 +3,7 @@
 class CheckoutView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<h3>" . $languageController->getTextForLanguage("DELIVERY") . "</h3>
@@ -96,14 +96,14 @@ class CheckoutView extends View
         return $result;
     }
 
-    public function renderOrderSubmitted($languageController)
+    public function renderOrderSubmitted(&$languageController)
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<p>" . $languageController->getTextForLanguage("ORDER_SUBMITTED") . "</p></div></body>";
         return $result;
     }
 
-    public function renderMustLogin($languageController)
+    public function renderMustLogin(&$languageController)
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<p>" . $languageController->getTextForLanguage("MUST_BE_LOGGED_IN_TO_CHECKOUT") . "</p>";

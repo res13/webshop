@@ -3,12 +3,12 @@
 class ProductListView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
 
     }
 
-    public function renderProductList($languageController, $products, $categoryPath)
+    public function renderProductList(&$languageController, $products, $categoryPath)
     {
         $result = "<body>
 <div class=\"main\">

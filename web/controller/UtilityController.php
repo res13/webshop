@@ -19,9 +19,9 @@ class UtilityController
     );
 
 
-    public static function getControllerObject($id)
+    public static function getControllerObject($id) : Controller
     {
-        if (array_key_exists($id, self::$sites)) {
+        if (in_array($id, self::$sites)) {
             $controllerName = ucfirst($id) . "Controller";
             if (class_exists($controllerName)) {
                 return new $controllerName();

@@ -2,7 +2,7 @@
 
 class LoginStateView extends View
 {
-    public function renderUserLoginState($languageController, $username)
+    public function renderUserLoginState(&$languageController, $username)
     {
         $result = "<body><div class=\"state\" id='loginState'>
         <a href=\"index.php?site=user\">" . $username . "</a>
@@ -13,7 +13,7 @@ class LoginStateView extends View
         return $result;
     }
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body><div class=\"state\" id='loginState'>
         <a href=\"index.php?site=login\">" . $languageController->getTextForLanguage("LOGIN") . "</a>

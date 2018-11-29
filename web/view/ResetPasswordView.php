@@ -3,7 +3,7 @@
 class ResetPasswordView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body>
 <div class=\"main\">
@@ -51,7 +51,7 @@ class ResetPasswordView extends View
         return $result;
     }
 
-    public function renderSuccessfulReset($languageController)
+    public function renderSuccessfulReset(&$languageController)
     {
         $result = "<body><div class=\"main\">
     <h1>" . $languageController->$languageController->getTextForLanguage($languageController->getTextForLanguage("PASSWORD_RESET")) . "</h1><p>" . $languageController->$languageController->getTextForLanguage("RESET_PASSWORD") . "</p></div></body>";

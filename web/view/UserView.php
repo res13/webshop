@@ -3,7 +3,7 @@
 class UserView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $person = $_SESSION['person'];
         $result = "    <body>

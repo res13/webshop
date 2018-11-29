@@ -3,7 +3,7 @@
 class RegisterView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body>
 <div class=\"main\">

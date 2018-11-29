@@ -10,12 +10,12 @@ class OrderView extends View
         $this->orderTableController = new OrderTableController();
     }
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         // use renderOrderList
     }
 
-    public function renderOrderList($languageController, $orderList)
+    public function renderOrderList(&$languageController, &$orderList)
     {
         $result = "<body><div class=\"main\">
         <h1>" . $languageController->getTextForLanguage("MY_ORDERS") . "</h1>

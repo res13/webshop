@@ -12,7 +12,7 @@ class NavigationView extends View
         $this->basketStateController = new BasketStateController();
     }
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body><div class=\"navigation\"><a href=\"index.php?site=home\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
         $productHierarchy = "";

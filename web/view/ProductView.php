@@ -2,12 +2,12 @@
 
 class ProductView extends View
 {
-    public function render($languageController)
+    public function render(&$languageController)
     {
         // use renderProduct
     }
 
-    public function renderProduct($languageController, $product, $productOptions)
+    public function renderProduct(&$languageController, &$product, &$productOptions)
     {
         $result = "<body>
     <div class=\"main\">

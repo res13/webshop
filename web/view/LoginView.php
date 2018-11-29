@@ -3,7 +3,7 @@
 class LoginView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body><div class=\"main\">
     <h1>" . $languageController->getTextForLanguage("LOGIN") . "</h1>

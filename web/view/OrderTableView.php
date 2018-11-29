@@ -3,12 +3,12 @@
 class OrderTableView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         // use renderOrderTable
     }
 
-    public function renderOrderTable($languageController, $products, $remove)
+    public function renderOrderTable(&$languageController, &$products, $remove)
     {
         $result = "<body><div class=\"table\">
     <div class=\"layout-inline row th\">

@@ -10,7 +10,7 @@ abstract class Controller
 
     protected $navigationController;
 
-    public function __construct(View $view, $title)
+    public function __construct(View &$view, $title)
     {
         $this->view = $view;
         $this->title = $title;

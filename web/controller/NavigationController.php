@@ -6,7 +6,7 @@ class NavigationController
 
     private $languageController;
 
-    public function __construct(LanguageController $languageController)
+    public function __construct(LanguageController &$languageController)
     {
         $this->view = new NavigationView();
         $this->languageController = $languageController;

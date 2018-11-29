@@ -3,7 +3,7 @@
 class HomeView extends View
 {
 
-    public function render($languageController)
+    public function render(&$languageController)
     {
         $result = "<body class=\"landing\"><div class=\"main top topright\"><form method=\"post\"><label><select class=\"styled-select rounded top-selector\" name=\"lang\" onchange=\"this.form.submit()\">";
         foreach ($languageController->getAvailableLanguages() as $lang) {

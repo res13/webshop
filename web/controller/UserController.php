@@ -29,7 +29,7 @@ class UserController extends Controller
             }
             return parent::getContent();
         } else {
-            UtilityController::redirect("index.php?siteId=12");
+            UtilityController::redirect("index.php?site=login");
             return null;
         }
     }

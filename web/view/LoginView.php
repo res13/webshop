@@ -13,7 +13,7 @@ class LoginView extends View
             <div class=\"container\">
                 <div class=\"innerContainer\">";
         if (isset($_SESSION['person'])) {
-            UtilityController::redirect("index.php?siteId=1");
+            UtilityController::redirect("index.php?site=productList");
         } else {
             $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
                             <label>" . $languageController->getTextForLanguage("USERNAME") . $languageController->getTextForLanguage("OR") . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"

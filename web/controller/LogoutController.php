@@ -20,6 +20,6 @@ class LogoutController extends Controller
     {
         unset($_SESSION['person']);
         unset($_SESSION['basket']);
-        UtilityController::redirect('index.php?siteId=1');
+        UtilityController::redirect('index.php?site=login');
     }
 }

@@ -14,7 +14,7 @@ class ResetPasswordView extends View
                     <div class=\"innerContainer\">
                         <form method=\"post\"
                               onsubmit=\"return validateResetPassword()\">
-                            <label>" . $languageController->getTextForLanguage("USERNAME") . $languageController->getTextForLanguage("OR") . $languageController->getTextForLanguage("EMAIL") . "
+                            <label>" . $languageController->getTextForLanguage("USERNAME"). " " . $languageController->getTextForLanguage("OR"). " " . $languageController->getTextForLanguage("EMAIL") . "
                                 <br/><input type=\"text\" name=\"usernameOrEmail\" id=\"usernameOrEmail\" maxlength=\"255\"
                                             minlength=\"4\"
                                             onblur=\"validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])\"></label><br/>
@@ -54,7 +54,7 @@ class ResetPasswordView extends View
     public function renderSuccessfulReset(&$languageController)
     {
         $result = "<body><div class=\"main\">
-    <h1>" . $languageController->$languageController->getTextForLanguage($languageController->getTextForLanguage("PASSWORD_RESET")) . "</h1><p>" . $languageController->$languageController->getTextForLanguage("RESET_PASSWORD") . "</p></div></body>";
+    <h1>" . $languageController->getTextForLanguage("PASSWORD_RESET") . "</h1><p>" . $languageController->getTextForLanguage("RESET_PASSWORD") . "</p></div></body>";
         return $result;
     }
 }

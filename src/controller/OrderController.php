@@ -92,7 +92,7 @@ class OrderController extends Controller
         $orderIdList = self::getOrderIdsOfPerson($personId);
         $orderList = array();
         foreach ($orderIdList as $orderId) {
-            $order = Order::getOrder($orderId);
+            $order = self::getOrder($orderId);
             array_push($orderList, $order);
         }
         return $orderList;

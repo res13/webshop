@@ -107,7 +107,7 @@ class CheckoutView extends View
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<p>" . $languageController->getTextForLanguage("MUST_BE_LOGGED_IN_TO_CHECKOUT") . "</p>";
-        $result .= "<a href=\"index.php?site=login\">" . $languageController->getTextForLanguage("LOGIN") . "</a>" . $languageController->$languageController->getTextForLanguage("OR") . "<a href=\"register.php\">" . $languageController->$languageController->getTextForLanguage("REGISTER") . "</a></br></br></div></body>";
+        $result .= "<a href=\"index.php?site=login\">" . $languageController->getTextForLanguage("LOGIN") . " </a>" . $languageController->getTextForLanguage("OR") . " <a href=\"register.php\">" . $languageController->getTextForLanguage("REGISTER") . "</a></br></br></div></body>";
         return $result;
     }
 }

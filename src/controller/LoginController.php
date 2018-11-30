@@ -15,7 +15,7 @@ class LoginController extends Controller
             $password = UtilityController::validateInput($_POST['password']);
             $person = UserController::authenticate($usernameOrEmail, $password);
             if ($person != null) {
-                if ($person->__get('resetpassword') > 0) {
+                if ($person->resetpassword > 0) {
                     UtilityController::redirect('index.php?site=resetPassword');
                 }
                 $_SESSION['person'] = $person;
@@ -38,6 +38,9 @@ class LoginController extends Controller
             } else {
                 UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
             }
+        }
+        if (isset($_SESSION['person'])) {
+            UtilityController::redirect("index.php?site=productList");
         }
         return parent::getContent();
     }

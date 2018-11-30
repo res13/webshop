@@ -31,7 +31,7 @@ class BasketStateController
                 $basket = BasketController::getBasket($personId);
             } else {
                 $basket = $_SESSION['basket'];
-                $basket->removeProduct($productIdToRemove);
+                $basket = BasketController::removeProduct($basket, $productIdToRemove);
             }
             $_SESSION['basket'] = $basket;
         }
@@ -43,7 +43,7 @@ class BasketStateController
                 $basket = BasketController::getBasket($personId);
             } else {
                 $basket = $_SESSION['basket'];
-                $basket->increaseProduct($productIdToIncrease);
+                $basket = BasketController::increaseProduct($basket, $productIdToIncrease);
             }
             $_SESSION['basket'] = $basket;
         }
@@ -55,7 +55,7 @@ class BasketStateController
                 $basket = BasketController::getBasket($personId);
             } else {
                 $basket = $_SESSION['basket'];
-                $basket->decreaseProduct($productIdToDecrease);
+                $basket = BasketController::decreaseProduct($basket, $productIdToDecrease);
             }
             $_SESSION['basket'] = $basket;
         }
@@ -86,7 +86,7 @@ class BasketStateController
                 $basketProduct->__set('options', $basketOptions);
                 if (isset($_SESSION['basket'])) {
                     $basket = $_SESSION['basket'];
-                    $storedProduct = $basket->getProductIfQuantityGreaterThanZero($productId, $optionArray);
+                    $storedProduct = BasketController::getProductIfQuantityGreaterThanZero($basket->products, $productId, $optionArray);
                     if ($storedProduct != null) {
                         $storedQuantity = $storedProduct->quantity;
                         if ($storedQuantity > 0) {

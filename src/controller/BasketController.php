@@ -8,8 +8,7 @@ class BasketController extends Controller
         parent::__construct($basketView, "BASKET");
     }
 
-    public function getProductIfQuantityGreaterThanZero($productId, $options) {
-        $productArray = $this->__get('products');
+    public static function getProductIfQuantityGreaterThanZero($productArray, $productId, $options) {
         $resultingProduct = null;
         foreach ($productArray as $myProduct) {
             $myProductId = $myProduct->id;
@@ -35,46 +34,50 @@ class BasketController extends Controller
         return null;
     }
 
-    public function removeProduct($productId) {
-        $productArray = $this->__get('products');
-        $resultingProduct = $this->searchProduct($productId);
+    public static function removeProduct(&$basket, $productId) {
+        $productArray = $basket->products;
+        $resultingProduct = self::searchProduct($productArray, $productId);
         if ($resultingProduct == null) {
-            return;
+            return $basket;
         }
         if(($key = array_search($resultingProduct, $productArray, true)) !== FALSE) {
             unset($productArray[$key]);
+            $basket->products = $productArray;
+            return $basket;
         }
-        $this->__set('products', $productArray);
     }
 
-    public function increaseProduct($productId) {
-        $resultingProduct = $this->searchProduct($productId);
+    public static function increaseProduct(&$basket, $productId) {
+        $productArray = $basket->products;
+        $resultingProduct = self::searchProduct($productArray, $productId);
         if ($resultingProduct == null) {
-            return;
+            return $basket;
         }
         $actualQuantity = $resultingProduct->quantity;
         if ($actualQuantity < 50) {
             $resultingProduct->quantity = $actualQuantity + 1;
         }
+        return $basket;
     }
 
-    public function decreaseProduct($productId) {
-        $resultingProduct = $this->searchProduct($productId);
+    public static function decreaseProduct(&$basket, $productId) {
+        $productArray = $basket->products;
+        $resultingProduct = self::searchProduct($productArray, $productId);
         if ($resultingProduct == null) {
-            return;
+            return $basket;
         }
         $actualQuantity = $resultingProduct->quantity;
         if ($actualQuantity == 1) {
-            $this->removeProduct($productId);
+            $basket = self::removeProduct($basket, $productId);
         }
         else if ($actualQuantity > 1) {
             $resultingProduct->quantity = $actualQuantity - 1;
         }
+        return $basket;
     }
 
-    private function searchProduct($productId) {
+    private static function searchProduct(&$productArray, $productId) {
         $resultingProduct = null;
-        $productArray = $this->__get('products');
         foreach ($productArray as $myProduct) {
             $myProductId = $myProduct->id;
             if ($myProductId != $productId) {
@@ -178,9 +181,9 @@ class BasketController extends Controller
         if (isset($row)) {
             $productName = $row['name'];
             $productPrice = $row['price'];
-            $productOrderId = Order::addNewProductOrder($productId, $orderId, $productQuantity, $productName, $productPrice);
+            $productOrderId = OrderController::addNewProductOrder($productId, $orderId, $productQuantity, $productName, $productPrice);
             foreach ($optionArray as $optionId) {
-                Order::addNewProductOrderValue($productOrderId, $optionId);
+                OrderController::addNewProductOrderValue($productOrderId, $optionId);
             }
         }
     }

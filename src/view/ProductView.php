@@ -34,7 +34,7 @@ class ProductView extends View
                             " . htmlentities($productOption->optionName) . "
                             <label><select class=\"styled-select rounded\" name=\"options[]\">";
             foreach ($productOption->optionValues as $optionValue) {
-                $result .= "<option value=\"" . $optionValue->optionValueId . "\">" . htmlentities($optionValue->optionValueName) . "</option><?php";
+                $result .= "<option value=\"" . $optionValue->optionValueId . "\">" . htmlentities($optionValue->optionValueName) . "</option>";
             }
             $result .= "
                             </select></label>

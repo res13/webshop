@@ -7,6 +7,6 @@ class LogoutView extends View
     {
         unset($_SESSION['person']);
         unset($_SESSION['basket']);
-        UtilityController::redirect('index.php?site=home');
+        UtilityController::redirect('index.php?site=productList');
     }
 }

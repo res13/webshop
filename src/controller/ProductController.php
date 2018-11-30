@@ -15,8 +15,8 @@ class ProductController extends Controller
         } else {
             $id = null;
         }
-        $product = Product::getProduct($id, $_SESSION['lang']);
-        $productOptions = Option::getProductOptions($id, $_SESSION['lang']);
+        $product = self::getProduct($id, $_SESSION['lang']);
+        $productOptions = self::getProductOptions($id, $_SESSION['lang']);
         $result = $this->navigationController->getContent();
         $result .= $this->view->renderProduct($this->languageController, $product, $productOptions);
         return $result;
@@ -42,7 +42,7 @@ group by optionId';
         while ($row = $result->fetch_assoc()) {
             $option = new Option();
             $option->setAll($row);
-            $optionValues = OptionValue::getProductOptionValues($productId, $option->__get('optionId'), $lang);
+            $optionValues = self::getProductOptionValues($productId, $option->__get('optionId'), $lang);
             $option->__set('optionValues', $optionValues);
             array_push($options, $option);
         }

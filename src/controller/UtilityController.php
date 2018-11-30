@@ -4,7 +4,7 @@ class UtilityController
 {
     private static $sites = array(
         "home",
-        "productDetail",
+        "product",
         "productList",
         "aboutUs",
         "basket",

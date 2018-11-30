@@ -4,16 +4,16 @@
 
 ## 2 Main  Page: Content
 - See in code:
-    - [index.php](web/index.php) (Home)
-    - [products.php](web/products.php) (Products overview)
-    - [product.php](web/product.php) (Product detail)
-    - [aboutUs.php](web/aboutUs.php) (About us page)
-    - and more under [web/](web/)
+    - [index.php](src/index.php) (Home)
+    - [products.php](src/products.php) (Products overview)
+    - [product.php](src/product.php) (Product detail)
+    - [aboutUs.php](src/aboutUs.php) (About us page)
+    - and more under [web/](src/)
     
 ## 3 Main Page: Layout & 4 Main Page: Styling
 - See in code:
-    - [style.css](web/style/style.css)
+    - [style.css](src/style/style.css)
     
 ## 5 All Other Pages
 - See in code:
-    - [web/](web/)
+    - [web/](src/)

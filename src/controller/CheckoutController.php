@@ -51,9 +51,9 @@ class CheckoutController extends Controller
                     }
                 }
             } else {
-                Order::orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
+                OrderController::orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
             }
-            $subject = $this->languageController->$this->languageController->getTextForLanguage("ORDER") . " - " . $basketId;
+            $subject = $this->languageController->getTextForLanguage("ORDER") . " - " . $basketId;
             $message = "<html><body>
     <h2>" . $this->languageController->getTextForLanguage("DELIVERY") . "</h2>
     <p>" . $this->languageController->getTextForLanguage("ORDER_ID") . "=" . $basketId . "</p>
@@ -79,7 +79,7 @@ class CheckoutController extends Controller
             $mailSent = UtilityController::sendMail($_SESSION['person']->email, $subject, $message) && UtilityController::sendMail(null, $subject, $message);
             unset($_SESSION['basket']);
         }
-        $result = $this->navigationController->getContent();
+        $result = "";
         if (isset($mailSent) && $mailSent == true) {
             $result .= $this->view->renderOrderSubmitted($this->languageController);
         } else {

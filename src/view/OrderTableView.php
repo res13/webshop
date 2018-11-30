@@ -18,7 +18,7 @@ class OrderTableView extends View
         <div class=\"col col-qty align-center\">" . $languageController->getTextForLanguage("AMOUNT") . "</div>
         <div class=\"col\">";
         if (isset($remove) && $remove) {
-            echo $languageController->getTextForLanguage("REMOVE");
+            $result .= $languageController->getTextForLanguage("REMOVE");
         }
         $result .= "
         </div>
@@ -26,7 +26,7 @@ class OrderTableView extends View
     </div>";
         $totalPrice = 0;
         foreach ($products as $basketProduct) {
-            $productOptions = Option::getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
+            $productOptions = ProductController::getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
             $basketProductOptions = $basketProduct->options;
             $basketProductOptionsArray = array();
             foreach ($basketProductOptions as $basketProductOption) {
@@ -35,17 +35,17 @@ class OrderTableView extends View
             $result .= "
         <div class=\"layout-inline row\">
             <div class=\"col col-pro layout-inline\">
-                <p>" . htmlentities($basketProduct->name) . "></p>
+                <p><a href=\"index.php?site=product&id=$basketProduct->realProductId\">" . htmlentities($basketProduct->name) . "</a></p>
             </div>
             <div class=\"col layout-inline\">
                 <p>";
             foreach ($productOptions as $productOption) {
-                echo htmlentities($productOption->optionName);
-                echo ' = ';
+                $result .= htmlentities($productOption->optionName);
+                $result .= ' = ';
                 $productOptionValues = $productOption->optionValues;
                 foreach ($productOptionValues as $productOptionValue) {
                     if (in_array($productOptionValue->optionValueId, $basketProductOptionsArray)) {
-                        echo htmlentities($productOptionValue->optionValueName);
+                        $result .= htmlentities($productOptionValue->optionValueName);
                     }
                 }
             }

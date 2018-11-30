@@ -15,6 +15,6 @@ class OrderTableController extends Controller
 
     public function getOrderTable($products, $remove)
     {
-        $this->view->renderOrderTable($this->languageController, $products, $remove);
+        return $this->view->renderOrderTable($this->languageController, $products, $remove);
     }
 }

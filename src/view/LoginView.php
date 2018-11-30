@@ -12,9 +12,6 @@ class LoginView extends View
         <div class=\"col-25\">
             <div class=\"container\">
                 <div class=\"innerContainer\">";
-        if (isset($_SESSION['person'])) {
-            UtilityController::redirect("index.php?site=productList");
-        } else {
             $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
                             <label>" . $languageController->getTextForLanguage("USERNAME") . " " . $languageController->getTextForLanguage("OR") . " " . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
                                             minlength=\"3\"
@@ -26,16 +23,13 @@ class LoginView extends View
                             <a href=\"index.php?site=forgotPassword\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>
                             <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("LOGIN") . "\">
                         </form>
-                        <?php
-                    }
-                    ?>
                 </div>
             </div>
         </div>
         <div class=\"col-25\"></div>
     </div>
 </div></body>";
-        }
         return $result;
     }
+
 }

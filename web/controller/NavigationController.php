@@ -110,7 +110,7 @@ where c.id = ?';
 
     public static function getCategoryPath($categoryId, $lang, &$categoryPath)
     {
-        $category = Category::getCategory($categoryId, $lang);
+        $category = self::getCategory($categoryId, $lang);
         if (empty($categoryPath)) {
             $categoryPath = $category->__get('text');
         } else {

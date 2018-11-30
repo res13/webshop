@@ -8,7 +8,8 @@ class LoginController extends Controller
         parent::__construct($loginView, "LOGIN");
     }
 
-    public function performHead() {
+    public function getContent()
+    {
         if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
             $usernameOrEmail = UtilityController::validateInput($_POST['usernameOrEmail']);
             $password = UtilityController::validateInput($_POST['password']);
@@ -38,5 +39,7 @@ class LoginController extends Controller
                 UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
             }
         }
+        return parent::getContent();
     }
+
 }

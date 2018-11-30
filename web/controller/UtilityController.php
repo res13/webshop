@@ -15,7 +15,8 @@ class UtilityController
         "resetPassword",
         "register",
         "user",
-        "order"
+        "order",
+        "admin",
     );
 
 

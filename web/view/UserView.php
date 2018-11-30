@@ -3,7 +3,7 @@
 class UserView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         $person = $_SESSION['person'];
         $result = "    <body>
@@ -107,7 +107,7 @@ class UserView extends View
                                                                                                     id=\"lang\"
                                                                                                     onblur=\"validateForm('lang', [validateNotEmpty, validateLanguage])\"
                                                                                                     name=\"lang\">";
-        foreach (getAvailableLanguages() as $lang) {
+        foreach ($languageController->getAvailableLanguages() as $lang) {
             if ($lang === $person->lang) {
                 $result .= "<option value=\"" . $lang . "\" selected>" . $lang . "</option>";
             } else {

@@ -13,7 +13,7 @@ class OrderController extends Controller
         $result = $this->navigationController->getContent();
         if (isset($_SESSION['person'])) {
             $person = $_SESSION['person'];
-            $orderList = Order::getOrders($person->id);
+            $orderList = self::getOrders($person->id);
             $result .= $this->view->renderOrderList($this->languageController, $orderList);
         }
         else {
@@ -89,7 +89,7 @@ class OrderController extends Controller
 
     public static function getOrders($personId)
     {
-        $orderIdList = Order::getOrderIdsOfPerson($personId);
+        $orderIdList = self::getOrderIdsOfPerson($personId);
         $orderList = array();
         foreach ($orderIdList as $orderId) {
             $order = Order::getOrder($orderId);

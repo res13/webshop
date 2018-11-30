@@ -1,11 +1,13 @@
 <?php
 
-class BasketStateController extends Controller
+class BasketStateController
 {
+
+    private $view;
+
     public function __construct()
     {
-        $basketStateView = new BasketStateView();
-        parent::__construct($basketStateView, null);
+        $this->view = new BasketStateView();
     }
 
     public function getContent()

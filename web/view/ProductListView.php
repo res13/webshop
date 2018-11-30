@@ -3,7 +3,7 @@
 class ProductListView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
 
     }

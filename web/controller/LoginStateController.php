@@ -1,14 +1,16 @@
 <?php
 
-class LoginStateController extends Controller
+class LoginStateController
 {
+
+    private $view;
+
     public function __construct()
     {
-        $loginStateView = new LoginStateView();
-        parent::__construct($loginStateView, null);
+        $this->view = new LoginStateView();
     }
 
-    public function getContent() {
+    public function getContent(&$languageController) {
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
             session_unset();
             session_destroy();
@@ -23,10 +25,10 @@ class LoginStateController extends Controller
         if (isset($_SESSION['person'])) {
             $person = $_SESSION['person'];
             $username = $person->__get('username');
-            return $this->view->renderUserLoginState($username, $this->languageController);
+            return $this->view->renderUserLoginState($languageController, $username);
         }
         else {
-            return $this->view->render($this->languageController);
+            return $this->view->render($languageController);
         }
     }
 

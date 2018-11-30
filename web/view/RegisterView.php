@@ -3,7 +3,7 @@
 class RegisterView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         $result = "<body>
 <div class=\"main\">
@@ -98,7 +98,7 @@ class RegisterView extends View
                                                                                                 id=\"lang\"
                                                                                                 onblur=\"validateForm('lang', [validateNotEmpty, validateLanguage])\"
                                                                                                 name=\"lang\">";
-        foreach ($this->languageController->getAvailableLanguages() as $lang) {
+        foreach ($languageController->getAvailableLanguages() as $lang) {
             if ($lang === $_SESSION['lang']) {
                 $result .= "<option value=\"" . $lang . "\" selected>" . $lang . "</option>";
             } else {

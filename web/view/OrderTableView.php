@@ -3,7 +3,7 @@
 class OrderTableView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         // use renderOrderTable
     }

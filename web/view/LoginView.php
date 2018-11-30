@@ -3,7 +3,7 @@
 class LoginView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         $result = "<body><div class=\"main\">
     <h1>" . $languageController->getTextForLanguage("LOGIN") . "</h1>
@@ -16,7 +16,7 @@ class LoginView extends View
             UtilityController::redirect("index.php?site=productList");
         } else {
             $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
-                            <label>" . $languageController->getTextForLanguage("USERNAME") . $languageController->getTextForLanguage("OR") . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
+                            <label>" . $languageController->getTextForLanguage("USERNAME") . " " . $languageController->getTextForLanguage("OR") . " " . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
                                             minlength=\"3\"
                                             onblur=\"validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])\"></label><br/>
                             <label>" . $languageController->getTextForLanguage("PASSWORD") . "<br/><input type=\"password\" id=\"password\"

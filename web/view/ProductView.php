@@ -2,7 +2,7 @@
 
 class ProductView extends View
 {
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         // use renderProduct
     }

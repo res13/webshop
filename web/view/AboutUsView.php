@@ -3,7 +3,7 @@
 class AboutUsView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         $result = "<body></body><div class=\"main\">
     <h1>" . $languageController->getTextForLanguage("ABOUT_US") . "</h1>

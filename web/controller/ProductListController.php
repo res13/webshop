@@ -2,33 +2,26 @@
 
 class ProductListController extends Controller
 {
-    private $categoryPath;
-
-    private $products;
 
     public function __construct()
     {
-        if (isset ($_GET['category']) && $_GET['category'] > 0) {
-            $categoryId = $_GET['category'];
-            $this->categoryPath = "";
-            NavigationController::getCategoryPath($categoryId, $_SESSION['lang'], $this->categoryPath);
-        } else {
-            $categoryId = null;
-            $this->categoryPath = $this->languageController->getTextForLanguage("PRODUCTS");
-        }
-        $this->products = NavigationController::getAllProductsInCategory($categoryId, $_SESSION['lang']);
         $productListView = new ProductListView();
         parent::__construct($productListView, "PRODUCTS");
     }
 
-    public function getTitle() {
-        return $this->categoryPath;
-    }
-
     public function getContent()
     {
+        if (isset ($_GET['category']) && $_GET['category'] > 0) {
+            $categoryId = $_GET['category'];
+            $categoryPath = "";
+            NavigationController::getCategoryPath($categoryId, $_SESSION['lang'], $categoryPath);
+        } else {
+            $categoryId = null;
+            $categoryPath = $this->languageController->getTextForLanguage("PRODUCTS");
+        }
+        $products = NavigationController::getAllProductsInCategory($categoryId, $_SESSION['lang']);
         $result = $this->navigationController->getContent();
-        $result .= $this->view->renderProductList($this->languageController, $this->products, $this->categoryPath);
+        $result .= $this->view->renderProductList($this->languageController, $products, $categoryPath);
         return $result;
     }
 

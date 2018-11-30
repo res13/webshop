@@ -223,7 +223,7 @@ class LanguageController
             'de' => 'Höre auf zu Träumen und lerne Fliegen',
             'en' => 'Stop looking, Start Flying'),
         'WELCOME_SUB_TEXT' => array(
-            'de' => 'Kaufe hier dein Fallschirm Ausrüstung',
+            'de' => 'Kaufe hier deine Fallschirm Ausrüstung',
             'en' => 'Buy your first Parachute today'),
         'CHANGE_LANGUAGE' => array(
             'de' => 'Sprache wechseln',

@@ -3,7 +3,7 @@
 class CheckoutView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<h3>" . $languageController->getTextForLanguage("DELIVERY") . "</h3>

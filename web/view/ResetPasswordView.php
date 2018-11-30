@@ -3,7 +3,7 @@
 class ResetPasswordView extends View
 {
 
-    public function render(&$languageController)
+    public function render(LanguageController &$languageController)
     {
         $result = "<body>
 <div class=\"main\">

@@ -2,7 +2,7 @@
 
 class DatabaseController extends mysqli
 {
-    const HOST = "localhost", USER = "root", PW = "", DB_NAME = "webshop";
+    const HOST = "localhost", USER = "webshop_user", PW = "<add here the password for webshop_user>", DB_NAME = "webshop";
     static private $instance;
 
     function __construct()

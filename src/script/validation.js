@@ -59,23 +59,23 @@ function validateDate(element) {
 }
 
 function validateOnlyText(element) {
-    let onlyTextRegex = /^([a-zA-Z]+)$/;
-    return onlyTextRegex.test(element.value);
+    let regex = /^([a-zA-Z]+)$/;
+    return regex.test(element.value);
 }
 
 function validateUsername(element) {
-    let onlyUsernameRegex = /^([a-zA-Z0-9_\-]+)$/;
-    return onlyUsernameRegex.test(element.value);
+    let regex = /^([a-zA-Z0-9_\-]+)$/;
+    return regex.test(element.value);
 }
 
 function validateOnlyTextAndNumbers(element) {
-    let onlyUsernameRegex = /^([a-zA-Z0-9]+)$/;
-    return onlyUsernameRegex.test(element.value);
+    let regex = /^([a-zA-Z0-9]+)$/;
+    return regex.test(element.value);
 }
 
 function validateOnlyNumbers(element) {
-    let onlyUsernameRegex = /^([0-9]+)$/;
-    return onlyUsernameRegex.test(element.value);
+    let regex = /^([0-9]+)$/;
+    return regex.test(element.value);
 }
 
 function validateCountry(element) {

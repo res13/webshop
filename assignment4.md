@@ -3,7 +3,7 @@
 TODO
 
 ## 2 Multi-Page PHP File
-TODO
+- Done
 
 ## 3 Multilingual Text
 - Two dimensional array is in [i18n.php](src/util/i18n.php)

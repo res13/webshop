@@ -234,6 +234,9 @@ class LanguageController
         'SAVE' => array(
             'de' => 'Speichern',
             'en' => 'Save'),
+        'CHECKOUT_CONFIMATION' => array(
+            'de' => 'Kauf bestätigen',
+            'en' => 'Confirm checkout'),
     );
 
     public function __construct()

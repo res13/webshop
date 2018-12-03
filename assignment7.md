@@ -6,7 +6,7 @@ See database schema [db.sql](src/db/db.sql)
 See database schema [db.sql](src/db/db.sql)
 
 ## 3 PHP Integration
-TODO: create real db user
+Done, using user webshop_user with strong password
 
 ## 4 Administrator Area
 TODO: admin page

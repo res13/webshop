@@ -1,6 +1,6 @@
 # Assignment 6
 ## 1 Purchase Confirmation
-TODO
+- We do not want this
 
 ## 2 Form  Validation
 - All forms are validated with javascript and html5 before submitting:

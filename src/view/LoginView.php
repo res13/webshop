@@ -20,7 +20,7 @@ class LoginView extends View
                                                                                            minlength=\"6\" maxlength=\"255\"
                                                                                            name=\"password\"
                                                                                            onblur=\"validateForm('password', [validateMoreThan5, validateLessThan256])\"></label><br/>
-                            <a href=\"index.php?site=forgotPassword\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>";
+                            <a href=\"forgotPassword\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>";
         if (isset($errorMessage)) {
             $result .= "<p class='error'>$errorMessage</p>";
         }

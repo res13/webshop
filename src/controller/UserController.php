@@ -30,7 +30,7 @@ class UserController extends Controller
             $result .= $this->view->render($this->languageController, $errorMessage);
             return $result;
         } else {
-            UtilityController::redirect("index.php?site=login");
+            UtilityController::redirect("login");
             return null;
         }
     }

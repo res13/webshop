@@ -17,7 +17,7 @@ class LoginController extends Controller
             $person = UserController::authenticate($usernameOrEmail, $password);
             if ($person != null) {
                 if ($person->resetpassword > 0) {
-                    UtilityController::redirect('index.php?site=resetPassword');
+                    UtilityController::redirect('resetPassword');
                 }
                 $_SESSION['person'] = $person;
                 if (isset($_SESSION['basket'])) {
@@ -41,7 +41,7 @@ class LoginController extends Controller
             }
         }
         if (isset($_SESSION['person'])) {
-            UtilityController::redirect("index.php?site=productList");
+            UtilityController::redirect("productList");
         }
         $result = $this->navigationController->getContent();
         $result .= $this->view->render($this->languageController, $errorMessage);

@@ -17,7 +17,7 @@ class BasketView extends View
         <h1>" . $languageController->getTextForLanguage("BASKET") . "</h1>";
         $show = (isset($_SESSION['basket']) && count($_SESSION['basket']->products) > 0);
         if ($show) {
-            $result .= "<h2><a href='index.php?site=basket&cleanBasket'>" . $languageController->getTextForLanguage("CLEAN_BASKET") . "</a></h2>";
+            $result .= "<h2><a href='basket&cleanBasket'>" . $languageController->getTextForLanguage("CLEAN_BASKET") . "</a></h2>";
         }
         $result .= "<div class=\"row\">
             <div class=\"col-75\">

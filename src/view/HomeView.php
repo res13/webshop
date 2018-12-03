@@ -23,7 +23,7 @@ class HomeView extends View
                         <div class=\"smallTitle\">" . $languageController->getTextForLanguage("WELCOME_TEXT") . "</div>
                         <div class=\"smallerTitle\">" . $languageController->getTextForLanguage("WELCOME_SUB_TEXT") . "</div>
                     </div>
-                    <a class=\"centerButton rounded\" href=\"index.php?site=productList\">" . $languageController->getTextForLanguage("PRODUCTS") . "</a>
+                    <a class=\"centerButton rounded\" href=\"productList\">" . $languageController->getTextForLanguage("PRODUCTS") . "</a>
                 </body>";
         return $result;
     }

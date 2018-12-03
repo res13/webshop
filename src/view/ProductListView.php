@@ -28,7 +28,7 @@ class ProductListView extends View
                         <h2>" . htmlentities($product->manufacturer) . "</h2>
                     </div>
                     <div class=\"product-price-btn-small\">
-                        <p><span>" . htmlentities($product->price) . "</span> CHF</p><a href=\"index.php?site=product&id=$product->id\"><button type=\"button\">" . $languageController->getTextForLanguage("PRODUCT") . "</button></a>
+                        <p><span>" . htmlentities($product->price) . "</span> CHF</p><a href=\"product&id=$product->id\"><button type=\"button\">" . $languageController->getTextForLanguage("PRODUCT") . "</button></a>
                     </div>
                 </div>
             </div>

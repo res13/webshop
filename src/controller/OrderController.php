@@ -17,7 +17,7 @@ class OrderController extends Controller
             $result .= $this->view->renderOrderList($this->languageController, $orderList);
         }
         else {
-            UtilityController::redirect("index.php?site=login");
+            UtilityController::redirect("login");
         }
         return $result;
     }

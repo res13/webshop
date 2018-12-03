@@ -5,10 +5,10 @@ class LoginStateView extends View
     public function renderUserLoginState(&$languageController, $username)
     {
         $result = "<body><div class=\"state\" id='loginState'>
-        <a href=\"index.php?site=user\">" . $username . "</a>
-        <a href=\"index.php?site=order\">" . $languageController->getTextForLanguage("MY_ORDERS") . "</a>
+        <a href=\"user\">" . $username . "</a>
+        <a href=\"order\">" . $languageController->getTextForLanguage("MY_ORDERS") . "</a>
         <hr/>
-        <a href=\"index.php?site=logout\">" . $languageController->getTextForLanguage("LOGOUT") . "</a>
+        <a href=\"logout\">" . $languageController->getTextForLanguage("LOGOUT") . "</a>
         </div></body>";
         return $result;
     }
@@ -16,9 +16,9 @@ class LoginStateView extends View
     public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body><div class=\"state\" id='loginState'>
-        <a href=\"index.php?site=login\">" . $languageController->getTextForLanguage("LOGIN") . "</a>
+        <a href=\"login\">" . $languageController->getTextForLanguage("LOGIN") . "</a>
         <hr/>
-        <a href=\"index.php?site=register\">" . $languageController->getTextForLanguage("REGISTER") . "</a>
+        <a href=\"register\">" . $languageController->getTextForLanguage("REGISTER") . "</a>
         </div></body>";
         return $result;
     }

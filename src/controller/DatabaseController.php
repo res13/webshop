@@ -2,12 +2,12 @@
 
 class DatabaseController extends mysqli
 {
-    const HOST = "localhost", USER = "webshop_user", PW = "<add here the password for webshop_user>", DB_NAME = "webshop";
     static private $instance;
 
     function __construct()
     {
-        parent::__construct(self::HOST, self::USER, self::PW, self::DB_NAME);
+        $db_conf = parse_ini_file("../db/db_config.ini");
+        parent::__construct($db_conf["HOST"], $db_conf["USER"], $db_conf["PW"], $db_conf["DB"]);
         $this->set_charset("utf8");
     }
 

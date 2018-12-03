@@ -1,4 +1,3 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME}  !-f
-RewriteRule ^/index\.php\?site\=(.*) /$1
-#RewriteRule ^(\w+)/?(.*)$ index.php?site=$1
+RewriteRule ^(\w+)/?(.*)$ index.php?site=$1&action=$2

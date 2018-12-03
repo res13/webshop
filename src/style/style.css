@@ -164,6 +164,8 @@ a.button {
     text-decoration: none;
     white-space: nowrap;
     color: #fff;
+    position: relative;
+    z-index: 1;
 }
 
 .navigation ul li a:hover {

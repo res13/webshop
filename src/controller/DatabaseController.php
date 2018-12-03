@@ -6,7 +6,7 @@ class DatabaseController extends mysqli
 
     function __construct()
     {
-        $db_conf = parse_ini_file("../db/db_config.ini");
+        $db_conf = parse_ini_file(realpath("db/db_config.ini"));
         parent::__construct($db_conf["HOST"], $db_conf["USER"], $db_conf["PW"], $db_conf["DB"]);
         $this->set_charset("utf8");
     }

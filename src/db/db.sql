@@ -359,3 +359,6 @@ INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (12
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (12, 7);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (12, 8);
 INSERT INTO webshop.product_option_value (product_id, optionvalue_id) VALUES (12, 9);
+
+GRANT USAGE ON . TO 'webshop_user'@'localhost' IDENTIFIED BY PASSWORD '*89D97B94AF2E3585CA6625B6AB194B3D5F97F15F';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `webshop`.* TO 'webshop_user'@'localhost';

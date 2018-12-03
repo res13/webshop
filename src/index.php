@@ -24,6 +24,7 @@ else {
 }
 $siteController = UtilityController::getControllerObject($site);
 $siteController->performHead();
+$content = $siteController->getContent();
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -55,6 +56,6 @@ $siteController->performHead();
     <script src="script/productFilter.js"></script>
 </head>
 <?php
-echo $siteController->getContent();
+echo $content;
 ?>
 </html>

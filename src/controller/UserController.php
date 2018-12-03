@@ -58,11 +58,11 @@ class UserController extends Controller
            r.name  role,
            p.lang,
            p.resetpassword
-    from webshop.person p
-           join webshop.address a on a.id = p.address_id
-           join webshop.city ci on ci.id = a.city_id
-           join webshop.country co on co.id = a.country_id
-           join webshop.role r on r.id = p.role_id
+    from person p
+           join address a on a.id = p.address_id
+           join city ci on ci.id = a.city_id
+           join country co on co.id = a.country_id
+           join role r on r.id = p.role_id
     where ' . $where . ' = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $success = $stmt->bind_param('s', $usernameOrEmail);
@@ -84,7 +84,7 @@ class UserController extends Controller
 
     public static function getLanguageOfPerson($personId)
     {
-        $query = 'select p.lang from webshop.person p where p.id = ?';
+        $query = 'select p.lang from person p where p.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $personId);
         DatabaseController::checkBindingError($success);
@@ -100,7 +100,7 @@ class UserController extends Controller
 
     public static function setLanguageOfPerson($personId, $lang)
     {
-        $query = 'update webshop.person p set p.lang = ? where p.id = ?';
+        $query = 'update person p set p.lang = ? where p.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('si', $lang, $personId);
         DatabaseController::checkBindingError($success);
@@ -111,7 +111,7 @@ class UserController extends Controller
     public static function checkIfUsernameExists($username)
     {
 
-        $query = 'select p.username from webshop.person p where p.username = ?';
+        $query = 'select p.username from person p where p.username = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('s', $username);
         DatabaseController::checkBindingError($success);
@@ -125,7 +125,7 @@ class UserController extends Controller
 
     public static function checkIfEmailExists($email)
     {
-        $query = 'select p.email from webshop.person p where p.email = ?';
+        $query = 'select p.email from person p where p.email = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('s', $email);
         DatabaseController::checkBindingError($success);
@@ -140,7 +140,7 @@ class UserController extends Controller
     {
         $cityId = UserController::getOrCreateCity($person->city, $person->zip);
         $addressId = UserController::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
-        $query = 'INSERT INTO webshop.person(firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $query = 'INSERT INTO person(firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $firstname = $person->firstname;
         $lastname = $person->lastname;
@@ -159,7 +159,7 @@ class UserController extends Controller
 
     public static function getOrCreateCity($city, $zip)
     {
-        $query = 'select c.id from webshop.city c where c.city = ? and c.zip = ?';
+        $query = 'select c.id from city c where c.city = ? and c.zip = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('si', $city, $zip);
         DatabaseController::checkBindingError($success);
@@ -176,7 +176,7 @@ class UserController extends Controller
 
     public static function createCity($city, $zip)
     {
-        $query = 'INSERT INTO webshop.city (city, zip) VALUES (?, ?)';
+        $query = 'INSERT INTO city (city, zip) VALUES (?, ?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('si', $city, $zip);
         DatabaseController::checkBindingError($success);
@@ -187,7 +187,7 @@ class UserController extends Controller
 
     public static function getOrCreateAddress($street, $homenumber, $cityId, $countryId)
     {
-        $query = 'select a.id from webshop.address a where a.street = ? and a.homenumber = ? and a.city_id = ? and a.country_id = ?';
+        $query = 'select a.id from address a where a.street = ? and a.homenumber = ? and a.city_id = ? and a.country_id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ssii', $street, $homenumber, $cityId, $countryId);
         DatabaseController::checkBindingError($success);
@@ -204,7 +204,7 @@ class UserController extends Controller
 
     public static function createAddress($street, $homenumber, $cityId, $countryId)
     {
-        $query = 'INSERT INTO webshop.address (street, homenumber, city_id, country_id) VALUES (?, ?, ?, ?)';
+        $query = 'INSERT INTO address (street, homenumber, city_id, country_id) VALUES (?, ?, ?, ?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ssii', $street, $homenumber, $cityId, $countryId);
         DatabaseController::checkBindingError($success);
@@ -223,7 +223,7 @@ class UserController extends Controller
         if (!UserController::isUsernameOrEmailValid($usernameOrEmail)) {
             return false;
         }
-        $query = 'update webshop.person p set p.passwordhash = ?, p.resetPassword = ? where ' . $where . ' = ?';
+        $query = 'update person p set p.passwordhash = ?, p.resetPassword = ? where ' . $where . ' = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('sis', $password, $resetPassword, $usernameOrEmail);
         DatabaseController::checkBindingError($success);
@@ -239,7 +239,7 @@ class UserController extends Controller
         } else {
             $where = 'p.email';
         }
-        $selectQuery = 'select p.id from webshop.person p where ' . $where . ' = ?';
+        $selectQuery = 'select p.id from person p where ' . $where . ' = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($selectQuery);
         $success = $stmt->bind_param('s', $usernameOrEmail);
         DatabaseController::checkBindingError($success);
@@ -252,7 +252,7 @@ class UserController extends Controller
 
     public static function getAllCountries()
     {
-        $query = 'select c.id, c.name from webshop.country c';
+        $query = 'select c.id, c.name from country c';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         DatabaseController::executeWithErrorHandling($stmt);
         $result = $stmt->get_result();
@@ -268,7 +268,7 @@ class UserController extends Controller
     {
         $cityId = UserController::getOrCreateCity($person->city, $person->zip);
         $addressId = UserController::getOrCreateAddress($person->street, $person->homenumber, $cityId, $person->country);
-        $query = 'UPDATE webshop.person SET firstname = ?, lastname = ?, username = ?, email = ?, birthdate = ?, phone = ?, passwordhash = ?, address_id = ?, lang = ? where id = ?';
+        $query = 'UPDATE person SET firstname = ?, lastname = ?, username = ?, email = ?, birthdate = ?, phone = ?, passwordhash = ?, address_id = ?, lang = ? where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $firstname = $person->firstname;
         $lastname = $person->lastname;

@@ -217,8 +217,8 @@ class LanguageController
             'de' => 'Ja',
             'en' => 'Yes'),
         'PROJECT_DESCRIPTION' => array(
-            'de' => 'Dieser src shop wurde im Rahmen des Projekts BTI7054q im Herbstsemeseter 2018/2019 an der Berner Fachhochschule von Nik Arm und Andreas Erb realisiert.',
-            'en' => 'This src shop was realized as part of the project BTI7054q in the autumn semester 2018/2019 at the Bern University of Applied Sciences by Nik Arm and Andreas Erb.'),
+            'de' => 'Dieser web shop wurde im Rahmen des Projekts BTI7054q im Herbstsemeseter 2018/2019 an der Berner Fachhochschule von Nik Arm und Andreas Erb realisiert. Alle hier dargestellten Fotos wurden kopiert, ohne nachzufragen. Das ist nur eine Demo-Seite.',
+            'en' => 'This web shop was realized as part of the project BTI7054q in the autumn semester 2018/2019 at the Bern University of Applied Sciences by Nik Arm and Andreas Erb. All pictures here were copied without permission. This is only a demo site.'),
         'PARACHUTE_SHOP' => array(
             'de' => 'Fallschirm Shop',
             'en' => 'Parachute Shop'),

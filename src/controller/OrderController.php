@@ -24,7 +24,7 @@ class OrderController extends Controller
 
     public static function addNewProductOrder($productId, $orderId, $productQuantity, $productName, $productPrice)
     {
-        $query = 'insert into webshop.product_orders (orders_id, product_id, pname, price, quantity) values (?, ?, ?, ?, ?)';
+        $query = 'insert into product_orders (orders_id, product_id, pname, price, quantity) values (?, ?, ?, ?, ?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('iisii', $orderId, $productId, $productName, $productPrice, $productQuantity);
         DatabaseController::checkBindingError($success);
@@ -35,7 +35,7 @@ class OrderController extends Controller
 
     public static function addNewProductOrderValue($productOrderId, $optionId)
     {
-        $query = 'insert into webshop.product_orders_option_value (productorders_id, optionvalue_id) values (?, ?)';
+        $query = 'insert into product_orders_option_value (productorders_id, optionvalue_id) values (?, ?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ii', $productOrderId, $optionId);
         DatabaseController::checkBindingError($success);
@@ -47,7 +47,7 @@ class OrderController extends Controller
     {
         $cityId = UserController::getOrCreateCity($deliveryCity, $deliveryZip);
         $addressId = UserController::getOrCreateAddress($deliveryStreet, $deliveryHomenumber, $cityId, $deliveryCountry);
-        $query = 'update webshop.orders set deliveryfirstname = ?, deliverylastname = ?, deliveryaddress_id = ?, purchasedate = now(), state = 1 where id = ?';
+        $query = 'update orders set deliveryfirstname = ?, deliverylastname = ?, deliveryaddress_id = ?, purchasedate = now(), state = 1 where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ssii', $deliveryFirstname, $deliveryLastname, $addressId, $basketId);
         DatabaseController::checkBindingError($success);
@@ -60,7 +60,7 @@ class OrderController extends Controller
         Order::orderBasket($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry);
         $cityId = UserController::getOrCreateCity($billingCity, $billingZip);
         $addressId = UserController::getOrCreateAddress($billingStreet, $billingHomenumber, $cityId, $billingCountry);
-        $query = 'update webshop.orders set billingfirstname = ?, billinglastname = ?, billingaddress_id = ? where id = ?';
+        $query = 'update orders set billingfirstname = ?, billinglastname = ?, billingaddress_id = ? where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ssii', $billingFirstname, $billingLastname, $addressId, $basketId);
         DatabaseController::checkBindingError($success);
@@ -70,7 +70,7 @@ class OrderController extends Controller
 
     public static function getOrder($orderId)
     {
-        $query = 'select o.id, o.purchasedate, o.paymentmethod, o.state from webshop.orders o where o.id = ?';
+        $query = 'select o.id, o.purchasedate, o.paymentmethod, o.state from orders o where o.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $orderId);
         DatabaseController::checkBindingError($success);
@@ -99,7 +99,7 @@ class OrderController extends Controller
     }
 
     public static function getOrderIdsOfPerson($personId) {
-        $query = 'select o.id from webshop.orders o where o.person_id = ? and o.state = 1';
+        $query = 'select o.id from orders o where o.person_id = ? and o.state = 1';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $personId);
         DatabaseController::checkBindingError($success);

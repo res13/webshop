@@ -25,9 +25,9 @@ class NavigationController
         }
         $query = 'select c.id, 
   i.text_' . $_SESSION['lang'] . ' as text, c.category_id as categoryid
-from webshop.category c
-            join webshop.i18n i on i.id = c.name_i18n_id
-where c.category_id in (select id from webshop.category c where c.category_id ' . $where . ')';
+from category c
+            join i18n i on i.id = c.name_i18n_id
+where c.category_id in (select id from category c where c.category_id ' . $where . ')';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         if ($categoryId != null) {
             $success = $stmt->bind_param('i', $categoryId);
@@ -53,24 +53,24 @@ where c.category_id in (select id from webshop.category c where c.category_id ' 
        p.price,
        i.text_' . $lang . '                                                    description,
        p.image,
-       (select text_' . $lang . ' from webshop.i18n where id = c.name_i18n_id) category,
+       (select text_' . $lang . ' from i18n where id = c.name_i18n_id) category,
        m.name                                                       manufacturer
-from webshop.product p
-       join webshop.i18n i on p.description_i18n_id = i.id
-       join webshop.category c on p.category_id = c.id
-       join webshop.manufacturer m on p.manufacturer_id = m.id
+from product p
+       join i18n i on p.description_i18n_id = i.id
+       join category c on p.category_id = c.id
+       join manufacturer m on p.manufacturer_id = m.id
 where c.id in ';
         if ($categoryId == null) {
-            $query = $mainQuery . '(select c.id from webshop.category c)';
+            $query = $mainQuery . '(select c.id from category c)';
             $stmt = DatabaseController::prepareWithErrorHandling($query);
         } else {
             $query = $mainQuery . '(select id
-               from (select * from webshop.category c order by c.category_id, id) category,
+               from (select * from category c order by c.category_id, id) category,
                     (select @pv := ?) initialisation
                where find_in_set(category_id, @pv) > 0
                        and @pv := concat(@pv, \',\', id)
                union
-               select c.id from webshop.category c where id = ?)';
+               select c.id from category c where id = ?)';
             $stmt = DatabaseController::prepareWithErrorHandling($query);
             $success = $stmt->bind_param('si', $categoryId, $categoryId);
             DatabaseController::checkBindingError($success);
@@ -90,8 +90,8 @@ where c.id in ';
     public static function getCategory($categoryId, $lang)
     {
         $query = 'select c.id, i.text_' . $lang . ' text, c.category_id categoryid
-from webshop.category c
-join webshop.i18n i on c.name_i18n_id = i.id
+from category c
+join i18n i on c.name_i18n_id = i.id
 where c.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $categoryId);

@@ -102,7 +102,7 @@ class BasketController extends Controller
     }
 
     public static function getBasketProductsByOrderId($orderId) {
-        $query = 'select po.id, po.pname name, po.price, po.quantity, po.product_id realProductId from webshop.product_orders po where po.orders_id = ?';
+        $query = 'select po.id, po.pname name, po.price, po.quantity, po.product_id realProductId from product_orders po where po.orders_id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $orderId);
         DatabaseController::checkBindingError($success);
@@ -129,7 +129,7 @@ class BasketController extends Controller
 
     public static function getBasketOrderIdOfPerson($personId)
     {
-        $query = 'select o.id from webshop.orders o where o.person_id = ? and o.state = 0';
+        $query = 'select o.id from orders o where o.person_id = ? and o.state = 0';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $personId);
         DatabaseController::checkBindingError($success);
@@ -149,7 +149,7 @@ class BasketController extends Controller
         if ($orderId == null) {
             $orderId = BasketController::createNewBasket($personId);
         }
-        $query = 'select po.id, po.quantity from webshop.product_orders po where po.product_id = ? and po.orders_id = ?';
+        $query = 'select po.id, po.quantity from product_orders po where po.product_id = ? and po.orders_id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('ii', $productId, $orderId);
         DatabaseController::checkBindingError($success);
@@ -170,7 +170,7 @@ class BasketController extends Controller
 
     public static function addToBasket($productId, $orderId, $productQuantity, $optionArray)
     {
-        $query = 'select p.pname name, p.price from webshop.product p where p.id = ?';
+        $query = 'select p.pname name, p.price from product p where p.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $productId);
         DatabaseController::checkBindingError($success);
@@ -190,7 +190,7 @@ class BasketController extends Controller
 
     public static function getQuantityOfProductInBasket($productOrderId)
     {
-        $query = 'select po.quantity from webshop.product_orders po where po.id = ?';
+        $query = 'select po.quantity from product_orders po where po.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $productOrderId);
         DatabaseController::checkBindingError($success);
@@ -214,7 +214,7 @@ class BasketController extends Controller
             BasketController::removeProductFromBasket($productOrderId);
         }
         else if ($newQuantity > 0 && $newQuantity <= 50) {
-            $query = 'update webshop.product_orders po set po.quantity = ? where po.id = ?';
+            $query = 'update product_orders po set po.quantity = ? where po.id = ?';
             $stmt = DatabaseController::prepareWithErrorHandling($query);
             $success = $stmt->bind_param('ii', $newQuantity, $productOrderId);
             DatabaseController::checkBindingError($success);
@@ -225,7 +225,7 @@ class BasketController extends Controller
 
     public static function createNewBasket($personId)
     {
-        $query = 'insert into webshop.orders (person_id) values (?)';
+        $query = 'insert into orders (person_id) values (?)';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $personId);
         DatabaseController::checkBindingError($success);
@@ -237,7 +237,7 @@ class BasketController extends Controller
 
     public static function cleanBasket($personId)
     {
-        $query = 'delete from webshop.orders where person_id = ? and state = 0';
+        $query = 'delete from orders where person_id = ? and state = 0';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         if (!$stmt) {
             return;
@@ -250,7 +250,7 @@ class BasketController extends Controller
 
     public static function removeProductFromBasket($basketProductId)
     {
-        $query = 'delete from webshop.product_orders where id = ?';
+        $query = 'delete from product_orders where id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         if (!$stmt) {
             return;
@@ -263,7 +263,7 @@ class BasketController extends Controller
 
     function getBasketProduct($basketProductId)
     {
-        $query = 'select po.id, po.pname name, po.price, po.quantity, po.product_id realProductId from webshop.product_orders po where po.id = ?';
+        $query = 'select po.id, po.pname name, po.price, po.quantity, po.product_id realProductId from product_orders po where po.id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $basketProductId);
         DatabaseController::checkBindingError($success);
@@ -282,7 +282,7 @@ class BasketController extends Controller
     public static function getBasketProductOptionsByProductOrderId($productOrderId)
     {
         $query = 'select poov.optionvalue_id optionValueId 
-from webshop.product_orders_option_value poov
+from product_orders_option_value poov
 where poov.productorders_id = ?';
         $stmt = DatabaseController::prepareWithErrorHandling($query);
         $success = $stmt->bind_param('i', $productOrderId);

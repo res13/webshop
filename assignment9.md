@@ -8,4 +8,4 @@
 - The content of the basket is in [basket.php](src/basket.php)
 
 ## 2 More Classes
-TODO
+- Done

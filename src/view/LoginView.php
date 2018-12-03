@@ -3,7 +3,7 @@
 class LoginView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body><div class=\"main\">
     <h1>" . $languageController->getTextForLanguage("LOGIN") . "</h1>
@@ -12,7 +12,7 @@ class LoginView extends View
         <div class=\"col-25\">
             <div class=\"container\">
                 <div class=\"innerContainer\">";
-            $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
+        $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
                             <label>" . $languageController->getTextForLanguage("USERNAME") . " " . $languageController->getTextForLanguage("OR") . " " . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
                                             minlength=\"3\"
                                             onblur=\"validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])\"></label><br/>
@@ -20,7 +20,11 @@ class LoginView extends View
                                                                                            minlength=\"6\" maxlength=\"255\"
                                                                                            name=\"password\"
                                                                                            onblur=\"validateForm('password', [validateMoreThan5, validateLessThan256])\"></label><br/>
-                            <a href=\"index.php?site=forgotPassword\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>
+                            <a href=\"index.php?site=forgotPassword\">" . $languageController->getTextForLanguage("FORGOT_PASSWORD") . "</a><br/>";
+        if (isset($errorMessage)) {
+            $result .= "<p class='error'>$errorMessage</p>";
+        }
+        $result .= "
                             <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("LOGIN") . "\">
                         </form>
                 </div>

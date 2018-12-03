@@ -10,6 +10,7 @@ class LoginController extends Controller
 
     public function getContent()
     {
+        $errorMessage = null;
         if (isset($_POST['usernameOrEmail']) && isset($_POST['password'])) {
             $usernameOrEmail = UtilityController::validateInput($_POST['usernameOrEmail']);
             $password = UtilityController::validateInput($_POST['password']);
@@ -36,13 +37,15 @@ class LoginController extends Controller
                     }
                 }
             } else {
-                UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD"));
+                $errorMessage = $this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL_PASSWORD");
             }
         }
         if (isset($_SESSION['person'])) {
             UtilityController::redirect("index.php?site=productList");
         }
-        return parent::getContent();
+        $result = $this->navigationController->getContent();
+        $result .= $this->view->render($this->languageController, $errorMessage);
+        return $result;
     }
 
 }

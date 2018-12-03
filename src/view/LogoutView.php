@@ -3,7 +3,7 @@
 class LogoutView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         unset($_SESSION['person']);
         unset($_SESSION['basket']);

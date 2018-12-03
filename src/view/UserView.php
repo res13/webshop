@@ -3,7 +3,7 @@
 class UserView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $person = $_SESSION['person'];
         $result = "    <body>
@@ -117,8 +117,11 @@ class UserView extends View
         $result .= "
                                         </select></label><br/>
                                 </div>
-                            </div>
-                            <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("SAVE") . "\">
+                            </div>";
+        if (isset($errorMessage)) {
+            $result .= "<p class='error'>$errorMessage</p>";
+        }
+        $result .= "<input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("SAVE") . "\">
                         </form>
                     </div>
                 </div>

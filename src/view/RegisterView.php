@@ -3,7 +3,7 @@
 class RegisterView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body>
 <div class=\"main\">
@@ -108,8 +108,11 @@ class RegisterView extends View
         $result .= "
                                     </select></label><br/>
                             </div>
-                        </div>
-                        <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("REGISTER") . "\">
+                        </div>";
+        if (isset($errorMessage)) {
+            $result .= "<p class='error'>$errorMessage</p>";
+        }
+        $result .= "<input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("REGISTER") . "\">
                     </form>
                 </div>
             </div>

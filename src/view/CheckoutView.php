@@ -3,7 +3,7 @@
 class CheckoutView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<h3>" . $languageController->getTextForLanguage("DELIVERY") . "</h3>
@@ -90,8 +90,11 @@ class CheckoutView extends View
         }
         $result .= "</select></label>
                 </div>
-                <br/>
-                <input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("BUY") . "\">
+                <br/>";
+        if (isset($errorMessage)) {
+            $result .= "<p class='error'>$errorMessage</p>";
+        }
+        $result .= "<input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("BUY") . "\">
             </form><div></body>";
         return $result;
     }
@@ -110,4 +113,5 @@ class CheckoutView extends View
         $result .= "<a href=\"index.php?site=login\">" . $languageController->getTextForLanguage("LOGIN") . " </a>" . $languageController->getTextForLanguage("OR") . " <a href=\"register.php\">" . $languageController->getTextForLanguage("REGISTER") . "</a></br></br></div></body>";
         return $result;
     }
+
 }

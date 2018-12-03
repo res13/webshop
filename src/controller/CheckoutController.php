@@ -10,6 +10,7 @@ class CheckoutController extends Controller
 
     public function getContent()
     {
+        $errorMessage = null;
         if (
             isset($_POST['deliveryFirstname'])
             && isset($_POST['deliveryLastname'])
@@ -47,7 +48,7 @@ class CheckoutController extends Controller
                         $billingCountry = UtilityController::validateInput($_POST['billingCountry']);
                         Order::orderBasketBillingDiffers($basketId, $deliveryFirstname, $deliveryLastname, $deliveryStreet, $deliveryHomenumber, $deliveryCity, $deliveryZip, $deliveryCountry, $billingFirstname, $billingLastname, $billingStreet, $billingHomenumber, $billingCity, $billingZip, $billingCountry);
                     } else {
-                        UtilityController::alert($this->languageController->getTextForLanguage("INPUT_MISSING"));
+                        $errorMessage = $this->languageController->getTextForLanguage("INPUT_MISSING");
                     }
                 }
             } else {
@@ -84,7 +85,7 @@ class CheckoutController extends Controller
             $result .= $this->view->renderOrderSubmitted($this->languageController);
         } else {
             if (isset($_SESSION['person'])) {
-                $result .= $this->view->render($this->languageController);
+                $result .= $this->view->render($this->languageController, $errorMessage);
             }
             else {
                 $result .= $this->view->renderMustLogin($this->languageController);

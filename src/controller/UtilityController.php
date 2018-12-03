@@ -31,11 +31,6 @@ class UtilityController
         return new NotFoundController();
     }
 
-    public static function alert($msg)
-    {
-        echo "<script type='text/javascript'>alert('$msg');</script>";
-    }
-
     public static function redirect($path)
     {
         header('Location: ' . $path);

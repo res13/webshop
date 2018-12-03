@@ -11,7 +11,7 @@ class BasketView extends View
         $this->checkoutController = new CheckoutController();
     }
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body><div class=\"main\">
         <h1>" . $languageController->getTextForLanguage("BASKET") . "</h1>";

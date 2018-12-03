@@ -10,10 +10,11 @@ class ForgotPasswordController extends Controller
 
     public function getContent()
     {
+        $errorMessage = null;
         if (!isset($_SESSION['person']) && isset($_POST['email'])) {
             $email = UtilityController::validateInput($_POST['email']);
             if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
-                UtilityController::alert($this->languageController->getTextForLanguage("EMAIL_NOT_VALID"));
+                $errorMessage .= $this->languageController->getTextForLanguage("EMAIL_NOT_VALID");
             } else {
                 $randomPassword = $this->randomPassword(8);
                 $hashedPassword = password_hash($randomPassword, PASSWORD_DEFAULT);
@@ -23,7 +24,7 @@ class ForgotPasswordController extends Controller
                     $mailSent = UtilityController::sendMail($email, $subject, $message);
                     $mailSent = true;
                 } else {
-                    UtilityController::alert($this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL"));
+                    $errorMessage .= $this->languageController->getTextForLanguage("WRONG_USERNAME_EMAIL");
                 }
             }
         }
@@ -31,7 +32,7 @@ class ForgotPasswordController extends Controller
         if (isset($mailSent) && $mailSent == true) {
             $result .= $this->view->renderEmailSent($this->languageController);
         } else {
-            $result .= $this->view->render($this->languageController);
+            $result .= $this->view->render($this->languageController, $errorMessage);
         }
         return $result;
     }

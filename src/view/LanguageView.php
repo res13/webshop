@@ -3,7 +3,7 @@
 class languageView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body><div class=\"state\" id=\"languageState\">
                     <form method=\"post\">

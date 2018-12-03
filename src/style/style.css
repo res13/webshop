@@ -11,9 +11,12 @@ table, tr, th, td {
     border: 1px solid black;
 }
 
+.error {
+    color: red;
+}
+
 .landing {
     height: 100%;
-    /*Quelle: https://html5up.net/uploads/demos/lens/images/fulls/01.jpg*/
     background: url(../img/01.jpg);
     background-size: cover;
     color: white;
@@ -25,28 +28,28 @@ table, tr, th, td {
     top: 30px;
 }
 
-.topleft{
+.topleft {
     left: 16px;
 }
 
-.topright{
+.topright {
     right: 16px;
 }
 
-.bigTitle{
+.bigTitle {
     font-size: 3em;
     line-height: 1em;
     text-transform: uppercase;
 }
 
-.smallTitle{
+.smallTitle {
     font-weight: 900;
     font-size: 1.5em;
     line-height: 0.6em;
     text-transform: uppercase;
 }
 
-.smallerTitle{
+.smallerTitle {
     font-weight: 500;
     margin: 0.5em 0 0 0;
     font-size: 1.25em;
@@ -70,7 +73,7 @@ table, tr, th, td {
 
 
 .dropdown {
-    float:right;
+    float: right;
     position: relative;
     display: inline-block;
 }
@@ -81,7 +84,7 @@ table, tr, th, td {
     right: 0;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -92,7 +95,9 @@ table, tr, th, td {
     display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -114,7 +119,7 @@ table, tr, th, td {
     white-space: nowrap;
 }
 
-.faPad{
+.faPad {
     padding-top: 10px;
 }
 
@@ -128,7 +133,7 @@ table, tr, th, td {
 }
 
 .navigation a {
-font-size: 20px;
+    font-size: 20px;
 }
 
 a.button {
@@ -193,8 +198,8 @@ a.button {
 
 .navigation ul:before,
 .navigation ul:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+    content: " ";
+    display: table;
 }
 
 .navigation ul:after {
@@ -207,19 +212,18 @@ a.button {
     display: -webkit-box;
 }
 
-.icon-wrapper{
-    position:relative;
-    float:left;
+.icon-wrapper {
+    position: relative;
+    float: left;
 }
-
-
 
 i {
-    width:50px;
-    text-align:center;
-    vertical-align:middle;
+    width: 50px;
+    text-align: center;
+    vertical-align: middle;
 }
-.badge{
+
+.badge {
     background: #9cebd5;
     width: auto;
     height: auto;
@@ -238,7 +242,6 @@ i {
     height: 420px;
     margin: 50px auto;
     border-radius: 7px 7px 7px 7px;
-    /* VIA CSS MATIC https://goo.gl/cIbnS */
     -webkit-box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
@@ -323,7 +326,7 @@ span {
     border: none;
     font-size: 18px;
     height: 29px;
-    padding: 5px; /* If you add too much padding here, the options won't show in IE */
+    padding: 5px;
     width: 268px;
 }
 
@@ -335,7 +338,6 @@ span {
     width: 268px;
 }
 
-/* -------------------- Rounded Corners */
 .rounded {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -346,7 +348,6 @@ span {
     height: 220px;
     margin: 10px;
     border-radius: 7px 7px 7px 7px;
-    /* VIA CSS MATIC https://goo.gl/cIbnS */
     -webkit-box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 14px 32px 0 rgba(0, 0, 0, 0.15);
@@ -473,8 +474,6 @@ span {
 .top-selector {
     margin-top: -3px;
 }
-
-/*table*/
 
 html {
     font: 75%/1.5em "Trebuchet Ms", helvetica;
@@ -640,27 +639,25 @@ a.qty:hover {
 
 }
 
-/*order*/
-
 .row {
-    display: -ms-flexbox; /* IE10 */
+    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap; /* IE10 */
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
 
 .col-25 {
-    -ms-flex: 25%; /* IE10 */
+    -ms-flex: 25%;
     flex: 25%;
 }
 
 .col-50 {
-    -ms-flex: 50%; /* IE10 */
+    -ms-flex: 50%;
     flex: 50%;
 }
 
 .col-75 {
-    -ms-flex: 75%; /* IE10 */
+    -ms-flex: 75%;
     flex: 75%;
 }
 
@@ -671,7 +668,7 @@ a.qty:hover {
 }
 
 
-input[type=text],input[type=date], input[type=password], input[type=number], select[class=selectLog] {
+input[type=text], input[type=date], input[type=password], input[type=number], select[class=selectLog] {
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;
@@ -724,7 +721,6 @@ span.price {
     color: grey;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next model each other (also change the direction - make the "cart" column go on top) */
 @media (max-width: 800px) {
     .row {
         flex-direction: column-reverse;
@@ -735,71 +731,79 @@ span.price {
     }
 }
 
-/*Accordation*/
-
 .accordion ul {
-    list-style:none;
-    margin:0;
-    padding:0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
+
 .accordion li {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
+
 .accordion [type=radio], .accordion [type=checkbox] {
-    display:none;
+    display: none;
 }
+
 .accordion label {
-    display:block;
-    font-size:16px;
-    line-height:16px;
-    background:#D95B43;
-    border:1px solid #542437;
-    color:#542437;
-    text-shadow:1px 1px 1px rgba(255,255,255,0.3);
-    font-weight:700;
-    cursor:pointer;
-    text-transform:uppercase;
+    display: block;
+    font-size: 16px;
+    line-height: 16px;
+    background: #D95B43;
+    border: 1px solid #542437;
+    color: #542437;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
 }
+
 .accordion ul li label:hover, .accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
-    background:#C02942;
-    color:#FFF;
-    text-shadow:1px 1px 1px rgba(0,0,0,0.5)
+    background: #C02942;
+    color: #FFF;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5)
 }
+
 .accordion .content {
-    overflow:hidden;
-    border:1px solid #fff; /* Make the border match the background so it fades in nicely */
+    overflow: hidden;
+    border: 1px solid #fff;
 }
+
 .accordion p {
-    color:#333;
-    margin:0 0 10px;
+    color: #333;
+    margin: 0 0 10px;
 }
+
 .accordion h3 {
-    color:#542437;
-    padding:0;
-    margin:10px 0;
+    color: #542437;
+    padding: 0;
+    margin: 10px 0;
 }
 
-
-/* Vertical */
 .vertical ul li {
-    overflow:hidden;
-    margin:0 0 1px;
+    overflow: hidden;
+    margin: 0 0 1px;
 }
+
 .vertical ul li label {
-    padding:10px;
+    padding: 10px;
 }
+
 .vertical [type=radio]:checked ~ label, .vertical [type=checkbox]:checked ~ label {
-    border-bottom:0;
+    border-bottom: 0;
 }
+
 .vertical ul li label:hover {
-    border:1px solid #542437; /* We don't want the border model disappear on hover */
+    border: 1px solid #542437;
 }
+
 .vertical ul li .content {
-    height:0px;
-    border-top:0;
+    height: 0px;
+    border-top: 0;
 }
+
 .vertical [type=radio]:checked ~ label ~ .content, .vertical [type=checkbox]:checked ~ label ~ .content {
-    height:100%;
-    border:1px solid #542437;
+    height: 100%;
+    border: 1px solid #542437;
 }

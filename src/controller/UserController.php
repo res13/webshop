@@ -10,15 +10,13 @@ class UserController extends Controller
 
     public function getContent()
     {
+        $errorMessage = null;
         if (isset($_SESSION['person'])) {
-            $person = $_SESSION['person'];
-            // todo: validate all post input
             if (isset($_POST['email']) && isset($_POST['username'])) {
                 $email = UtilityController::validateInput($_POST['email']);
-                $username = UtilityController::validateInput($_POST['username']);
                 $password = UtilityController::validateInput($_POST['password']);
                 if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
-                    UtilityController::alert($this->languageController->getTextForLanguage("EMAIL_NOT_VALID"));
+                    $errorMessage = $this->languageController->getTextForLanguage("EMAIL_NOT_VALID");
                 } else {
                     if (!empty($password)) {
                         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -28,7 +26,9 @@ class UserController extends Controller
                     UserController::updatePerson($_SESSION['person']);
                 }
             }
-            return parent::getContent();
+            $result = $this->navigationController->getContent();
+            $result .= $this->view->render($this->languageController, $errorMessage);
+            return $result;
         } else {
             UtilityController::redirect("index.php?site=login");
             return null;

@@ -13,7 +13,7 @@ class LoginStateView extends View
         return $result;
     }
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         $result = "<body><div class=\"state\" id='loginState'>
         <a href=\"index.php?site=login\">" . $languageController->getTextForLanguage("LOGIN") . "</a>

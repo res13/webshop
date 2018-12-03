@@ -2,7 +2,7 @@
 
 class BasketStateView extends View
 {
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         return $this->renderWithCounter($languageController, 0);
     }

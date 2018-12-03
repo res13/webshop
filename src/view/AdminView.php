@@ -3,7 +3,7 @@
 class AdminView extends View
 {
 
-    public function render(LanguageController &$languageController)
+    public function render(LanguageController &$languageController, $errorMessage = null)
     {
         // todo: admin page
         return "<body><p>todo</p></body>";

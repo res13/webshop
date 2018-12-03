@@ -3,4 +3,4 @@
 - Done
 
 ## 2 Semantic  URLs
-TODO
+- Done

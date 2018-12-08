@@ -14,15 +14,17 @@ class NavigationView extends View
 
     public function render(LanguageController &$languageController, $errorMessage = null)
     {
-        $result = "<body><div class=\"navigation\"><a href=\"home\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
+        $result = "<div class=\"navigation\"><a href=\"home\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
         $productHierarchy = "";
-        $result .= "<a class='navIcon' href=\"#overlay\"><i class=\"faPad fas fa-bars fa-2x\"></i></a>";
-        $result .= "<ul class='nav'>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
-        $result .= "<li><a href=\"aboutUs\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
+        $result .= "<a class='navIcon ' href=\"#overlay\"><i class=\"faPad fas fa-bars fa-2x\"></i></a>";
+        $nav = "";
+        $nav .= "<ul class='navOverlay'>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
+        $nav .= "<li><a href=\"aboutUs\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
         if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
-            $result .= "<li><a href=\"admin\">" . $languageController->getTextForLanguage("ADMIN") . "</a></li>";
+            $nav .= "<li><a href=\"admin\">" . $languageController->getTextForLanguage("ADMIN") . "</a></li>";
         }
-        $result .= "</ul>";
+        $nav .= "</ul>";
+        $result .= "<ul class='nav'>" . $nav . "</div>";
         $result .= "<div class=\"navRight\">";
         $result .= $languageController->getContent();
         $result .= "<div class=\"dropdown\">
@@ -31,7 +33,10 @@ class NavigationView extends View
         $result .= $this->loginStateController->getContent($languageController);
         $result .= "</div></div>";
         $result .= $this->basketStateController->getContent();
-        $result .= "</div></div></body>";
+        $result .= "</div>";
+        $result .= "<div id='overlay'><div class='overlayContent'><a href=\"#\"><i class=\"faPad fas fa-times fa-2x\"></i></a>";
+        $result .= $nav;
+        $result .= "</div></div>";
         return $result;
     }
 

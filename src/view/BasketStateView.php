@@ -11,7 +11,7 @@ class BasketStateView extends View
     {
         $result = "<body><div class=\"icon-wrapper\">
     <a href=\"basket\" class=\"button\"><i class=\"faPad fas fa-shopping-cart fa-3x\"></i></a>
-    <span class=\"badge\">" . $productCount . "</span>
+    <a href=\"basket\" class=\"badge\">" . $productCount . "</a>
 </div></body>";
         return $result;
     }

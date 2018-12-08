@@ -1,10 +1,10 @@
 :root {
-    --mainColor: #b00;
     --accentColor: #54b4eb;
     --accentColorHover: #1d9ce5;
     --navColor: #696969;
     --navColorHover: #505050;
     --navColorHover2: #363636;
+    --white: #fff;
 
     /*color: var(--mainColor);*/
 }
@@ -14,13 +14,6 @@ body {
     background-color: lightgrey;
 }
 
-table {
-    border-collapse: collapse;
-}
-
-table, tr, th, td {
-    border: 1px solid black;
-}
 
 .error {
     color: red;
@@ -28,7 +21,7 @@ table, tr, th, td {
 
 .landing {
     height: 100%;
-    background: url(../img/01.jpg) no-repeat center fixed;
+    background: url(../img/01.jpg) no-repeat left fixed;
     background-size: cover;
     color: white;
     font-size: 25px;
@@ -56,31 +49,41 @@ table, tr, th, td {
 .smallTitle {
     font-weight: 900;
     font-size: 1.5em;
-    line-height: 0.6em;
     text-transform: uppercase;
+    line-height: 0.9;
 }
 
 .smallerTitle {
     font-weight: 500;
     margin: 0.5em 0 0 0;
     font-size: 1.25em;
-    text-transform: uppercase
+    text-transform: uppercase;
+    line-height: 0.9;
+}
+
+.centerBottom {
+    position: fixed;
+    left: 50%;
+    bottom: 50px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
 }
 
 .centerButton {
-    position: absolute;
-    bottom: 25%;
-    left: 42%;
     text-align: center;
-    padding-top: 25px;
+    padding: 5px;
     background-color: transparent;
     box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 1);
     color: #fff;
-    min-height: 2em;
-    min-width: 8em;
-    font-size: 1.5em;
+    font-size: 2em;
     font-weight: 900;
 }
+
+.centerSelect {
+    padding: 20px 0 0 40%;
+}
+
+
 
 
 .dropdown {
@@ -132,6 +135,43 @@ table, tr, th, td {
 
 .faPad {
     padding-top: 10px;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#overlay:target, #overlay:target + #cover{
+    display:block;
+    opacity:2;
+}
+
+
+.overlayContent{
+    top: 25%;
+    position: absolute;
+    width: 100%;
+    font-size: 25px;
+    text-align: center;
+}
+
+.overlayContent ul li{
+    margin: 20px 0 0 20px;
+    list-style: none;
+}
+
+.navOverlay{
+    margin: 0 0 0 -70px;
 }
 
 .navigation {
@@ -218,6 +258,7 @@ a.button {
 .navRight {
     position: absolute;
     right: 20px;
+    top: 0px;
     display: -webkit-box;
 }
 
@@ -233,6 +274,7 @@ i {
 }
 
 .badge {
+    color: black;
     background: var(--accentColor);
     width: auto;
     height: auto;
@@ -498,6 +540,7 @@ h1 {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 2.5em;
+    line-height: 0.8;
 }
 
 p {
@@ -516,20 +559,13 @@ a {
 }
 
 .container {
-    margin: 40px auto;
+    margin: 20px auto;
     border-radius: 0.6em;
-    background: #ecf0f1;
+    background: var(--white);
 }
 
 .innerContainer {
     padding: 20px;
-}
-
-.table {
-    background: #ffffff;
-    border-radius: 0.6em;
-    overflow: hidden;
-    clear: both;
 }
 
 .layout-inline > * {
@@ -541,7 +577,7 @@ a {
 }
 
 .th {
-    background: #bbc3c6;
+    background: var(--navColor);
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
@@ -549,7 +585,7 @@ a {
 }
 
 .tf {
-    background: #bbc3c6;
+    background: var(--navColor);
     text-transform: uppercase;
     text-align: right;
     font-size: 1.2em;
@@ -560,36 +596,6 @@ a {
     font-weight: bold;
 }
 
-.col {
-    padding: 1em;
-    width: 15%;
-}
-
-.col-pro {
-    width: 23%;
-}
-
-.col-pro > * {
-    vertical-align: middle;
-}
-
-.col-qty {
-    text-align: center;
-    width: 17%;
-}
-
-.col-numeric p {
-    font: bold 1.8em helvetica;
-    text-align: right;
-}
-
-.col-total p {
-    color: var(--accentColor);
-}
-
-.colPad {
-    padding-top: 22px;
-}
 
 .tf .col {
     width: 20%;
@@ -599,23 +605,16 @@ a {
     vertical-align: middle;
 }
 
-.col-qty > * {
-    vertical-align: middle;
-}
-
-.col-qty > input {
-    max-width: 2.6em;
-}
 
 a.qty {
-    width: 1em;
-    line-height: 1em;
     border-radius: 2em;
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: bold;
     text-align: center;
     background: #43ace3;
     color: #fff;
+    margin: 10px;
+    padding: 0px 6px;
 }
 
 a.qty:hover {
@@ -669,12 +668,9 @@ input[type=text], input[type=date], input[type=password], input[type=number], se
 }
 
 input[class=inputSmall] {
-    width: 50%;
+    width: 30%;
 }
 
-.labelQty {
-    width: 50%;
-}
 
 .btn {
     padding: 10px 30px;
@@ -708,9 +704,88 @@ span.price {
     color: grey;
 }
 
-@media (max-width: 700px) {
+table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+table tr {
+    background-color: #f8f8f8;
+    padding: .35em;
+}
+
+thead tr {
+    background-color: var(--navColor);
+    padding: .35em;
+}
+
+tbody tr {
+    border-bottom:  1px solid var(--navColor);
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 750px) {
     .row {
-        flex-direction: column-reverse;
+        flex-direction: column;
+    }
+
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    tbody tr {
+        border-bottom: 20px solid lightgrey;
+        display: block;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+
+    table td.tdNoShowSmall{
+        display: none;
     }
 
     .col-25 {
@@ -756,17 +831,18 @@ span.price {
         bottom: 0px;
         right: 0px;
         width: 100%;
-        border-radius: unset;
+        border-radius: 0 0 7px 7px;
         left: 0px;
     }
 
 }
 
 .navIcon {
+    color: black;
     display: none;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 475px) {
     /*nav*/
     .nav {
         display: none;
@@ -776,9 +852,6 @@ span.price {
         display: inherit;
     }
 
-}
-
-@media (max-width: 400px) {
     .product-text-small h1, .product-text h1 {
         font-size: 25px;
     }

@@ -10,20 +10,24 @@ class OrderTableView extends View
 
     public function renderOrderTable(&$languageController, &$products, $remove)
     {
-        $result = "<body><div class=\"table\">
-    <div class=\"layout-inline row th\">
-        <div class=\"col col-pro\">" . $languageController->getTextForLanguage("PRODUCT") . "</div>
-        <div class=\"col\">" . $languageController->getTextForLanguage("OPTIONS") . "</div>
-        <div class=\"col col-price align-center \">" . $languageController->getTextForLanguage("SINGLE_PRICE") . "</div>
-        <div class=\"col col-qty align-center\">" . $languageController->getTextForLanguage("AMOUNT") . "</div>
-        <div class=\"col\">";
+        $result = "<body>
+<table>
+<thead>
+    <tr>
+        <th scope=\"col\">" . $languageController->getTextForLanguage("PRODUCT") . "</th>
+        <th scope=\"col\">" . $languageController->getTextForLanguage("OPTIONS") . "</th>
+        <th scope=\"col\">" . $languageController->getTextForLanguage("SINGLE_PRICE") . "</th>
+        <th scope=\"col\">" . $languageController->getTextForLanguage("AMOUNT") . "</th>
+        <th scope=\"col\">";
         if (isset($remove) && $remove) {
             $result .= $languageController->getTextForLanguage("REMOVE");
         }
         $result .= "
-        </div>
-        <div class=\"col\">" . $languageController->getTextForLanguage("PRICE") . "</div>
-    </div>";
+        </th>
+        <th scope=\"col\">" . $languageController->getTextForLanguage("PRICE") . "</th>
+    </tr>
+    </thead>
+    <tbody>";
         $totalPrice = 0;
         foreach ($products as $basketProduct) {
             $productOptions = ProductController::getProductOptions($basketProduct->realProductId, $_SESSION['lang']);
@@ -33,11 +37,11 @@ class OrderTableView extends View
                 array_push($basketProductOptionsArray, $basketProductOption->optionValueId);
             }
             $result .= "
-        <div class=\"layout-inline row\">
-            <div class=\"col col-pro layout-inline\">
+        <tr>
+            <td data-label=". $languageController->getTextForLanguage("PRODUCT") .">
                 <p><a href=\"product&id=$basketProduct->realProductId\">" . htmlentities($basketProduct->name) . "</a></p>
-            </div>
-            <div class=\"col layout-inline\">
+            </td>
+            <td data-label=". $languageController->getTextForLanguage("OPTIONS") .">
                 <p>";
             foreach ($productOptions as $productOption) {
                 $result .= htmlentities($productOption->optionName);
@@ -50,11 +54,11 @@ class OrderTableView extends View
                 }
             }
             $result .= "</p>
-            </div>
-            <div class=\"col col-price align-center \">
+            </td>
+            <td data-label=" . $languageController->getTextForLanguage("SINGLE_PRICE") . ">
                 <p>" . htmlentities($basketProduct->price) . " CHF</p>
-            </div>
-            <div class=\"col col-qty layout-inline colPad\">";
+            </td>
+            <td data-label=" . $languageController->getTextForLanguage("AMOUNT") . " class='col-qty'>";
             if (isset($remove) && $remove) {
                 $result .= "<a href=\"basket&decreaseQuantity=" . $basketProduct->id . "\" class=\"qty\">-</a>";
             }
@@ -64,34 +68,41 @@ class OrderTableView extends View
                 $result .= "<a href=\"basket&increaseQuantity=" . $basketProduct->id . "\" class=\"qty\">+</a>";
             }
             $result .= "
-            </div>
-            <div class=\"col col-vat layout-inline colPad align-center\">";
+            </td>";
             if (isset($remove) && $remove) {
-                $result .= "<a href=\"basket&removeFromBasket=" . $basketProduct->id . "\" class=\"qty\">x</a>";
+                $result .= "
+                <td data-label=" . $languageController->getTextForLanguage("REMOVE") .">
+                <a href=\"basket&removeFromBasket=" . $basketProduct->id . "\" class=\"qty\">x</a>
+                </td>";
+            } else {
+                $result .= "<td class='tdNoShowSmall'></td>";
             }
             $result .= "
-            </div>
-            <div class=\"col col-total col-numeric\">
+            <td data-label=" . $languageController->getTextForLanguage("PRICE") . ">
                 <p>";
             $price = number_format((float)$basketProduct->price * $basketProduct->quantity, 2, '.', '');
             $totalPrice = $totalPrice + $price;
             $result .= htmlentities($price) . " CHF</p>
-            </div>
-        </div>";
+            </td>
+        </tr>";
         }
         $result .= "
-    <div class=\"tf\">
-        <div class=\"row layout-inline\">
-            <div class=\"col\"></div>
-            <div class=\"col\"></div>
-            <div class=\"col\"></div>
-            <div class=\"col\">
+</tbody>
+<tfoot>
+    <tr class=\"tf\">
+            <td class=\"tdNoShowSmall\"></td>
+            <td class=\"tdNoShowSmall\"></td>
+            <td class=\"tdNoShowSmall\"></td>
+            <td class=\"tdNoShowSmall\"></td>
+            <td class=\"tdNoShowSmall\">
                 <p>" . $languageController->getTextForLanguage("TOTAL") . "</p>
-            </div>
-            <div class=\"col\"><p>" . number_format((float)$totalPrice, 2, '.', '') . " CHF" . "</p></div>
-        </div>
-    </div>
-</div></body>";
+            </td>
+            <td data-label=" . $languageController->getTextForLanguage("TOTAL") . "><p>" . number_format((float)$totalPrice, 2, '.', '') . " CHF" . "</p></td>
+    </tr>
+    </tfoot>";
+        $result .= "
+</table>
+</body>";
         return $result;
     }
 }

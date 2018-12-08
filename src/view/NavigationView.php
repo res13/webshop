@@ -16,7 +16,8 @@ class NavigationView extends View
     {
         $result = "<body><div class=\"navigation\"><a href=\"home\"><img class=\"logo\" src=\"img/parachuteshoplogo.png\" alt=\"Parachute webshop\"></a>";
         $productHierarchy = "";
-        $result .= "<ul>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
+        $result .= "<a class='navIcon' href=\"#overlay\"><i class=\"faPad fas fa-bars fa-2x\"></i></a>";
+        $result .= "<ul class='nav'>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
         $result .= "<li><a href=\"aboutUs\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
         if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
             $result .= "<li><a href=\"admin\">" . $languageController->getTextForLanguage("ADMIN") . "</a></li>";

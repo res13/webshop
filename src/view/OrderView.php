@@ -25,7 +25,7 @@ class OrderView extends View
             $result .= "
                     <li>
                         <input type=\"checkbox\" id=\"" . htmlentities($order->id) . "\" name=\"checkbox-accordion\"/>
-                        <label for=\"" . htmlentities($order->id) . "\">
+                        <label class=\"accHead\" for=\"" . htmlentities($order->id) . "\">
                             #" . htmlentities($order->id) . "</td> -
                             " . htmlentities($order->purchasedate) . " -
                             " . htmlentities($order->paymentmethod) . " -

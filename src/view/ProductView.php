@@ -30,7 +30,7 @@ class ProductView extends View
                     <input type=\"hidden\" name=\"realProductId\" value=\"" . $product->__get('id') . "\" />";
         foreach ($productOptions as $productOption) {
             $result .= "
-                        <span> -
+                        <span class='productSizeText productOptionText'> - </span><span class='productOptionText'>
                             " . htmlentities($productOption->optionName) . "
                             <label><select class=\"styled-select rounded\" name=\"options[]\">";
             foreach ($productOption->optionValues as $optionValue) {

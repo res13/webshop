@@ -13,7 +13,7 @@ class ProductController extends Controller
         if (isset ($_GET['id']) && $_GET['id'] > 0) {
             $id = $_GET['id'];
         } else {
-            $id = null;
+            UtilityController::redirect("notFound");
         }
         $product = self::getProduct($id, $_SESSION['lang']);
         $productOptions = self::getProductOptions($id, $_SESSION['lang']);

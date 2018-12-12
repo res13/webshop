@@ -261,6 +261,9 @@ class LanguageController
         'FILE_UPLOAD_FAILED' => array(
             'de' => 'Datei hochladen ist fehlgeschlagen',
             'en' => 'File upload failed'),
+        'REMOVE_PRODUCT' => array(
+            'de' => 'Produkt entfernen',
+            'en' => 'Remove product'),
     );
 
     public function __construct()

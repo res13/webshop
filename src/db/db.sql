@@ -1,5 +1,6 @@
 -- DDL
 drop table if exists product_option_value;
+drop table if exists product_orders_option_value;
 drop table if exists option_value;
 drop table if exists options;
 drop table if exists product_orders;
@@ -147,7 +148,7 @@ alter table category add constraint category_foreign_key_category_id foreign key
 alter table product add constraint product_foreign_key_category_id foreign key (category_id) references category(id);
 alter table product add constraint product_foreign_key_manufacturer_id foreign key (manufacturer_id) references manufacturer(id);
 alter table option_value add constraint option_value_foreign_key_options_id foreign key (options_id) references options(id);
-alter table product_option_value add constraint product_option_value_foreign_key_product_id foreign key (product_id) references product(id);
+alter table product_option_value add constraint product_option_value_foreign_key_product_id foreign key (product_id) references product(id) on delete cascade;
 alter table product_option_value add constraint product_option_value_foreign_key_optionvalue_id foreign key (optionvalue_id) references option_value(id);
 alter table address add constraint address_foreign_key_country_id foreign key (country_id) references country(id);
 alter table address add constraint address_foreign_key_city_id foreign key (city_id) references city(id);

@@ -743,7 +743,7 @@ ALTER TABLE `product`
 --
 ALTER TABLE `product_option_value`
   ADD CONSTRAINT `product_option_value_foreign_key_optionvalue_id` FOREIGN KEY (`optionvalue_id`) REFERENCES `option_value` (`id`),
-  ADD CONSTRAINT `product_option_value_foreign_key_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+  ADD CONSTRAINT `product_option_value_foreign_key_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product_orders`

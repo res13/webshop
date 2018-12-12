@@ -148,4 +148,17 @@ join i18n i on c.name_i18n_id = i.id';
         return DatabaseController::getLastInsertId();
     }
 
+    public static function removeProduct($productId)
+    {
+        $query = 'delete from product where id = ?';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        if (!$stmt) {
+            return;
+        }
+        $success = $stmt->bind_param('i', $productId);
+        DatabaseController::checkBindingError($success);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $stmt->close();
+    }
+
 }

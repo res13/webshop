@@ -8,8 +8,7 @@ class AdminView extends View
         $result = "<body>
 <div class=\"main\">
         <div class=\"row\">
-            <div class=\"col-25\"></div>
-            <div class=\"col-25\">
+            <div class=\"col-50\">
                 <div class=\"container\">
                     <div class=\"innerContainer\">
                         <h2>" . $languageController->getTextForLanguage("ADD_PRODUCT") . "</h2>
@@ -63,15 +62,36 @@ class AdminView extends View
                     </div>
                 </div>
             </div>
-            <div class=\"col-25\"></div>
+            <div class=\"col-50\">
+             <div class=\"container\">
+                    <div class=\"innerContainer\">
+                        <h2>" . $languageController->getTextForLanguage("REMOVE_PRODUCT") . "</h2>
+                         <form method=\"post\"
+                        <label>" . $languageController->getTextForLanguage("PRODUCT") . "<br/><select class=\"selectLog\"
+                                                                                               id=\"productToRemove\"
+                                                                                               onblur=\"validateForm('productToRemove', [validateNotEmpty])\"
+                                                                                               name=\"productToRemove\">";
+        $products = NavigationController::getAllProductsInCategory(null, $_SESSION['lang']);
+        foreach ($products as $product) {
+            $result .= "<option value=\"" . $product->id . "\">".  $product->id . ": " . $product->name . " (" . $product->manufacturer . ")</option>";
+        }
+        $result .= "</select></label><br/>";
+        if (isset($errorMessage)) {
+            $result .= "<p class='error'>$errorMessage</p>";
+        }
+        $result .= "<input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("REMOVE_PRODUCT") . "\" >
+                    </form>
+                    </div>
+                </div>
+            </div>
         </div></div>
     </body>";
-return $result;
-}
+        return $result;
+    }
 
-public
-function renderNoRightsPage(&$languageController)
-{
-    return "<body><p>" . $languageController->getTextForLanguage("MUST_BE_ADMIN_FOR_THIS_PAGE") . "</p></body>";
-}
+    public
+    function renderNoRightsPage(&$languageController)
+    {
+        return "<body><p>" . $languageController->getTextForLanguage("MUST_BE_ADMIN_FOR_THIS_PAGE") . "</p></body>";
+    }
 }

@@ -28,6 +28,10 @@ class AdminController extends Controller
                 ProductController::addProduct($productName, $brandId, $categoryId, $descriptionEn, $descriptionDe, $price, $uploaddir . $filename);
             }
         }
+        else if (isset($_POST['productToRemove'])) {
+            $productToRemove = UtilityController::validateInput($_POST['productToRemove']);
+            ProductController::removeProduct($productToRemove);
+        }
         $result = $this->navigationController->getContent();
         if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
             $result .= $this->view->render($this->languageController, $errorMessage);

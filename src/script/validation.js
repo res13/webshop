@@ -186,3 +186,7 @@ function validateCheckout() {
 function validateUser() {
 
 }
+
+function validateAddProduct() {
+
+}

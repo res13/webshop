@@ -24,6 +24,7 @@ else {
 }
 $siteController = UtilityController::getControllerObject($site);
 $siteController->performHead();
+$_SESSION["uploads_base_url"] = dirname(__FILE__);
 $content = $siteController->getContent();
 ?>
 <!DOCTYPE html>

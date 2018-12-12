@@ -78,7 +78,6 @@ group by optionValueId';
     public static function getProduct($productId, $lang)
     {
         $query = 'select p.id,
-       p.productnumber,
        p.pname                                                      name,
        p.price,
        i.text_' . $lang . '                                                    description,
@@ -104,4 +103,49 @@ where p.id = ?';
         }
         return null;
     }
+
+    public static function getAllManufacturers() {
+        $query = 'select m.id id, m.name name from manufacturer m';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $result = $stmt->get_result();
+        $stmt->close();
+        $manufacturers = array();
+        while ($row = $result->fetch_assoc()) {
+            $manufacturer = new Manufacturer();
+            $manufacturer->setAll($row);
+            array_push($manufacturers, $manufacturer);
+        }
+        return $manufacturers;
+    }
+
+    public static function getAllCategories($lang) {
+        $query = 'select c.id, i.text_' . $lang . ' text, c.category_id categoryid
+from category c
+join i18n i on c.name_i18n_id = i.id';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $result = $stmt->get_result();
+        $stmt->close();
+        $categories = array();
+        while ($row = $result->fetch_assoc()) {
+            $category = new Category();
+            $category->setAll($row);
+            array_push($categories, $category);
+        }
+        return $categories;
+    }
+
+    public static function addProduct($productName, $brandId, $categoryId, $descriptionEn, $descriptionDe, $price, $uploadfile)
+    {
+        $i18nId = LanguageController::addText($descriptionDe, $descriptionEn);
+        $query = 'INSERT INTO product(pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (?, ?, ?, ?, ?, ?)';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        $success = $stmt->bind_param('sissii', $productName, $price, $i18nId, $uploadfile, $categoryId, $brandId);
+        DatabaseController::checkBindingError($success);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $stmt->close();
+        return DatabaseController::getLastInsertId();
+    }
+
 }

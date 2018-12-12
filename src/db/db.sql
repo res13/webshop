@@ -31,7 +31,6 @@ create table category
 create table product
 (
   id integer auto_increment primary key not null,
-  productnumber integer not null,
   pname varchar(50) not null,
   price decimal(10,2) not null,
   description_i18n_id integer not null,
@@ -249,18 +248,18 @@ INSERT INTO role (id, name) VALUES (2, 'admin');
 INSERT INTO person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (1,'Andreas','Erb','res13','andreas.erb@gmx.ch','1993-11-13','0041797951835','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',1, 2, 'de');
 INSERT INTO person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (2,'Nik','Test','nik','nik@nik.ch','1990-01-21','0041791234567','$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG',2, 2, 'de');
 INSERT INTO person(id, firstname, lastname, username, email, birthdate, phone, passwordhash, address_id, role_id, lang) VALUES (3,'Admin','Admin','admin','admin@parachute-ch','1994-05-25','0041791234567','$2y$10$m9Uuxf6s8FbrBziOcoa93u4VHidRNGGQt9lkRN2T5RSc263Y6Gh7C',2, 2, 'de');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '1', 'Katana', '2350', '14', 'img/products/katana.jpg', '2', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '2', 'Pulse', '2320', '15', 'img/products/pulse.jpg', '2', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '3', 'Sabre2', '2330', '16', 'img/products/sabre2.jpg', '2', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '4', 'Velocity', '3025', '17', 'img/products/velocity.jpg', '2', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '5', 'Optimum', '1730', '18', 'img/products/optimum.jpg', '3', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '6', 'PD Reserve', '1403', '19', 'img/products/reserve.jpg', '3', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '7', 'Proxy', '2090', '20', 'img/products/proxy.jpg', '4', '1');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '8', 'Safire 3', '2350', '21', 'img/products/safire.jpg', '2', '2');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '9', 'Crossfire 3', '2540', '22', 'img/products/crossfire.jpg', '2', '2');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '10', 'Hayduke', '2390', '23', 'img/products/hayduke.jpg', '4', '3');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '11', 'Outlaw', '2350', '24', 'img/products/outlaw.jpg', '4', '3');
-INSERT INTO product (id, productnumber, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, '12', 'Epiciene Pro', '2190', '25', 'img/products/epicene.jpg', '2', '3');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Katana', '2350', '14', 'img/products/katana.jpg', '2', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Pulse', '2320', '15', 'img/products/pulse.jpg', '2', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Sabre2', '2330', '16', 'img/products/sabre2.jpg', '2', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Velocity', '3025', '17', 'img/products/velocity.jpg', '2', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Optimum', '1730', '18', 'img/products/optimum.jpg', '3', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'PD Reserve', '1403', '19', 'img/products/reserve.jpg', '3', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Proxy', '2090', '20', 'img/products/proxy.jpg', '4', '1');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Safire 3', '2350', '21', 'img/products/safire.jpg', '2', '2');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Crossfire 3', '2540', '22', 'img/products/crossfire.jpg', '2', '2');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Hayduke', '2390', '23', 'img/products/hayduke.jpg', '4', '3');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Outlaw', '2350', '24', 'img/products/outlaw.jpg', '4', '3');
+INSERT INTO product (id, pname, price, description_i18n_id, image, category_id, manufacturer_id) VALUES (NULL, 'Epiciene Pro', '2190', '25', 'img/products/epicene.jpg', '2', '3');
 INSERT INTO product_option_value (product_id, optionvalue_id) VALUES (1, 5);
 INSERT INTO product_option_value (product_id, optionvalue_id) VALUES (1, 6);
 INSERT INTO product_option_value (product_id, optionvalue_id) VALUES (1, 7);

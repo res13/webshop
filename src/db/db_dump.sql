@@ -301,7 +301,6 @@ INSERT INTO `person` (`id`, `firstname`, `lastname`, `username`, `email`, `birth
 
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
-  `productnumber` int(11) NOT NULL,
   `pname` varchar(50) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `description_i18n_id` int(11) NOT NULL,
@@ -314,19 +313,19 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `productnumber`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES
-(1, 1, 'Katana', '2350.00', 14, 'img/products/katana.jpg', 2, 1),
-(2, 2, 'Pulse', '2320.00', 15, 'img/products/pulse.jpg', 2, 1),
-(3, 3, 'Sabre2', '2330.00', 16, 'img/products/sabre2.jpg', 2, 1),
-(4, 4, 'Velocity', '3025.00', 17, 'img/products/velocity.jpg', 2, 1),
-(5, 5, 'Optimum', '1730.00', 18, 'img/products/optimum.jpg', 3, 1),
-(6, 6, 'PD Reserve', '1403.00', 19, 'img/products/reserve.jpg', 3, 1),
-(7, 7, 'Proxy', '2090.00', 20, 'img/products/proxy.jpg', 4, 1),
-(8, 8, 'Safire 3', '2350.00', 21, 'img/products/safire.jpg', 2, 2),
-(9, 9, 'Crossfire 3', '2540.00', 22, 'img/products/crossfire.jpg', 2, 2),
-(10, 10, 'Hayduke', '2390.00', 23, 'img/products/hayduke.jpg', 4, 3),
-(11, 11, 'Outlaw', '2350.00', 24, 'img/products/outlaw.jpg', 4, 3),
-(12, 12, 'Epiciene Pro', '2190.00', 25, 'img/products/epicene.jpg', 2, 3);
+INSERT INTO `product` (`id`, `pname`, `price`, `description_i18n_id`, `image`, `category_id`, `manufacturer_id`) VALUES
+(1, 'Katana', '2350.00', 14, 'img/products/katana.jpg', 2, 1),
+(2, 'Pulse', '2320.00', 15, 'img/products/pulse.jpg', 2, 1),
+(3, 'Sabre2', '2330.00', 16, 'img/products/sabre2.jpg', 2, 1),
+(4, 'Velocity', '3025.00', 17, 'img/products/velocity.jpg', 2, 1),
+(5, 'Optimum', '1730.00', 18, 'img/products/optimum.jpg', 3, 1),
+(6, 'PD Reserve', '1403.00', 19, 'img/products/reserve.jpg', 3, 1),
+(7, 'Proxy', '2090.00', 20, 'img/products/proxy.jpg', 4, 1),
+(8, 'Safire 3', '2350.00', 21, 'img/products/safire.jpg', 2, 2),
+(9, 'Crossfire 3', '2540.00', 22, 'img/products/crossfire.jpg', 2, 2),
+(10, 'Hayduke', '2390.00', 23, 'img/products/hayduke.jpg', 4, 3),
+(11, 'Outlaw', '2350.00', 24, 'img/products/outlaw.jpg', 4, 3),
+(12, 'Epiciene Pro', '2190.00', 25, 'img/products/epicene.jpg', 2, 3);
 
 -- --------------------------------------------------------
 

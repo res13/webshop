@@ -48,7 +48,6 @@ where c.category_id in (select id from category c where c.category_id ' . $where
     public static function getAllProductsInCategory($categoryId, $lang)
     {
         $mainQuery = 'select p.id,
-       p.productnumber,
        p.pname                                                      name,
        p.price,
        i.text_' . $lang . '                                                    description,

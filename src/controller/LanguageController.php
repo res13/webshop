@@ -237,6 +237,30 @@ class LanguageController
         'CHECKOUT_CONFIMATION' => array(
             'de' => 'Kauf bestätigen',
             'en' => 'Confirm checkout'),
+        'ADD_PRODUCT' => array(
+            'de' => 'Produkt hinzufügen',
+            'en' => 'Add product'),
+        'PRODUCT_NAME' => array(
+            'de' => 'Produkt Name',
+            'en' => 'Product name'),
+        'BRAND' => array(
+            'de' => 'Marke',
+            'en' => 'Brand'),
+        'DESCRIPTION_EN' => array(
+            'de' => 'Beschreibung Englisch',
+            'en' => 'Description English'),
+        'DESCRIPTION_DE' => array(
+            'de' => 'Beschreibung Deutsch',
+            'en' => 'Description German'),
+        'CATEGORY' => array(
+            'de' => 'Kategorie',
+            'en' => 'Category'),
+        'PICTURE' => array(
+            'de' => 'Bild',
+            'en' => 'Picture'),
+        'FILE_UPLOAD_FAILED' => array(
+            'de' => 'Datei hochladen ist fehlgeschlagen',
+            'en' => 'File upload failed'),
     );
 
     public function __construct()
@@ -269,6 +293,16 @@ class LanguageController
             }
         }
         return "";
+    }
+
+    public static function addText($textDe, $textEn) {
+        $query = 'INSERT INTO i18n(text_de, text_en) VALUES (?, ?)';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        $success = $stmt->bind_param('ss', $textDe, $textEn);
+        DatabaseController::checkBindingError($success);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $stmt->close();
+        return DatabaseController::getLastInsertId();
     }
 
 }

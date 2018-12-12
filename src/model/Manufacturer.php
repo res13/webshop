@@ -1,15 +1,10 @@
 <?php
 
-class Product extends TransferObject
+class Manufacturer extends TransferObject
 {
     private $data = array(
         'id' => '',
         'name' => '',
-        'price' => '',
-        'description' => '',
-        'image' => '',
-        'category' => '',
-        'manufacturer' => '',
     );
 
     public function setAll($dataArray)

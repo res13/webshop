@@ -24,7 +24,9 @@ class AdminController extends Controller
             if (!move_uploaded_file($_FILES['picture']['tmp_name'], $uploadfile)) {
                 $errorMessage = $this->languageController->getTextForLanguage("FILE_UPLOAD_FAILED");
             }
-            ProductController::addProduct($productName, $brandId, $categoryId, $descriptionEn, $descriptionDe, $price, $uploaddir . $filename);
+            else {
+                ProductController::addProduct($productName, $brandId, $categoryId, $descriptionEn, $descriptionDe, $price, $uploaddir . $filename);
+            }
         }
         $result = $this->navigationController->getContent();
         if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {

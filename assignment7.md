@@ -9,4 +9,4 @@ See database schema [db.sql](src/db/db.sql)
 Done, using user webshop_user with strong password
 
 ## 4 Administrator Area
-TODO: admin page
+Done

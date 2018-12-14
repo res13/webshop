@@ -12,8 +12,13 @@ class ProductListView extends View
     {
         $result = "<body>
 <div class=\"main\">
-    <h1>" . $categoryPath . "</h1>
-    <input class=\"top-search rounded\" type=\"text\" id=\"productFilterText\" onkeyup=\"filterProducts()\" placeholder=\"Filter...\">
+
+    <div>
+    <div><h1>" . $categoryPath . "</h1></div>
+    <div>
+        <input class=\"top-search rounded\" type=\"text\" id=\"productFilterText\" onkeyup=\"filterProducts()\" placeholder=\"Filter...\">
+    </div>
+    </div>
     <div class=\"row\" id=\"productList\">";
         foreach ($products as $product) {
             $result .= "

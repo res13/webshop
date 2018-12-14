@@ -215,7 +215,8 @@ a.button {
     z-index: 1;
 }
 
-.navigation ul li a:hover {
+.navigation ul li a:hover
+  {
     background: var(--navColorHover);
 }
 
@@ -240,9 +241,8 @@ a.button {
     border-top: 0;
 }
 
-.navigation ul ul ul {
-    left: 100%;
-    top: 0;
+.navigation ul {
+    left: 30%;
 }
 
 .navigation ul:before,
@@ -507,14 +507,6 @@ span {
     background-color: var(--accentColorHover);
 }
 
-#productFilterText {
-    width: 30%;
-    position: absolute;
-    right: 25px;
-    top: 75px;
-    height: 3%;
-}
-
 #billingDiv {
     display: none;
 }
@@ -622,12 +614,15 @@ a.qty:hover {
 }
 
 
+.box {
+    display: -webkit-box;
+}
 .row {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: -8px;
+    margin: -8px -25px -8px -8px;
 }
 
 .noMargin{
@@ -742,6 +737,22 @@ table th {
         flex-direction: column;
     }
 
+    h1{
+        font-size: 2em;
+    }
+
+    .bigTitle{
+        font-size: 2.5em;
+    }
+
+    .smallTitle{
+        font-size: 1.2em;
+    }
+
+    .smallerTitle{
+        font-size: 1em;
+    }
+
     table {
         border: 0;
     }
@@ -842,7 +853,23 @@ table th {
     display: none;
 }
 
-@media (max-width: 475px) {
+@media (max-width: 650px) {
+
+    .bigTitle{
+        font-size: 2em;
+    }
+
+    .smallTitle{
+        font-size: 1em;
+    }
+
+    h1{
+        font-size: 1.5em;
+    }
+
+    .smallerTitle{
+        font-size: 0.8em;
+    }
     /*nav*/
     .nav {
         display: none;

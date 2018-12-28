@@ -17,7 +17,7 @@ class AdminView extends View
                             <label>" . $languageController->getTextForLanguage("PRODUCT_NAME") . "
                                 <br/><input type=\"text\" name=\"productName\" id=\"productName\" maxlength=\"255\"
                                             minlength=\"4\"
-                                            onblur=\"validateForm('productName', [validateMoreThan2, validateLessThan256])\"></label><br/>
+                                            onblur=\"validateForm('productName', [validateMoreThan2, validateLessThan256])\" autofocus></label><br/>
                             <label>" . $languageController->getTextForLanguage("BRAND") . "<br/><select class=\"selectLog\"
                                                                                                id=\"brand\"
                                                                                                onblur=\"validateForm('brand', [validateNotEmpty])\"

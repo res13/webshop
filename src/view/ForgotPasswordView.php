@@ -16,7 +16,7 @@ class ForgotPasswordView extends View
                             <label>" . $languageController->getTextForLanguage("EMAIL") . "<br/><input type=\"text\" name=\"email\"
                                                                                         id=\"email\"
                                                                                         maxlength=\"255\" minlength=\"4\"
-                                                                                        onblur=\"validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail])\"></label><br/>";
+                                                                                        onblur=\"validateForm('email', [validateMoreThan2, validateLessThan256, validateEmail])\" autofocus></label><br/>";
         if (isset($errorMessage)) {
             $result .= "<p class='error'>$errorMessage</p>";
         }

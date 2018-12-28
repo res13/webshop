@@ -21,7 +21,8 @@ class RegisterView extends View
                                                                                                 id=\"firstname\"
                                                                                                 onblur=\"validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"
                                                                                                 minlength=\"1\"
-                                                                                                maxlength=\"50\"></label><br/>
+                                                                                                maxlength=\"50\"
+                                                                                                autofocus></label><br/>
                                 <label>" . $languageController->getTextForLanguage("LASTNAME") . "<br/><input type=\"text\"
                                                                                                name=\"lastname\"
                                                                                                id=\"lastname\"

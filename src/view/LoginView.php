@@ -15,7 +15,7 @@ class LoginView extends View
         $result .= "<form method=\"post\" onsubmit=\"return validateLogin()\">
                             <label>" . $languageController->getTextForLanguage("USERNAME") . " " . $languageController->getTextForLanguage("OR") . " " . $languageController->getTextForLanguage("EMAIL") . " <br/><input type=\"text\" id=\"usernameOrEmail\" name=\"usernameOrEmail\" maxlength=\"255\"
                                             minlength=\"3\"
-                                            onblur=\"validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])\"></label><br/>
+                                            onblur=\"validateForm('usernameOrEmail', [validateMoreThan2, validateLessThan256])\" autofocus></label><br/>
                             <label>" . $languageController->getTextForLanguage("PASSWORD") . "<br/><input type=\"password\" id=\"password\"
                                                                                            minlength=\"6\" maxlength=\"255\"
                                                                                            name=\"password\"

@@ -24,7 +24,8 @@ class UserView extends View
                                                                                                     onblur=\"validateForm('firstname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"
                                                                                                     minlength=\"1\"
                                                                                                     maxlength=\"50\"
-                                                                                                    value=\"" . $person->firstname . "\"></label><br/>
+                                                                                                    value=\"" . $person->firstname . "\"
+                                                                                                    autofocus></label><br/>
                                     <label>" . $languageController->getTextForLanguage("LASTNAME") . "<br/><input type=\"text\"
                                                                                                    name=\"lastname\"
                                                                                                    id=\"lastname\"

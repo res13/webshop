@@ -12,7 +12,8 @@ class CheckoutView extends View
                                                                                 id=\"deliveryFirstname\"
                                                                                 onblur=\"validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"
                                                                                 minlength=\"1\"
-                                                                                maxlength=\"50\"></label><br/>
+                                                                                maxlength=\"50\"
+                                                                                autofocus></label><br/>
                 <label>" . $languageController->getTextForLanguage("LASTNAME") . "<br/><input type=\"text\" name=\"deliveryLastname\"
                                                                                id=\"deliveryLastname\"
                                                                                onblur=\"validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"

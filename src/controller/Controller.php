@@ -42,7 +42,7 @@ abstract class Controller
                 setcookie("lang", $_POST['lang'], 0, "", "parachutewebshop.bplaced.net", false, false);
             }
         } else if (!isset($_SESSION['lang'])) {
-            if (isset($_COOKIE['lang'])) {
+            if (isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $this->languageController->getAvailableLanguages())) {
                 $lang = $_COOKIE['lang'];
             } else {
                 $lang = $this->languageController->getDefaultLanguage();

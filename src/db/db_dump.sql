@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 03, 2018 at 05:59 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Host: localhost:3306
+-- Generation Time: Jan 06, 2019 at 01:51 PM
+-- Server version: 10.3.9-MariaDB-1:10.3.9+maria~stretch
+-- PHP Version: 7.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webshop`
+-- Database: `parachutewebshop`
 --
+CREATE DATABASE IF NOT EXISTS `parachutewebshop` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `parachutewebshop`;
 
 -- --------------------------------------------------------
 
@@ -29,11 +31,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `address` (
-                         `id` int(11) NOT NULL,
-                         `street` varchar(100) NOT NULL,
-                         `homenumber` varchar(20) NOT NULL,
-                         `city_id` int(11) NOT NULL,
-                         `country_id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `street` varchar(100) NOT NULL,
+  `homenumber` varchar(20) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -42,7 +44,9 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `street`, `homenumber`, `city_id`, `country_id`) VALUES
 (1, 'Bernstrasse', '1', 1, 1),
-(2, 'Hauptstrasse', '12a', 1, 1);
+(2, 'Hauptstrasse', '12a', 1, 1),
+(3, 'dfgdfg', 'sdfsadf', 2, 1),
+(4, 'Holleracher', 'Holleracher', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -51,9 +55,9 @@ INSERT INTO `address` (`id`, `street`, `homenumber`, `city_id`, `country_id`) VA
 --
 
 CREATE TABLE `category` (
-                          `id` int(11) NOT NULL,
-                          `name_i18n_id` int(11) NOT NULL,
-                          `category_id` int(11) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `name_i18n_id` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -74,9 +78,9 @@ INSERT INTO `category` (`id`, `name_i18n_id`, `category_id`) VALUES
 --
 
 CREATE TABLE `city` (
-                      `id` int(11) NOT NULL,
-                      `zip` int(11) NOT NULL,
-                      `city` varchar(100) NOT NULL
+  `id` int(11) NOT NULL,
+  `zip` int(11) NOT NULL,
+  `city` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -84,7 +88,9 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`id`, `zip`, `city`) VALUES
-(1, 3000, 'Bern');
+(1, 3000, 'Bern'),
+(2, 3004, 'sdfa'),
+(3, 3257, 'Grossaffoltern');
 
 -- --------------------------------------------------------
 
@@ -93,8 +99,8 @@ INSERT INTO `city` (`id`, `zip`, `city`) VALUES
 --
 
 CREATE TABLE `country` (
-                         `id` int(11) NOT NULL,
-                         `name` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -111,9 +117,9 @@ INSERT INTO `country` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `i18n` (
-                      `id` int(11) NOT NULL,
-                      `text_de` text NOT NULL,
-                      `text_en` text NOT NULL
+  `id` int(11) NOT NULL,
+  `text_de` text NOT NULL,
+  `text_en` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -161,7 +167,16 @@ INSERT INTO `i18n` (`id`, `text_de`, `text_en`) VALUES
 (38, '240', '240'),
 (39, '220', '220'),
 (40, '200', '200'),
-(41, 'Produkte', 'Products');
+(41, 'Produkte', 'Products'),
+(42, 'xxx', 'The lightly-tapered 7-cell Spectre is one of the most popular canopies we have ever produced. A surprisingly flat glide and soft on-heading openings (with plenty of snivel!) make the Spectre the canopy of choice for the professional cameraman or the everyday wingsuiter. The Spectre is also known for its smooth, progressive response on the toggles. If your priority is predictability, the Spectre is your canopy.'),
+(43, 'xxx', 'With great openings and a powerful flare, the Storm is truly a 7-cell that thinks it\'s a 9-cell. While in some ways similar to the Spectre, the Storm has a shorter snivel, a steeper and faster glide, wider speed range and more dynamic flare. Looking for a reliable canopy that will keep you challenged? Have you been searching for the perfect wingsuit canopy? Considering some occasional CF, but not ready to buy a second canopy? The Storm is a great option for you.'),
+(44, 'xxx', 'The Valkyrie builds on the dominating performance of the Peregrine and is designed as a step up from the Comp Velocity. Unlike the Peregrine, the Valkyrie was intended for freefall use, so the opening performance was a major consideration in the development of the canopy. And the openings on the Valkyrie are superb! Not to mention, it is simply a blast to fly. Whether you\'re filming tandems all day or dedicated to canopy piloting, the Valkyrie will reinvigorate the everyday jump and excite even the most passionate canopy pilots. We loved making it. You\'re going to love flying it.'),
+(45, 'xxx', 'The JVX is a 27-cell elliptical cross braced Tri-cell with upgrades like a new nose modification, improved trim, longer lines, no stabilizers and HMA lines as standard. The JVX is slim, sleek and fast with less drag. First off, the JVX has no stabilizers. Stabilizers on small HP canopies don\'t do much except flap in the wind causing added parasitic drag. The Daedalus Project first dealt with the issue of reducing drag on the wing tips by developing ram-air stabilizers.'),
+(46, 'xxx', 'Leia is not a canopy built to the standards of a mere workhorse, but to the impossibly high standards of a modern competition canopy. With advanced panel shaping and the latest generation planform initiated with Petra, she is the most modern wing you can buy short of a full comp-specific sail fabric parachute. Her high ellipticity, optimized wing tips and signature Powerband nose make for a leading edge that simply slices through air.'),
+(47, 'xxx', 'Petra is the arrival of a game-changing adjustment in the way we think about flying our parachutes. With a high roll rate, a long recovery arc and high maximal glide ratio, Petra delivers unrivalled power in the turn, plane out and flare. Combined with a highly elliptical planform and very high sweep, a record-breaking wing is born.'),
+(48, 'xxx', 'Ask anyone who has jumped a Pilot and they will tell you the openings are the best you can get, it is fun to fly and easy to land. Since its introduction the Pilot has charmed beginners and experienced jumpers alike. Whether your cup of tea is a conventional approach or a little more playful, the Pilot will surprise you with its stable flight, responsive turns and comfortable flare. This canopy can really do it all.'),
+(49, 'xxx', 'Aerodyne’s hot 9-cell wing. A true high performance non-crossbraced canopy, aggressive and nimble with positive reliable on-heading openings at a reasonable 9-cell price. It was designed using Computational Fluid Dynamics (CFD) simulation software using sophisticated aerodynamic principles to create a versatile high performance aerofoil.'),
+(50, 'xxx', 'The Smart reserve combines more than 30 year of experience in the parachute industry and incorporates the latest 7-cell technology. Thousands of real life cutaways and landings are testimony to the quick and reliable openings, the solid flight performance and the powerful landing flare.');
 
 -- --------------------------------------------------------
 
@@ -182,25 +197,8 @@ CREATE TABLE `manufacturer` (
 INSERT INTO `manufacturer` (`id`, `name`, `image`) VALUES
 (1, 'Performance Design', '/images/manufacturer/performance.jpg'),
 (2, 'NZ Aerosport', '/images/manufacturers/nz.jpg'),
-(3, 'Squirrel', '/images/manufacturers/squirrel.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `options`
---
-
-CREATE TABLE `options` (
-  `id` int(11) NOT NULL,
-  `name_i18n_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `options`
---
-
-INSERT INTO `options` (`id`, `name_i18n_id`) VALUES
-(1, 5);
+(3, 'Squirrel', '/images/manufacturers/squirrel.jpg'),
+(4, 'Aerodyne', '/images/manufacturers/aerodyne.jpg');
 
 -- --------------------------------------------------------
 
@@ -246,6 +244,24 @@ INSERT INTO `option_value` (`id`, `name_i18n_id`, `options_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `options`
+--
+
+CREATE TABLE `options` (
+  `id` int(11) NOT NULL,
+  `name_i18n_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `options`
+--
+
+INSERT INTO `options` (`id`, `name_i18n_id`) VALUES
+(1, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -260,8 +276,17 @@ CREATE TABLE `orders` (
   `deliveryaddress_id` int(11) DEFAULT NULL,
   `purchasedate` datetime DEFAULT NULL,
   `paymentmethod` tinyint(1) DEFAULT NULL,
-  `state` tinyint(1) NOT NULL DEFAULT '0'
+  `state` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `person_id`, `billingfirstname`, `billinglastname`, `billingaddress_id`, `deliveryfirstname`, `deliverylastname`, `deliveryaddress_id`, `purchasedate`, `paymentmethod`, `state`) VALUES
+(1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(2, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 3, '2019-01-02 17:06:46', NULL, 1),
+(3, 1, NULL, NULL, NULL, 'Andreas', 'Erb', 4, '2019-01-05 17:18:52', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -281,7 +306,7 @@ CREATE TABLE `person` (
   `address_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
   `lang` varchar(2) NOT NULL,
-  `resetpassword` tinyint(1) DEFAULT '0'
+  `resetpassword` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -290,8 +315,8 @@ CREATE TABLE `person` (
 
 INSERT INTO `person` (`id`, `firstname`, `lastname`, `username`, `email`, `birthdate`, `phone`, `passwordhash`, `address_id`, `role_id`, `lang`, `resetpassword`) VALUES
 (1, 'Andreas', 'Erb', 'res13', 'andreas.erb@gmx.ch', '1993-11-13', '0041797951835', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 1, 2, 'de', 0),
-(2, 'Nik', 'Arm', 'nik', 'nik@nik.ch', '1994-05-25', '0041791234567', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 2, 2, 'de', 0),
-(3, 'Admin', 'Admin', 'admin', 'admin@parachute-webshop.ch', '1994-05-25', '0041791234567', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 2, 2, 'de', 0);
+(2, 'Nik', 'Arm', 'nik', 'nik@nik.ch', '1994-05-25', '0041791234567', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 2, 2, 'en', 0),
+(3, 'Admin', 'Admin', 'admin', 'admin@parachute-webshop.ch', '1994-05-25', '0041791234567', '$2y$10$D67rb5RRJWMLDJWlQuLS3.nSW/jyx3LjtcrzaUzBTHL8IIcZOnhKq', 2, 2, 'de', 0);
 
 -- --------------------------------------------------------
 
@@ -325,7 +350,16 @@ INSERT INTO `product` (`id`, `pname`, `price`, `description_i18n_id`, `image`, `
 (9, 'Crossfire 3', '2540.00', 22, 'img/products/crossfire.jpg', 2, 2),
 (10, 'Hayduke', '2390.00', 23, 'img/products/hayduke.jpg', 4, 3),
 (11, 'Outlaw', '2350.00', 24, 'img/products/outlaw.jpg', 4, 3),
-(12, 'Epiciene Pro', '2190.00', 25, 'img/products/epicene.jpg', 2, 3);
+(12, 'Epiciene Pro', '2190.00', 25, 'img/products/epicene.jpg', 2, 3),
+(13, 'Spectre', '2230.00', 42, 'img/products/spectre.jpg', 2, 1),
+(14, 'Storm', '2230.00', 43, 'img/products/storm.jpg', 2, 1),
+(15, 'Valkyrie', '3445.00', 44, 'img/products/valkyrie.jpg', 2, 1),
+(16, 'JVX ', '2930.00', 45, 'img/products/jvx.jpg', 2, 2),
+(17, 'Leia', '3630.00', 46, 'img/products/leia.jpg', 2, 2),
+(18, 'Petra', '3750.00', 47, 'img/products/petra.jpg', 2, 2),
+(19, 'Pilot', '2285.00', 48, 'img/products/pilot.jpg', 2, 4),
+(20, 'Zulu', '2335.00', 49, 'img/products/zulu.jpg', 2, 4),
+(21, 'Smart', '1350.00', 50, 'img/products/smart.jpg', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -440,7 +474,97 @@ INSERT INTO `product_option_value` (`product_id`, `optionvalue_id`) VALUES
 (12, 6),
 (12, 7),
 (12, 8),
-(12, 9);
+(12, 9),
+(13, 1),
+(13, 2),
+(13, 3),
+(13, 4),
+(13, 5),
+(13, 6),
+(13, 7),
+(13, 8),
+(13, 9),
+(13, 10),
+(14, 1),
+(14, 2),
+(14, 3),
+(14, 4),
+(14, 5),
+(14, 6),
+(14, 7),
+(14, 8),
+(14, 9),
+(14, 10),
+(15, 10),
+(15, 11),
+(15, 12),
+(15, 13),
+(15, 14),
+(15, 15),
+(15, 16),
+(15, 17),
+(15, 18),
+(15, 19),
+(16, 10),
+(16, 11),
+(16, 12),
+(16, 13),
+(16, 14),
+(16, 15),
+(16, 16),
+(16, 17),
+(16, 18),
+(16, 19),
+(17, 10),
+(17, 11),
+(17, 12),
+(17, 13),
+(17, 14),
+(17, 15),
+(17, 16),
+(17, 17),
+(17, 18),
+(17, 19),
+(18, 10),
+(18, 11),
+(18, 12),
+(18, 13),
+(18, 14),
+(18, 15),
+(18, 16),
+(18, 17),
+(18, 18),
+(18, 19),
+(19, 1),
+(19, 2),
+(19, 3),
+(19, 4),
+(19, 5),
+(19, 6),
+(19, 7),
+(19, 8),
+(19, 9),
+(19, 10),
+(20, 1),
+(20, 2),
+(20, 3),
+(20, 4),
+(20, 5),
+(20, 6),
+(20, 7),
+(20, 8),
+(20, 9),
+(20, 10),
+(21, 1),
+(21, 2),
+(21, 3),
+(21, 4),
+(21, 5),
+(21, 6),
+(21, 7),
+(21, 8),
+(21, 9),
+(21, 10);
 
 -- --------------------------------------------------------
 
@@ -457,6 +581,16 @@ CREATE TABLE `product_orders` (
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `product_orders`
+--
+
+INSERT INTO `product_orders` (`id`, `orders_id`, `product_id`, `pname`, `price`, `quantity`) VALUES
+(1, 1, 1, 'Katana', '2350.00', 2),
+(2, 2, 1, 'Katana', '2350.00', 1),
+(3, 2, 17, 'Leia', '3630.00', 1),
+(4, 3, 2, 'Pulse', '2320.00', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -467,6 +601,16 @@ CREATE TABLE `product_orders_option_value` (
   `productorders_id` int(11) NOT NULL,
   `optionvalue_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_orders_option_value`
+--
+
+INSERT INTO `product_orders_option_value` (`productorders_id`, `optionvalue_id`) VALUES
+(1, 5),
+(2, 5),
+(3, 10),
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -532,19 +676,19 @@ ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `options`
---
-ALTER TABLE `options`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `options_foreign_key_name_i18n_id` (`name_i18n_id`);
-
---
 -- Indexes for table `option_value`
 --
 ALTER TABLE `option_value`
   ADD PRIMARY KEY (`id`),
   ADD KEY `option_value_foreign_key_options_id` (`options_id`),
   ADD KEY `option_value_foreign_key_name_i18n_id` (`name_i18n_id`);
+
+--
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `options_foreign_key_name_i18n_id` (`name_i18n_id`);
 
 --
 -- Indexes for table `orders`
@@ -610,80 +754,67 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `i18n`
 --
 ALTER TABLE `i18n`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `options`
---
-ALTER TABLE `options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `option_value`
 --
 ALTER TABLE `option_value`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+--
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `product_orders`
 --
 ALTER TABLE `product_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- Constraints for dumped tables
 --
@@ -703,17 +834,17 @@ ALTER TABLE `category`
   ADD CONSTRAINT `category_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`);
 
 --
--- Constraints for table `options`
---
-ALTER TABLE `options`
-  ADD CONSTRAINT `options_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`);
-
---
 -- Constraints for table `option_value`
 --
 ALTER TABLE `option_value`
   ADD CONSTRAINT `option_value_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`),
   ADD CONSTRAINT `option_value_foreign_key_options_id` FOREIGN KEY (`options_id`) REFERENCES `options` (`id`);
+
+--
+-- Constraints for table `options`
+--
+ALTER TABLE `options`
+  ADD CONSTRAINT `options_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`);
 
 --
 -- Constraints for table `orders`

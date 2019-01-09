@@ -25,8 +25,10 @@ class RegisterController extends Controller
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                 $person = new Person();
                 $person->setAll($_POST);
+                $person->role=1;
                 $person->passwordhash = $hashedPassword;
                 UserController::createPerson($person);
+                UtilityController::redirect("login");
             }
         }
         $result = $this->navigationController->getContent();

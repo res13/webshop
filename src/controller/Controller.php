@@ -39,8 +39,8 @@ abstract class Controller
             if (isset($_SESSION['person'])) {
                 $_SESSION['person']->lang = $_POST['lang'];
                 UserController::setLanguageOfPerson($_SESSION['person']->id, $_POST['lang']);
-                setcookie("lang", $_POST['lang'], 0, "", "parachutewebshop.bplaced.net", false, false);
             }
+            setcookie("lang", $_POST['lang'], 0, "", "parachutewebshop.bplaced.net", false, false);
         } else if (!isset($_SESSION['lang'])) {
             if (isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $this->languageController->getAvailableLanguages())) {
                 $lang = $_COOKIE['lang'];

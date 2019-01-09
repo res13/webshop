@@ -82,7 +82,7 @@ class CheckoutController extends Controller
         }
         $result = "";
         if (isset($mailSent) && $mailSent == true) {
-            $result .= $this->view->renderOrderSubmitted($this->languageController);
+            UtilityController::redirect('checkoutConfirmation');
         } else {
             if (isset($_SESSION['person'])) {
                 $result .= $this->view->render($this->languageController, $errorMessage);

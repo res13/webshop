@@ -18,7 +18,11 @@ class OrderView extends View
     public function renderOrderList(&$languageController, &$orderList)
     {
         $result = "<body><div class=\"main\">
-        <h1>" . $languageController->getTextForLanguage("MY_ORDERS") . "</h1>
+        <h1>" . $languageController->getTextForLanguage("MY_ORDERS") . "</h1>";
+        if($orderList){
+
+
+        $result .=" 
         <div class=\"accordion vertical\">
             <ul>";
         foreach ($orderList as $order) {
@@ -36,6 +40,9 @@ class OrderView extends View
             $result .= "</div></li>";
         }
         $result .= "</ul></div></div></body>";
+        } else{
+            $result .="<div class=\"container\"><div class='innerContainer'><p>" . $languageController->getTextForLanguage("ORDERS_EMPTY") . "</p></div></div>";
+        }
         return $result;
     }
 

@@ -16,9 +16,10 @@ class LoginStateController
             session_destroy();
         }
         $_SESSION['LAST_ACTIVITY'] = time();
+        // regenerate the session ID periodically to avoid attacks on sessions like session fixation (15min)
         if (!isset($_SESSION['CREATED'])) {
             $_SESSION['CREATED'] = time();
-        } else if (time() - $_SESSION['CREATED'] > 1800) {
+        } else if (time() - $_SESSION['CREATED'] > 900) {
             session_regenerate_id(true);
             $_SESSION['CREATED'] = time();
         }

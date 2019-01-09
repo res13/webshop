@@ -19,9 +19,17 @@ class NavigationView extends View
         $result .= "<a class='navIcon ' href=\"#overlay\"><img class=\"faPad\" src=\"img/menu.png\"></a>";
         $nav = "";
         $nav .= "<ul class='navOverlay'>" . $this->getProductHierarchy(null, $productHierarchy, $languageController) . $productHierarchy;
-        $nav .= "<li><a href=\"aboutUs\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
+        $nav .= "<li><a ";
+        if ($this->isMenuActive('aboutUs')) {
+            $nav .= "class=\"active\" ";
+        }
+        $nav .= " href=\"aboutUs\">" . $languageController->getTextForLanguage("ABOUT_US") . "</a></li>";
         if (isset($_SESSION['person']) && $_SESSION['person']->role === 'admin') {
-            $nav .= "<li><a href=\"admin\">" . $languageController->getTextForLanguage("ADMIN") . "</a></li>";
+            $nav .= "<li><a ";
+            if ($this->isMenuActive('admin')) {
+                $nav .= "class=\"active\" ";
+            }
+            $nav .= " href=\"admin\">" . $languageController->getTextForLanguage("ADMIN") . "</a></li>";
         }
         $nav .= "</ul>";
         $result .= "<ul class='nav'>" . $nav . "</div>";
@@ -44,13 +52,36 @@ class NavigationView extends View
         return $result;
     }
 
+    private function isMenuActive($menuIdentifier) {
+        if (isset($_GET['site'])) {
+            return $_GET['site'] === $menuIdentifier;
+        }
+        return false;
+
+    }
+
+    private function isCategoryActive($categoryId) {
+        if (isset($_GET['category'])) {
+            return $_GET['category'] == $categoryId;
+        }
+        return false;
+    }
+
     private function getProductHierarchy($category, &$result, $languageController)
     {
         if ($category == null) {
-            $result .= "<li><a href=\"productList\">" . $languageController->getTextForLanguage("PRODUCTS") . "</a>";
+            $result .= "<li><a ";
+            if ($this->isMenuActive('productList')) {
+                $result .= "class=\"active\" ";
+            }
+            $result .= "href=\"productList\">" . $languageController->getTextForLanguage("PRODUCTS") . "</a>";
             $subcategories = NavigationController::getSubCategories(null);
         } else {
-            $result .= "<li><a href=\"productList&category=$category->id\">$category->text</a>";
+            $result .= "<li><a ";
+            if ($this->isCategoryActive($category->id)) {
+                $result .= "class=\"active\" ";
+            }
+            $result .= "href=\"productList&category=$category->id\">$category->text</a>";
             $subcategories = NavigationController::getSubCategories($category->categoryid);
         }
         if (empty($subcategories)) {

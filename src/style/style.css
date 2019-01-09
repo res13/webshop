@@ -185,6 +185,10 @@ body {
     font-size: 20px;
 }
 
+.navigation ul li a.active {
+    background: var(--navColorHover2);
+}
+
 a.button {
     text-decoration: none;
     color: initial;
@@ -218,7 +222,7 @@ a.button {
 }
 
 .navigation ul li a:hover
-  {
+{
     background: var(--navColorHover);
 }
 

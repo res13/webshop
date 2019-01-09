@@ -35,8 +35,20 @@ class AdminView extends View
         foreach ($categories as $category) {
             $result .= "<option value=\"" . $category->id . "\">" . $category->text . "</option>";
         }
-        $result .= "</select></label><br/>
-                            <label>" . $languageController->getTextForLanguage("DESCRIPTION_EN") . "<br/><textarea
+        $result .= "</select></label><br/>";
+        $options = ProductController::getAllOptions($_SESSION['lang']);
+        foreach ($options as $option) {
+            $result .= "<label>" . $option->optionName . "<br/>";
+            $result .= "<select multiple class=\"selectLog\"
+                   id=". $option->optionId . "_option
+                   onblur=\"validateForm('" . $option->optionId . "_option', [validateNotEmpty])\"
+                   name=" . $option->optionId . "_option[]>";
+            foreach ($option->optionValues as $optionValue) {
+                $result .= "<option value=\"" . $optionValue->optionValueId . "\" > " . $optionValue->optionValueName . "</option>";
+            }
+            $result .= "</select></label><br/>";
+        }
+        $result .= "<label>" . $languageController->getTextForLanguage("DESCRIPTION_EN") . "<br/><textarea
                                                                                                name=\"descriptionEn\"
                                                                                                id=\"descriptionEn\"
                                                                                                minlength=\"10\"
@@ -73,12 +85,9 @@ class AdminView extends View
                                                                                                name=\"productToRemove\">";
         $products = NavigationController::getAllProductsInCategory(null, $_SESSION['lang']);
         foreach ($products as $product) {
-            $result .= "<option value=\"" . $product->id . "\">".  $product->id . ": " . $product->name . " (" . $product->manufacturer . ")</option>";
+            $result .= "<option value=\"" . $product->id . "\">" . $product->id . ": " . $product->name . " (" . $product->manufacturer . ")</option>";
         }
         $result .= "</select></label><br/>";
-        if (isset($errorMessage)) {
-            $result .= "<p class='error'>$errorMessage</p>";
-        }
         $result .= "<input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("REMOVE_PRODUCT") . "\" >
                     </form>
                     </div>

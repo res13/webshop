@@ -264,6 +264,9 @@ class LanguageController
         'REMOVE_PRODUCT' => array(
             'de' => 'Produkt entfernen',
             'en' => 'Remove product'),
+        'NOT_ALL_OPTIONS_SET' => array(
+            'de' => 'Es wurden nicht alle Produktoptionen gesetzt',
+            'en' => 'Not all product options are set'),
     );
 
     public function __construct()

@@ -148,6 +148,17 @@ join i18n i on c.name_i18n_id = i.id';
         return DatabaseController::getLastInsertId();
     }
 
+    public static function addProductOption($productId, $optionValueId)
+    {
+        $query = 'INSERT INTO product_option_value(product_id, optionvalue_id) VALUES (?, ?)';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        $success = $stmt->bind_param('ii', $productId, $optionValueId);
+        DatabaseController::checkBindingError($success);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $stmt->close();
+        return DatabaseController::getLastInsertId();
+    }
+
     public static function removeProduct($productId)
     {
         $query = 'delete from product where id = ?';
@@ -159,6 +170,44 @@ join i18n i on c.name_i18n_id = i.id';
         DatabaseController::checkBindingError($success);
         DatabaseController::executeWithErrorHandling($stmt);
         $stmt->close();
+    }
+
+    public static function getAllOptions($lang) {
+        $query = 'select o.id optionId, i.text_' . $lang . ' optionName from options o join i18n i on o.name_i18n_id = i.id';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $result = $stmt->get_result();
+        $stmt->close();
+        $options = array();
+        while ($row = $result->fetch_assoc()) {
+            $option = new Option();
+            $option->setAll($row);
+            $optionValues = self::getAllOptionValues($option->__get('optionId'), $lang);
+            $option->__set('optionValues', $optionValues);
+            array_push($options, $option);
+        }
+        return $options;
+    }
+
+    public static function getAllOptionValues($optionId, $lang)
+    {
+        $query = 'select ov.id optionValueId, i.text_' . $lang . ' optionValueName from option_value ov 
+        join options o on ov.options_id = o.id
+        join i18n i on ov.name_i18n_id = i.id
+        and o.id = ?';
+        $stmt = DatabaseController::prepareWithErrorHandling($query);
+        $success = $stmt->bind_param('i', $optionId);
+        DatabaseController::checkBindingError($success);
+        DatabaseController::executeWithErrorHandling($stmt);
+        $result = $stmt->get_result();
+        $stmt->close();
+        $optionValues = array();
+        while ($row = $result->fetch_assoc()) {
+            $optionValue = new OptionValue();
+            $optionValue->setAll($row);
+            array_push($optionValues, $optionValue);
+        }
+        return $optionValues;
     }
 
 }

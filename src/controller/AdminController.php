@@ -30,7 +30,8 @@ class AdminController extends Controller
                 $descriptionDe = UtilityController::validateInput($_POST['descriptionDe']);
                 $price = UtilityController::validateInput($_POST['price']);
                 $uploaddir = 'img/products/';
-                $filename = basename($_FILES['picture']['name']);
+                $filename = date("YmdHis") .'_';
+                $filename .= basename($_FILES['picture']['name']);
                 $uploadfile = $_SESSION["uploads_base_url"] . "/" . $uploaddir . $filename;
                 if (!move_uploaded_file($_FILES['picture']['tmp_name'], $uploadfile)) {
                     $errorMessage = $this->languageController->getTextForLanguage("FILE_UPLOAD_FAILED");
@@ -43,6 +44,7 @@ class AdminController extends Controller
                             ProductController::addProductOption($newProductId, $optionValueId);
                         }
                     }
+                    UtilityController::redirect("product&id=".$newProductId);
                 }
             }
         }

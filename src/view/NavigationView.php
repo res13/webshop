@@ -27,9 +27,13 @@ class NavigationView extends View
         $result .= "<ul class='nav'>" . $nav . "</div>";
         $result .= "<div class=\"navRight\">";
         $result .= $languageController->getContent();
-        $result .= "<div class=\"dropdown\">
-            <img class=\"faPad\" src=\"img/person.png\">
-            <div class=\"dropdown-content\">";
+        $result .= "<div class=\"dropdown\">";
+        if (isset($_SESSION['person'])) {
+            $result .= " <img class=\"faPad\" src=\"img/person.png\">";
+        } else {
+            $result .= " <img class=\"faPad\" src=\"img/person_outline.png\">";
+        }
+        $result .= "<div class=\"dropdown-content\">";
         $result .= $this->loginStateController->getContent($languageController);
         $result .= "</div></div>";
         $result .= $this->basketStateController->getContent();

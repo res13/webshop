@@ -201,6 +201,9 @@ class LanguageController
         'MY_ORDERS' => array(
             'de' => 'Meine Bestellungen',
             'en' => 'My Orders'),
+        'ORDERS_EMPTY' => array(
+            'de' => 'Keine Bestellungen vorhanden',
+            'en' => 'No Orders present'),
         'ORDER_ID' => array(
             'de' => 'Bestellnummer',
             'en' => 'Order id'),

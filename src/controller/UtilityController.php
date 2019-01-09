@@ -9,6 +9,7 @@ class UtilityController
         "aboutUs",
         "basket",
         "checkout",
+        "checkoutConfirmation",
         "login",
         "logout",
         "forgotPassword",

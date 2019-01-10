@@ -51,7 +51,9 @@ $content = $siteController->getContent();
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
     <link rel="manifest" href="img/favicon/manifest.json">
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/jquery-ui.min.css">
     <script src="script/jquery-3.3.1.min.js"></script>
+    <script src="script/jquery-ui.min.js"></script>
     <script src="script/validation.js"></script>
     <script src="script/productFilter.js"></script>
 </head>

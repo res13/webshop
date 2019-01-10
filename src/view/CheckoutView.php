@@ -7,7 +7,11 @@ class CheckoutView extends View
     {
         $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
         $result .= "<h3>" . $languageController->getTextForLanguage("DELIVERY") . "</h3>
-            <form method=\"post\" onsubmit=\"return validateCheckout();\">
+            <form id='checkout' method=\"post\" onsubmit=\"return validateCheckout('" .
+            $languageController->getTextForLanguage('CONFIRM_ORDER_TITLE') . "', '" .
+            $languageController->getTextForLanguage('CONFIRM_ORDER_TEXT') . "', '" .
+            $languageController->getTextForLanguage('YES') . "', '" .
+            $languageController->getTextForLanguage('NO') . "');\">
                 <label>" . $languageController->getTextForLanguage("FIRSTNAME") . "<br/><input type=\"text\" name=\"deliveryFirstname\"
                                                                                 id=\"deliveryFirstname\"
                                                                                 onblur=\"validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText])\"
@@ -97,13 +101,6 @@ class CheckoutView extends View
         }
         $result .= "<input class=\"btn\" type=\"submit\" value=\"" . $languageController->getTextForLanguage("BUY") . "\">
             </form><div></body>";
-        return $result;
-    }
-
-    public function renderOrderSubmitted(&$languageController)
-    {
-        $result = "<body><div class=\"main\"><h1>" . $languageController->getTextForLanguage("CHECKOUT") . "</h1>";
-        $result .= "<p>" . $languageController->getTextForLanguage("ORDER_SUBMITTED") . "</p></div></body>";
         return $result;
     }
 

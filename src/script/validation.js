@@ -161,26 +161,70 @@ function validateResetPassword() {
     return result == 1 ? true : false;
 }
 
-function validateCheckout() {
+alreadyDialogShown = false;
+
+function validateCheckout(title, text, yes, no) {
     let result = true;
     result &= validateForm('deliveryFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
-        validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
-        validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &
-        validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &
-        validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &
-        validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &
-        validateForm('deliveryCountry', [validateNotEmpty, validateCountry]);
+      validateForm('deliveryLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
+      validateForm('deliveryStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+      validateForm('deliveryHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+      validateForm('deliveryCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+      validateForm('deliveryZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &
+      validateForm('deliveryCountry', [validateNotEmpty, validateCountry]);
     let billingDiffersCB = document.getElementById('billingDiffersCB');
     if (billingDiffersCB != null && billingDiffersCB.checked) {
         result &= validateForm('billingFirstname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
-            validateForm('billingLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
-            validateForm('billingStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &
-            validateForm('billingHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &
-            validateForm('billingCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &
-            validateForm('billingZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &
-            validateForm('billingCountry', [validateNotEmpty, validateCountry]);
+          validateForm('billingLastname', [validateNotEmpty, validateLessThan51, validateOnlyText]) &
+          validateForm('billingStreet', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+          validateForm('billingHomenumber', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+          validateForm('billingCity', [validateNotEmpty, validateOnlyTextAndNumbers]) &
+          validateForm('billingZip', [validateNotEmpty, validateOnlyNumbers, validateLessThan21]) &
+          validateForm('billingCountry', [validateNotEmpty, validateCountry]);
     }
-    return result == 1 ? true : false
+    if(result == 1 ? true : false){
+        if (!alreadyDialogShown) {
+            showDialog(title, text, yes, no);
+            return false;
+        } else {
+            alreadyDialogShown = false;
+            return true;
+        }
+    }
+    return false;
+}
+
+function showDialog(title, text, yes, no) {
+    $('<div></div>').
+      appendTo('#checkout').
+      html('<div><h6>'+ text +'</h6></div>').
+      dialog({
+          modal: true,
+          title: title,
+          width: 300,
+          height: 'auto',
+          resizable: false,
+          buttons: [
+              {
+                  text: yes,
+                  click: function () {
+                      alreadyDialogShown = true;
+                      $('form#checkout').submit();
+                  }
+              },
+              {
+                  text: no,
+                  click: function () {
+                      $('#msg').show();
+                      $(this).dialog("close");
+                  }
+              }
+          ],
+          close: function (event, ui) {
+              $(this).remove();
+          }
+      });
+    $('#msg').hide();
 }
 
 function validateUser() {

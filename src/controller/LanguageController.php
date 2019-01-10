@@ -219,6 +219,9 @@ class LanguageController
         'YES' => array(
             'de' => 'Ja',
             'en' => 'Yes'),
+        'NO' => array(
+            'de' => 'Nein',
+            'en' => 'No'),
         'PROJECT_DESCRIPTION' => array(
             'de' => 'Dieser web shop wurde im Rahmen des Projekts BTI7054q im Herbstsemeseter 2018/2019 an der Berner Fachhochschule von Nik Arm und Andreas Erb realisiert. Alle hier dargestellten Fotos wurden kopiert, ohne nachzufragen. Das ist nur eine Demo-Seite.',
             'en' => 'This web shop was realized as part of the project BTI7054q in the autumn semester 2018/2019 at the Bern University of Applied Sciences by Nik Arm and Andreas Erb. All pictures here were copied without permission. This is only a demo site.'),
@@ -270,6 +273,12 @@ class LanguageController
         'NOT_ALL_OPTIONS_SET' => array(
             'de' => 'Es wurden nicht alle Produktoptionen gesetzt',
             'en' => 'Not all product options are set'),
+        'CONFIRM_ORDER_TITLE' => array(
+            'de' => 'Bestätigung',
+            'en' => 'Confirmation'),
+        'CONFIRM_ORDER_TEXT' => array(
+            'de' => 'Bestellung bestätigen?',
+            'en' => 'Confirm Order?'),
     );
 
     public function __construct()

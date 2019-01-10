@@ -970,3 +970,8 @@ table th {
     height: 100%;
     border: 1px solid #542437;
 }
+
+.ui-dialog .ui-dialog-title {
+    font-family: unset;
+    padding-top: 10px;
+}

@@ -52,8 +52,8 @@ class LanguageController
             'de' => ', bitte benutzen Sie dieses, um sich wieder anzumelden (Sie werden danach ein Neues setzen müssen).',
             'en' => ', please use this model log in again (you will have model reset it afterwards).'),
         'EMAIL_SENT' => array(
-            'de' => 'Ein email mit einem temporären Password wurde verschickt an',
-            'en' => 'An email with a temporary password was sent model'),
+            'de' => 'Ein email mit einem temporären Password wurde an Ihre email verschickt.',
+            'en' => 'An email with a temporary password was sent to you.'),
         'HOME' => array(
             'de' => 'Home',
             'en' => 'Home'),

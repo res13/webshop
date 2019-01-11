@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 06, 2019 at 01:51 PM
+-- Generation Time: Jan 11, 2019 at 02:57 PM
 -- Server version: 10.3.9-MariaDB-1:10.3.9+maria~stretch
 -- PHP Version: 7.1.17
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `parachutewebshop`
 --
-CREATE DATABASE IF NOT EXISTS `parachutewebshop` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `parachutewebshop`;
 
 -- --------------------------------------------------------
 
@@ -46,7 +44,9 @@ INSERT INTO `address` (`id`, `street`, `homenumber`, `city_id`, `country_id`) VA
 (1, 'Bernstrasse', '1', 1, 1),
 (2, 'Hauptstrasse', '12a', 1, 1),
 (3, 'dfgdfg', 'sdfsadf', 2, 1),
-(4, 'Holleracher', 'Holleracher', 3, 1);
+(4, 'Holleracher', 'Holleracher', 3, 1),
+(5, 'dfgdfg', 'dfgdfg', 4, 1),
+(6, 'dfgdfg', '2323', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +90,8 @@ CREATE TABLE `city` (
 INSERT INTO `city` (`id`, `zip`, `city`) VALUES
 (1, 3000, 'Bern'),
 (2, 3004, 'sdfa'),
-(3, 3257, 'Grossaffoltern');
+(3, 3257, 'Grossaffoltern'),
+(4, 3004, '3434');
 
 -- --------------------------------------------------------
 
@@ -176,7 +177,10 @@ INSERT INTO `i18n` (`id`, `text_de`, `text_en`) VALUES
 (47, 'xxx', 'Petra is the arrival of a game-changing adjustment in the way we think about flying our parachutes. With a high roll rate, a long recovery arc and high maximal glide ratio, Petra delivers unrivalled power in the turn, plane out and flare. Combined with a highly elliptical planform and very high sweep, a record-breaking wing is born.'),
 (48, 'xxx', 'Ask anyone who has jumped a Pilot and they will tell you the openings are the best you can get, it is fun to fly and easy to land. Since its introduction the Pilot has charmed beginners and experienced jumpers alike. Whether your cup of tea is a conventional approach or a little more playful, the Pilot will surprise you with its stable flight, responsive turns and comfortable flare. This canopy can really do it all.'),
 (49, 'xxx', 'Aerodyne’s hot 9-cell wing. A true high performance non-crossbraced canopy, aggressive and nimble with positive reliable on-heading openings at a reasonable 9-cell price. It was designed using Computational Fluid Dynamics (CFD) simulation software using sophisticated aerodynamic principles to create a versatile high performance aerofoil.'),
-(50, 'xxx', 'The Smart reserve combines more than 30 year of experience in the parachute industry and incorporates the latest 7-cell technology. Thousands of real life cutaways and landings are testimony to the quick and reliable openings, the solid flight performance and the powerful landing flare.');
+(50, 'xxx', 'The Smart reserve combines more than 30 year of experience in the parachute industry and incorporates the latest 7-cell technology. Thousands of real life cutaways and landings are testimony to the quick and reliable openings, the solid flight performance and the powerful landing flare.'),
+(51, 'asdfasfasdf', 'asdfasdfasdf'),
+(52, 'asdfasdfasdf', 'asdfasdfasdf'),
+(53, 'adsfasdfasfasdfd', 'asdfasdfsadasdf');
 
 -- --------------------------------------------------------
 
@@ -199,6 +203,24 @@ INSERT INTO `manufacturer` (`id`, `name`, `image`) VALUES
 (2, 'NZ Aerosport', '/images/manufacturers/nz.jpg'),
 (3, 'Squirrel', '/images/manufacturers/squirrel.jpg'),
 (4, 'Aerodyne', '/images/manufacturers/aerodyne.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `options`
+--
+
+CREATE TABLE `options` (
+  `id` int(11) NOT NULL,
+  `name_i18n_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `options`
+--
+
+INSERT INTO `options` (`id`, `name_i18n_id`) VALUES
+(1, 5);
 
 -- --------------------------------------------------------
 
@@ -244,24 +266,6 @@ INSERT INTO `option_value` (`id`, `name_i18n_id`, `options_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `options`
---
-
-CREATE TABLE `options` (
-  `id` int(11) NOT NULL,
-  `name_i18n_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `options`
---
-
-INSERT INTO `options` (`id`, `name_i18n_id`) VALUES
-(1, 5);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
@@ -286,7 +290,20 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `person_id`, `billingfirstname`, `billinglastname`, `billingaddress_id`, `deliveryfirstname`, `deliverylastname`, `deliveryaddress_id`, `purchasedate`, `paymentmethod`, `state`) VALUES
 (1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (2, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 3, '2019-01-02 17:06:46', NULL, 1),
-(3, 1, NULL, NULL, NULL, 'Andreas', 'Erb', 4, '2019-01-05 17:18:52', NULL, 1);
+(3, 1, NULL, NULL, NULL, 'Andreas', 'Erb', 4, '2019-01-05 17:18:52', NULL, 1),
+(4, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-09 16:41:31', NULL, 1),
+(6, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:02:20', NULL, 1),
+(7, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:03:35', NULL, 1),
+(8, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:06:35', NULL, 1),
+(9, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:08:18', NULL, 1),
+(10, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:08:34', NULL, 1),
+(11, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:08:53', NULL, 1),
+(12, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:13:48', NULL, 1),
+(13, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:19:46', NULL, 1),
+(14, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:19:57', NULL, 1),
+(15, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:21:56', NULL, 1),
+(16, 2, NULL, NULL, NULL, 'regr', 'dsfgdfg', 5, '2019-01-10 18:34:08', NULL, 1),
+(18, 1, NULL, NULL, NULL, 'Andreas', 'Erb', 4, '2019-01-11 14:14:30', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -314,9 +331,10 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`id`, `firstname`, `lastname`, `username`, `email`, `birthdate`, `phone`, `passwordhash`, `address_id`, `role_id`, `lang`, `resetpassword`) VALUES
-(1, 'Andreas', 'Erb', 'res13', 'andreas.erb@gmx.ch', '1993-11-13', '0041797951835', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 1, 2, 'de', 0),
-(2, 'Nik', 'Arm', 'nik', 'nik@nik.ch', '1994-05-25', '0041791234567', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 2, 2, 'en', 0),
-(3, 'Admin', 'Admin', 'admin', 'admin@parachute-webshop.ch', '1994-05-25', '0041791234567', '$2y$10$D67rb5RRJWMLDJWlQuLS3.nSW/jyx3LjtcrzaUzBTHL8IIcZOnhKq', 2, 2, 'de', 0);
+(1, 'Andreas', 'Erb', 'res13', 'andreas.erb@gmx.ch', '1993-11-13', '0041797951835', '$2y$10$CqX.Ipw8tiLSH8os21wcpOtshsiJJF4xrnuNafL6RYoZZCHhJJMP6', 1, 2, 'de', 0),
+(2, 'Nik', 'Arm', 'nik', 'nik@nik.ch', '1994-05-25', '0041791234567', '$2y$10$KM9VWsN6O4m6iE/robealePEimKXL0NggwnR2ER9CMuMMUWyRRhjG', 2, 2, 'de', 0),
+(3, 'Admin', 'Admin', 'admin', 'admin@parachute-webshop.ch', '1994-05-25', '0041791234567', '$2y$10$D67rb5RRJWMLDJWlQuLS3.nSW/jyx3LjtcrzaUzBTHL8IIcZOnhKq', 2, 2, 'de', 0),
+(4, 'Hansi', 'Hintersee', 'hansi', 'hansi@hansi.ch', '2019-12-31', '0318620771', '$2y$10$wz8yCOY755pgxJFSKegd/.R6Sbs4EWjQ0WtXz0R496Pmq54n7xuUG', 6, 1, 'de', 0);
 
 -- --------------------------------------------------------
 
@@ -589,7 +607,20 @@ INSERT INTO `product_orders` (`id`, `orders_id`, `product_id`, `pname`, `price`,
 (1, 1, 1, 'Katana', '2350.00', 2),
 (2, 2, 1, 'Katana', '2350.00', 1),
 (3, 2, 17, 'Leia', '3630.00', 1),
-(4, 3, 2, 'Pulse', '2320.00', 4);
+(4, 3, 2, 'Pulse', '2320.00', 4),
+(5, 4, 1, 'Katana', '2350.00', 1),
+(7, 6, 1, 'Katana', '2350.00', 2),
+(8, 7, 1, 'Katana', '2350.00', 1),
+(9, 8, 1, 'Katana', '2350.00', 1),
+(11, 9, 1, 'Katana', '2350.00', 1),
+(12, 10, 2, 'Pulse', '2320.00', 1),
+(13, 11, 1, 'Katana', '2350.00', 1),
+(14, 12, 1, 'Katana', '2350.00', 1),
+(15, 13, 1, 'Katana', '2350.00', 1),
+(16, 14, 1, 'Katana', '2350.00', 1),
+(17, 15, 2, 'Pulse', '2320.00', 1),
+(18, 16, 2, 'Pulse', '2320.00', 1),
+(21, 18, 1, 'Katana', '2350.00', 1);
 
 -- --------------------------------------------------------
 
@@ -610,7 +641,20 @@ INSERT INTO `product_orders_option_value` (`productorders_id`, `optionvalue_id`)
 (1, 5),
 (2, 5),
 (3, 10),
-(4, 1);
+(4, 1),
+(5, 5),
+(7, 5),
+(8, 5),
+(9, 5),
+(11, 5),
+(12, 1),
+(13, 5),
+(14, 5),
+(15, 5),
+(16, 5),
+(17, 1),
+(18, 1),
+(21, 5);
 
 -- --------------------------------------------------------
 
@@ -676,19 +720,19 @@ ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `options_foreign_key_name_i18n_id` (`name_i18n_id`);
+
+--
 -- Indexes for table `option_value`
 --
 ALTER TABLE `option_value`
   ADD PRIMARY KEY (`id`),
   ADD KEY `option_value_foreign_key_options_id` (`options_id`),
   ADD KEY `option_value_foreign_key_name_i18n_id` (`name_i18n_id`);
-
---
--- Indexes for table `options`
---
-ALTER TABLE `options`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `options_foreign_key_name_i18n_id` (`name_i18n_id`);
 
 --
 -- Indexes for table `orders`
@@ -754,7 +798,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `category`
 --
@@ -764,7 +808,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `country`
 --
@@ -774,42 +818,42 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `i18n`
 --
 ALTER TABLE `i18n`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `option_value`
---
-ALTER TABLE `option_value`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
---
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `option_value`
+--
+ALTER TABLE `option_value`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `product_orders`
 --
 ALTER TABLE `product_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -834,17 +878,17 @@ ALTER TABLE `category`
   ADD CONSTRAINT `category_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`);
 
 --
+-- Constraints for table `options`
+--
+ALTER TABLE `options`
+  ADD CONSTRAINT `options_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`);
+
+--
 -- Constraints for table `option_value`
 --
 ALTER TABLE `option_value`
   ADD CONSTRAINT `option_value_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`),
   ADD CONSTRAINT `option_value_foreign_key_options_id` FOREIGN KEY (`options_id`) REFERENCES `options` (`id`);
-
---
--- Constraints for table `options`
---
-ALTER TABLE `options`
-  ADD CONSTRAINT `options_foreign_key_name_i18n_id` FOREIGN KEY (`name_i18n_id`) REFERENCES `i18n` (`id`);
 
 --
 -- Constraints for table `orders`

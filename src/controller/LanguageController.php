@@ -279,6 +279,9 @@ class LanguageController
         'CONFIRM_ORDER_TEXT' => array(
             'de' => 'Bestellung bestätigen?',
             'en' => 'Confirm Order?'),
+        'PASSWORD_RESET_TEXT' => array(
+            'de' => 'Um sich einloggen zu können, müssen Sie Ihr temporäres Passwort ändern',
+            'en' => 'To login again you have to change your temporary password'),
     );
 
     public function __construct()

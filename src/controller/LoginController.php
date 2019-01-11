@@ -18,6 +18,7 @@ class LoginController extends Controller
             if ($person != null) {
                 if ($person->resetpassword > 0) {
                     UtilityController::redirect('resetPassword');
+                    return;
                 }
                 $_SESSION['person'] = $person;
                 if (isset($_SESSION['basket'])) {

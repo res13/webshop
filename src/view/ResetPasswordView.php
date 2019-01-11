@@ -7,11 +7,13 @@ class ResetPasswordView extends View
     {
         $result = "<body>
 <div class=\"main\">
+        <h1>" . $languageController->getTextForLanguage("PASSWORD_RESET") . "</h1>
         <div class=\"row\">
             <div class=\"col-25\"></div>
             <div class=\"col-25\">
                 <div class=\"container\">
                     <div class=\"innerContainer\">
+                        <p>" . $languageController->getTextForLanguage("PASSWORD_RESET_TEXT") . "</p>
                         <form method=\"post\"
                               onsubmit=\"return validateResetPassword()\">
                             <label>" . $languageController->getTextForLanguage("USERNAME") . " " . $languageController->getTextForLanguage("OR") . " " . $languageController->getTextForLanguage("EMAIL") . "

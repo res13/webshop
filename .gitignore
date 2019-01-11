@@ -1,2 +1,4 @@
 .idea/*
 db_config.ini
+/src/img/products/old/
+/src/test

@@ -177,10 +177,7 @@ INSERT INTO `i18n` (`id`, `text_de`, `text_en`) VALUES
 (47, 'xxx', 'Petra is the arrival of a game-changing adjustment in the way we think about flying our parachutes. With a high roll rate, a long recovery arc and high maximal glide ratio, Petra delivers unrivalled power in the turn, plane out and flare. Combined with a highly elliptical planform and very high sweep, a record-breaking wing is born.'),
 (48, 'xxx', 'Ask anyone who has jumped a Pilot and they will tell you the openings are the best you can get, it is fun to fly and easy to land. Since its introduction the Pilot has charmed beginners and experienced jumpers alike. Whether your cup of tea is a conventional approach or a little more playful, the Pilot will surprise you with its stable flight, responsive turns and comfortable flare. This canopy can really do it all.'),
 (49, 'xxx', 'Aerodyne’s hot 9-cell wing. A true high performance non-crossbraced canopy, aggressive and nimble with positive reliable on-heading openings at a reasonable 9-cell price. It was designed using Computational Fluid Dynamics (CFD) simulation software using sophisticated aerodynamic principles to create a versatile high performance aerofoil.'),
-(50, 'xxx', 'The Smart reserve combines more than 30 year of experience in the parachute industry and incorporates the latest 7-cell technology. Thousands of real life cutaways and landings are testimony to the quick and reliable openings, the solid flight performance and the powerful landing flare.'),
-(51, ''asdfasfasdf'', ''asdfasdfasdf''),
-(52, ''asdfasdfasdf'', ''asdfasdfasdf''),
-(53, ''adsfasdfasfasdfd'', ''asdfasdfsadasdf'');
+(50, 'xxx', 'The Smart reserve combines more than 30 year of experience in the parachute industry and incorporates the latest 7-cell technology. Thousands of real life cutaways and landings are testimony to the quick and reliable openings, the solid flight performance and the powerful landing flare.');
 
 -- --------------------------------------------------------
 

@@ -6,7 +6,7 @@
 ## 2 Webshop content
 - Name: Fallschirmshop
 - Address: Flugweg 20, 3000 Bern
-- Logo: [parachuteshoplogo.png](src/img/parachuteshoplogo.png)
+- Logo: [parachuteshoplogo.png](../src/img/parachuteshoplogo.png)
 - Categories
     - Parachute
         - Main

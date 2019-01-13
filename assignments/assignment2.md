@@ -7,7 +7,7 @@
     
 ## 3 Main Page: Layout & 4 Main Page: Styling
 - See in code:
-    - [style.css](src/style/style.css)
+    - [style.css](../src/style/style.css)
     
 ## 5 All Other Pages
 - See in code:

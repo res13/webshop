@@ -10,7 +10,7 @@
     - [user form](src/user.php)
     - [reset password form](src/resetPassword.php)
     - [checkout form](src/checkout.php)
-- The javascript validation happens in [validation.js](src/script/validation.js)
+- The javascript validation happens in [validation.js](../src/script/validation.js)
 
 ## 3 Dynamic Features
-- We have a product filter in written in javascript [productFilter.js](src/script/productFilter.js) used in [products.php](src/products.php)
+- We have a product filter in written in javascript [productFilter.js](../src/script/productFilter.js) used in [products.php](src/products.php)
